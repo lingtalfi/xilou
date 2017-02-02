@@ -1,0 +1,69 @@
+*, html {
+    height: 100%;
+}
+
+.site {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #eee;
+}
+
+.site .menutop {
+    height: auto;
+}
+
+.site .menutop ul {
+    display: flex;
+    height: auto;
+    justify-content: center;
+}
+
+.site .menutop ul li {
+    list-style-type: none;
+    margin: 0 10px;
+}
+
+.site .menutop ul li a {
+    padding: 10px;
+    background: #e0e0e0;
+}
+
+.site .body {
+    flex: auto;
+}
+
+.site .body * {
+    height: auto;
+}
+
+.site .footer {
+    height: 20px;
+    background: #aaa;
+}
+
+/**----------------------
+ UTILS
+----------------------*/
+.ta-center {
+    text-align: center;
+}
+
+.bg-gray {
+    background-color: #ccc;
+}
+
+.vflex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.site .body .fullheight,
+.site .body .fullheight * {
+    height: 100%;
+}
+
+
+
+
