@@ -13,7 +13,7 @@ class ToolsLeftMenuSectionServices
      */
     public static function displayToolsLeftMenuLinks()
     {
-//        \Boot\BootModule::displayToolsLeftMenuLinks();
+        \Boot\BootModule::displayToolsLeftMenuLinks();
 //        \IconsViewer\IconsViewerModule::displayToolsLeftMenuLinks();
         \Crud\CrudModule::displayToolsLeftMenuLinks();
         \ModuleInstaller\ModuleInstallerModule::displayToolsLeftMenuLinks();

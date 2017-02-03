@@ -3,11 +3,16 @@
 
 use AdminTable\Listable\QuickPdoListable;
 use AdminTable\Table\AdminTable;
+use AdminTable\Table\ListParameters;
 use AdminTable\View\AdminTableRenderer;
 use AssetsList\AssetsList;
+use Commande\AdminTable\CommandeAdminTable;
 use Commande\CommandeUtil;
+use Container\ContainerUtil;
 use Csv\CsvUtil;
+use Icons\Icons;
 use Layout\Goofy;
+use QuickPdo\QuickPdo;
 
 $ll = "zilu";
 
@@ -60,42 +65,25 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
 
                 <select id="commande-select" name="commande">
                     <option value="0">Choisissez une commande</option>
-                    <?php foreach ($commandeId2Refs as $id => $label): ?>
-                        <option value="<?php echo $id; ?>"><?php echo htmlspecialchars($label); ?></option>
+                    <?php foreach ($commandeId2Refs as $id => $label):
+                        $sel = ($idCommande === (int)$id) ? 'selected="selected"' : '';
+                        ?>
+                        <option <?php echo $sel; ?>
+                                value="<?php echo $id; ?>"><?php echo htmlspecialchars($label); ?></option>
                     <?php endforeach; ?>
                 </select>
             </form>
 
             <?php
 
-            if (0 !== $idCommande) {
-                ?>
-
-                <table class="zilu-info">
-                    <tr>
-                        <td>Prix total</td>
-                        <td>60€</td>
-                    </tr>
-                    <tr>
-                        <td>Poids total</td>
-                        <td>50 kg</td>
-                    </tr>
-                </table>
-
-                <?php
-            }
-
-            ?>
-
-        </div>
-        <div class="zilu-table">
-            <?php
+            $sTable = '';
 
             if (0 !== $idCommande) {
 
 
                 $fields = '
 c.id,
+co.nom as container,
 c.reference,
 a.reference_lf,
 a.reference_hldp,
@@ -111,14 +99,80 @@ a.descr_en
 from zilu.commande c
 inner join commande_has_article h on h.commande_id=c.id
 inner join article a on a.id=h.article_id
-";
+left join container co on co.id=h.container_id
+where c.id=" . $idCommande;
 
+                $prixTotal = 0;
+                $poidsTotal = 0;
 
-                $list = AdminTable::create()
+                ob_start();
+                $list = CommandeAdminTable::create()
                     ->setRic(['id'])
                     ->setListable(QuickPdoListable::create()->setFields($fields)->setQuery($query))
-                    ->setRenderer(AdminTableRenderer::create());
+                    ->setRenderer(AdminTableRenderer::create()
+                        ->setExtraHiddenFields([
+                            "commande" => $idCommande,
+                        ])
+                        ->setOnItemIteratedCallback(function ($v) use (&$prixTotal, &$poidsTotal) {
+                            $prixTotal += $v['prix'];
+                            $poidsTotal += $v['poids'];
+                        })
+                    );
+
+                $list->setTransformer("container", function ($value, $item, $ricValue) {
+                    $text = $value;
+                    if (null === $value) {
+                        $text = "(no container)";
+                    }
+                    return '
+                    <div class="container-selector">
+                        
+                    </div>
+                    <a class="jslink" data-handler="containerSelector" href="#">' . $text . '</a>
+';
+                });
+
                 $list->displayTable();
+                $sTable = ob_get_clean();
+
+
+                ?>
+
+                <table class="zilu-info">
+                    <tr>
+                        <td>Prix total</td>
+                        <td><?php echo $prixTotal; ?>€</td>
+                    </tr>
+                    <tr>
+                        <td>Poids total</td>
+                        <td><?php echo $poidsTotal; ?> kg</td>
+                    </tr>
+                </table>
+                <?php
+            }
+
+
+            $containers = ContainerUtil::getId2Labels();
+            ?>
+            <div id="containerSelector" style="display: none;">
+                <select>
+                    <option value="0">Choisissez un container</option>
+                    <?php
+                    foreach ($containers as $id => $label) {
+                        ?>
+                        <option value="<?php echo $id; ?>"><?php echo htmlspecialchars($label); ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+                <button><?php Icons::printIcon("clear"); ?></button>
+            </div>
+        </div>
+        <div id="zilu-table" class="zilu-table">
+            <?php
+
+            if (0 !== $idCommande) {
+                echo $sTable;
             }
             ?>
         </div>
@@ -140,4 +194,43 @@ inner join article a on a.id=h.article_id
             commandeSelect.parentNode.submit();
         }
     });
+
+    var ziluTable = document.getElementById('zilu-table');
+    ziluTable.addEventListener('click', function (e) {
+        if (e.target.classList.contains('postlink')) {
+            e.preventDefault();
+        }
+
+    });
+
+
+    var theContainerSelector = document.getElementById("containerSelector");
+    var containerSelector = theContainerSelector.querySelector('select');
+    var containerSelectorCloseBtn = theContainerSelector.querySelector('button');
+
+
+    containerSelector.addEventListener('change', function (e) {
+        if ('0' !== this.value) {
+            this.parentNode.classList.add("hidden");
+            this.parentNode.parentNode.querySelector(".jslink").classList.remove("hidden");
+        }
+    });
+
+
+    function toggleContainerSelector(element) {
+        var nodeName = element.nodeName;
+        if ('A' === nodeName) {
+            element.classList.add("hidden");
+            var containerContainer = element.parentNode.querySelector(".container-selector");
+            containerContainer.appendChild(containerSelector);
+            element.parentNode.querySelector(".container-selector").classList.remove('hidden');
+        }
+    }
+
+
+    AdminTable.registerAjaxCallback("containerSelector", function (el) {
+        toggleContainerSelector(el);
+    });
+
+
 </script>

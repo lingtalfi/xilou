@@ -139,6 +139,8 @@
     color: #1515bb;
 }
 
-.datatable tbody a.action-link {
+.datatable tbody a.action-link,
+.datatable tbody a.ajaxlink
+{
     color: #9341ce;
 }

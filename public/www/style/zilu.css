@@ -44,15 +44,19 @@
     border: 1px solid white;
 }
 
-.zilu .zilu-info tr td:first-child{
+.zilu .zilu-info tr td:first-child {
     padding-right: 20px;
 }
 
-.zilu .zilu-info tr td{
+.zilu .zilu-info tr td {
     padding: 5px;
 }
 
 .zilu .zilu-table {
     flex: auto;
+}
+
+.zilu .zilu-table .hidden {
+    display: none;
 }
 

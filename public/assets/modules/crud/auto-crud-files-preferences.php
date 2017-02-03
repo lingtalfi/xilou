@@ -3,7 +3,6 @@ $prefs = [
     'actionColumnsPosition' => 'right',
     'prettyTableNames' => [
         'zilu.commande_has_article' => 'commande has article',
-        'zilu.container_has_article' => 'container has article',
         'zilu.fournisseur_has_article' => 'fournisseur has article',
     ],
     'foreignKeyPrettierColumns' => [
