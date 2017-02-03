@@ -1,0 +1,23 @@
+{
+  "Counter": {
+    "version": "1.1.0",
+    "description": "With Counter, you know how many times your website has been seen. The front end collects every page refresh, and the backend provides a gui to see the statistics.",
+    "author": "lingtalfi",
+    "releaseDate": "2016-12-30",
+    "fileList": [
+      "CounterConfig.php",
+      "CounterInstaller.php",
+      "CounterModule.php",
+      "CounterPreferences.php",
+      "CounterUtil.php",
+      "InstallAssets/app-nullos/assets/modules/counter/prefs.php",
+      "InstallAssets/app-nullos/lang/en/modules/counter/counter.php",
+      "InstallAssets/app-nullos/layout-elements/nullos/modules/counter/counter.php",
+      "InstallAssets/app-nullos/layout-elements/nullos/modules/counter/tabs/config.php",
+      "InstallAssets/app-nullos/layout-elements/nullos/modules/counter/tabs/counter.php",
+      "InstallAssets/app-nullos/layout-elements/nullos/modules/counter/tabs/help.php",
+      "InstallAssets/app-nullos/pages/modules/counter/counter.php",
+      "module-info.yml"
+    ]
+  }
+}

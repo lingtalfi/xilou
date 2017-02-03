@@ -1,0 +1,58 @@
+.zilu {
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.zilu .icon {
+    fill: white;
+}
+
+.zilu .button-icon {
+    background: #446092 none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    color: white;
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 10px 20px;
+}
+
+.zilu .zilu-topbar {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.zilu .zilu-split {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.zilu .zilu-summary {
+    box-sizing: border-box;
+    padding: 20px;
+    background: #ddd;
+    border: 1px solid #eee;
+    border-right: none;
+}
+
+.zilu .zilu-info {
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #eee;
+    border: 1px solid white;
+}
+
+.zilu .zilu-info tr td:first-child{
+    padding-right: 20px;
+}
+
+.zilu .zilu-info tr td{
+    padding: 5px;
+}
+
+.zilu .zilu-table {
+    flex: auto;
+}
+

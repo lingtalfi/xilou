@@ -1,0 +1,7 @@
+version: 1.1.0
+description: <
+With Counter, you know how many times your website has been seen.
+The front end collects every page refresh, and the backend provides a gui to see the statistics.
+>
+author: lingtalfi
+releaseDate: 2016-12-30
