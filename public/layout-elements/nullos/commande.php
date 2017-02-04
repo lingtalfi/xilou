@@ -40,23 +40,22 @@ if (array_key_exists('csvfile', $_FILES)) {
 AssetsList::css("style/zilu.css");
 AssetsList::css("/style/admintable.css");
 
+
 $commandeId2Refs = CommandeUtil::getId2Labels();
 
 ?>
 
 
-<div class="zilu">
+<div class="zilu" id="zilu">
     <div class="zilu-topbar">
-        <form action="" method="post" enctype="multipart/form-data">
-            <div class="button-icon">
-                <label>
-                    Importer un fichier csv
-                </label>
-                <input id="import-csv-input" type="file" name="csvfile"
-                       accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-                >
-            </div>
-        </form>
+
+        <button class="button-with-icon csv-import-button">
+            <span>
+                <span>Importer un fichier csv</span>
+                <?php Icons::printIcon("add", 'white'); ?>
+            </span>
+        </button>
+
     </div>
     <div class="zilu-split">
         <div class="zilu-summary">
@@ -83,12 +82,16 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
 
                 $fields = '
 c.id,
+co.id as container_id,
 co.nom as container,
 c.reference,
+a.poids,
+f.id as fournisseur_id,
+f.nom as fournisseur,
+fha.prix,
+a.id as aid,
 a.reference_lf,
 a.reference_hldp,
-a.prix,
-a.poids,
 a.descr_fr,
 a.descr_en
 ';
@@ -98,6 +101,8 @@ a.descr_en
 %s
 from zilu.commande c
 inner join commande_has_article h on h.commande_id=c.id
+inner join fournisseur f on f.id=h.fournisseur_id
+inner join fournisseur_has_article fha on fha.fournisseur_id=h.fournisseur_id and fha.article_id=h.article_id
 inner join article a on a.id=h.article_id
 left join container co on co.id=h.container_id
 where c.id=" . $idCommande;
@@ -107,7 +112,7 @@ where c.id=" . $idCommande;
 
                 ob_start();
                 $list = CommandeAdminTable::create()
-                    ->setRic(['id'])
+                    ->setRic(['id', 'aid'])
                     ->setListable(QuickPdoListable::create()->setFields($fields)->setQuery($query))
                     ->setRenderer(AdminTableRenderer::create()
                         ->setExtraHiddenFields([
@@ -122,16 +127,26 @@ where c.id=" . $idCommande;
                 $list->setTransformer("container", function ($value, $item, $ricValue) {
                     $text = $value;
                     if (null === $value) {
-                        $text = "(no container)";
+                        $text = "(choisissez un container)";
                     }
-                    return '
-                    <div class="container-selector">
-                        
-                    </div>
-                    <a class="jslink" data-handler="containerSelector" href="#">' . $text . '</a>
-';
+                    return '<a class="container-selector" data-ric="' . htmlspecialchars($ricValue) . '" data-container-id="' . htmlspecialchars($item['container_id']) . '" href="#">' . $text . '</a>';
                 });
 
+
+                $list->setTransformer("fournisseur", function ($value, $item, $ricValue) {
+                    $text = $value;
+                    if (null === $value) {
+                        $text = "(choisissez un fournisseur)";
+                    }
+                    return '<a class="fournisseur-selector" data-article-id="' . $item['aid'] . '" data-ric="' . htmlspecialchars($ricValue) . '" data-fournisseur-id="' . htmlspecialchars($item['fournisseur_id']) . '" href="#">' . $text . '</a>';
+                });
+
+                $list->hiddenColumns = [
+                    'cid',
+                    'id',
+                    'container_id',
+                    'fournisseur_id',
+                ];
                 $list->displayTable();
                 $sTable = ob_get_clean();
 
@@ -151,22 +166,7 @@ where c.id=" . $idCommande;
                 <?php
             }
 
-
-            $containers = ContainerUtil::getId2Labels();
             ?>
-            <div id="containerSelector" style="display: none;">
-                <select>
-                    <option value="0">Choisissez un container</option>
-                    <?php
-                    foreach ($containers as $id => $label) {
-                        ?>
-                        <option value="<?php echo $id; ?>"><?php echo htmlspecialchars($label); ?></option>
-                        <?php
-                    }
-                    ?>
-                </select>
-                <button><?php Icons::printIcon("clear"); ?></button>
-            </div>
         </div>
         <div id="zilu-table" class="zilu-table">
             <?php
@@ -183,54 +183,170 @@ where c.id=" . $idCommande;
 
 
 <script>
-    var csvInput = document.getElementById("import-csv-input");
-    var commandeSelect = document.getElementById("commande-select");
-    csvInput.addEventListener('change', function () {
-        csvInput.parentNode.parentNode.submit();
-    });
-    commandeSelect.addEventListener('change', function () {
-        var value = commandeSelect.value;
-        if ('0' !== value) {
-            commandeSelect.parentNode.submit();
-        }
-    });
-
-    var ziluTable = document.getElementById('zilu-table');
-    ziluTable.addEventListener('click', function (e) {
-        if (e.target.classList.contains('postlink')) {
-            e.preventDefault();
-        }
-
-    });
 
 
-    var theContainerSelector = document.getElementById("containerSelector");
-    var containerSelector = theContainerSelector.querySelector('select');
-    var containerSelectorCloseBtn = theContainerSelector.querySelector('button');
+    $(document).ready(function () {
 
 
-    containerSelector.addEventListener('change', function (e) {
-        if ('0' !== this.value) {
-            this.parentNode.classList.add("hidden");
-            this.parentNode.parentNode.querySelector(".jslink").classList.remove("hidden");
-        }
-    });
+        var csvInput = document.getElementById("import-csv-input");
+        var commandeSelect = document.getElementById("commande-select");
+        csvInput.addEventListener('change', function () {
+            csvInput.parentNode.submit();
+        });
+        commandeSelect.addEventListener('change', function () {
+            var value = commandeSelect.value;
+            if ('0' !== value) {
+                commandeSelect.parentNode.submit();
+            }
+        });
 
 
-    function toggleContainerSelector(element) {
-        var nodeName = element.nodeName;
-        if ('A' === nodeName) {
-            element.classList.add("hidden");
-            var containerContainer = element.parentNode.querySelector(".container-selector");
-            containerContainer.appendChild(containerSelector);
-            element.parentNode.querySelector(".container-selector").classList.remove('hidden');
-        }
-    }
+        $('#zilu').on('click', function (e) {
+            var jTarget = $(e.target);
+            if (jTarget.hasClass("postlink")) {
+                e.preventDefault();
+            }
+            else if (jTarget.hasClass("container-selector")) {
+                e.preventDefault();
+                var containerId = jTarget.attr('data-container-id');
+                var ricVal = jTarget.attr('data-ric');
 
+                $.getJSON('/services/zilu.php?action=commande-container-selector&container=' + containerId, function (data) {
+                    if ('undefined' !== typeof $("#container-dialog").dialog('instance')) {
+                        $("#container-dialog").dialog("close");
+                    }
 
-    AdminTable.registerAjaxCallback("containerSelector", function (el) {
-        toggleContainerSelector(el);
+                    $("#container-dialog").dialog({
+                        position: {
+                            my: "center",
+                            at: "center",
+                            of: jTarget
+                        },
+                        open: function (event, ui) {
+                            var jSelect = $("#container-dialog").find('select');
+                            jSelect.empty();
+                            var s = ("0" === containerId) ? 'selected="selected"' : '';
+                            jSelect.append('<option ' + s + ' value="0">Choisissez un container</option>');
+                            for (var i in data) {
+                                s = (i == containerId) ? 'selected="selected"' : '';
+                                jSelect.append('<option ' + s + ' value="' + i + '">' + data[i] + '</option>');
+                            }
+                            jSelect.on('change', function () {
+                                var value = jSelect.val();
+                                $.getJSON('/services/zilu.php?action=commande-change-container&ric=' + ricVal + "&value=" + value, function (data) {
+                                    if ('ok' === data) {
+                                        location.reload();
+                                    }
+                                });
+                            });
+                        }
+                    });
+                });
+
+            }
+            else if (jTarget.hasClass("fournisseur-selector")) {
+                e.preventDefault();
+                var fournisseurId = jTarget.attr('data-fournisseur-id');
+                var ricVal = jTarget.attr('data-ric');
+                var articleId = jTarget.attr('data-article-id');
+
+                $.getJSON('/services/zilu.php?action=commande-fournisseur-selector&article_id=' + articleId + '&fournisseur=' + fournisseurId, function (data) {
+                    if ('undefined' !== typeof $("#fournisseur-dialog").dialog('instance')) {
+                        $("#fournisseur-dialog").dialog("close");
+                    }
+
+                    $("#fournisseur-dialog").dialog({
+                        maxHeight: 500,
+                        width: 400,
+                        position: {
+                            my: "center",
+                            at: "center",
+                            of: jTarget
+                        },
+                        open: function (event, ui) {
+                            var jTable = $("#fournisseur-dialog").find('.zilu-fournisseur-comparison-table > tbody');
+                            jTable.empty();
+
+                            var s = "";
+                            for (var j in data) {
+                                var object = data[j];
+
+                                s = (object.id == fournisseurId) ? 'class="selected"' : '';
+                                jTable.append('<tr ' + s + '>' +
+                                    '<td><button data-id="' + object.id + '">' + object.nom + '</button></td>' +
+                                    '<td>' + object.reference + '</td>' +
+                                    '<td>' + object.prix + '</td>' +
+                                    '</tr>');
+                            }
+                            jTable.find('button').on('click', function (e) {
+                                e.preventDefault();
+                                var selectedFournisseurId = $(this).attr('data-id');
+                                $.getJSON('/services/zilu.php?action=commande-change-fournisseur&ric=' + ricVal + "&value=" + selectedFournisseurId, function (data) {
+                                    if ('ok' === data) {
+                                        location.reload();
+                                    }
+                                });
+
+                            });
+                        }
+                    });
+                });
+            }
+            else if (jTarget.hasClass("csv-import-button")) {
+                e.preventDefault();
+                $("#csv-import-dialog").dialog({
+                    position: {
+                        my: "center",
+                        at: "center",
+                        of: jTarget
+                    },
+                    width: 600,
+                    open: function (event, ui) {
+                    }
+                });
+            }
+        });
     });
 
 
 </script>
+
+
+<div style="display:none">
+    <div id="container-dialog" title="Choisissez un container" class="zilu-dialog centered">
+        <select>
+            <option>Choisissez un container</option>
+        </select>
+    </div>
+    <div id="fournisseur-dialog" title="Choisissez un fournisseur" class="zilu-dialog centered">
+        <table class="zilu-fournisseur-comparison-table">
+            <thead>
+            <tr>
+                <th>Fournisseur</th>
+                <th>Référence</th>
+                <th>Prix</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div id="csv-import-dialog" title="Importer une commande par fichier csv" class="zilu-dialog centered">
+        <form action="" method="post" enctype="multipart/form-data">
+            <br>
+            <label>Choisissez le fichier csv</label>
+            <br>
+            <br>
+            <input id="import-csv-input" type="file" name="csvfile"
+                   accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+            >
+            <label>Utiliser le fournisseur:</label>
+            <select>
+                <option value="moinscher">le moins cher</option>
+                <option value="leaderfit">Leaderfit</option>
+            </select>
+            <br>
+            <br>
+        </form>
+    </div>
+</div>

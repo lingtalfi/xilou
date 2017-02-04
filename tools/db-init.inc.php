@@ -4,7 +4,7 @@
 use QuickPdo\QuickPdo;
 
 $dbUser = 'root';
-$dbPass = '';
+$dbPass = 'root';
 $dbName = 'zilu';
 
 QuickPdo::setConnection("mysql:host=localhost;dbname=$dbName", $dbUser, $dbPass, [

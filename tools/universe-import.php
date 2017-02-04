@@ -78,9 +78,15 @@ require "bigbang.php";
 //--------------------------------------------
 // CONFIG
 //--------------------------------------------
-$planetsDirWithGit = "/pathto/php/projects/universe/planets"; // working planets dir (with .git)
-$planetsDirWithoutGit = "/pathto/php/projects/universe-snapshots/planets"; // exportable planets dir (without .git)
 $destDir = __DIR__ . "/../public/class-planets";
+
+
+
+
+$planetsDirWithGit = "/myphp/universe/planets"; // working planets dir (with .git)
+$planetsDirWithoutGit = "/myphp/universe-snapshots/planets"; // exportable planets dir (without .git)
+
+
 
 
 //--------------------------------------------

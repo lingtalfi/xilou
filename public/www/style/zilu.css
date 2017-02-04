@@ -3,9 +3,6 @@
     padding: 20px;
 }
 
-.zilu .icon {
-    fill: white;
-}
 
 .zilu .button-icon {
     background: #446092 none repeat scroll 0 0;
@@ -56,7 +53,79 @@
     flex: auto;
 }
 
+.zilu .jslink {
+    white-space: nowrap;
+}
+
 .zilu .zilu-table .hidden {
     display: none;
 }
 
+.zilu .container-box {
+    display: flex;
+    flex-shrink: 0;
+}
+
+.zilu .button-inline-icon {
+    border: none;
+    background: #9bc2e9;
+    cursor: pointer;
+    width: auto;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+
+}
+
+.zilu-dialog.centered {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*------------------------------------
+- FOURNISSEUR TABLE
+------------------------------------*/
+.zilu-fournisseur-comparison-table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.zilu-fournisseur-comparison-table tr,
+.zilu-fournisseur-comparison-table th,
+.zilu-fournisseur-comparison-table td {
+    border: 1px solid #ccc;
+}
+
+.zilu-fournisseur-comparison-table td,
+.zilu-fournisseur-comparison-table th {
+    padding: 10px;
+    background: #eee;
+}
+
+.zilu-fournisseur-comparison-table tr.selected td
+{
+    background: black;
+    color: white;
+}
+
+
+.button-with-icon{
+    cursor: pointer;
+    background: #1e627d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    padding: 10px;
+}
+.button-with-icon:hover{
+    background: #2882a6;
+}
+
+.button-with-icon span{
+    display: flex;
+    align-items: center;
+}

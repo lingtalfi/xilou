@@ -138,7 +138,12 @@ class Layout
             <link rel="stylesheet" href="<?php echo url('/style/style.css'); ?>">
             <link rel="stylesheet" href="<?php echo url('/style/layout.css'); ?>">
             <link rel="stylesheet" href="<?php echo url('/style/pastel-theme.css'); ?>">
+            <link rel="stylesheet" href="<?php echo url('/libs/jquery-ui-1.12.1/jquery-ui.min.css'); ?>">
             <script src="<?php echo url('/libs/zquery/zquery.js'); ?>"></script>
+
+
+            <script src="<?php echo url('/libs/jquery-ui-1.12.1/external/jquery/jquery.js'); ?>"></script>
+            <script src="<?php echo url('/libs/jquery-ui-1.12.1/jquery-ui.js'); ?>"></script>
             <script src="<?php echo url('/libs/split/split.js'); ?>"></script>
             <?php
             AssetsList::displayList();

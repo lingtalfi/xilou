@@ -37,7 +37,7 @@ if (true === Helper::isLocal()) {
     
     // db
     $dbUser = 'root';
-    $dbPass = '';
+    $dbPass = 'root';
     $dbName = 'zilu';
             
 
