@@ -319,7 +319,6 @@ where c.id=" . $idCommande;
                     open: function (event, ui) {
                     }
                 });
-            }
         });
     });
 

@@ -26,20 +26,25 @@ ButineurAutoloader::getInst()->start();
 require_once __DIR__ . "/functions/main-functions.php";
 
 
-
-
 //--------------------------------------------
 // LOCAL VS PROD
 //--------------------------------------------
-if (true === Helper::isLocal()) {
+if (
+    "/Users/" === substr(__DIR__, 0, 7) ||
+    "/Volumes/" === substr(__DIR__, 0, 9)
+) {
     // php
     ini_set('display_errors', 1);
-    
+
     // db
     $dbUser = 'root';
     $dbPass = 'root';
     $dbName = 'zilu';
-            
+
+    if ("/Users/" === substr(__DIR__, 0, 7)) {
+        $dbPass = '';
+    }
+
 
     // privilege
     $privilegeSessionTimeout = null; // unlimited session
@@ -47,12 +52,12 @@ if (true === Helper::isLocal()) {
     // php
     ini_set('display_errors', 0);
 
-    
+
     // db
     $dbUser = 'root';
     $dbPass = '';
     $dbName = 'zilu';
-            
+
 
     // privilege
     $privilegeSessionTimeout = 60 * 5;
@@ -66,12 +71,10 @@ date_default_timezone_set("Europe/Paris");
 ini_set('error_log', __DIR__ . "/log/php.err.log");
 if (null !== $privilegeSessionTimeout) { // or session expires when browser quits
     ini_set('session.cookie_lifetime', $privilegeSessionTimeout);
-}
-else{
+} else {
     ini_set('session.cookie_lifetime', 10 * 12 * 31 * 86400); // ~10 years
 }
 session_start();
-
 
 
 //--------------------------------------------
@@ -84,9 +87,7 @@ if ('/index.php' === $_SERVER['PHP_SELF']) {
     define('URL_PREFIX', substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/')));
 }
 
-        
-        
-        
+
 //--------------------------------------------
 // DATABASE CONNEXION
 //--------------------------------------------
@@ -95,9 +96,7 @@ QuickPdo::setConnection("mysql:host=localhost;dbname=$dbName", $dbUser, $dbPass,
     PDO::MYSQL_ATTR_INIT_COMMAND => "SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY','')), NAMES 'utf8'",
 //    PDO::MYSQL_ATTR_INIT_COMMAND => "SET sql_mode=(SELECT REPLACE(@@sql_mode,'STRICT_TRANS_TABLES','')), NAMES 'utf8'",
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-]);            
-            
-
+]);
 
 
 //--------------------------------------------

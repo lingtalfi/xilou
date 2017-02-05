@@ -221,6 +221,42 @@
     width: 28em;
 }
 
-.zilu .add-container-spy {
+.zilu .add-container-spy,
+.zilu .remove-container-spy {
     margin-top: 10px;
+}
+
+.zilu .container-spy-block {
+    margin-top: 20px;
+    border: 1px solid #eee;
+    padding: 5px;
+}
+
+.zilu .container-spy-block.first {
+    margin-top: 0px;
+}
+
+.zilu .container-spy-selector {
+    display: block;
+}
+
+.zilu .button-natural {
+    background: white;
+    color: black;
+    border: 1px solid #ccc;
+    padding: 4px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.zilu-button-naked {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+.zilu-flex-horizontal {
+    display: flex;
+    flex-direction: row;
 }

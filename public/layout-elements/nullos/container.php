@@ -40,24 +40,15 @@ $containerId2Refs = ContainerUtil::getId2Labels();
 <div class="zilu" id="zilu">
     <div class="zilu-topbar">
 
+        <button class="button-natural repartition-container-button">Répartition automatique...</button>
 
         <div class="commande-actions-group">
-            <div class="commande-actions-vertical">
-                <form>
-                    <select id="change-all-fournisseurs-selector">
-                        <option>Pour tous les articles de cette commande...</option>
-                        <option value="moinscher">Choisir le fournisseur le moins cher pour chaque produit</option>
-                        <option value="leaderfit">Choisir le fournisseur leaderfit pour chaque produit</option>
-                    </select>
-                </form>
-                <form>
-                    <select id="send-mail-selector">
-                        <option>Envoyer un email...</option>
-                        <option value="direction">à Didier</option>
-                        <option value="fournisseurs">aux fournisseurs</option>
-                    </select>
-                </form>
-            </div>
+            <button class="button-with-icon csv-import-button">
+            <span>
+                <span>Exporter les fichiers csv...</span>
+                <?php Icons::printIcon("add", 'white'); ?>
+            </span>
+            </button>
         </div>
 
     </div>
@@ -67,67 +58,82 @@ $containerId2Refs = ContainerUtil::getId2Labels();
             <form action="" method="get">
 
 
-                <?php foreach ($containerIds as $containerId): ?>
+                <?php
+
+                $cptContainer = 0;
+                foreach ($containerIds as $containerId):
+                    $sFirst = (0 === $cptContainer) ? "first" : "";
+                    ?>
 
 
-                    <select class="container-selector" name="containers[]">
-                        <option value="0">Choisissez un container</option>
-                        <?php foreach ($containerId2Refs as $id => $label):
-                            $sel = ($containerId === (int)$id) ? 'selected="selected"' : '';
-                            ?>
-                            <option <?php echo $sel; ?>
-                                    value="<?php echo $id; ?>"><?php echo htmlspecialchars($label); ?></option>
-                        <?php endforeach; ?>
-                    </select>
+                    <div class="container-spy-block <?php echo $sFirst; ?>" data-id="<?php echo $containerId; ?>">
+                        <select class="container-spy-selector" name="containers[]">
+                            <option value="0">Choisissez un container</option>
+                            <?php foreach ($containerId2Refs as $id => $label):
+                                $sel = ($containerId === (int)$id) ? 'selected="selected"' : '';
+                                ?>
+                                <option <?php echo $sel; ?>
+                                        value="<?php echo $id; ?>"><?php echo htmlspecialchars($label); ?></option>
+                            <?php endforeach; ?>
+                        </select>
 
-                    <?php
+                        <?php
 
-                    if (0 !== $containerId):
+                        if (0 !== $containerId):
 
-                        $prixTotal = 0;
-                        $poidsTotal = 0;
+                            $prixTotal = 0;
+                            $poidsTotal = 0;
 
-                        $res = QuickPdo::fetch('
+                            $res = QuickPdo::fetch('
                 select label, poids_max, volume_max
                 from type_container t
                 inner join container c on c.type_container_id=t.id
                 where c.id=' . (int)$containerId);
 
-                        $typeContainer = $res['label'];
-                        $poidsMax = $res['poids_max'];
-                        $volumeMax = $res['volume_max'];
+                            $typeContainer = $res['label'];
+                            $poidsMax = $res['poids_max'];
+                            $volumeMax = $res['volume_max'];
 
 
-                        ?>
-                        <table class="zilu-info">
-                            <tr>
-                                <td>Type container</td>
-                                <td><?php echo $typeContainer; ?></td>
-                            </tr>
-                            <tr>
-                                <td>Poids max</td>
-                                <td><?php echo $poidsMax; ?> kg</td>
-                            </tr>
-                            <tr>
-                                <td>Volume max</td>
-                                <td><?php echo $volumeMax; ?> m&#179;</td>
-                            </tr>
-                            <tr>
-                                <td>Poids actuel</td>
-                                <td><?php echo $prixTotal; ?> kg</td>
-                            </tr>
-                            <tr>
-                                <td>Volume actuel</td>
-                                <td><?php echo $poidsTotal; ?> m&#179;</td>
-                            </tr>
-                        </table>
+                            ?>
+                            <table class="zilu-info">
+                                <tr>
+                                    <td>Type container</td>
+                                    <td><?php echo $typeContainer; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Poids max</td>
+                                    <td><?php echo $poidsMax; ?> kg</td>
+                                </tr>
+                                <tr>
+                                    <td>Volume max</td>
+                                    <td><?php echo $volumeMax; ?> m&#179;</td>
+                                </tr>
+                                <tr>
+                                    <td>Poids actuel</td>
+                                    <td><?php echo $prixTotal; ?> kg</td>
+                                </tr>
+                                <tr>
+                                    <td>Volume actuel</td>
+                                    <td><?php echo $poidsTotal; ?> m&#179;</td>
+                                </tr>
+                            </table>
 
-                    <?php endif; ?>
+                        <?php endif; ?>
 
-                    <button class="add-container-spy">ajouter un container</button>
 
-                <?php endforeach; ?>
+                        <?php if (0 !== $cptContainer): ?>
+                            <button class="remove-container-spy">Supprimer ce container</button>
+                        <?php endif; ?>
+
+                    </div>
+                    <?php
+                    $cptContainer++;
+                endforeach; ?>
+                <button class="add-container-spy">ajouter un container</button>
             </form>
+
+
         </div>
 
         <?php
@@ -221,8 +227,8 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
     $(document).ready(function () {
 
 
-        $(".container-selector").on('change', function () {
-            containerSelect.parentNode.submit();
+        $(".container-spy-selector").on('change', function () {
+            $(this).parent().parent().submit();
         });
 
 
@@ -325,6 +331,30 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
                 jForm.append('<input type="hidden" name="containers[]" value="0">');
                 jForm.submit();
             }
+            else if (jTarget.hasClass("remove-container-spy")) {
+                e.preventDefault();
+                var jContainerSpyBlock = jTarget.parent();
+                containerId = jContainerSpyBlock.attr('data-id');
+                jForm = jContainerSpyBlock.parent();
+                var jContainerToRemove = jForm.find('.container-spy-block[data-id=' + containerId + ']');
+                jContainerToRemove.remove();
+//                jForm.submit();
+
+//                jForm.submit();
+            }
+            else if (jTarget.hasClass("repartition-container-button")) {
+                e.preventDefault();
+                $("#repartition-container-dialog").dialog({
+                    position: {
+                        my: "top",
+                        at: "center",
+                        of: jTarget
+                    },
+                    minWidth: 700,
+                    open: function (event, ui) {
+                    }
+                });
+            }
         });
     });
 
@@ -373,5 +403,58 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
                 </ul>
             </form>
         </div>
+    </div>
+    <div id="repartition-container-dialog" title="Répartir les articles dans les containers"
+         class="zilu-dialog centered">
+        <table>
+            <tr>
+                <th>Choix des articles</th>
+                <th>
+                    <div style="width: 30px"></div>
+                </th>
+                <th>Choix des containers</th>
+            </tr>
+            <tr>
+                <td>
+                    <div>Ajouter tous les articles des commandes:</div>
+                    <div class="zilu-flex-horizontal">
+                        <select>
+                            <option value="0">Choisissez une commande...</option>
+                            <?php
+                            $id2labels = CommandeUtil::getId2Labels();
+                            foreach ($id2labels as $id => $label):
+                                ?>
+                                <option value="<?php echo htmlspecialchars($id); ?>"><?php echo $label; ?></option><?php
+                            endforeach;
+                            ?>
+                        </select>
+                        <button class="zilu-button-naked"
+                                style="width: 30px"><?php Icons::printIcon("add-circle"); ?></button>
+                        <button class="zilu-button-naked"
+                                style="width: 30px"><?php Icons::printIcon("remove-circle"); ?></button>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                    <div class="zilu-flex-horizontal">
+                        <select>
+                            <option value="0">Choisissez un container...</option>
+                            <?php
+                            $id2labels = ContainerUtil::getId2Labels();
+                            foreach ($id2labels as $id => $label):
+                                ?>
+                                <option value="<?php echo htmlspecialchars($id); ?>"><?php echo $label; ?></option><?php
+                            endforeach;
+                            ?>
+                        </select>
+                        <button class="zilu-button-naked"
+                                style="width: 30px"><?php Icons::printIcon("add-circle"); ?></button>
+                        <button class="zilu-button-naked"
+                                style="width: 30px"><?php Icons::printIcon("remove-circle"); ?></button>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
