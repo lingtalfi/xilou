@@ -356,6 +356,17 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
                 });
             }
         });
+
+
+        $( ".article-autocomplete-input" ).autocomplete({
+            source: "/services/zilu.php?action=article-autocomplete",
+            minLength: 2,
+//            appendTo: "#repartition-container-dialog",
+            classes: {
+                "ui-autocomplete": "zilu-auto-complete"
+            }
+        });
+
     });
 
 
@@ -406,7 +417,7 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
     </div>
     <div id="repartition-container-dialog" title="Répartir les articles dans les containers"
          class="zilu-dialog centered">
-        <table>
+        <table class="zilu-repartition-table">
             <tr>
                 <th>Choix des articles</th>
                 <th>
@@ -433,6 +444,15 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
                         <button class="zilu-button-naked"
                                 style="width: 30px"><?php Icons::printIcon("remove-circle"); ?></button>
                     </div>
+                    <hr style="border: 1px solid #ccc">
+                    <div>Ajouter également les articles suivants:</div>
+                    <div class="zilu-flex-horizontal">
+                        <input class="article-autocomplete-input" type="text" value="">
+                        <button class="zilu-button-naked"
+                                style="width: 30px"><?php Icons::printIcon("add-circle"); ?></button>
+                        <button class="zilu-button-naked"
+                                style="width: 30px"><?php Icons::printIcon("remove-circle"); ?></button>
+                    </div>
                 </td>
                 <td>
                 </td>
@@ -453,6 +473,14 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
                         <button class="zilu-button-naked"
                                 style="width: 30px"><?php Icons::printIcon("remove-circle"); ?></button>
                     </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" style="text-align: center;">
+                    <br>
+                    <hr>
+                    <button>Simulation</button>
+                    <button>Appliquer</button>
                 </td>
             </tr>
         </table>

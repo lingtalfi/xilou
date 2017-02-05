@@ -255,8 +255,19 @@
     cursor: pointer;
 }
 
-
 .zilu-flex-horizontal {
     display: flex;
     flex-direction: row;
+}
+
+.zilu-repartition-table th {
+    background: #ccc;
+}
+
+.zilu-repartition-table td {
+    padding: 10px;
+}
+
+.zilu-auto-complete{
+    z-index: 1000000;
 }
