@@ -4,14 +4,17 @@ use Crud\CrudHelper;
 use Crud\CrudModule;
 
 $fields = '
-id,
-nom
+c.id,
+c.nom,
+c.type_container_id,
+z.label as type_container_label
 ';
 
 
 $query = "select
 %s
-from zilu.container
+from zilu.container c
+inner join zilu.type_container z on z.id=c.type_container_id
 ";
 
 
@@ -23,12 +26,21 @@ $table->title = "Container";
 $table->columnLabels= [
     "id" => "id",
     "nom" => "nom",
+    "type_container_label" => "type container",
 ];
 
 
 $table->hiddenColumns = [
     "id",
+    "type_container_id",
 ];
+
+
+$table->setTransformer('type_container_label', function ($v, array $item) {
+    return '<a href="' . CrudHelper::getUpdateFormUrl('zilu.type_container', $item['type_container_id']) . '">' . $v . '</a>';
+});
+
+
 
 
 $table->displayTable();

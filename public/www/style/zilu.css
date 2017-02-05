@@ -3,7 +3,6 @@
     padding: 20px;
 }
 
-
 .zilu .button-icon {
     background: #446092 none repeat scroll 0 0;
     border: medium none;
@@ -105,14 +104,12 @@
     background: #eee;
 }
 
-.zilu-fournisseur-comparison-table tr.selected td
-{
+.zilu-fournisseur-comparison-table tr.selected td {
     background: black;
     color: white;
 }
 
-
-.button-with-icon{
+.button-with-icon {
     cursor: pointer;
     background: #1e627d;
     color: white;
@@ -121,11 +118,109 @@
     font-size: 1em;
     padding: 10px;
 }
-.button-with-icon:hover{
+
+.button-with-icon:hover {
     background: #2882a6;
 }
 
-.button-with-icon span{
+.button-with-icon span {
     display: flex;
     align-items: center;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container * {
+    box-sizing: border-box;
+}
+
+.flex-outer,
+.flex-inner {
+    list-style-type: none;
+    padding: 0;
+}
+
+.flex-outer {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.flex-outer li,
+.flex-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.flex-inner {
+    padding: 0 8px;
+    justify-content: space-between;
+}
+
+.flex-outer > li:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.flex-outer li label,
+.flex-outer li p {
+    padding: 8px;
+    font-weight: 300;
+}
+
+.flex-outer > li > label,
+.flex-outer li p {
+    flex: 1 0 120px;
+    max-width: 220px;
+}
+
+.flex-outer > li > label + *,
+.flex-inner {
+    flex: 1 0 220px;
+}
+
+.flex-outer li p {
+    margin: 0;
+}
+
+.flex-outer li input:not([type='checkbox']),
+.flex-outer li textarea {
+    padding: 15px;
+    border: none;
+}
+
+.flex-outer li button {
+    margin-left: auto;
+    padding: 8px 16px;
+    border: none;
+    background: #333;
+    color: #f2f2f2;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.flex-inner li {
+    width: 100px;
+}
+
+.zilu .commande-actions-group {
+    flex: auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/*.zilu .commande-actions-vertical{*/
+/*display: flex;*/
+/*flex-direction: column;*/
+/*}*/
+
+.zilu .ui-selectmenu-button.ui-button {
+    width: 28em;
+}
+
+.zilu .add-container-spy {
+    margin-top: 10px;
 }

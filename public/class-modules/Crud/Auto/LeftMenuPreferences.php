@@ -18,6 +18,7 @@ class LeftMenuPreferences
         'zilu.container',
         'zilu.fournisseur',
         'zilu.fournisseur_has_article',
+        'zilu.type_container',
     ],
 ];
     }
@@ -30,6 +31,7 @@ class LeftMenuPreferences
         return [
     'zilu.commande_has_article' => 'commande has article',
     'zilu.fournisseur_has_article' => 'fournisseur has article',
+    'zilu.type_container' => 'type container',
 ];
     }
 

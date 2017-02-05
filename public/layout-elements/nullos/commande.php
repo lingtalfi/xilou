@@ -55,6 +55,24 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
                 <?php Icons::printIcon("add", 'white'); ?>
             </span>
         </button>
+        <div class="commande-actions-group">
+            <div class="commande-actions-vertical">
+                <form>
+                    <select id="change-all-fournisseurs-selector">
+                        <option>Pour tous les articles de cette commande...</option>
+                        <option value="moinscher">Choisir le fournisseur le moins cher pour chaque produit</option>
+                        <option value="leaderfit">Choisir le fournisseur leaderfit pour chaque produit</option>
+                    </select>
+                </form>
+                <form>
+                    <select id="send-mail-selector">
+                        <option>Envoyer un email...</option>
+                        <option value="direction">à Didier</option>
+                        <option value="fournisseurs">aux fournisseurs</option>
+                    </select>
+                </form>
+            </div>
+        </div>
 
     </div>
     <div class="zilu-split">
@@ -107,9 +125,6 @@ inner join article a on a.id=h.article_id
 left join container co on co.id=h.container_id
 where c.id=" . $idCommande;
 
-                $prixTotal = 0;
-                $poidsTotal = 0;
-
                 ob_start();
                 $list = CommandeAdminTable::create()
                     ->setRic(['id', 'aid'])
@@ -118,10 +133,6 @@ where c.id=" . $idCommande;
                         ->setExtraHiddenFields([
                             "commande" => $idCommande,
                         ])
-                        ->setOnItemIteratedCallback(function ($v) use (&$prixTotal, &$poidsTotal) {
-                            $prixTotal += $v['prix'];
-                            $poidsTotal += $v['poids'];
-                        })
                     );
 
                 $list->setTransformer("container", function ($value, $item, $ricValue) {
@@ -156,11 +167,11 @@ where c.id=" . $idCommande;
                 <table class="zilu-info">
                     <tr>
                         <td>Prix total</td>
-                        <td><?php echo $prixTotal; ?>€</td>
+                        <td>50€</td>
                     </tr>
                     <tr>
                         <td>Poids total</td>
-                        <td><?php echo $poidsTotal; ?> kg</td>
+                        <td>50 kg</td>
                     </tr>
                 </table>
                 <?php
@@ -199,6 +210,10 @@ where c.id=" . $idCommande;
                 commandeSelect.parentNode.submit();
             }
         });
+
+
+        $("#change-all-fournisseurs-selector").selectmenu();
+        $("#send-mail-selector").selectmenu();
 
 
         $('#zilu').on('click', function (e) {
@@ -296,7 +311,7 @@ where c.id=" . $idCommande;
                 e.preventDefault();
                 $("#csv-import-dialog").dialog({
                     position: {
-                        my: "center",
+                        my: "top",
                         at: "center",
                         of: jTarget
                     },
@@ -332,21 +347,26 @@ where c.id=" . $idCommande;
         </table>
     </div>
     <div id="csv-import-dialog" title="Importer une commande par fichier csv" class="zilu-dialog centered">
-        <form action="" method="post" enctype="multipart/form-data">
-            <br>
-            <label>Choisissez le fichier csv</label>
-            <br>
-            <br>
-            <input id="import-csv-input" type="file" name="csvfile"
-                   accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-            >
-            <label>Utiliser le fournisseur:</label>
-            <select>
-                <option value="moinscher">le moins cher</option>
-                <option value="leaderfit">Leaderfit</option>
-            </select>
-            <br>
-            <br>
-        </form>
+        <div class="container">
+            <form action="" method="post" enctype="multipart/form-data">
+                <ul class="flex-outer">
+                    <li>
+                        <label for="first-name">Choisissez un fichier csv</label>
+                        <input id="import-csv-input" type="file" name="csvfile"
+                               accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                    </li>
+                    <li>
+                        <label for="last-name">Pour tous les articles, choisir le fournisseur</label>
+                        <select>
+                            <option value="moinscher">le moins cher</option>
+                            <option value="leaderfit">Leaderfit</option>
+                        </select>
+                    </li>
+                    <li>
+                        <button type="submit">Importer</button>
+                    </li>
+                </ul>
+            </form>
+        </div>
     </div>
 </div>
