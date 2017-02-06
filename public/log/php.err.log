@@ -43,3 +43,22 @@ Stack trace:
 #1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/services/zilu.php(42): QuickPdo\QuickPdo::update('commande_has_ar...', Array, Array)
 #2 {main}
   thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 217
+[06-Feb-2017 11:04:24 Europe/Paris] PHP Fatal error:  Uncaught exception 'Umail\Exception\UmailException' with message 'Swift mailer not available' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Umail/Umail.php:20
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Umail/Umail.php(27): Umail\Umail->__construct()
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/mail.php(12): Umail\Umail::create()
+#2 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Umail/Umail.php on line 20
+[06-Feb-2017 11:06:44 Europe/Paris] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php:41
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php(41): PDO->__construct('mysql:host=loca...', 'root', 'root', Array)
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/init.php(101): QuickPdo\QuickPdo::setConnection('mysql:host=loca...', 'root', 'root', Array)
+#2 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/mail.php(6): require_once('/Users/pierrela...')
+#3 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 41
+[06-Feb-2017 11:07:11 Europe/Paris] PHP Fatal error:  Uncaught exception 'Umail\Exception\UmailException' with message 'Swift mailer not available' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Umail/Umail.php:20
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Umail/Umail.php(27): Umail\Umail->__construct()
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/mail.php(12): Umail\Umail::create()
+#2 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Umail/Umail.php on line 20

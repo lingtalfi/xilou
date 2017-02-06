@@ -103,21 +103,24 @@ if (array_key_exists('action', $_GET)) {
                 }
             }
             break;
-        case 'todo-distribute':
+        case 'container-distribute':
             /**
              *  The problem of packing a set of items into a number of bins such that the total weight, volume, etc. does not exceed some maximum value. A simple algorithm (the first-fit algorithm) takes items in the order they come and places them in the first bin in which they fit. In 1973, J. Ullman proved that this algorithm can differ from an optimal packing by as much at 70% (Hoffman 1998, p. 171). An alternative strategy first orders the items from largest to smallest, then places them sequentially in the first bin in which they fit. In 1973, D. Johnson showed that this strategy is never suboptimal by more than 22%, and furthermore that no efficient bin-packing algorithm can be guaranteed to do better than 22% (Hoffman 1998, p. 172).
              */
             // http://www.geeksforgeeks.org/bin-packing-problem-minimize-number-of-used-bins/
-            if (array_key_exists('type', $_GET) && array_key_exists('name', $_GET)) {
-                $type = $_GET['type'];
-                $name = $_GET['name'];
-                try {
 
-                    $output = ContainerUtil::createContainer($name, $type);
-                } catch (\PDOException $e) {
-                    if ('23000' === $e->getCode()) {
-                        $output = "duplicate";
-                    }
+            if (array_key_exists('commande_id', $_GET)) {
+                $commande_id = (int)$_GET['commande_id'];
+                $createContainer = false;
+                if (array_key_exists('create-container', $_GET) && 'on' === $_GET['create-container']) {
+                    $createContainer = true;
+                }
+
+                if (0 === $commande_id) {
+                    $output = [
+                        'errorType' => "error-commande-empty",
+                        'error' => "Veuillez choisir une commande",
+                    ];
                 }
             }
             break;

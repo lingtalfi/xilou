@@ -56,7 +56,10 @@
     white-space: nowrap;
 }
 
-.zilu .zilu-table .hidden {
+.zilu .zilu-table .hidden,
+.zilu .hidden,
+.zilu-dialog .hidden
+{
     display: none;
 }
 

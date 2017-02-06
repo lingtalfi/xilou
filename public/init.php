@@ -18,6 +18,7 @@ ButineurAutoloader::getInst()
     ->addLocation(__DIR__ . "/class-modules")
     ->addLocation(__DIR__ . "/class-planets");
 ButineurAutoloader::getInst()->start();
+require_once __DIR__ . '/vendor/autoload.php';
 
 
 //--------------------------------------------
@@ -43,6 +44,7 @@ if (
 
     if ("/Users/" === substr(__DIR__, 0, 7)) {
         $dbPass = '';
+
     }
 
 

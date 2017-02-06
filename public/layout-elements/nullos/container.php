@@ -423,6 +423,7 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
             }
             else if (jTarget.hasClass("repartition-container-button")) {
                 e.preventDefault();
+
                 $("#repartition-container-dialog").dialog({
                     position: {
                         my: "left top",
@@ -431,17 +432,30 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
                     },
                     minWidth: 700,
                     open: function (event, ui) {
-                        var jSubmit = $("#repartition-container-dialog").find("#repartition-submit-btn")
-                        jSubmit.on('click', function (e) {
-                            e.preventDefault();
-                            var jForm = $("#repartition-container-dialog").find('form');
-                            $.getJSON('/services/zilu.php?action=container-distribute&' + jForm.serialize(), function (data) {
-                                if ('error' in data) {
+                        var jErrorCommandEmpty = $("#repartition-container-dialog").find('.error-commande-empty');
 
-                                }
-                            });
 
+                        var jCommandeSelector = $("#repartition-container-dialog").find("select[name='commande_id']");
+                        jCommandeSelector.off('change');
+                        jCommandeSelector.on('change', function () {
+                            jErrorCommandEmpty.addClass('hidden');
                         });
+                        var jSubmit = $("#repartition-container-dialog").find("#repartition-submit-btn")
+                        jSubmit
+                            .off('click')
+                            .on('click', function (e) {
+                                e.preventDefault();
+                                var jForm = $("#repartition-container-dialog").find('form');
+                                $.getJSON('/services/zilu.php?action=container-distribute&' + jForm.serialize(), function (data) {
+                                    if ('error' in data && 'errorType' in data) {
+                                        if ('error-commande-empty' === data['errorType']) {
+                                            jErrorCommandEmpty.removeClass('hidden');
+                                            jErrorCommandEmpty.find(".error").html(data['error']);
+                                        }
+                                    }
+                                });
+
+                            });
                     }
                 });
             }
@@ -544,7 +558,6 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
         <p class="warning">
             Attention, cette opération supprimera toutes les liaisons existantes pour ces containers
         </p>
-        <p class="error error-container hidden"></p>
         <form action="" method="post">
             <ul class="flex-outer">
                 <li>
@@ -558,6 +571,9 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
                         endforeach;
                         ?>
                     </select>
+                </li>
+                <li class="error-commande-empty hidden">
+                    <div class="error"></div>
                 </li>
                 <li>
                     <fieldset>
