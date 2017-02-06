@@ -46,13 +46,80 @@ a($res);
 
 
 
-Example 2: using a template
+Example 2: using batch mode or merge mode
 --------------------------
 
-You can use an html template if you want, it will override the 
-htmlBody and plainBody methods, but is a faster way to send
-complex html mails.
+In batch mode, each recipient sees only its own mail in the "to" field (of the mail software).
+If batch mode is off, each recipient sees all the recipients to which the email was sent. 
+Default is batch on.
+
+```php
+$batchMode = true; // change this to true|false and observe the "to" field in the received emails
+$res = Umail::create()
+    ->to([
+        'lingtalfi@gmail.com' => 'ling',
+        'agenceweb37@gmail.com',
+    ], $batchMode)
+    ->from('johndoe@gmail.com')
+    ->subject("Hi, just a test mail")
+    ->htmlBody('Hi, this is <b>just</b> an <span style="color: red">test message</span>')
+    ->plainBody('Hi, this is just an test message')
+    ->send();
+a($res);
+
+```
 
 
+Example 3: using variables
+-----------------------------
+
+Variables can be injected in the body and or the subject of an email.
+
+There are two types of variables:
+- common variables: they are the same for every recipient   
+- email variables: they depend on the recipient's email address
+     
+More info in the comments of the UmailInterface source code.
+  
+     
+Below is an example illustrating the use of "common variables".     
+     
+```php
+$res = Umail::create()
+    ->to([
+        'lingtalfi@gmail.com' => 'ling',
+    ])
+    ->from('johndoe@gmail.com')
+    ->subject("Hi {somebody}, just a test mail")
+    ->setVars([
+        'message' => 'variable message',
+        'somebody' => "there",
+    ])
+    ->htmlBody('Hi, this is <b>just</b> a <span style="color: red">{message}</span>')
+    ->plainBody('Hi, this is just a test message')
+    ->send();
+a($res);
+```
 
 
+And below is an example showing both common and email variables:
+
+```php
+$res = Umail::create()
+    ->to([
+        'lingtalfi@gmail.com' => 'ling',
+    ])
+    ->from('johndoe@gmail.com')
+    ->subject("Hi {somebody}, just a test mail")
+    ->setVars([
+        'message' => 'variable message',
+    ], function ($email) {
+        return [
+            'somebody' => substr($email, 0, strpos($email, '@')),
+        ];
+    })
+    ->htmlBody('Hi, this is <b>just</b> a <span style="color: red">{message}</span>')
+    ->plainBody('Hi, this is just a test message')
+    ->send();
+a($res);
+```

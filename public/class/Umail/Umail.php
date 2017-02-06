@@ -54,6 +54,7 @@ class Umail implements UmailInterface
      */
     private $toRecipients;
     private $varRefWrapper;
+    private $_subject;
 
 
     public function __construct()
@@ -70,6 +71,9 @@ class Umail implements UmailInterface
         $this->toRecipients = [];
         $this->commonVars = [];
         $this->isBatchMode = true;
+        $this->varRefWrapper = function ($var) {
+            return '{' . $var . '}';
+        };
     }
 
     public static function create()
@@ -117,7 +121,7 @@ class Umail implements UmailInterface
 
     public function subject($subject)
     {
-        $this->message->setSubject($subject);
+        $this->_subject = $subject;
         return $this;
     }
 
@@ -173,6 +177,7 @@ class Umail implements UmailInterface
 
 
         list($htmlContent, $plainContent) = $this->prepareBody();
+        $subjectContent = $this->_subject;
 
 
         $totalSent = 0;
@@ -196,8 +201,8 @@ class Umail implements UmailInterface
                     }
 
                     $vars = $this->prepareVars($email);
-                    $this->injectVars($htmlContent, $plainContent, $vars);
-                    $this->prepareMessageBody($htmlContent, $plainContent);
+                    $this->injectVars($subjectContent, $htmlContent, $plainContent, $vars);
+                    $this->prepareMessageBody($subjectContent, $htmlContent, $plainContent);
                     if (null === $name) {
                         $to = $email;
                     } else {
@@ -222,8 +227,8 @@ class Umail implements UmailInterface
              * and the "to" field contains all the recipients addresses.
              */
             $vars = $this->prepareVars();
-            $this->injectVars($htmlContent, $plainContent, $vars);
-            $this->prepareMessageBody($htmlContent, $plainContent);
+            $this->injectVars($subjectContent, $htmlContent, $plainContent, $vars);
+            $this->prepareMessageBody($subjectContent, $htmlContent, $plainContent);
             $this->message->setTo($this->toRecipients);
             $totalSent += $mailer->send($this->message);
         }
@@ -310,29 +315,29 @@ class Umail implements UmailInterface
     }
 
 
-    private function injectVars(&$htmlContent, &$plainContent, array $vars)
+    private function injectVars(&$subjectContent, &$htmlContent, &$plainContent, array $vars)
     {
+        $keys = array_keys($vars);
+        if (is_callable($this->varRefWrapper)) {
+            $keys = array_map($this->varRefWrapper, $keys);
+        }
+        $values = array_values($vars);
+        if (is_string($subjectContent)) {
+            $subjectContent = str_replace($keys, $values, $subjectContent);
+        }
         if (is_string($htmlContent)) {
-            $keys = array_keys($vars);
-            if (is_callable($this->varRefWrapper)) {
-                $keys = array_map($this->varRefWrapper, $keys);
-            }
-            $values = array_values($vars);
             $htmlContent = str_replace($keys, $values, $htmlContent);
         }
         if (is_string($plainContent)) {
-            $keys = array_keys($vars);
-            if (is_callable($this->varRefWrapper)) {
-                $keys = array_map($this->varRefWrapper, $keys);
-            }
-            $values = array_values($vars);
             $plainContent = str_replace($keys, $values, $plainContent);
         }
     }
 
-    private function prepareMessageBody($htmlText, $plainText)
+    private function prepareMessageBody($subjectText, $htmlText, $plainText)
     {
-
+        if (null !== $subjectText) {
+            $this->message->setSubject($subjectText);
+        }
         /**
          * Default htmlBody/plainBody gymnastic
          */
