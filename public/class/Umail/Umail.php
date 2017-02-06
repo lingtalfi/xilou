@@ -43,28 +43,9 @@ class Umail implements UmailInterface
      */
     private $templateLoader;
 
-    /**
-     * @var array|VarLoaderInterface $vars ,
-     *
-     * Variables to use within a template (if the setTemplate method was used).
-     * The $vars input can be of two forms:
-     *
-     * - array: useful if the template does not depend from the emails
-     * - VarLoaderInterface: useful if the template depends from the emails
-     *
-     * See the setVars comments in the interface for more details.
-     *
-     */
-    private $vars;
-
-    /**
-     * @var string(batch|merge), the send mode, default=batch
-     *
-     * In batch mode, each recipient sees only its own mail in the to field,
-     * while in merge mode, each recipient sees all the recipients to which the email
-     * has been sent.
-     */
-    private $emailSendMode;
+    private $commonVars;
+    private $emailVarsCb;
+    private $isBatchMode;
 
     /**
      * @var string|array to
@@ -72,6 +53,7 @@ class Umail implements UmailInterface
      * Same format as SwiftMailer: http://swiftmailer.org/docs/messages.html
      */
     private $toRecipients;
+    private $varRefWrapper;
 
 
     public function __construct()
@@ -86,7 +68,8 @@ class Umail implements UmailInterface
         $this->message = \Swift_Message::newInstance();
         $this->hooks = [];
         $this->toRecipients = [];
-        $this->emailSendMode = 'batch';
+        $this->commonVars = [];
+        $this->isBatchMode = true;
     }
 
     public static function create()
@@ -97,7 +80,7 @@ class Umail implements UmailInterface
     //------------------------------------------------------------------------------/
     //
     //------------------------------------------------------------------------------/
-    public function to($recipients)
+    public function to($recipients, $batchMode = true)
     {
         if (is_string($recipients)) {
             $this->toRecipients[] = $recipients;
@@ -110,6 +93,7 @@ class Umail implements UmailInterface
                 }
             }
         }
+        $this->isBatchMode = $batchMode;
         return $this;
     }
 
@@ -162,9 +146,16 @@ class Umail implements UmailInterface
         return $this;
     }
 
-    public function setVars($vars)
+    public function setVars(array $commonVars, $emailVarsCb = null)
     {
-        $this->vars = $vars;
+        $this->commonVars = $commonVars;
+        $this->emailVarsCb = $emailVarsCb;
+        return $this;
+    }
+
+    public function setVarReferenceWrapper($func)
+    {
+        $this->varRefWrapper = $func;
         return $this;
     }
 
@@ -181,93 +172,64 @@ class Umail implements UmailInterface
         $mailer = \Swift_Mailer::newInstance($transport);
 
 
-        /**
-         * filtering invalid emails
-         */
-        $invalidEmails = [];
-        $toRecipients = $this->toRecipients;
-        foreach ($toRecipients as $k => $v) {
-            $name = null;
-            if (is_string($k)) {
-                $email = $k;
-                $name = $v;
-            } else {
-                $email = $v;
-            }
-            if (false === \Swift_Validate::email($email)) {
-                unset($toRecipients[$k]);
-//                $this->hook("onInvalidEmail", $email);
-            }
-        }
+        list($htmlContent, $plainContent) = $this->prepareBody();
 
 
-        $this->message->setTo($toRecipients);
+        $totalSent = 0;
+        if (true === $this->isBatchMode) {
+            /**
+             * batch mode, each recipient receives its own mail copy,
+             * and the "to" field only contains the recipient address
+             */
+            foreach ($this->toRecipients as $k => $v) {
 
-        if ('merge' === $this->emailSendMode) {
+                try {
+                    /**
+                     * filtering invalid emails
+                     */
+                    $name = null;
+                    if (is_string($k)) {
+                        $email = $k;
+                        $name = $v;
+                    } else {
+                        $email = $v;
+                    }
 
+                    $vars = $this->prepareVars($email);
+                    $this->injectVars($htmlContent, $plainContent, $vars);
+                    $this->prepareMessageBody($htmlContent, $plainContent);
+                    if (null === $name) {
+                        $to = $email;
+                    } else {
+                        $to = [$email => $name];
+                    }
+                    $this->message->setTo($to);
+                    $totalSent += $mailer->send($this->message);
 
-        } else {
-
-        }
-
-
-        /**
-         * Set the body
-         */
-        if (null !== $this->templateName) {
-            if (null !== $this->templateLoader) {
-
-                /**
-                 * Using a template
-                 */
-                $this->templateLoader->load($this->templateName);
-                $htmlFile = $this->templateLoader->getHtmlFile();
-                $plainFile = $this->templateLoader->getPlainFile();
-
-                /**
-                 * finding variables for the template
-                 */
-                $vars = [];
-                if (null !== $this->vars) {
-                    if (is_array($this->vars)) {
-                        $vars = $this->vars;
-                    } elseif ($this->vars instanceof VarLoaderInterface) {
-                        $vars = $this->vars->getVariables($email);
+                } catch (\Swift_SwiftException $e) {
+                    $processNextItem = true;
+                    // re-throw the exception from onBatchExceptionCaught if you want...
+                    $this->onBatchExceptionCaught($e, $processNextItem);
+                    if (false === $processNextItem) {
+                        break;
                     }
                 }
 
-
-            } else {
-                throw new UmailException("Cannot use template " . $this->templateName . " because no TemplateLoader is set.");
             }
         } else {
             /**
-             * Default htmlBody/plainBody gymnastic
+             * merge mode, each recipient receives the same shared email,
+             * and the "to" field contains all the recipients addresses.
              */
-            if (null === $this->htmlText && null !== $this->plainText) {
-                $this->message->setBody($this->plainText);
-            } elseif (null !== $this->htmlText && null === $this->plainText) {
-                $this->message->setBody($this->htmlText);
-            } elseif (null !== $this->htmlText && null !== $this->plainText) {
-                $this->message->setBody($this->htmlText, 'text/html');
-                $this->message->addPart($this->plainText, 'text/plain');
-            }
+            $vars = $this->prepareVars();
+            $this->injectVars($htmlContent, $plainContent, $vars);
+            $this->prepareMessageBody($htmlContent, $plainContent);
+            $this->message->setTo($this->toRecipients);
+            $totalSent += $mailer->send($this->message);
         }
 
 
-//        $this->hook('onMessagePreparedAfter', [$mailer]); // wait concrete need to uncomment, because you could pass different parameters
-
-
-        /**
-         * Sending the email,
-         * batch mode, or merge mode
-         */
-        return $mailer->send($this->message);
-        if ('merge' === $this->emailSendMode) {
-            return $mailer->send($this->message);
-        } else {
-            return $mailer->send($this->message);
-        }
+        return $totalSent;
     }
 
 
@@ -291,6 +253,10 @@ class Umail implements UmailInterface
         return \Swift_MailTransport::newInstance();
     }
 
+    protected function onBatchExceptionCaught(\Swift_SwiftException $e, &$processNextItem = true)
+    {
+        throw $e; // override this method if you want...
+    }
 
     //------------------------------------------------------------------------------/
     //
@@ -304,5 +270,79 @@ class Umail implements UmailInterface
         }
     }
 
+    private function prepareBody()
+    {
+        /**
+         * Set the body
+         */
+        $htmlContent = null;
+        $plainContent = null;
+        /**
+         * Using a template
+         */
+        if (null !== $this->templateName) {
+            if (null !== $this->templateLoader) {
+                $this->templateLoader->load($this->templateName);
+                $htmlContent = $this->templateLoader->getHtmlContent();
+                $plainContent = $this->templateLoader->getPlainContent();
+            } else {
+                throw new UmailException("Cannot use template " . $this->templateName . " because no TemplateLoader is set.");
+            }
+        } else {
+            /**
+             * Using the default htmlBody and plainBody methods
+             */
+            $htmlContent = $this->htmlText;
+            $plainContent = $this->plainText;
+        }
+        return [$htmlContent, $plainContent];
+    }
 
+
+    private function prepareVars($email = null)
+    {
+        $vars = $this->commonVars;
+        if (null !== $email && is_callable($this->emailVarsCb)) {
+            $emailVars = call_user_func($this->emailVarsCb, $email);
+            $vars = array_merge($vars, $emailVars);
+        }
+        return $vars;
+    }
+
+
+    private function injectVars(&$htmlContent, &$plainContent, array $vars)
+    {
+        if (is_string($htmlContent)) {
+            $keys = array_keys($vars);
+            if (is_callable($this->varRefWrapper)) {
+                $keys = array_map($this->varRefWrapper, $keys);
+            }
+            $values = array_values($vars);
+            $htmlContent = str_replace($keys, $values, $htmlContent);
+        }
+        if (is_string($plainContent)) {
+            $keys = array_keys($vars);
+            if (is_callable($this->varRefWrapper)) {
+                $keys = array_map($this->varRefWrapper, $keys);
+            }
+            $values = array_values($vars);
+            $plainContent = str_replace($keys, $values, $plainContent);
+        }
+    }
+
+    private function prepareMessageBody($htmlText, $plainText)
+    {
+
+        /**
+         * Default htmlBody/plainBody gymnastic
+         */
+        if (null === $htmlText && null !== $plainText) {
+            $this->message->setBody($plainText);
+        } elseif (null !== $htmlText && null === $plainText) {
+            $this->message->setBody($htmlText);
+        } elseif (null !== $htmlText && null !== $plainText) {
+            $this->message->setBody($htmlText, 'text/html');
+            $this->message->addPart($plainText, 'text/plain');
+        }
+    }
 }

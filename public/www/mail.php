@@ -26,11 +26,11 @@ require_once __DIR__ . "/../init.php";
  * while in merge mode, each recipient sees all the recipients to which the email
  * has been sent. Default is batch.
  */
-$mode = 'batch'; // batch|merge,
 $res = Umail::create()
     ->to([
         'lingtalfi@gmail.com' => 'ling',
-        'delphine@leaderfit.com',
+        'agenceweb37@gmail.com' => 'aw37',
+//        'delphine@leaderfit.com',
 //        'thomas_jefferson@gmail.com',
 //        'ally_mac_beal@gmail.com' => 'Ally',
     ])

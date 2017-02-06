@@ -3,8 +3,12 @@
 
 namespace Umail\TemplateLoader;
 
-
-class TemplateLoader implements TemplateLoaderInterface
+/**
+ * This loader loads templates from filesystem files.
+ * By default, if a file ends with ".php", it will be interpreted as such (so that you can use condition blocks, loops, etc...),
+ * otherwise, if the file ends with any other extension, it will be read as a regular template file.
+ */
+class FileTemplateLoader implements TemplateLoaderInterface
 {
 
     /**
@@ -22,8 +26,8 @@ class TemplateLoader implements TemplateLoaderInterface
     /**
      * htmlPath, plainPath are locations to the actual template files
      */
-    private $htmlPath;
-    private $plainPath;
+    private $htmlContent;
+    private $plainContent;
 
 
     public function __construct()
@@ -46,8 +50,12 @@ class TemplateLoader implements TemplateLoaderInterface
      */
     public function load($templateName)
     {
-        $this->htmlPath = $this->dir . "/" . $this->getHtmlRelativePath($templateName);
-        $this->plainPath = $this->dir . "/" . $this->getPlainRelativePath($templateName);
+        $htmlPath = $this->dir . "/" . $this->getHtmlRelativePath($templateName);
+        $plainPath = $this->dir . "/" . $this->getPlainRelativePath($templateName);
+
+        $this->htmlContent = $this->getFileContent($htmlPath);
+        $this->plainContent = $this->getFileContent($plainPath);
+
         return $this;
     }
 
@@ -56,18 +64,18 @@ class TemplateLoader implements TemplateLoaderInterface
      * Returns the html file path, or null.
      * Be sure to call the load method first.
      */
-    public function getHtmlFile()
+    public function getHtmlContent()
     {
-        return $this->htmlPath;
+        return $this->htmlContent;
     }
 
     /**
      * Returns the plain/text file path, or null.
      * Be sure to call the load method first.
      */
-    public function getPlainFile()
+    public function getPlainContent()
     {
-        return $this->plainPath;
+        return $this->plainContent;
     }
 
     //------------------------------------------------------------------------------/
@@ -83,4 +91,22 @@ class TemplateLoader implements TemplateLoaderInterface
         return $templateName . '/' . $templateName . '.plain.tpl';
     }
 
+    /**
+     * @param $path
+     * @return null|string, the file content
+     */
+    protected function getFileContent($path)
+    {
+        $content = null;
+        if (file_exists($path)) {
+            if ('.php' === substr(strtolower($path), -4)) {
+                ob_start();
+                include $path;
+                $content = ob_get_clean();
+            } else {
+                $content = file_get_contents($path);
+            }
+        }
+        return $content;
+    }
 }
