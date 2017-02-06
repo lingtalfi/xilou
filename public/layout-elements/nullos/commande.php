@@ -17,6 +17,9 @@ use QuickPdo\QuickPdo;
 $ll = "zilu";
 
 
+
+$_SESSION['commandeQueryString'] = $_SERVER['QUERY_STRING'];
+
 $idCommande = 0;
 if (array_key_exists('commande', $_GET)) {
     $idCommande = (int)$_GET['commande'];
@@ -56,12 +59,12 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
             </span>
         </button>
         <div class="commande-actions-group">
-            <div class="commande-actions-vertical">
+            <div class="commande-actions-vertical" id="commande-actions-vertical">
                 <form>
                     <select id="change-all-fournisseurs-selector">
                         <option>Pour tous les articles de cette commande...</option>
-                        <option value="moinscher">Choisir le fournisseur le moins cher pour chaque produit</option>
-                        <option value="leaderfit">Choisir le fournisseur leaderfit pour chaque produit</option>
+                        <option value="moinscher">Appliquer le fournisseur le moins cher pour chaque produit</option>
+                        <option value="leaderfit">Appliquer le fournisseur leaderfit pour chaque produit</option>
                     </select>
                 </form>
                 <form>
@@ -93,7 +96,45 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
 
             <?php
 
-            $sTable = '';
+
+            if (0 !== $idCommande) {
+
+                $query = "select
+a.poids,
+fha.prix
+from commande_has_article h
+inner join article a on a.id=h.article_id
+inner join fournisseur_has_article fha on fha.fournisseur_id=h.fournisseur_id and fha.article_id=h.article_id
+where h.commande_id=" . $idCommande;
+                if (false !== ($res = QuickPdo::fetchAll($query))):
+
+                    $prixTotal = 0;
+                    $poidsTotal = 0;
+                    foreach ($res as $item) {
+                        $prixTotal += $item['prix'];
+                        $poidsTotal += $item['poids'];
+                    }
+
+                    ?>
+
+                    <table class="zilu-info">
+                        <tr>
+                            <td>Prix total</td>
+                            <td><?php echo $prixTotal; ?>€</td>
+                        </tr>
+                        <tr>
+                            <td>Poids total</td>
+                            <td><?php echo $poidsTotal; ?> kg</td>
+                        </tr>
+                    </table>
+                    <?php
+                endif;
+            }
+
+            ?>
+        </div>
+        <div id="zilu-table" class="zilu-table">
+            <?php
 
             if (0 !== $idCommande) {
 
@@ -125,7 +166,7 @@ inner join article a on a.id=h.article_id
 left join container co on co.id=h.container_id
 where c.id=" . $idCommande;
 
-                ob_start();
+
                 $list = CommandeAdminTable::create()
                     ->setRic(['id', 'aid'])
                     ->setListable(QuickPdoListable::create()->setFields($fields)->setQuery($query))
@@ -152,38 +193,26 @@ where c.id=" . $idCommande;
                     return '<a class="fournisseur-selector" data-article-id="' . $item['aid'] . '" data-ric="' . htmlspecialchars($ricValue) . '" data-fournisseur-id="' . htmlspecialchars($item['fournisseur_id']) . '" href="#">' . $text . '</a>';
                 });
 
+                $textMaxLength = 10;
+                $list->setTransformer("descr_fr", function ($value, $item, $ricValue) use ($textMaxLength) {
+                    $cut = substr($value, 0, $textMaxLength);
+                    return '<span class="longtext" title="' . $value . '">' . htmlspecialchars($cut) . '...</span>';
+                });
+                $list->setTransformer("descr_en", function ($value, $item, $ricValue) use ($textMaxLength) {
+                    $cut = substr($value, 0, $textMaxLength);
+                    return '<span class="longtext" title="' . $value . '">' . htmlspecialchars($cut) . '...</span>';
+                });
+
+
                 $list->hiddenColumns = [
                     'cid',
                     'id',
+                    'aid',
                     'container_id',
                     'fournisseur_id',
                 ];
                 $list->displayTable();
-                $sTable = ob_get_clean();
 
-
-                ?>
-
-                <table class="zilu-info">
-                    <tr>
-                        <td>Prix total</td>
-                        <td>50€</td>
-                    </tr>
-                    <tr>
-                        <td>Poids total</td>
-                        <td>50 kg</td>
-                    </tr>
-                </table>
-                <?php
-            }
-
-            ?>
-        </div>
-        <div id="zilu-table" class="zilu-table">
-            <?php
-
-            if (0 !== $idCommande) {
-                echo $sTable;
             }
             ?>
         </div>
@@ -199,6 +228,14 @@ where c.id=" . $idCommande;
     $(document).ready(function () {
 
 
+        $('#commande-topmenu-link').attr('href', "/commande" + window.location.search);
+
+
+
+        $(document).tooltip();
+        var commandeId = <?php echo $idCommande; ?>;
+
+
         var csvInput = document.getElementById("import-csv-input");
         var commandeSelect = document.getElementById("commande-select");
         csvInput.addEventListener('change', function () {
@@ -207,12 +244,76 @@ where c.id=" . $idCommande;
         commandeSelect.addEventListener('change', function () {
             var value = commandeSelect.value;
             if ('0' !== value) {
+                commandeId = value;
                 commandeSelect.parentNode.submit();
             }
         });
 
 
-        $("#change-all-fournisseurs-selector").selectmenu();
+        $("#change-all-fournisseurs-selector").selectmenu({
+            select: function (event, data) {
+                if ('moinscher' === data.item.value) {
+                    $("#apply-fournisseur-cheapest-confirm-dialog").dialog({
+                        position: {
+                            my: "center",
+                            at: "center",
+                            of: '#zilu-table .search-input'
+                        },
+                        resizable: false,
+                        height: "auto",
+                        width: 400,
+                        modal: true,
+                        buttons: {
+                            "Appliquer": function () {
+                                $(this).dialog().find(".text").addClass('hidden');
+                                $(this).dialog().find(".loader").removeClass('hidden');
+                                $.getJSON('/services/zilu.php?action=apply-fournisseurs&type=moinscher&commandeId=' + commandeId, function (data) {
+                                    console.log(data);
+                                    if ('ok' === data) {
+                                        location.reload();
+                                    }
+                                });
+
+
+                            },
+                            "Annuler": function () {
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+                }
+                else if ('leaderfit' === data.item.value) {
+                    $("#apply-fournisseur-cheapest-confirm-dialog").dialog({
+                        position: {
+                            my: "center",
+                            at: "center",
+                            of: '#zilu-table .search-input'
+                        },
+                        resizable: false,
+                        height: "auto",
+                        width: 400,
+                        modal: true,
+                        buttons: {
+                            "Appliquer": function () {
+                                $(this).dialog().find(".text").addClass('hidden');
+                                $(this).dialog().find(".loader").removeClass('hidden');
+                                $.getJSON('/services/zilu.php?action=apply-fournisseurs&type=leaderfit&commandeId=' + commandeId, function (data) {
+                                    console.log(data);
+                                    if ('ok' === data) {
+                                        location.reload();
+                                    }
+                                });
+
+
+                            },
+                            "Annuler": function () {
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+                }
+            }
+        });
         $("#send-mail-selector").selectmenu();
 
 
@@ -319,7 +420,10 @@ where c.id=" . $idCommande;
                     open: function (event, ui) {
                     }
                 });
+            }
         });
+
+
     });
 
 
@@ -367,5 +471,21 @@ where c.id=" . $idCommande;
                 </ul>
             </form>
         </div>
+    </div>
+    <div id="apply-fournisseur-cheapest-confirm-dialog" title="Appliquer le fournisseur le moins cher">
+        <p class="text"><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Etes-vous
+            sûr(e) de
+            vouloir appliquer le fournisseur le moins cher pour chaque produit de cette commande ?</p>
+        <p class="hidden loader">
+            Veuillez patienter...
+        </p>
+    </div>
+    <div id="apply-fournisseur-leaderfit-confirm-dialog" title="Appliquer le fournisseur leaderfit">
+        <p class="text"><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Etes-vous
+            sûr(e) de
+            vouloir appliquer le fournisseur leaderfit pour chaque produit de cette commande ?</p>
+        <p class="hidden loader">
+            Veuillez patienter...
+        </p>
     </div>
 </div>

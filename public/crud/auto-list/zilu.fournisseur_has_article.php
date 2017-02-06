@@ -9,7 +9,8 @@ zi.nom as fournisseur_nom,
 f.article_id,
 z.reference_lf as article_reference_lf,
 f.reference,
-f.prix
+f.prix,
+f.volume
 ';
 
 
@@ -31,6 +32,7 @@ $table->columnLabels= [
     "article_reference_lf" => "article",
     "reference" => "reference",
     "prix" => "prix",
+    "volume" => "volume",
 ];
 
 

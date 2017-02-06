@@ -43,6 +43,17 @@ class Layout
 
         $exception = null;
         ob_start();
+
+        $commandeQueryString = "";
+        if(array_key_exists('commandeQueryString', $_SESSION)){
+            $commandeQueryString = '?' . $_SESSION['commandeQueryString'];
+        }
+        $containerQueryString = "";
+        if(array_key_exists('containerQueryString', $_SESSION)){
+            $containerQueryString = '?' . $_SESSION['containerQueryString'];
+        }
+
+
         ?>
 
 
@@ -50,8 +61,8 @@ class Layout
 <!--        <div class="topbar">--><?php ////LayoutServices::displayTopBar(); ?><!--</div>-->
         <div class="topmenu">
             <ul>
-                <li><a href="/commande">Commande</a></li>
-                <li><a href="/container">Container</a></li>
+                <li><a id="commande-topmenu-link" href="/commande<?php echo $commandeQueryString; ?>">Commande</a></li>
+                <li><a id="container-topmenu-link" href="/container<?php echo $containerQueryString; ?>">Container</a></li>
             </ul>
         </div>
         <div class="body panes-container">

@@ -189,7 +189,7 @@
 .flex-outer li input:not([type='checkbox']),
 .flex-outer li textarea {
     padding: 15px;
-    border: none;
+    /*border: none;*/
 }
 
 .flex-outer li button {
@@ -268,6 +268,24 @@
     padding: 10px;
 }
 
-.zilu-auto-complete{
+.zilu-auto-complete {
     z-index: 1000000;
+}
+
+.zilu .longtext {
+    white-space: nowrap;
+    color: #a4703e;
+}
+
+.zilu .datatable td {
+    padding: 0px;
+    padding-left: 5px;
+}
+
+.zilu-dialog .error{
+    color: red;
+}
+
+.zilu-dialog .warning{
+    color: red;
 }

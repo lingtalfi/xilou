@@ -30,7 +30,10 @@ if (array_key_exists('action', $_GET)) {
             break;
         case 'commande-change-container':
             if (array_key_exists('value', $_GET) && array_key_exists('ric', $_GET)) {
-                $value = $_GET['value'];
+                $value = (int)$_GET['value'];
+                if (0 === $value) {
+                    $value = null;
+                }
                 $ric = $_GET['ric'];
                 list($commandeId, $articleId) = unric($ric);
                 $commandeId = (int)$commandeId;
@@ -75,6 +78,46 @@ if (array_key_exists('action', $_GET)) {
                     ]))
                 ) {
                     $output = $res;
+                }
+            }
+            break;
+        case 'apply-fournisseurs':
+            if (array_key_exists('type', $_GET) && array_key_exists('commandeId', $_GET)) {
+                $type = $_GET['type'];
+                $commandeId = $_GET['commandeId'];
+                CommandeUtil::applyFournisseurs($commandeId, $type);
+                $output = 'ok';
+            }
+            break;
+        case 'container-create':
+            if (array_key_exists('type', $_GET) && array_key_exists('name', $_GET)) {
+                $type = $_GET['type'];
+                $name = $_GET['name'];
+                try {
+
+                    $output = ContainerUtil::createContainer($name, $type);
+                } catch (\PDOException $e) {
+                    if ('23000' === $e->getCode()) {
+                        $output = "duplicate";
+                    }
+                }
+            }
+            break;
+        case 'todo-distribute':
+            /**
+             *  The problem of packing a set of items into a number of bins such that the total weight, volume, etc. does not exceed some maximum value. A simple algorithm (the first-fit algorithm) takes items in the order they come and places them in the first bin in which they fit. In 1973, J. Ullman proved that this algorithm can differ from an optimal packing by as much at 70% (Hoffman 1998, p. 171). An alternative strategy first orders the items from largest to smallest, then places them sequentially in the first bin in which they fit. In 1973, D. Johnson showed that this strategy is never suboptimal by more than 22%, and furthermore that no efficient bin-packing algorithm can be guaranteed to do better than 22% (Hoffman 1998, p. 172).
+             */
+            // http://www.geeksforgeeks.org/bin-packing-problem-minimize-number-of-used-bins/
+            if (array_key_exists('type', $_GET) && array_key_exists('name', $_GET)) {
+                $type = $_GET['type'];
+                $name = $_GET['name'];
+                try {
+
+                    $output = ContainerUtil::createContainer($name, $type);
+                } catch (\PDOException $e) {
+                    if ('23000' === $e->getCode()) {
+                        $output = "duplicate";
+                    }
                 }
             }
             break;

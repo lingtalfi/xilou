@@ -131,6 +131,7 @@ for ($i = 0; $i < $nbFournisseurHasArticle; $i++) {
         'article_id' => getRandomId($articleIds),
         'reference' => $b->letters(6),
         'prix' => $b->float(3, 2),
+        'volume' => $b->float(1, 2),
     ]);
 }
 
@@ -161,6 +162,7 @@ foreach ($articleIds as $idArticle) {
         'article_id' => $idArticle,
         'reference' => $b->letters(6),
         'prix' => $b->float(3, 2),
+        'volume' => $b->float(1, 2),
     ]);
 }
 
