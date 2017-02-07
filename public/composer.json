@@ -1,5 +1,6 @@
 {
     "require": {
-        "swiftmailer/swiftmailer": "@stable"
+        "swiftmailer/swiftmailer": "@stable",
+        "knplabs/knp-snappy": "^0.4.3"
     }
 }

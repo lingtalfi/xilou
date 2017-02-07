@@ -1,0 +1,24 @@
+[07-Feb-2017 07:58:51 Europe/Paris] PHP Fatal error:  Uncaught exception 'Umail\Exception\UmailException' with message 'Cannot use template order_confirmation because no TemplateLoader is set.' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Umail/Umail.php:347
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Umail/Umail.php(228): Umail\Umail->prepareBody()
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/mail.php(22): Umail\Umail->send()
+#2 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Umail/Umail.php on line 347
+[07-Feb-2017 10:37:52 Europe/Paris] PHP Fatal error:  Uncaught exception 'Swift_IoException' with message 'Unable to open file for reading [/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/myshop-logo.jpg]' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/vendor/swiftmailer/swiftmailer/lib/classes/Swift/ByteStream/FileByteStream.php:144
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/vendor/swiftmailer/swiftmailer/lib/classes/Swift/ByteStream/FileByteStream.php(84): Swift_ByteStream_FileByteStream->_getReadHandle()
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mime/SimpleMimeEntity.php(691): Swift_ByteStream_FileByteStream->read(8192)
+#2 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mime/SimpleMimeEntity.php(348): Swift_Mime_SimpleMimeEntity->_readStream(Object(Swift_ByteStream_FileByteStream))
+#3 /Users/pierrelafitte/Desktop/mond in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/vendor/swiftmailer/swiftmailer/lib/classes/Swift/ByteStream/FileByteStream.php on line 144
+[07-Feb-2017 10:48:40 Europe/Paris] PHP Fatal error:  Uncaught exception 'Swift_IoException' with message 'Unable to open file for reading [/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/myshop-logo.jpg]' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/vendor/swiftmailer/swiftmailer/lib/classes/Swift/ByteStream/FileByteStream.php:144
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/vendor/swiftmailer/swiftmailer/lib/classes/Swift/ByteStream/FileByteStream.php(84): Swift_ByteStream_FileByteStream->_getReadHandle()
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mime/SimpleMimeEntity.php(691): Swift_ByteStream_FileByteStream->read(8192)
+#2 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mime/SimpleMimeEntity.php(348): Swift_Mime_SimpleMimeEntity->_readStream(Object(Swift_ByteStream_FileByteStream))
+#3 /Users/pierrelafitte/Desktop/mond in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/vendor/swiftmailer/swiftmailer/lib/classes/Swift/ByteStream/FileByteStream.php on line 144
+[07-Feb-2017 10:49:18 Europe/Paris] PHP Fatal error:  Uncaught exception 'Swift_IoException' with message 'Unable to open file for reading [/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/myshop-logo.jpg]' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/vendor/swiftmailer/swiftmailer/lib/classes/Swift/ByteStream/FileByteStream.php:144
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/vendor/swiftmailer/swiftmailer/lib/classes/Swift/ByteStream/FileByteStream.php(84): Swift_ByteStream_FileByteStream->_getReadHandle()
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mime/SimpleMimeEntity.php(691): Swift_ByteStream_FileByteStream->read(8192)
+#2 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mime/SimpleMimeEntity.php(348): Swift_Mime_SimpleMimeEntity->_readStream(Object(Swift_ByteStream_FileByteStream))
+#3 /Users/pierrelafitte/Desktop/mond in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/vendor/swiftmailer/swiftmailer/lib/classes/Swift/ByteStream/FileByteStream.php on line 144
