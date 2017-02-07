@@ -53,8 +53,20 @@ class Umail implements UmailInterface
      * Same format as SwiftMailer: http://swiftmailer.org/docs/messages.html
      */
     private $toRecipients;
+
+    /**
+     * @var \Closure callback for wrapping the variable references
+     * (pou -> {pou} for instance)
+     */
     private $varRefWrapper;
     private $_subject;
+
+    /**
+     * $file, $fileName: file attachment related vars
+     */
+    private $file;
+    private $fileName;
+    private $fileMimeType;
 
 
     public function __construct()
@@ -84,6 +96,13 @@ class Umail implements UmailInterface
     //------------------------------------------------------------------------------/
     //
     //------------------------------------------------------------------------------/
+    public function getMailer()
+    {
+        $transport = $this->getTransport();
+        return \Swift_Mailer::newInstance($transport);
+    }
+
+
     public function to($recipients, $batchMode = true)
     {
         if (is_string($recipients)) {
@@ -116,6 +135,12 @@ class Umail implements UmailInterface
     public function from($recipients)
     {
         $this->message->addFrom($recipients);
+        return $this;
+    }
+
+    public function replyTo($recipient)
+    {
+        $this->message->setReplyTo($recipient);
         return $this;
     }
 
@@ -163,17 +188,18 @@ class Umail implements UmailInterface
         return $this;
     }
 
-    public function sendMode($mode)
+    public function attachFile($file, $fileName = null, $mimeType = null)
     {
-        $this->emailSendMode = $mode;
+        $this->file = $file;
+        $this->fileName = $fileName;
+        $this->fileMimeType = $mimeType;
         return $this;
     }
 
 
     public function send()
     {
-        $transport = $this->getTransport();
-        $mailer = \Swift_Mailer::newInstance($transport);
+        $mailer = $this->getMailer();
 
 
         list($htmlContent, $plainContent) = $this->prepareBody();
@@ -338,6 +364,15 @@ class Umail implements UmailInterface
         if (null !== $subjectText) {
             $this->message->setSubject($subjectText);
         }
+
+        if (null !== $this->file) {
+            $attachment = \Swift_Attachment::fromPath($this->file, $this->fileMimeType);
+            if (null !== $this->fileName) {
+                $attachment->setFilename($this->fileName);
+            }
+            $this->message->attach($attachment);
+        }
+
         /**
          * Default htmlBody/plainBody gymnastic
          */

@@ -36,6 +36,13 @@ interface UmailInterface
      */
     public static function create();
 
+    /**
+     * @return \Swift_Mailer, returns the Swift_Mailer instance,
+     * so that further customization can be done.
+     * The returned instance has a transport bound to it already.
+     */
+    public function getMailer();
+
 
     /**
      * Set the recipients of the email.
@@ -53,23 +60,48 @@ interface UmailInterface
      * which means that the VarLoader object is useless (see more info in the comments of the setVarLoader method),
      * and the "to" field contains the email addresses of every recipient (i.e. everybody knows who the mail was sent to).
      *
+     * @return UmailInterface
+     *
      */
     public function to($recipients, $batchMode = true);
 
+    /**
+     * @return UmailInterface
+     */
     public function bcc($recipients);
 
+    /**
+     * @return UmailInterface
+     */
     public function cc($recipients);
 
+    /**
+     * @return UmailInterface
+     */
     public function from($recipients);
 
+    /**
+     * Specifies the address where replies are sent to
+     * @return UmailInterface
+     */
+    public function replyTo($recipient);
+
+    /**
+     * @return UmailInterface
+     */
     public function subject($subject);
 
     /**
      * htmlBody and plainBody set the content of the email,
      * they are only used if no template is set (see the setTemplate method).
+     * @return UmailInterface
      */
     public function htmlBody($content);
 
+
+    /**
+     * @return UmailInterface
+     */
     public function plainBody($content);
 
     /**
@@ -83,6 +115,7 @@ interface UmailInterface
      *
      * It's a template for the mail body only (not a template for the mail subject).
      *
+     * @return UmailInterface
      */
     public function setTemplate($templateName);
 
@@ -90,6 +123,8 @@ interface UmailInterface
      * Set the template loader object, which is responsible for resolving
      * a template name into a template content for both the html and
      * the plain text versions.
+     *
+     * @return UmailInterface
      */
     public function setTemplateLoader(TemplateLoaderInterface $loader);
 
@@ -116,6 +151,7 @@ interface UmailInterface
      * @param callable $emailVarsCb : a callable which takes an email address as input,
      *                  and returns an array of corresponding variables.
      *
+     * @return UmailInterface
      */
     public function setVars(array $commonVars, $emailVarsCb = null);
 
@@ -128,8 +164,26 @@ interface UmailInterface
      * Typically, a variable reference is like a variable, but with curly braces around.
      * For instance {myVariable} could be the variable reference for the variable myVariable.
      *
+     * @return UmailInterface
      */
     public function setVarReferenceWrapper($func);
+
+
+    /**
+     * Attach a file to the mail body.
+     *
+     * If allow_url_fopen is on, you can even attach files from other websites.
+     *
+     * @param $file , the path to the file
+     * @param $fileName , the name of the file, by default, the name of the
+     *                  attached file will be used. Example: kool.jpg
+     * @param $mimeType , the mime type of the file (ex: image/jpeg).
+     *                      Is guessed automatically for common formats (images,
+     *                      pdf, spreadsheets,...)
+     *
+     * @return UmailInterface
+     */
+    public function attachFile($file, $fileName = null, $mimeType = null);
 
 
     /**
