@@ -13,13 +13,24 @@ and it uses [SwiftMailer](http://swiftmailer.org/) library.
 
 
 
+Features
+----------
+ 
+- basic email features (subject, to, from, htmlBody, plainBody, ...)  
+- variable references system, using {thisNotation} by default 
+- attach files, or embed files 
+- template system 
+
+
+
+
 Example 1: send an email
 --------------------------
 
 Note: I tested this example on 2017-02-06, and it worked 
-on my local machine (macbook pro).
+on my local machine (macbook pro). However, it failed on my iMac (gate timeout error).
 
-In other words, you can send emails without setting passwords.
+In other words, if your machine allows it, you can send emails without using smtp settings (username, password, ...).
 
 
 ```php
@@ -120,6 +131,26 @@ $res = Umail::create()
     })
     ->htmlBody('Hi, this is <b>just</b> a <span style="color: red">{message}</span>')
     ->plainBody('Hi, this is just a test message')
+    ->send();
+a($res);
+```
+
+
+
+Example 4: attaching a file
+-----------------------------
+
+```php
+$file = "/Users/my/Desktop/zilu-db.png";
+$res = Umail::create()
+    ->to([
+        'lingtalfi@gmail.com' => 'ling',
+    ])
+    ->from('johndoe@gmail.com')
+    ->subject("Hi, testing attach file")
+    ->htmlBody('Hi, this is <b>just</b> a <span style="color: red">message to test file attachment</span>')
+    ->plainBody('Hi, this is just a test message to test file attachment')
+    ->attachFile($file)
     ->send();
 a($res);
 ```

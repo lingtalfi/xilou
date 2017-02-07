@@ -43,6 +43,18 @@ interface UmailInterface
      */
     public function getMailer();
 
+    /**
+     * @return \Swift_Message instance,
+     * so that you can customize it further.
+     *
+     *
+     * For instance, if you want to use embed files
+     * (http://swiftmailer.org/docs/messages.html#embedding-existing-files)
+     * without variable references (or you can use the embedFile method in
+     * that specific case).
+     */
+    public function getMessage();
+
 
     /**
      * Set the recipients of the email.
@@ -174,16 +186,46 @@ interface UmailInterface
      *
      * If allow_url_fopen is on, you can even attach files from other websites.
      *
-     * @param $file , the path to the file
+     * @param $file , the path to the file, or the data of a file (for instance if you
+     *                      want to generate a pdf dynamically)
      * @param $fileName , the name of the file, by default, the name of the
      *                  attached file will be used. Example: kool.jpg
      * @param $mimeType , the mime type of the file (ex: image/jpeg).
      *                      Is guessed automatically for common formats (images,
      *                      pdf, spreadsheets,...)
+     * @param bool $inline =false, whether or not you prefer that the attached
+     *              file appears inline, assuming that the mimeType allows it.
+     *              More info here: http://swiftmailer.org/docs/messages.html#changing-the-disposition
+     *
+     *              Note: from my personal tests, the client has its own preferences
+     *              to and it can choose inline mode even if you don't specify it
+     *              with this inline argument.
+     *
+     * @param bool $isFilePath=true, whether or not the given file is a file path or a dynamically generated content
+     *
+     *
      *
      * @return UmailInterface
      */
-    public function attachFile($file, $fileName = null, $mimeType = null);
+    public function attachFile($file, $fileName = null, $mimeType = null, $inline = false, $isFilePath = true);
+
+    /**
+     * @param $file , the path to the file, or the data of a file (for instance if you
+     *                      want to generate an image dynamically)
+     * @param $fileName , the name of the file, by default, the name of the
+     *                  attached file will be used. Example: kool.jpg
+     * @param $mimeType , the mime type of the file (ex: image/jpeg).
+     *                      Is guessed automatically for common formats (images)
+     *
+     * @param bool $isFilePath=true, whether or not the given file is a file path or a dynamically generated content
+     *
+     * @return string, the contentId that you need to include in your html body,
+     *              inside the src attribute of your image (or video) to make
+     *              the media appear embedded.
+     *
+     *
+     */
+    public function embedFile($file, $fileName = null, $mimeType = null, $isFilePath = true);
 
 
     /**
