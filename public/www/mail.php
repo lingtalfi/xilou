@@ -9,7 +9,7 @@ require_once __DIR__ . "/../init.php";
 //------------------------------------------------------------------------------/
 // EMBED A FILE
 //------------------------------------------------------------------------------/
-$file = "/Users/lafitte/Desktop/zilu-db.png";
+$file = "/Users/pierrelafitte/Desktop/ps_product_attribute.png";
 
 $mail = Umail::create();
 $cid = $mail->embedFile($file);
@@ -29,5 +29,6 @@ $res = $mail->to([
         ' </body>' .
         '</html>'
     )
-    ->plainBody('Hi, this is just a test message to test file attachment');
+    ->plainBody('Hi, this is just a test message to test file attachment')
+    ->send();
 a($res);
