@@ -154,3 +154,41 @@ $res = Umail::create()
     ->send();
 a($res);
 ```
+
+
+
+Example 5: embedding a file
+-----------------------------
+
+Sometimes, attached files are blocked by mail clients.
+By embedding your media directly into the message, you have two benefits:
+
+- you circumvent the blocking problem that attached files have 
+- you can place the media where you want
+
+
+```php
+$file = "/Users/my/Desktop/ps_product_attribute.png";
+
+$mail = Umail::create();
+$cid = $mail->embedFile($file);
+$res = $mail->to([
+    'lingtalfi@gmail.com' => 'ling',
+])
+    ->from('johndoe@gmail.com')
+    ->subject("Hi, testing attach file")
+    ->htmlBody(
+        '<html>' .
+        ' <head></head>' .
+        ' <body>' .
+        '  Here is an image <img src="' . // Embed the file
+        $cid .
+        '" alt="Image" />' .
+        '  Rest of message' .
+        ' </body>' .
+        '</html>'
+    )
+    ->plainBody('Hi, this is just a test message to test file attachment')
+    ->send();
+a($res);
+```
