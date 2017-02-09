@@ -22,3 +22,40 @@ Stack trace:
 #1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mime/SimpleMimeEntity.php(691): Swift_ByteStream_FileByteStream->read(8192)
 #2 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mime/SimpleMimeEntity.php(348): Swift_Mime_SimpleMimeEntity->_readStream(Object(Swift_ByteStream_FileByteStream))
 #3 /Users/pierrelafitte/Desktop/mond in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/vendor/swiftmailer/swiftmailer/lib/classes/Swift/ByteStream/FileByteStream.php on line 144
+[08-Feb-2017 21:09:51 Europe/Paris] PHP Fatal error:  Uncaught Error: Class 'TCPDF' not found in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php:28
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(36): Updf\Updf->__construct()
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(11): Updf\Updf::create()
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 28
+[09-Feb-2017 05:56:21 Europe/Paris] PHP Fatal error:  Uncaught Error: Cannot use object of type ReflectionProperty as array in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Component/AbstractComponent.php:202
+Stack trace:
+#0 [internal function]: Updf\Component\AbstractComponent->Updf\Component\{closure}(Object(ReflectionProperty))
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Component/AbstractComponent.php(203): array_map(Object(Closure), Array)
+#2 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Component/AbstractComponent.php(169): Updf\Component\AbstractComponent->getPublicPropsVars()
+#3 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(124): Updf\Component\AbstractComponent->getTemplateVars()
+#4 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(14): Updf\Updf->render()
+#5 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Component/AbstractComponent.php on line 202
+[09-Feb-2017 06:02:09 Europe/Paris] PHP Warning:  ReflectionProperty::getValue() expects exactly 1 parameter, 0 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Component/AbstractComponent.php on line 206
+[09-Feb-2017 06:02:09 Europe/Paris] PHP Warning:  ReflectionProperty::getValue() expects exactly 1 parameter, 0 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Component/AbstractComponent.php on line 206
+[09-Feb-2017 06:25:10 Europe/Paris] PHP Fatal error:  Uncaught Error: Class 'Updf\Exception\UpdfException' not found in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php:122
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(15): Updf\Updf->render()
+#1 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 122
+[09-Feb-2017 06:25:33 Europe/Paris] PHP Fatal error:  Uncaught Error: Class 'Updf\Exception\UpdfException' not found in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php:122
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(15): Updf\Updf->render()
+#1 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 122
+[09-Feb-2017 06:25:48 Europe/Paris] PHP Fatal error:  Uncaught Error: Class 'Updf\Exception\UpdfException' not found in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php:122
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(15): Updf\Updf->render()
+#1 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 122
+[09-Feb-2017 06:26:49 Europe/Paris] PHP Fatal error:  Uncaught Updf\Exception\UpdfException: Couldn't load the template content for InvoiceAddressBlockComponent in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php:122
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(15): Updf\Updf->render()
+#1 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 122

@@ -4,7 +4,13 @@
 namespace Updf;
 
 
+
 use Updf\Component\ComponentInterface;
+use Updf\Exception\UpdfException;
+use Updf\TemplateLoader\TemplateLoader;
+use Updf\TemplateLoader\TemplateLoaderInterface;
+use Updf\Theme\Ling\LingTheme;
+use Updf\Theme\ThemeInterface;
 
 
 /**
@@ -16,6 +22,8 @@ class Updf
 
     private $elements;
     private $tcpdf;
+    protected $templateLoader;
+    protected $theme;
 
     public function __construct()
     {
@@ -23,6 +31,7 @@ class Updf
         $this->tcpdf = new \TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $this->tcpdf->SetAutoPageBreak(true, PDF_MARGIN_BOTTOM);
         $this->tcpdf->SetFont('dejavusans', '', 10);
+        $this->tcpdf->setHeaderData('', 0, '', '', array(0, 0, 0), array(255, 255, 255));
         $this->tcpdf->AddPage();
     }
 
@@ -69,6 +78,11 @@ class Updf
         return $this;
     }
 
+    public function setTheme(ThemeInterface $theme)
+    {
+        $this->theme = $theme;
+        return $this;
+    }
 
     /**
      * @param null|string $type
@@ -92,32 +106,39 @@ class Updf
             /**
              * Get the template's content and related variables
              */
-            $html = '';
+            $content = '';
             $vars = [];
             if ($elementInfo[0] instanceof ComponentInterface) {
                 /**
                  * @var ComponentInterface $component
                  */
                 $component = $elementInfo[0];
-                $html = $component->getTemplateContent();
+                $component->setTheme($this->getTheme());
+                $tplName = $component->getTemplateName();
+                $loader = $this->getTemplateLoader();
+                if (false !== ($_content = $loader->load($tplName, $component))) {
+                    $content = $_content;
+                } else {
+                    throw new UpdfException("Couldn't load the template content for $tplName");
+                }
                 $vars = $component->getTemplateVars();
             } else {
-                list($html, $vars) = $elementInfo;
+                list($content, $vars) = $elementInfo;
             }
 
 
             /**
-             * Inject variables into the template
+             * Interpret the content and inject the variables
              */
-            $this->injectVariables($html, $vars);
+            $themeVars = $this->getTheme()->getAll();
+            $vars = array_merge($themeVars, $vars);
+            $html = $this->renderContent($content, $vars);
 
 
             /**
              * Write the html
              */
             $this->tcpdf->writeHTML($html, true, false, true, false, '');
-
-
         }
 
         /**
@@ -145,15 +166,64 @@ class Updf
      * By default, we use a simple {tag} replacement system.
      *
      */
-    protected function injectVariables(&$html, array $vars)
+    protected function renderContent($content, array $vars)
     {
-        /**
-         * Inject variables into the template
-         */
-        $varsKeys = array_map(function ($v) {
-            return '{' . $v . '}';
-        }, array_keys($vars));
-        $varsValues = array_values($vars);
-        $html = str_replace($varsKeys, $varsValues, $html);
+
+        if (false !== ($path = $this->tmpFile($content))) {
+
+
+            /**
+             * First interpret the template's php if any
+             */
+            ob_start();
+            include $path;
+            $content = ob_get_clean();
+
+
+            /**
+             * Then inject variables into the template
+             */
+            $varsKeys = array_map(function ($v) {
+                return '{' . $v . '}';
+            }, array_keys($vars));
+            $varsValues = array_values($vars);
+            return str_replace($varsKeys, $varsValues, $content);
+        } else {
+            throw new UpdfException("Cannot create the temporary file to create content");
+        }
+    }
+
+
+    /**
+     * @return TemplateLoaderInterface
+     */
+    protected function getTemplateLoader()
+    {
+        if (null === $this->templateLoader) {
+            $this->templateLoader = new TemplateLoader();
+        }
+        return $this->templateLoader;
+    }
+
+    /**
+     * @return ThemeInterface
+     */
+    protected function getTheme()
+    {
+        if (null === $this->theme) {
+            $this->theme = new LingTheme();
+        }
+        return $this->theme;
+    }
+
+
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+    private function tmpFile($content)
+    {
+        $tmpfname = tempnam("/tmp", "FOO");
+        file_put_contents($tmpfname, $content);
+        return $tmpfname;
     }
 }

@@ -132,10 +132,15 @@ based on common sense.
     - theme_font_size_small2: an even smaller font size
     - theme_font_size_big: a bigger font size
     - theme_font_size_big2: an even bigger font size
+- table
+    - cellpadding: the main cellpadding value    
 - images
     - theme_logo: the content of the src attribute of the logo (see examples for concrete example)
+    - theme_logo_width: if specified, the absolute width of the logo; otherwise the logo natural width will be used
     
     
+- By default, all theme variables start with the "theme_" prefix.    
+- By default, all text variables (variables belonging to the template) start with the "text_" prefix.    
     
     
     
