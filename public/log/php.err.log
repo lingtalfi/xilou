@@ -59,3 +59,94 @@ Stack trace:
 #0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(15): Updf\Updf->render()
 #1 {main}
   thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 122
+[09-Feb-2017 15:58:14 Europe/Paris] PHP Notice:  Undefined variable: products in /private/tmp/FOOZVQm8p on line 31
+[09-Feb-2017 15:58:14 Europe/Paris] PHP Stack trace:
+[09-Feb-2017 15:58:14 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[09-Feb-2017 15:58:14 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:19
+[09-Feb-2017 15:58:14 Europe/Paris] PHP   3. Updf\Updf->renderContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:134
+[09-Feb-2017 15:58:14 Europe/Paris] PHP   4. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:178
+[09-Feb-2017 15:58:15 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /private/tmp/FOOZVQm8p on line 31
+[09-Feb-2017 15:58:15 Europe/Paris] PHP Stack trace:
+[09-Feb-2017 15:58:15 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[09-Feb-2017 15:58:15 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:19
+[09-Feb-2017 15:58:15 Europe/Paris] PHP   3. Updf\Updf->renderContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:134
+[09-Feb-2017 15:58:15 Europe/Paris] PHP   4. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:178
+[09-Feb-2017 15:58:15 Europe/Paris] PHP Warning:  nl2br() expects parameter 1 to be string, array given in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php on line 188
+[09-Feb-2017 15:58:15 Europe/Paris] PHP Stack trace:
+[09-Feb-2017 15:58:15 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[09-Feb-2017 15:58:15 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:19
+[09-Feb-2017 15:58:15 Europe/Paris] PHP   3. Updf\Updf->renderContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:134
+[09-Feb-2017 15:58:15 Europe/Paris] PHP   4. array_map() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:188
+[09-Feb-2017 15:58:15 Europe/Paris] PHP   5. nl2br() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:188
+[09-Feb-2017 15:58:15 Europe/Paris] PHP Notice:  Undefined index: old_cell_padding in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19720
+[09-Feb-2017 15:58:15 Europe/Paris] PHP Stack trace:
+[09-Feb-2017 15:58:15 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[09-Feb-2017 15:58:15 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:19
+[09-Feb-2017 15:58:15 Europe/Paris] PHP   3. TCPDF->writeHTML() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:140
+[09-Feb-2017 15:58:15 Europe/Paris] PHP   4. TCPDF->closeHTMLTagHandler() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/TCPDF/tcpdf.php:18283
+[09-Feb-2017 15:58:16 Europe/Paris] PHP Warning:  Cannot modify header information - headers already sent by (output started at /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/TCPDF/tcpdf.php:19720) in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 7624
+[09-Feb-2017 15:58:16 Europe/Paris] PHP Stack trace:
+[09-Feb-2017 15:58:16 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[09-Feb-2017 15:58:16 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:19
+[09-Feb-2017 15:58:16 Europe/Paris] PHP   3. TCPDF->Output() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:152
+[09-Feb-2017 15:58:16 Europe/Paris] PHP   4. header() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/TCPDF/tcpdf.php:7624
+[09-Feb-2017 17:26:37 Europe/Paris] PHP Notice:  Undefined variable: products in /private/tmp/FOO5oHH9j on line 31
+[09-Feb-2017 17:26:37 Europe/Paris] PHP Stack trace:
+[09-Feb-2017 17:26:37 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[09-Feb-2017 17:26:37 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:19
+[09-Feb-2017 17:26:37 Europe/Paris] PHP   3. Updf\Updf->renderContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:134
+[09-Feb-2017 17:26:37 Europe/Paris] PHP   4. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:178
+[09-Feb-2017 17:26:37 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /private/tmp/FOO5oHH9j on line 31
+[09-Feb-2017 17:26:37 Europe/Paris] PHP Stack trace:
+[09-Feb-2017 17:26:37 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[09-Feb-2017 17:26:37 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:19
+[09-Feb-2017 17:26:37 Europe/Paris] PHP   3. Updf\Updf->renderContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:134
+[09-Feb-2017 17:26:37 Europe/Paris] PHP   4. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:178
+[09-Feb-2017 17:26:37 Europe/Paris] PHP Notice:  Array to string conversion in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php on line 196
+[09-Feb-2017 17:26:37 Europe/Paris] PHP Stack trace:
+[09-Feb-2017 17:26:37 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[09-Feb-2017 17:26:37 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:19
+[09-Feb-2017 17:26:37 Europe/Paris] PHP   3. Updf\Updf->renderContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:134
+[09-Feb-2017 17:26:37 Europe/Paris] PHP   4. str_replace() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:196
+[09-Feb-2017 17:26:37 Europe/Paris] PHP Notice:  Undefined index: old_cell_padding in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19720
+[09-Feb-2017 17:26:37 Europe/Paris] PHP Stack trace:
+[09-Feb-2017 17:26:37 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[09-Feb-2017 17:26:37 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:19
+[09-Feb-2017 17:26:37 Europe/Paris] PHP   3. TCPDF->writeHTML() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:140
+[09-Feb-2017 17:26:38 Europe/Paris] PHP   4. TCPDF->closeHTMLTagHandler() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/TCPDF/tcpdf.php:18283
+[09-Feb-2017 17:26:39 Europe/Paris] PHP Warning:  Cannot modify header information - headers already sent by (output started at /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/TCPDF/tcpdf.php:19720) in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 7624
+[09-Feb-2017 17:26:39 Europe/Paris] PHP Stack trace:
+[09-Feb-2017 17:26:39 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[09-Feb-2017 17:26:39 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:19
+[09-Feb-2017 17:26:39 Europe/Paris] PHP   3. TCPDF->Output() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:152
+[09-Feb-2017 17:26:39 Europe/Paris] PHP   4. header() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/TCPDF/tcpdf.php:7624
+[09-Feb-2017 17:28:02 Europe/Paris] PHP Notice:  Undefined variable: products in /private/tmp/FOOsLtxli on line 31
+[09-Feb-2017 17:28:02 Europe/Paris] PHP Stack trace:
+[09-Feb-2017 17:28:02 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[09-Feb-2017 17:28:02 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:19
+[09-Feb-2017 17:28:02 Europe/Paris] PHP   3. Updf\Updf->renderContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:134
+[09-Feb-2017 17:28:02 Europe/Paris] PHP   4. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:178
+[09-Feb-2017 17:28:02 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /private/tmp/FOOsLtxli on line 31
+[09-Feb-2017 17:28:02 Europe/Paris] PHP Stack trace:
+[09-Feb-2017 17:28:02 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[09-Feb-2017 17:28:02 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:19
+[09-Feb-2017 17:28:02 Europe/Paris] PHP   3. Updf\Updf->renderContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:134
+[09-Feb-2017 17:28:02 Europe/Paris] PHP   4. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:178
+[09-Feb-2017 17:28:02 Europe/Paris] PHP Notice:  Array to string conversion in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php on line 194
+[09-Feb-2017 17:28:02 Europe/Paris] PHP Stack trace:
+[09-Feb-2017 17:28:02 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[09-Feb-2017 17:28:02 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:19
+[09-Feb-2017 17:28:02 Europe/Paris] PHP   3. Updf\Updf->renderContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:134
+[09-Feb-2017 17:28:02 Europe/Paris] PHP   4. str_replace() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:194
+[09-Feb-2017 17:28:02 Europe/Paris] PHP Notice:  Undefined index: old_cell_padding in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19720
+[09-Feb-2017 17:28:02 Europe/Paris] PHP Stack trace:
+[09-Feb-2017 17:28:02 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[09-Feb-2017 17:28:02 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:19
+[09-Feb-2017 17:28:02 Europe/Paris] PHP   3. TCPDF->writeHTML() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:140
+[09-Feb-2017 17:28:02 Europe/Paris] PHP   4. TCPDF->closeHTMLTagHandler() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/TCPDF/tcpdf.php:18283
+[09-Feb-2017 17:28:03 Europe/Paris] PHP Warning:  Cannot modify header information - headers already sent by (output started at /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/TCPDF/tcpdf.php:19720) in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 7624
+[09-Feb-2017 17:28:03 Europe/Paris] PHP Stack trace:
+[09-Feb-2017 17:28:03 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[09-Feb-2017 17:28:03 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:19
+[09-Feb-2017 17:28:03 Europe/Paris] PHP   3. TCPDF->Output() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:152
+[09-Feb-2017 17:28:03 Europe/Paris] PHP   4. header() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/TCPDF/tcpdf.php:7624

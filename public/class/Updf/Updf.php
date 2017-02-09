@@ -4,7 +4,6 @@
 namespace Updf;
 
 
-
 use Updf\Component\ComponentInterface;
 use Updf\Exception\UpdfException;
 use Updf\TemplateLoader\TemplateLoader;
@@ -138,7 +137,7 @@ class Updf
             /**
              * Write the html
              */
-            $this->tcpdf->writeHTML($html, true, false, true, false, '');
+            $this->tcpdf->writeHTML($html, true, 0, true);
         }
 
         /**
@@ -184,9 +183,17 @@ class Updf
              * Then inject variables into the template
              */
             $varsKeys = array_map(function ($v) {
-                return '{' . $v . '}';
+                return '__' . $v . '__';
             }, array_keys($vars));
+
+
             $varsValues = array_values($vars);
+            array_walk_recursive($varsValues, function (&$v) {
+                return nl2br($v);
+            });
+            az($varsKeys, $varsValues, $content);
+
+
             return str_replace($varsKeys, $varsValues, $content);
         } else {
             throw new UpdfException("Cannot create the temporary file to create content");
@@ -226,4 +233,6 @@ class Updf
         file_put_contents($tmpfname, $content);
         return $tmpfname;
     }
+
+
 }

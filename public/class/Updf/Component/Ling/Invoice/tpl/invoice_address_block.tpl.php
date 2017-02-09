@@ -1,37 +1,24 @@
-<table border="0" cellspacing="0" cellpadding="4">
+<style>
+    table#invoice_address_block {
+        font-size: __theme_font_size__;
+    }
+</style>
+<table id="invoice_address_block">
     <tr>
         <td>
-            My Company Equipement<br>
-            France
+            __shop_address__
         </td>
-        <td bgcolor="green" cellpadding="0">
-            <b>Addresse de livraison</b>
+        <td>
+            <b>__text_billing_address__</b>
             <br>
             <br>
-            Team Adamon FIGHTING ACADEMY
-            38 chemin de Tomasenea<br>
-            Zone de Berrouetta<br>
-            26000 URRUGNE<br>
-            France
+            __billing_address__
         </td>
-        <td align="left" style="margin:0;padding:0;text-indent: 0;">
-            <b>Addresse de livraison</b>
+        <td>
+            <b>__text_shipping_address__</b>
             <br>
             <br>
-            Team Adamon FIGHTING ACADEMY
-            38 chemin de Tomasenea<br>
-            Zone de Berrouetta<br>
-            26000 URRUGNE<br>
-            France
+            __shipping_address__
         </td>
     </tr>
 </table>
-<p>
-    Team Adamon FIGHTING ACADEMY
-    Team Adamon FIGHTING ACADEMY
-    Team Adamon FIGHTING ACADEMY
-    Team Adamon FIGHTING ACADEMY
-    <br>
-    Team Adamon FIGHTING ACADEMY<br>
-    Team Adamon FIGHTING ACADEMY<br>
-</p>

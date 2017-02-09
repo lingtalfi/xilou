@@ -31,6 +31,14 @@ class Theme implements ThemeInterface
         return $this;
     }
 
+    public function setMultiple(array $values)
+    {
+        foreach ($values as $k => $v) {
+            $this->vars[$k] = $v;
+        }
+        return $this;
+    }
+
     public function getAll()
     {
         return $this->vars;

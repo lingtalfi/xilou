@@ -10,7 +10,14 @@ class InvoiceAddressBlockComponent extends AbstractComponent
 {
 
 
-    public $date = "2017-02-09";
-    public $invoice_reference = "#FA000009";
+    public $shop_address = "My company<br>France";
+    public $billing_address = "Ling talfi
+100 bmx road
+California 90000
+USA";
+    public $shipping_address = "Ling talfi
+100 bmx road
+California 90000
+USA";
 
 }

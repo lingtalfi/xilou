@@ -1,10 +1,10 @@
-<table border="0" cellspacing="0" cellpadding="{theme_cellpadding}">
+<table border="0" cellspacing="0" cellpadding="__theme_cellpadding__">
     <tr>
-        <th><img src="{theme_logo}" width="{theme_logo_width}" alt="logo"></th>
+        <th><img src="__theme_logo__" width="__theme_logo_width__" alt="logo"></th>
         <th align="right">
-            <b>{text_invoice}</b><br>
-            <span style="color: #aaa">{date}</span><br>
-            <span style="color: #aaa">{invoice_reference}</span>
+            <b>__text_invoice__</b><br>
+            <span style="color: #aaa">__date__</span><br>
+            <span style="color: #aaa">__invoice_reference__</span>
         </th>
     </tr>
 </table>
