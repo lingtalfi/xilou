@@ -6,7 +6,7 @@ namespace Updf\Model;
 
 abstract class AbstractModel implements ModelInterface
 {
-    protected $vars;
+    private $vars;
 
     public function __construct()
     {
@@ -22,6 +22,9 @@ abstract class AbstractModel implements ModelInterface
 
     public function getVariables()
     {
+        if (null === $this->vars) {
+            $this->vars = [];
+        }
         $publicPropsVars = $this->getPublicPropsVars();
         $this->vars = array_merge($this->vars, $publicPropsVars);
         return $this->vars;

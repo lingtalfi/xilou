@@ -193,16 +193,12 @@
     <!-- TVA -->
     <tr>
         <!-- Code TVA -->
-        <td colspan="6" class="left">
-
-            {invoice.tax_tab}
-
-        </td>
+        <td colspan="6" class="left">{invoice.tax_tab}</td>
         <td colspan="1">&nbsp;</td>
         <!-- Calcule TVA -->
         <td colspan="5" rowspan="5" class="right">
 
-            {invoice.total_tab}
+            { invoice.total_tab}
 
         </td>
     </tr>
@@ -214,7 +210,7 @@
     <tr>
         <td colspan="6" class="left">
 
-            {invoice.payment_tab}
+            { invoice.payment_tab}
 
         </td>
         <td colspan="1">&nbsp;</td>

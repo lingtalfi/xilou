@@ -234,3 +234,78 @@ Stack trace:
 #1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(29): Updf\Updf->render()
 #2 {main}
   thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 143
+[10-Feb-2017 08:00:57 Europe/Paris] PHP Fatal error:  Uncaught exception 'Updf\Exception\UpdfException' with message 'Couldn't load the template content for invoice.addresses_tab' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:143
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php(183): Updf\Updf->renderTemplate('invoice.address...', Array)
+#1 [internal function]: Updf\Updf->Updf\{closure}(Array)
+#2 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php(184): preg_replace_callback('!{([a-zA-Z_][a-...', Object(Closure), '<style>\n    tab...')
+#3 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php(95): Updf\Updf->renderTemplate('invoice', Array)
+#4 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php(29): Updf\Updf->render()
+#5 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php on line 143
+[10-Feb-2017 08:01:54 Europe/Paris] PHP Fatal error:  Uncaught exception 'Updf\Exception\UpdfException' with message 'Couldn't load the template content for invoice.summary_tab' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:143
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php(183): Updf\Updf->renderTemplate('invoice.summary...', Array)
+#1 [internal function]: Updf\Updf->Updf\{closure}(Array)
+#2 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php(184): preg_replace_callback('!{([a-zA-Z_][a-...', Object(Closure), '<style>\n    tab...')
+#3 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php(95): Updf\Updf->renderTemplate('invoice', Array)
+#4 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php(29): Updf\Updf->render()
+#5 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php on line 143
+[10-Feb-2017 09:44:47 Europe/Paris] PHP Warning:  array_merge(): Argument #1 is not an array in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Model/AbstractModel.php on line 26
+[10-Feb-2017 09:44:47 Europe/Paris] PHP Stack trace:
+[10-Feb-2017 09:44:47 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[10-Feb-2017 09:44:47 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:29
+[10-Feb-2017 09:44:47 Europe/Paris] PHP   3. Updf\Model\AbstractModel->getVariables() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:88
+[10-Feb-2017 09:44:47 Europe/Paris] PHP   4. array_merge() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Model/AbstractModel.php:26
+[10-Feb-2017 09:44:47 Europe/Paris] PHP Warning:  array_merge(): Argument #1 is not an array in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php on line 88
+[10-Feb-2017 09:44:47 Europe/Paris] PHP Stack trace:
+[10-Feb-2017 09:44:47 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[10-Feb-2017 09:44:47 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:29
+[10-Feb-2017 09:44:47 Europe/Paris] PHP   3. array_merge() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:88
+[10-Feb-2017 09:44:47 Europe/Paris] PHP Catchable fatal error:  Argument 2 passed to Updf\Updf::renderTemplate() must be of the type array, null given, called in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php on line 95 and defined in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php on line 130
+[10-Feb-2017 09:44:47 Europe/Paris] PHP Stack trace:
+[10-Feb-2017 09:44:47 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[10-Feb-2017 09:44:47 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:29
+[10-Feb-2017 09:44:47 Europe/Paris] PHP   3. Updf\Updf->renderTemplate() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:95
+[10-Feb-2017 09:45:11 Europe/Paris] PHP Warning:  array_merge(): Argument #1 is not an array in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Model/AbstractModel.php on line 26
+[10-Feb-2017 09:45:11 Europe/Paris] PHP Stack trace:
+[10-Feb-2017 09:45:11 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[10-Feb-2017 09:45:11 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:29
+[10-Feb-2017 09:45:11 Europe/Paris] PHP   3. Updf\Model\AbstractModel->getVariables() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:88
+[10-Feb-2017 09:45:11 Europe/Paris] PHP   4. array_merge() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Model/AbstractModel.php:26
+[10-Feb-2017 09:45:11 Europe/Paris] PHP Warning:  array_merge(): Argument #1 is not an array in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php on line 88
+[10-Feb-2017 09:45:11 Europe/Paris] PHP Stack trace:
+[10-Feb-2017 09:45:11 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[10-Feb-2017 09:45:11 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:29
+[10-Feb-2017 09:45:11 Europe/Paris] PHP   3. array_merge() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:88
+[10-Feb-2017 09:45:11 Europe/Paris] PHP Catchable fatal error:  Argument 2 passed to Updf\Updf::renderTemplate() must be of the type array, null given, called in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php on line 95 and defined in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php on line 130
+[10-Feb-2017 09:45:11 Europe/Paris] PHP Stack trace:
+[10-Feb-2017 09:45:11 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[10-Feb-2017 09:45:11 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:29
+[10-Feb-2017 09:45:11 Europe/Paris] PHP   3. Updf\Updf->renderTemplate() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:95
+[10-Feb-2017 09:46:58 Europe/Paris] PHP Warning:  array_merge(): Argument #1 is not an array in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Model/AbstractModel.php on line 27
+[10-Feb-2017 09:46:59 Europe/Paris] PHP Stack trace:
+[10-Feb-2017 09:46:59 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[10-Feb-2017 09:46:59 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:29
+[10-Feb-2017 09:46:59 Europe/Paris] PHP   3. Updf\Model\AbstractModel->getVariables() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:88
+[10-Feb-2017 09:46:59 Europe/Paris] PHP   4. array_merge() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Model/AbstractModel.php:27
+[10-Feb-2017 09:46:59 Europe/Paris] PHP Warning:  array_merge(): Argument #1 is not an array in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php on line 88
+[10-Feb-2017 09:46:59 Europe/Paris] PHP Stack trace:
+[10-Feb-2017 09:46:59 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[10-Feb-2017 09:46:59 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:29
+[10-Feb-2017 09:46:59 Europe/Paris] PHP   3. array_merge() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:88
+[10-Feb-2017 09:46:59 Europe/Paris] PHP Catchable fatal error:  Argument 2 passed to Updf\Updf::renderTemplate() must be of the type array, null given, called in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php on line 95 and defined in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php on line 130
+[10-Feb-2017 09:46:59 Europe/Paris] PHP Stack trace:
+[10-Feb-2017 09:46:59 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[10-Feb-2017 09:46:59 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:29
+[10-Feb-2017 09:46:59 Europe/Paris] PHP   3. Updf\Updf->renderTemplate() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:95
+[10-Feb-2017 17:23:46 Europe/Paris] PHP Fatal error:  Uncaught exception 'Updf\Exception\UpdfException' with message 'Couldn't load the template content for invoice.total_tab' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:143
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php(183): Updf\Updf->renderTemplate('invoice.total_t...', Array)
+#1 [internal function]: Updf\Updf->Updf\{closure}(Array)
+#2 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php(184): preg_replace_callback('!{([a-zA-Z_][a-...', Object(Closure), '<style>\n    tab...')
+#3 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php(95): Updf\Updf->renderTemplate('invoice', Array)
+#4 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php(29): Updf\Updf->render()
+#5 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php on line 143

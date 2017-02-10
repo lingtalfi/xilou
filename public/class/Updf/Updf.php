@@ -178,7 +178,10 @@ class Updf
              */
             $content = str_replace($varsKeys, $varsValues, $content);
 
-//            $content=  preg_replace_callback('', function(){}, $content);
+            $content = preg_replace_callback('!{([a-zA-Z_][a-zA-Z0-9._-]*)}!', function ($m) use ($vars) {
+                $tplName = $m[1];
+                return $this->renderTemplate($tplName, $vars);
+            }, $content);
 
 
             return $content;
