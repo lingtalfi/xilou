@@ -23,14 +23,13 @@ class TemplateLoader implements TemplateLoaderInterface
     public function __construct()
     {
         $this->tplDir = __DIR__ . "/../../../pdf";
-        $this->tplExtension = 'tpl.php';
+        $this->tplExtension = 'php';
     }
 
 
     public function load($templateName, $context = null)
     {
         $tplFile = $this->tplDir . "/" . $templateName . '.' . $this->tplExtension;
-
         if (file_exists($tplFile)) {
             return file_get_contents($tplFile);
         } elseif (null !== $context) {

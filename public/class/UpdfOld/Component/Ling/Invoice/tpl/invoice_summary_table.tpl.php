@@ -4,14 +4,13 @@
     }
 
     table#invoice_summary_table tr th {
-        text-align: center;
         font-weight: bold;
         font-size: __theme_th_font_size__;
         background-color: __theme_th_bg_color__;
     }
 
     table#invoice_summary_table tr td {
-        font-size: __theme_td_font_size__;
+        font-size: __theme_td_font_size_small__;
     }
 </style>
 

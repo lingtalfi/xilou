@@ -150,3 +150,87 @@ Stack trace:
 [09-Feb-2017 17:28:03 Europe/Paris] PHP   2. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:19
 [09-Feb-2017 17:28:03 Europe/Paris] PHP   3. TCPDF->Output() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php:152
 [09-Feb-2017 17:28:03 Europe/Paris] PHP   4. header() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/TCPDF/tcpdf.php:7624
+[09-Feb-2017 22:44:32 Europe/Paris] PHP Notice:  Undefined variable: products in /private/tmp/FOOeNIKMM on line 31
+[09-Feb-2017 22:44:32 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /private/tmp/FOOeNIKMM on line 31
+[09-Feb-2017 22:44:32 Europe/Paris] PHP Notice:  Array to string conversion in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 197
+[09-Feb-2017 22:49:28 Europe/Paris] PHP Notice:  Undefined variable: products in /private/tmp/FOOMqIdVh on line 31
+[09-Feb-2017 22:49:28 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /private/tmp/FOOMqIdVh on line 31
+[09-Feb-2017 22:49:28 Europe/Paris] PHP Notice:  Array to string conversion in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 197
+[09-Feb-2017 22:50:10 Europe/Paris] PHP Notice:  Undefined variable: products in /private/tmp/FOO5k2PXA on line 31
+[09-Feb-2017 22:50:10 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /private/tmp/FOO5k2PXA on line 31
+[09-Feb-2017 22:50:10 Europe/Paris] PHP Notice:  Array to string conversion in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 197
+[09-Feb-2017 22:51:41 Europe/Paris] PHP Notice:  Undefined variable: products in /private/tmp/FOOGAi6vo on line 31
+[09-Feb-2017 22:51:41 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /private/tmp/FOOGAi6vo on line 31
+[09-Feb-2017 22:51:41 Europe/Paris] PHP Notice:  Array to string conversion in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 201
+[09-Feb-2017 22:55:07 Europe/Paris] PHP Notice:  Undefined variable: products in /private/tmp/FOOAWLwFD on line 31
+[09-Feb-2017 22:55:07 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /private/tmp/FOOAWLwFD on line 31
+[09-Feb-2017 22:59:23 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOKJnKkp on line 33
+[09-Feb-2017 22:59:23 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOKJnKkp on line 34
+[09-Feb-2017 22:59:23 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOKJnKkp on line 35
+[09-Feb-2017 22:59:23 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOKJnKkp on line 36
+[09-Feb-2017 22:59:23 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOKJnKkp on line 37
+[09-Feb-2017 22:59:23 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOKJnKkp on line 38
+[09-Feb-2017 22:59:23 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOKJnKkp on line 39
+[09-Feb-2017 22:59:46 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOtQEhuc on line 31
+[09-Feb-2017 22:59:46 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /private/tmp/FOOtQEhuc on line 31
+[09-Feb-2017 22:59:56 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOWOrqf8 on line 33
+[09-Feb-2017 22:59:56 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOWOrqf8 on line 34
+[09-Feb-2017 22:59:56 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOWOrqf8 on line 35
+[09-Feb-2017 22:59:56 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOWOrqf8 on line 36
+[09-Feb-2017 22:59:56 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOWOrqf8 on line 37
+[09-Feb-2017 22:59:56 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOWOrqf8 on line 38
+[09-Feb-2017 22:59:56 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOWOrqf8 on line 39
+[09-Feb-2017 23:00:34 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOyxTl4v on line 33
+[09-Feb-2017 23:00:34 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOyxTl4v on line 34
+[09-Feb-2017 23:00:34 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOyxTl4v on line 35
+[09-Feb-2017 23:00:34 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOyxTl4v on line 36
+[09-Feb-2017 23:00:34 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOyxTl4v on line 37
+[09-Feb-2017 23:00:34 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOyxTl4v on line 38
+[09-Feb-2017 23:00:34 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/tmp/FOOyxTl4v on line 39
+[09-Feb-2017 23:01:55 Europe/Paris] PHP Notice:  Undefined property: stdClass::$taxRate in /private/tmp/FOOpCDtTX on line 35
+[09-Feb-2017 23:01:55 Europe/Paris] PHP Notice:  Undefined property: stdClass::$basePrice in /private/tmp/FOOpCDtTX on line 36
+[09-Feb-2017 23:01:55 Europe/Paris] PHP Notice:  Undefined property: stdClass::$unitPrice in /private/tmp/FOOpCDtTX on line 37
+[10-Feb-2017 05:23:39 Europe/Paris] PHP Notice:  Undefined property: stdClass::$taxRate in /private/tmp/FOOy58dI6 on line 35
+[10-Feb-2017 05:23:39 Europe/Paris] PHP Notice:  Undefined property: stdClass::$basePrice in /private/tmp/FOOy58dI6 on line 36
+[10-Feb-2017 05:23:39 Europe/Paris] PHP Notice:  Undefined property: stdClass::$unitPrice in /private/tmp/FOOy58dI6 on line 37
+[10-Feb-2017 05:24:15 Europe/Paris] PHP Notice:  Undefined property: stdClass::$taxRate in /private/tmp/FOOgQlwcN on line 36
+[10-Feb-2017 05:24:15 Europe/Paris] PHP Notice:  Undefined property: stdClass::$basePrice in /private/tmp/FOOgQlwcN on line 37
+[10-Feb-2017 05:24:15 Europe/Paris] PHP Notice:  Undefined property: stdClass::$unitPrice in /private/tmp/FOOgQlwcN on line 38
+[10-Feb-2017 05:25:05 Europe/Paris] PHP Notice:  Undefined property: stdClass::$taxRate in /private/tmp/FOOZIzCHC on line 36
+[10-Feb-2017 05:25:05 Europe/Paris] PHP Notice:  Undefined property: stdClass::$basePrice in /private/tmp/FOOZIzCHC on line 37
+[10-Feb-2017 05:25:05 Europe/Paris] PHP Notice:  Undefined property: stdClass::$unitPrice in /private/tmp/FOOZIzCHC on line 38
+[10-Feb-2017 05:26:59 Europe/Paris] PHP Notice:  Undefined property: stdClass::$taxRate in /private/tmp/FOOjoaU6k on line 36
+[10-Feb-2017 05:26:59 Europe/Paris] PHP Notice:  Undefined property: stdClass::$basePrice in /private/tmp/FOOjoaU6k on line 37
+[10-Feb-2017 05:26:59 Europe/Paris] PHP Notice:  Undefined property: stdClass::$unitPrice in /private/tmp/FOOjoaU6k on line 38
+[10-Feb-2017 05:27:22 Europe/Paris] PHP Notice:  Undefined property: stdClass::$taxRate in /private/tmp/FOObtgWl0 on line 36
+[10-Feb-2017 05:27:22 Europe/Paris] PHP Notice:  Undefined property: stdClass::$basePrice in /private/tmp/FOObtgWl0 on line 37
+[10-Feb-2017 05:27:22 Europe/Paris] PHP Notice:  Undefined property: stdClass::$unitPrice in /private/tmp/FOObtgWl0 on line 38
+[10-Feb-2017 05:35:51 Europe/Paris] PHP Fatal error:  Uncaught Error: Class 'Updf\Component\Ling\Invoice\InvoiceOrderProductsTableComponent' not found in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php:18
+Stack trace:
+#0 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php on line 18
+[10-Feb-2017 07:16:05 Europe/Paris] PHP Parse error:  syntax error, unexpected '{', expecting '(' in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Model/AbstractModel.php on line 18
+[10-Feb-2017 07:16:17 Europe/Paris] PHP Fatal error:  Uncaught Error: Class 'Updf\Exception\UpdfException' not found in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php:143
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(95): Updf\Updf->renderTemplate('invoice', Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(29): Updf\Updf->render()
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 143
+[10-Feb-2017 07:16:27 Europe/Paris] PHP Fatal error:  Uncaught Updf\Exception\UpdfException: Couldn't load the template content for invoice in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php:143
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(95): Updf\Updf->renderTemplate('invoice', Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(29): Updf\Updf->render()
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 143
+[10-Feb-2017 07:17:02 Europe/Paris] PHP Fatal error:  Uncaught Updf\Exception\UpdfException: Couldn't load the template content for invoice in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php:143
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(95): Updf\Updf->renderTemplate('invoice', Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(29): Updf\Updf->render()
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 143
+[10-Feb-2017 07:17:03 Europe/Paris] PHP Fatal error:  Uncaught Updf\Exception\UpdfException: Couldn't load the template content for invoice in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php:143
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(95): Updf\Updf->renderTemplate('invoice', Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(29): Updf\Updf->render()
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 143

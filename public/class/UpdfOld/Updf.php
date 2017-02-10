@@ -4,10 +4,12 @@
 namespace Updf;
 
 
+use Updf\Component\ComponentInterface;
 use Updf\Exception\UpdfException;
-use Updf\Model\ModelInterface;
 use Updf\TemplateLoader\TemplateLoader;
 use Updf\TemplateLoader\TemplateLoaderInterface;
+use Updf\Theme\Ling\LingTheme;
+use Updf\Theme\ThemeInterface;
 
 
 /**
@@ -16,15 +18,15 @@ use Updf\TemplateLoader\TemplateLoaderInterface;
  */
 class Updf
 {
+
+    private $elements;
     private $tcpdf;
-    protected $templateName;
     protected $templateLoader;
-    protected $vars;
-    protected $model;
+    protected $theme;
 
     public function __construct()
     {
-        $this->vars = [];
+        $this->elements = [];
         $this->tcpdf = new \TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $this->tcpdf->SetAutoPageBreak(true, PDF_MARGIN_BOTTOM);
         $this->tcpdf->SetFont('dejavusans', '', 10);
@@ -37,30 +39,49 @@ class Updf
         return new static();
     }
 
-    public function setTemplate($templateName)
+
+    /**
+     * @param ComponentInterface|string $element
+     *              An element can be either a template or a component.
+     *
+     *
+     *
+     *
+     *              In both cases, the goal is to obtain a template content and
+     *              some variables.
+     *              The injection of the variables into the template content
+     *              is then done by THIS class.
+     *
+     *
+     *              If a template is passed, it's a string representing the template name,
+     *              and the vars argument (second argument) is used.
+     *              The template name is resolved to a template content
+     *              via a TemplateLoader object, which is set apart.
+     *
+     *
+     *              If it's a component, a ComponentInterface object is passed,
+     *              and the vars argument is not used, since the component object
+     *              creates its own variables.
+     *              The component object also returns a template name,
+     *              which is in turn resolved into template content using the same
+     *              TemplateLoader object as the one used for the template version.
+     *
+     *
+     *
+     * @param array|null $vars
+     * @return $this
+     */
+    public function addElement($element, array $vars = null)
     {
-        $this->templateName = $templateName;
+        $this->elements[] = [$element, $vars];
         return $this;
     }
 
-    public function setTemplateLoader(TemplateLoaderInterface $loader)
+    public function setTheme(ThemeInterface $theme)
     {
-        $this->templateLoader = $loader;
+        $this->theme = $theme;
         return $this;
     }
-
-    public function setVariables(array $vars)
-    {
-        $this->vars = $vars;
-        return $this;
-    }
-
-    public function setModel(ModelInterface $model)
-    {
-        $this->model = $model;
-        return $this;
-    }
-
 
     /**
      * @param null|string $type
@@ -78,28 +99,46 @@ class Updf
      */
     public function render($type = null)
     {
+        foreach ($this->elements as $elementInfo) {
 
 
-        /**
-         * prepare the variables
-         */
-        $vars = $this->vars;
-        if ($this->model instanceof ModelInterface) {
-            $vars = array_merge($this->model->getVariables(), $vars);
+            /**
+             * Get the template's content and related variables
+             */
+            $content = '';
+            $vars = [];
+            if ($elementInfo[0] instanceof ComponentInterface) {
+                /**
+                 * @var ComponentInterface $component
+                 */
+                $component = $elementInfo[0];
+                $component->setTheme($this->getTheme());
+                $tplName = $component->getTemplateName();
+                $loader = $this->getTemplateLoader();
+                if (false !== ($_content = $loader->load($tplName, $component))) {
+                    $content = $_content;
+                } else {
+                    throw new UpdfException("Couldn't load the template content for $tplName");
+                }
+                $vars = $component->getTemplateVars();
+            } else {
+                list($content, $vars) = $elementInfo;
+            }
+
+
+            /**
+             * Interpret the content and inject the variables
+             */
+            $themeVars = $this->getTheme()->getAll();
+            $vars = array_merge($themeVars, $vars);
+            $html = $this->renderContent($content, $vars);
+
+
+            /**
+             * Write the html
+             */
+            $this->tcpdf->writeHTML($html, true, 0, true);
         }
-
-
-        /**
-         * Interpret the content and inject the variables
-         */
-        $html = $this->renderTemplate($this->templateName, $vars);
-
-
-        /**
-         * Write the html
-         */
-        $this->tcpdf->writeHTML($html, true, 0, true);
-
 
         /**
          * Output the pdf
@@ -123,26 +162,11 @@ class Updf
      * This method is responsible for injecting the variables
      * into the template (and thus resolving them).
      *
-     * Inside a template, you can call other templates using {this} notation,
-     * with the template name inside the curly braces (for instance {invoice.addresses}).
+     * By default, we use a simple {tag} replacement system.
      *
      */
-    protected function renderTemplate($templateName, array $vars)
+    protected function renderContent($content, array $vars)
     {
-
-        /**
-         * get the uninterpreted content
-         */
-        $content = '';
-
-        $context = null; // not used for now
-        $loader = $this->getTemplateLoader();
-        if (false !== ($_content = $loader->load($templateName, $context))) {
-            $content = $_content;
-        } else {
-            throw new UpdfException("Couldn't load the template content for " . $templateName);
-        }
-
 
         if (false !== ($path = $this->tmpFile($content))) {
             /**
@@ -177,10 +201,6 @@ class Updf
              * Then inject variables into the template
              */
             $content = str_replace($varsKeys, $varsValues, $content);
-
-//            $content=  preg_replace_callback('', function(){}, $content);
-
-
             return $content;
 
 
@@ -201,12 +221,24 @@ class Updf
         return $this->templateLoader;
     }
 
+    /**
+     * @return ThemeInterface
+     */
+    protected function getTheme()
+    {
+        if (null === $this->theme) {
+            $this->theme = new LingTheme();
+        }
+        return $this->theme;
+    }
+
+
     //--------------------------------------------
     //
     //--------------------------------------------
     private function tmpFile($content)
     {
-        $tmpfname = tempnam("/tmp/updf", "FOO");
+        $tmpfname = tempnam("/tmp", "FOO");
         file_put_contents($tmpfname, $content);
         return $tmpfname;
     }

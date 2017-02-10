@@ -165,8 +165,9 @@ based on common sense.
     - theme_cellpadding: the main cellpadding value    
     - theme_table_border_color: the border color of the tables 
     - theme_th_bg_color: the main background color for the table head (th)
-    - theme_th_font_size: the font size used for the table head (th) 
-    - theme_td_font_size: the font size used for the table content (td) 
+    - theme_th_font_size: the main font size used for the table head (th) 
+    - theme_td_font_size: the main font size used for the table content (td) 
+    - theme_td_font_size_small: a small font size used inside the table content (td) 
 - images
     - theme_logo: the content of the src attribute of the logo (see examples for concrete example)
     - theme_logo_width: if specified, the absolute width of the logo; otherwise the logo natural width will be used
@@ -191,6 +192,7 @@ Here are a few things that astonished me or caused me some troubles:
 2. table#mytable tr td    (not just table#mytable td) 
 3. Do not repeat your rules: rules replaces themselves instead of merging 
 4. An inline style will override ALL the rules in a style tag 
+5. Don't put whitespace after your opening tag 
 
 
 Using styles
@@ -203,6 +205,7 @@ In other words, "table td" won't work, while "table tr td" will.
 
 3. If you write a rule, write it only once, because rules seems to replace themselves
 rather than merging.
+
 
 For instance if you write this:
 
@@ -255,6 +258,14 @@ So if you write this code, notice the border=0.5 set on the table tag...
 
 ... then the th tags will have a border as well.
 
+
+
+
+5. Don't put whitespace after your tags.
+
+Whitespace after opening tags will mess up the indentation of the next line,
+see the discussion here:
+http://stackoverflow.com/questions/42129383/tcpdf-indentation-issue-after-line-break/42134914#42134914
 
 
 

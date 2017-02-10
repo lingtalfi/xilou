@@ -6,7 +6,7 @@ namespace Updf\TemplateLoader;
 
 /**
  * A template loader is responsible for
- * resolving a template name into a template content.
+ * resolving a template name to a template content.
  *
  *
  */
@@ -15,13 +15,9 @@ interface TemplateLoaderInterface
 
 
     /**
-     * Returns the template content associated with the template name.
-     *
-     *
-     * Note: the template content needs to be further interpreted in order to produce the final html
-     * (i.e. the returned template content can contain variable references, or even uninterpreted php code...)
-     *
-     *
+     * Returns the template content associated to the template name.
+     * Note: the template content needs to be interpreted then in order to produce the final html
+     * (i.e. the returned template content can contain variables references, or even php code...)
      *
      * @param $context , the context exists so that the user can override the default template.
      *                  The context is an object, probably a ComponentInterface.

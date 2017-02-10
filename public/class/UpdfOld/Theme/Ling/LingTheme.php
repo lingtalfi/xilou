@@ -26,7 +26,8 @@ class LingTheme extends Theme
             'theme_table_border_color' => "#ccc",
             'theme_th_bg_color' => "#eee",
             'theme_th_font_size' => "8px",
-            'theme_td_font_size' => "7px",
+            'theme_td_font_size' => "8px",
+            'theme_td_font_size_small' => "6px",
         ]);
     }
 
