@@ -309,3 +309,202 @@ Stack trace:
 #4 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php(29): Updf\Updf->render()
 #5 {main}
   thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/Updf.php on line 143
+[10-Feb-2017 21:49:21 Europe/Paris] PHP Catchable fatal error:  Object of class Updf\Model\FooterModel could not be converted to string in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 5065
+[10-Feb-2017 21:55:57 Europe/Paris] PHP Catchable fatal error:  Object of class Updf\Model\FooterModel could not be converted to string in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 5065
+[11-Feb-2017 06:33:50 Europe/Paris] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to Updf\Updf::setModel() must be an instance of Updf\Model\BodyModelInterface, instance of Updf\Model\InvoiceModel given, called in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php on line 25 and defined in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php:98
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(25): Updf\Updf->setModel(Object(Updf\Model\InvoiceModel))
+#1 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 98
+[11-Feb-2017 06:34:16 Europe/Paris] PHP Notice:  Undefined variable: header in /private/var/tmp/FOORULMrT on line 10
+[11-Feb-2017 06:35:22 Europe/Paris] PHP Notice:  Undefined variable: header_label in /private/var/tmp/FOOlBWyfe on line 10
+[11-Feb-2017 06:35:53 Europe/Paris] PHP Notice:  Undefined variable: header_label in /private/var/tmp/FOOcLwqWx on line 10
+[11-Feb-2017 07:23:28 Europe/Paris] PHP Notice:  Undefined variable: header_label in /private/var/tmp/FOOa7weed on line 10
+[11-Feb-2017 07:24:07 Europe/Paris] PHP Notice:  Undefined variable: header_label in /private/var/tmp/FOOaJuvt1 on line 10
+[11-Feb-2017 09:07:14 Europe/Paris] PHP Notice:  Undefined variable: varsKeys in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 220
+[11-Feb-2017 09:07:14 Europe/Paris] PHP Notice:  Undefined variable: varsValues in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 220
+[11-Feb-2017 09:07:14 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOV554cE on line 10
+[11-Feb-2017 09:07:14 Europe/Paris] PHP Notice:  Undefined variable: varsKeys in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 220
+[11-Feb-2017 09:07:14 Europe/Paris] PHP Notice:  Undefined variable: varsValues in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 220
+[11-Feb-2017 09:07:14 Europe/Paris] PHP Fatal error:  Uncaught Updf\Exception\UpdfException: Couldn't load the template content for invoice.addresses_tab in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php:184
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(224): Updf\Updf->renderTemplate('invoice.address...', Array)
+#1 [internal function]: Updf\Updf->Updf\{closure}(Array)
+#2 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(225): preg_replace_callback('!{([a-zA-Z_][a-...', Object(Closure), '<style>\n    tab...')
+#3 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(158): Updf\Updf->renderTemplate('invoice', Array)
+#4 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(127): Updf\Updf->renderModel(Object(Updf\Model\InvoiceModel), 'invoice')
+#5 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(29): Updf\Updf->render()
+#6 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 184
+[11-Feb-2017 09:08:51 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOl7fPJ9 on line 10
+[11-Feb-2017 09:08:51 Europe/Paris] PHP Fatal error:  Uncaught Updf\Exception\UpdfException: Couldn't load the template content for invoice.addresses_tab in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php:168
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(208): Updf\Updf->renderTemplate('invoice.address...', Array)
+#1 [internal function]: Updf\Updf->Updf\{closure}(Array)
+#2 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(209): preg_replace_callback('!{([a-zA-Z_][a-...', Object(Closure), '<style>\n    tab...')
+#3 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(142): Updf\Updf->renderTemplate('invoice', Array)
+#4 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(111): Updf\Updf->renderModel(Object(Updf\Model\InvoiceModel), 'invoice')
+#5 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(29): Updf\Updf->render()
+#6 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 168
+[11-Feb-2017 09:09:36 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOKkHG4W on line 10
+[11-Feb-2017 09:09:36 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOGlCyzq on line 5
+[11-Feb-2017 09:09:36 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOGlCyzq on line 8
+[11-Feb-2017 09:09:36 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOGlCyzq on line 14
+[11-Feb-2017 09:09:36 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOGlCyzq on line 16
+[11-Feb-2017 09:09:36 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOO8KNRdy on line 20
+[11-Feb-2017 09:09:36 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /private/var/tmp/FOO8KNRdy on line 20
+[11-Feb-2017 09:09:36 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOO8KNRdy on line 69
+[11-Feb-2017 09:09:36 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOyEUtUP on line 1
+[11-Feb-2017 09:09:36 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOyEUtUP on line 13
+[11-Feb-2017 09:10:34 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOO9ste0M on line 10
+[11-Feb-2017 09:10:34 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOq7DGTD on line 5
+[11-Feb-2017 09:10:34 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOq7DGTD on line 8
+[11-Feb-2017 09:10:34 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOq7DGTD on line 14
+[11-Feb-2017 09:10:34 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOq7DGTD on line 16
+[11-Feb-2017 09:10:34 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOtrghZ9 on line 20
+[11-Feb-2017 09:10:34 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /private/var/tmp/FOOtrghZ9 on line 20
+[11-Feb-2017 09:10:34 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOtrghZ9 on line 69
+[11-Feb-2017 09:10:34 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOfwxP9D on line 1
+[11-Feb-2017 09:10:34 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOfwxP9D on line 13
+[11-Feb-2017 09:10:50 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOHuRuIF on line 10
+[11-Feb-2017 09:10:50 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOO9roGGl on line 5
+[11-Feb-2017 09:10:50 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOO9roGGl on line 8
+[11-Feb-2017 09:10:50 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOO9roGGl on line 14
+[11-Feb-2017 09:10:50 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOO9roGGl on line 16
+[11-Feb-2017 09:10:50 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOTiZKRh on line 20
+[11-Feb-2017 09:10:50 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /private/var/tmp/FOOTiZKRh on line 20
+[11-Feb-2017 09:10:50 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOTiZKRh on line 69
+[11-Feb-2017 09:10:50 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOJAfj3U on line 1
+[11-Feb-2017 09:10:50 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOJAfj3U on line 13
+[11-Feb-2017 11:57:19 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOO2kcU9U on line 10
+[11-Feb-2017 11:57:19 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOO8CnktF on line 5
+[11-Feb-2017 11:57:19 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOO8CnktF on line 8
+[11-Feb-2017 11:57:19 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOO8CnktF on line 14
+[11-Feb-2017 11:57:19 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOO8CnktF on line 16
+[11-Feb-2017 11:57:19 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOzpRGIp on line 20
+[11-Feb-2017 11:57:19 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /private/var/tmp/FOOzpRGIp on line 20
+[11-Feb-2017 11:57:19 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOzpRGIp on line 69
+[11-Feb-2017 11:57:19 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOV7cBgK on line 1
+[11-Feb-2017 11:57:19 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOV7cBgK on line 13
+[11-Feb-2017 12:09:54 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOJ5faLJ on line 10
+[11-Feb-2017 12:09:54 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOCSoVOi on line 5
+[11-Feb-2017 12:09:54 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOCSoVOi on line 8
+[11-Feb-2017 12:09:54 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOCSoVOi on line 14
+[11-Feb-2017 12:09:54 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOCSoVOi on line 16
+[11-Feb-2017 12:09:54 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOIE01cc on line 20
+[11-Feb-2017 12:09:54 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /private/var/tmp/FOOIE01cc on line 20
+[11-Feb-2017 12:09:54 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOIE01cc on line 69
+[11-Feb-2017 12:09:54 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOON3WBAr on line 1
+[11-Feb-2017 12:09:54 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOON3WBAr on line 13
+[11-Feb-2017 12:10:24 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOO7GbFbS on line 10
+[11-Feb-2017 12:10:24 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOO5TvHP3 on line 5
+[11-Feb-2017 12:10:24 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOO5TvHP3 on line 8
+[11-Feb-2017 12:10:24 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOO5TvHP3 on line 14
+[11-Feb-2017 12:10:24 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOO5TvHP3 on line 16
+[11-Feb-2017 12:10:24 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOU4emey on line 20
+[11-Feb-2017 12:10:24 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /private/var/tmp/FOOU4emey on line 20
+[11-Feb-2017 12:10:24 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOU4emey on line 69
+[11-Feb-2017 12:10:24 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOh2u5aQ on line 1
+[11-Feb-2017 12:10:24 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOh2u5aQ on line 13
+[11-Feb-2017 12:11:24 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOgw3Nf6 on line 10
+[11-Feb-2017 12:11:24 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOVrznDs on line 5
+[11-Feb-2017 12:11:24 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOVrznDs on line 8
+[11-Feb-2017 12:11:24 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOVrznDs on line 14
+[11-Feb-2017 12:11:24 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOVrznDs on line 16
+[11-Feb-2017 12:11:24 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOyHmsad on line 20
+[11-Feb-2017 12:11:24 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /private/var/tmp/FOOyHmsad on line 20
+[11-Feb-2017 12:11:24 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOyHmsad on line 69
+[11-Feb-2017 12:11:24 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOxXwt4R on line 1
+[11-Feb-2017 12:11:24 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOxXwt4R on line 13
+[11-Feb-2017 15:18:01 Europe/Paris] PHP Notice:  Undefined index: cols in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 16928
+[11-Feb-2017 15:18:01 Europe/Paris] PHP Notice:  Undefined index: thead in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 16485
+[11-Feb-2017 15:18:01 Europe/Paris] PHP Notice:  Undefined index: thead in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 16485
+[11-Feb-2017 15:18:01 Europe/Paris] PHP Notice:  Undefined index: trids in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19478
+[11-Feb-2017 15:18:01 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19478
+[11-Feb-2017 15:18:01 Europe/Paris] PHP Notice:  Undefined index: trids in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19507
+[11-Feb-2017 15:18:01 Europe/Paris] PHP Notice:  Undefined index: trids in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19510
+[11-Feb-2017 15:18:01 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19510
+[11-Feb-2017 15:18:01 Europe/Paris] PHP Notice:  Undefined index: old_cell_padding in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19720
+[11-Feb-2017 15:18:01 Europe/Paris] PHP Notice:  Undefined index: startcolumn in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19450
+[11-Feb-2017 15:18:01 Europe/Paris] PHP Notice:  Undefined index: startx in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19451
+[11-Feb-2017 15:18:01 Europe/Paris] PHP Notice:  Undefined index: startpage in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19454
+[11-Feb-2017 15:18:01 Europe/Paris] PHP Notice:  Undefined index: startpage in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19457
+[11-Feb-2017 15:18:01 Europe/Paris] PHP Notice:  Undefined index:  in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19457
+[11-Feb-2017 15:18:01 Europe/Paris] PHP Notice:  Undefined index: startpage in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19458
+[11-Feb-2017 15:18:01 Europe/Paris] PHP Notice:  Undefined index:  in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19458
+[11-Feb-2017 15:18:01 Europe/Paris] PHP Notice:  Undefined index: trids in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19478
+[11-Feb-2017 15:18:01 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19478
+[11-Feb-2017 15:18:02 Europe/Paris] PHP Notice:  Undefined index: trids in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19507
+[11-Feb-2017 15:18:02 Europe/Paris] PHP Notice:  Undefined index: trids in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19510
+[11-Feb-2017 15:18:02 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19510
+[11-Feb-2017 15:18:02 Europe/Paris] PHP Notice:  Undefined index: old_cell_padding in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 19720
+[11-Feb-2017 15:23:52 Europe/Paris] PHP Warning:  Cannot modify header information - headers already sent by (output started at /Volumes/Macintosh HD 2/it/php/projects/xilou/public/functions/main-functions.php:115) in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 184
+[11-Feb-2017 15:25:20 Europe/Paris] PHP Warning:  Cannot modify header information - headers already sent by (output started at /Volumes/Macintosh HD 2/it/php/projects/xilou/public/functions/main-functions.php:115) in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 184
+[11-Feb-2017 15:28:24 Europe/Paris] PHP Warning:  Cannot modify header information - headers already sent by (output started at /Volumes/Macintosh HD 2/it/php/projects/xilou/public/functions/main-functions.php:115) in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 7624
+[11-Feb-2017 15:28:50 Europe/Paris] PHP Warning:  Cannot modify header information - headers already sent by (output started at /Volumes/Macintosh HD 2/it/php/projects/xilou/public/functions/main-functions.php:115) in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 7624
+[11-Feb-2017 15:28:59 Europe/Paris] PHP Warning:  Cannot modify header information - headers already sent by (output started at /Volumes/Macintosh HD 2/it/php/projects/xilou/public/functions/main-functions.php:115) in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 7624
+[11-Feb-2017 15:29:51 Europe/Paris] PHP Warning:  Cannot modify header information - headers already sent by (output started at /Volumes/Macintosh HD 2/it/php/projects/xilou/public/functions/main-functions.php:115) in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 7624
+[11-Feb-2017 15:30:36 Europe/Paris] PHP Warning:  Cannot modify header information - headers already sent by (output started at /Volumes/Macintosh HD 2/it/php/projects/xilou/public/functions/main-functions.php:115) in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 7624
+[11-Feb-2017 15:30:58 Europe/Paris] PHP Warning:  Cannot modify header information - headers already sent by (output started at /Volumes/Macintosh HD 2/it/php/projects/xilou/public/functions/main-functions.php:115) in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/TCPDF/tcpdf.php on line 7624
+[11-Feb-2017 22:19:31 Europe/Paris] PHP Fatal error:  Uncaught Updf\Exception\UpdfException: Couldn't load the template content for invoice in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php:178
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(153): Updf\Updf->renderTemplate('invoice', Array, Object(Updf\Model\DummyInvoiceModel))
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(122): Updf\Updf->renderModel(Object(Updf\Model\DummyInvoiceModel), 'invoice')
+#2 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(30): Updf\Updf->render()
+#3 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 178
+[11-Feb-2017 22:20:11 Europe/Paris] PHP Fatal error:  Uncaught Updf\Exception\UpdfException: Couldn't load the template content for invoice in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php:178
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(153): Updf\Updf->renderTemplate('invoice', Array, Object(Updf\Model\DummyInvoiceModel))
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(122): Updf\Updf->renderModel(Object(Updf\Model\DummyInvoiceModel), 'invoice')
+#2 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(30): Updf\Updf->render()
+#3 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 178
+[11-Feb-2017 22:20:38 Europe/Paris] PHP Fatal error:  Uncaught Updf\Exception\UpdfException: Couldn't load the template content for invoice in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php:178
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(153): Updf\Updf->renderTemplate('invoice', Array, Object(Updf\Model\DummyInvoiceModel))
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(122): Updf\Updf->renderModel(Object(Updf\Model\DummyInvoiceModel), 'invoice')
+#2 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(30): Updf\Updf->render()
+#3 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 178
+[11-Feb-2017 22:21:40 Europe/Paris] PHP Fatal error:  Uncaught Updf\Exception\UpdfException: Couldn't load the template content for invoice in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php:178
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(153): Updf\Updf->renderTemplate('invoice', Array, Object(Updf\Model\DummyInvoiceModel))
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(122): Updf\Updf->renderModel(Object(Updf\Model\DummyInvoiceModel), 'invoice')
+#2 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(30): Updf\Updf->render()
+#3 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 178
+[11-Feb-2017 22:22:29 Europe/Paris] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 319488 bytes) in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 201
+[12-Feb-2017 15:09:24 Europe/Paris] PHP Fatal error:  Uncaught Error: Call to a member function getFont() on null in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php:123
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(39): Updf\Updf->render()
+#1 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 123
+[12-Feb-2017 15:10:30 Europe/Paris] PHP Fatal error:  Uncaught Updf\Exception\UpdfException: Couldn't load the template content for invoice in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php:195
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(170): Updf\Updf->renderTemplate('invoice', Array, NULL)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php(132): Updf\Updf->renderModel(NULL, 'invoice')
+#2 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/pdf.php(39): Updf\Updf->render()
+#3 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Updf/Updf.php on line 195
+[12-Feb-2017 15:11:01 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOVDY0WT on line 14
+[12-Feb-2017 15:11:01 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOVDY0WT on line 35
+[12-Feb-2017 15:11:01 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOVDY0WT on line 36
+[12-Feb-2017 15:11:01 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOVDY0WT on line 41
+[12-Feb-2017 15:11:01 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOVDY0WT on line 43
+[12-Feb-2017 15:11:01 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOVDY0WT on line 102
+[12-Feb-2017 15:11:01 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /private/var/tmp/FOOVDY0WT on line 102
+[12-Feb-2017 15:11:01 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOVDY0WT on line 152
+[12-Feb-2017 15:11:01 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOVDY0WT on line 191
+[12-Feb-2017 15:11:01 Europe/Paris] PHP Notice:  Trying to get property of non-object in /private/var/tmp/FOOVDY0WT on line 201
+[13-Feb-2017 07:18:14 Europe/Paris] PHP Fatal error:  Uncaught Exception: oops in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Commande/CommandeUtil.php:74
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/services/zilu.php(88): Commande\CommandeUtil::applyFournisseurs(3, 'leaderfit')
+#1 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Commande/CommandeUtil.php on line 74
+[13-Feb-2017 07:18:49 Europe/Paris] PHP Fatal error:  Uncaught Exception: oops in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Commande/CommandeUtil.php:74
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/services/zilu.php(88): Commande\CommandeUtil::applyFournisseurs(3, 'leaderfit')
+#1 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Commande/CommandeUtil.php on line 74

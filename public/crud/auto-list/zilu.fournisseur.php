@@ -5,7 +5,8 @@ use Crud\CrudModule;
 
 $fields = '
 id,
-nom
+nom,
+email
 ';
 
 
@@ -23,6 +24,7 @@ $table->title = "Fournisseur";
 $table->columnLabels= [
     "id" => "id",
     "nom" => "nom",
+    "email" => "email",
 ];
 
 

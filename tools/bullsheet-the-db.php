@@ -84,6 +84,7 @@ if (false !== $id = (QuickPdo::insert($typeContainerTable, [
 for ($i = 0; $i < $nbFournisseurs; $i++) {
     if (false !== ($id = QuickPdo::insert("fournisseur", [
             'nom' => "F" . sprintf('%02s', $i),
+            'email' => $b->email(),
         ]))
     ) {
         $fournisseurIds[] = $id;
@@ -155,6 +156,7 @@ for ($i = 0; $i < $nbCommandeHasArticle; $i++) {
 
 $id = QuickPdo::insert("fournisseur", [
     'nom' => "leaderfit",
+    'email' => $b->email(),
 ]);
 foreach ($articleIds as $idArticle) {
     QuickPdo::insert("fournisseur_has_article", [

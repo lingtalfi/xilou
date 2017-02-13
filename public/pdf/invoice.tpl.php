@@ -1,237 +1,317 @@
-<style>
-    table, th, td {
-        margin: 0 !important;
-        padding: 0 !important;
-        vertical-align: middle;
-        font-size: __theme_font_size_text__;
-        white-space: nowrap;
-    }
 
-    table.product {
-        border: 1px solid __theme_color_border__;
-        border-collapse: collapse;
-    }
-
-    table#addresses-tab tr td {
-        font-size: large;
-    }
-
-    table#summary-tab {
-        padding: __theme_table_padding__;
-        border: 1pt solid __theme_color_border__;
-    }
-
-    table#total-tab {
-        padding: __theme_table_padding__;
-        border: 1pt solid __theme_color_border__;
-    }
-
-    table#tax-tab {
-        padding: __theme_table_padding__;
-        border: 1pt solid __theme_color_border__;
-    }
-
-    table#payment-tab {
-        padding: __theme_table_padding__;
-        border: 1px solid __theme_color_border__;
-    }
-
-    th.product {
-        border-bottom: 1px solid __theme_color_border__;
-    }
-
-    tr.discount th.header {
-        border-top: 1px solid __theme_color_border__;
-    }
-
-    tr.product td {
-        border-bottom: 1px solid __theme_color_border_lighter__;
-    }
-
-    tr.color_line_even {
-        background-color: __theme_color_line_even__;
-    }
-
-    tr.color_line_odd {
-        background-color: __theme_color_line_odd__;
-    }
-
-    tr.customization_data td {
-    }
-
-    td.product {
-        vertical-align: middle;
-        font-size: __theme_font_size_product__;
-    }
-
-    th.header {
-        font-size: __theme_font_size_header__;
-        height: __theme_height_header__;
-        background-color: __theme_color_header__;
-        vertical-align: middle;
-        text-align: center;
-        font-weight: bold;
-    }
-
-    th.header-right {
-        font-size: __theme_font_size_header__;
-        height: __theme_height_header__;
-        background-color: __theme_color_header__;
-        vertical-align: middle;
-        text-align: right;
-        font-weight: bold;
-    }
-
-    th.payment {
-        background-color: __theme_color_header__;
-        vertical-align: middle;
-        font-weight: bold;
-    }
-
-    th.tva {
-        background-color: __theme_color_header__;
-        vertical-align: middle;
-        font-weight: bold;
-    }
-
-    tr.separator td {
-        border-top: 1px solid #000000;
-    }
-
-    .left {
-        text-align: left;
-    }
-
-    .fright {
-        float: right;
-    }
-
-    .right {
-        text-align: right;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .bold {
-        font-weight: bold;
-    }
-
-    .border {
-        border: 1px solid black;
-    }
-
-    .no_top_border {
-        border-top: hidden;
-        border-bottom: 1px solid black;
-        border-left: 1px solid black;
-        border-right: 1px solid black;
-    }
-
-    .grey {
-        background-color: __theme_color_header__;
-
-    }
-
-    /* This is used for the border size */
-    .white {
-        background-color: #FFFFFF;
-    }
-
-    .big,
-    tr.big td {
-        font-size: 110%;
-    }
-
-    .small, table.small th, table.small td {
-        font-size: small;
-    }
-</style>
+<table>
 
 
-<table width="100%" id="body" border="0" cellpadding="0" cellspacing="0" style="margin:0;">
-    <!-- Invoicing -->
+    <!-- HEADER -->
     <tr>
         <td colspan="12">
-
-            {invoice.addresses_tab}
-
-        </td>
-    </tr>
-
-    <tr>
-        <td colspan="12" height="30">&nbsp;</td>
-    </tr>
-
-    <!-- TVA Info -->
-    <tr>
-        <td colspan="12">
-
-            {invoice.summary_tab}
-
-        </td>
-    </tr>
-
-    <tr>
-        <td colspan="12" height="20">&nbsp;</td>
-    </tr>
-
-    <!-- Product -->
-    <tr>
-        <td colspan="12">
-
-            {invoice.product_tab}
-
-        </td>
-    </tr>
-
-    <tr>
-        <td colspan="12" height="10">&nbsp;</td>
-    </tr>
-
-    <!-- TVA -->
-    <tr>
-        <!-- Code TVA -->
-        <td colspan="6" class="left">{invoice.tax_tab}</td>
-        <td colspan="1">&nbsp;</td>
-        <!-- Calcule TVA -->
-        <td colspan="5" rowspan="5" class="right">
-
-            { invoice.total_tab}
-
-        </td>
-    </tr>
-
-    <tr>
-        <td colspan="12" height="10">&nbsp;</td>
-    </tr>
-
-    <tr>
-        <td colspan="6" class="left">
-
-            { invoice.payment_tab}
-
-        </td>
-        <td colspan="1">&nbsp;</td>
-    </tr>
-
-    <tr>
-        <td colspan="12" height="10">&nbsp;</td>
-    </tr>
-
-    <tr>
-        <td colspan="7" class="left small">
-
             <table>
                 <tr>
-                    <td>
-                        <p>Legal free text</p>
+                    <td colspan="6">
+                        <img src="__header_logo_img_src__" width="__header_logo_width__"/>
+                    </td>
+                    <td colspan="6" align="right" class="biggest-font-size">
+                        <b><?php echo ($v->header_label) ? $v->header_label : ''; ?></b>
+                        <br><span class="grayed_out">__header_date__</span>
+                        <br><span class="grayed_out">__header_title__</span>
                     </td>
                 </tr>
             </table>
 
         </td>
     </tr>
+
+    <!-- space -->
+    <tr>
+        <td height="35" colspan="12"></td>
+    </tr>
+
+
+    <!-- ADDRESS -->
+    <tr>
+        <td colspan="12">
+            <table>
+                <tr>
+                    <td><?php echo $v->shop_address; ?></td>
+                    <td><?php if ($v->delivery_address): ?><b><?php echo $v->text_delivery_address; ?></b>
+                            <br>
+                            <br><?php echo $v->delivery_address; ?>
+                        <?php endif; ?>
+                    </td>
+                    <td><b><?php echo $v->text_billing_address; ?></b>
+                        <br>
+                        <br><?php echo $v->billing_address; ?>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- space -->
+    <tr>
+        <td height="30" colspan="12"></td>
+    </tr>
+
+
+    <!-- SUMMARY -->
+    <tr>
+        <td colspan="12">
+            <table class="soft-table align-center small-font-size">
+                <tr>
+                    <th>__text_invoice_number__</th>
+                    <th>__text_invoice_date__</th>
+                    <th>__text_order_reference__</th>
+                    <th>__text_order_date__</th>
+                </tr>
+                <tr>
+                    <td>__invoice_number__</td>
+                    <td>__invoice_date__</td>
+                    <td>__order_reference__</td>
+                    <td>__order_date__</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- space -->
+    <tr>
+        <td height="20" colspan="12"></td>
+    </tr>
+
+
+    <!-- PRODUCTS -->
+    <tr>
+        <td colspan="12">
+            <table class="grid-table">
+
+
+                <tr>
+                    <th width="15%">__text_reference__</th>
+                    <th width="35%">__text_product__</th>
+                    <th width="10%">__text_tax_rate__</th>
+                    <th width="10%">__text_base_price__</th>
+                    <th width="10%">__text_unit_price__</th>
+                    <th width="10%">__text_quantity__</th>
+                    <th width="10%">__text_total__</th>
+                </tr>
+
+
+                <!-- PRODUCTS -->
+                <?php
+                $i = 1;
+                foreach ($v->order_details as $od):
+                    $sClass = (0 === ($i++ % 2)) ? 'color_line_even' : 'color_line_odd';
+
+                    ?>
+                    <tr class="<?php echo $sClass; ?>">
+
+                        <td>
+                            <?php echo $od->product_reference; ?>
+                        </td>
+                        <td align="left">
+                            <?php if ($v->display_product_images): ?>
+                                <table>
+                                    <tr>
+                                        <td width="30%"><img width="40" src="<?php echo $od->product_image_src; ?>">
+                                        </td>
+                                        <td width="70%"><?php echo $od->product_name; ?></td>
+                                    </tr>
+                                </table>
+                            <?php else: ?>
+                                <?php echo $od->product_name; ?>
+                            <?php endif; ?>
+
+                        </td>
+                        <td>
+                            <?php echo $od->tax_label; ?>
+                        </td>
+
+
+                        <td>
+                            <?php echo $od->base_price; ?>
+                        </td>
+
+                        <td>
+                            <?php echo $od->unit_price; ?>
+                        </td>
+                        <td>
+                            <?php echo $od->quantity; ?>
+                        </td>
+                        <td>
+                            <?php echo $od->total; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                <!-- END PRODUCTS -->
+
+                <!-- CART RULES -->
+                <?php
+
+                $colCount = 0; // don't know what colCount is exactly,
+                //see original prestashop template
+                $nbCartDiscounts = count($v->cart_discounts);
+                if ($nbCartDiscounts > 0): ?>
+                    <tr>
+                        <th colspan="7">
+                            __text_discounts__
+                        </th>
+                    </tr>
+                    <?php
+                    $i = 1;
+                    foreach ($v->cart_discounts as $cd):
+                        $sClass = (0 === ($i++ % 2)) ? 'color_line_even' : 'color_line_odd';
+                        ?>
+                        <tr class="<?php echo $sClass; ?>">
+                            <td colspan="6">
+                                <?php echo $cd->name; ?>
+                            </td>
+                            <td>
+                                <?php echo $cd->price; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+
+            </table>
+        </td>
+    </tr>
+
+
+    <!-- space -->
+    <tr>
+        <td height="10" colspan="12"></td>
+    </tr>
+
+
+    <!-- TVA -->
+    <tr>
+        <!-- Code TVA -->
+        <td colspan="6">
+
+            <?php if ($v->tax_exempt): ?>__text_tax_exempted__<?php else: ?>
+                <table class="soft-table align-center">
+
+                    <tr>
+                        <th>__text_tax_detail__</th>
+                        <th>__text_tax_rate_label__</th>
+                        <th>__text_tax_base_price__</th>
+                        <th>__text_tax_total__</th>
+                    </tr>
+
+                    <?php if (count($v->tax_details) > 0): ?>
+                        <?php foreach ($v->tax_details as $d): ?>
+
+                            <tr class="normal-font-size">
+                                <td>
+                                    <?php echo $d->label; ?>
+                                </td>
+
+                                <td>
+                                    <?php echo $d->tax_label; ?> %
+                                </td>
+
+
+                                <td>
+                                    <?php echo $d->base_price; ?>
+                                </td>
+
+
+                                <td>
+                                    <?php echo $d->total_taxes; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="4">__text_no_taxes__</td>
+                        </tr>
+                    <?php endif; ?>
+                </table>
+            <?php endif; ?>
+
+            <!-- space -->
+            <table>
+                <tr>
+                    <td height="10" colspan="12"></td>
+                </tr>
+            </table>
+
+
+            <table class="soft-table align-center small-font-size">
+                <tr>
+                    <td class="gray bold" width="44%">__text_payment_method__</td>
+                    <td width="56%">
+                        <table>
+                            <tr>
+                                <td>__payment_method__</td>
+                                <td>__payment_amount__</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+
+        </td>
+        <td colspan="1">&nbsp;</td>
+        <!-- Calcule TVA -->
+        <td colspan="5">
+            <table class="soft-table align-right">
+                <tr class="small-font-size">
+                    <td class="gray" width="70%">
+                        __text_total_products__
+                    </td>
+                    <td class="white" width="30%">
+                        __total_products__
+                    </td>
+                </tr>
+
+                <tr class="small-font-size">
+                    <td class="gray" width="70%">
+                        __text_total_discounts__
+                    </td>
+                    <td class="white" width="30%">
+                        __total_discounts__
+                    </td>
+                </tr>
+
+                <tr class="small-font-size">
+                    <td class="gray" width="70%">
+                        __text_shipping_cost__
+                    </td>
+                    <td class="white" width="30%">
+                        __total_shipping_cost__
+                    </td>
+                </tr>
+
+                <tr class="bold big">
+                    <td class="gray">
+                        __text_total_tax_excluded__
+                    </td>
+                    <td class="white">
+                        __total_tax_excluded__
+                    </td>
+                </tr>
+                <tr class="bold big">
+                    <td class="gray">
+                        __text_total_taxes__
+                    </td>
+                    <td class="white">
+                        __total_taxes__
+                    </td>
+                </tr>
+                <tr class="bold bigger">
+                    <td class="gray">
+                        __text_total_2__
+                    </td>
+                    <td class="white">
+                        __total_2__
+                    </td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+
 
 </table>
