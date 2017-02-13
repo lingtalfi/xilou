@@ -508,3 +508,508 @@ Stack trace:
 #0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/services/zilu.php(88): Commande\CommandeUtil::applyFournisseurs(3, 'leaderfit')
 #1 {main}
   thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Commande/CommandeUtil.php on line 74
+[13-Feb-2017 11:58:50 Europe/Paris] PHP Notice:  Undefined variable: v in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 11:58:51 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 11:58:51 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 11:58:51 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:32
+[13-Feb-2017 11:58:51 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 11:58:51 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 11:58:51 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:78
+[13-Feb-2017 11:58:51 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:126
+[13-Feb-2017 11:58:51 Europe/Paris] PHP Notice:  Trying to get property of non-object in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 11:58:51 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 11:58:51 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 11:58:51 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:32
+[13-Feb-2017 11:58:51 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 11:58:51 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 11:58:51 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:78
+[13-Feb-2017 11:58:51 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:126
+[13-Feb-2017 11:58:51 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 11:58:51 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 11:58:51 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 11:58:51 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:32
+[13-Feb-2017 11:58:51 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 11:58:51 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 11:58:51 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:78
+[13-Feb-2017 11:58:51 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:126
+[13-Feb-2017 11:59:03 Europe/Paris] PHP Notice:  Undefined variable: v in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 11:59:03 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 11:59:03 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 11:59:03 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:32
+[13-Feb-2017 11:59:03 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 11:59:03 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 11:59:03 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 11:59:03 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 11:59:03 Europe/Paris] PHP Notice:  Trying to get property of non-object in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 11:59:03 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 11:59:03 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 11:59:03 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:32
+[13-Feb-2017 11:59:03 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 11:59:03 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 11:59:03 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 11:59:03 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 11:59:03 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 11:59:03 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 11:59:03 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 11:59:03 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:32
+[13-Feb-2017 11:59:03 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 11:59:03 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 11:59:03 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 11:59:03 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 11:59:32 Europe/Paris] PHP Notice:  Undefined variable: v in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 11:59:32 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 11:59:32 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 11:59:32 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:32
+[13-Feb-2017 11:59:32 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 11:59:32 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:373
+[13-Feb-2017 11:59:32 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 11:59:32 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 11:59:32 Europe/Paris] PHP Notice:  Trying to get property of non-object in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 11:59:32 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 11:59:32 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 11:59:32 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:32
+[13-Feb-2017 11:59:32 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 11:59:32 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:373
+[13-Feb-2017 11:59:32 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 11:59:32 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 11:59:32 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 11:59:32 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 11:59:32 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 11:59:32 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:32
+[13-Feb-2017 11:59:32 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 11:59:32 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:373
+[13-Feb-2017 11:59:32 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 11:59:32 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:22:08 Europe/Paris] PHP Notice:  Undefined variable: v in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:22:08 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:22:08 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:22:08 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:32
+[13-Feb-2017 12:22:08 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:22:08 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:22:08 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:22:08 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:22:08 Europe/Paris] PHP Notice:  Trying to get property of non-object in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:22:08 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:22:08 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:22:08 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:32
+[13-Feb-2017 12:22:08 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:22:08 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:22:08 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:22:08 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:22:08 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:22:08 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:22:08 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:22:08 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:32
+[13-Feb-2017 12:22:08 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:22:08 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:22:08 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:22:08 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:27:07 Europe/Paris] PHP Notice:  Undefined variable: v in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:27:07 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:27:07 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:27:07 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:27:07 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:27:07 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:27:07 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:27:07 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:27:07 Europe/Paris] PHP Notice:  Trying to get property of non-object in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:27:07 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:27:07 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:27:07 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:27:07 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:27:07 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:27:07 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:27:07 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:27:07 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:27:07 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:27:07 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:27:07 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:27:07 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:27:07 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:27:07 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:27:07 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:27:20 Europe/Paris] PHP Notice:  Undefined variable: v in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:27:20 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:27:20 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:27:20 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:27:20 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:27:20 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:27:20 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:27:20 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:27:20 Europe/Paris] PHP Notice:  Trying to get property of non-object in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:27:20 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:27:20 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:27:20 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:27:20 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:27:20 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:27:20 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:27:20 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:27:20 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:27:20 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:27:20 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:27:20 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:27:20 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:27:20 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:27:20 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:27:20 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:27:25 Europe/Paris] PHP Notice:  Undefined variable: v in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:27:25 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:27:25 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:27:25 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:27:25 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:27:25 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:27:25 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:27:25 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:27:25 Europe/Paris] PHP Notice:  Trying to get property of non-object in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:27:25 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:27:25 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:27:25 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:27:25 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:27:25 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:27:25 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:27:25 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:27:25 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:27:25 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:27:25 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:27:25 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:27:25 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:27:25 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:27:25 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:27:25 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:27:50 Europe/Paris] PHP Notice:  Undefined variable: v in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:27:50 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:27:50 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:27:50 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:27:50 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:27:50 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:27:50 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:27:50 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:27:50 Europe/Paris] PHP Notice:  Trying to get property of non-object in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:27:50 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:27:50 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:27:50 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:27:50 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:27:50 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:27:50 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:27:50 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:27:50 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:27:50 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:27:50 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:27:50 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:27:50 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:27:50 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:27:50 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:27:50 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:49:56 Europe/Paris] PHP Notice:  Undefined variable: v in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:49:56 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:49:56 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:49:56 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:49:56 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:49:56 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:49:56 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:49:56 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:49:56 Europe/Paris] PHP Notice:  Trying to get property of non-object in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:49:56 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:49:56 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:49:56 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:49:56 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:49:56 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:49:56 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:49:56 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:49:56 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:49:56 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:49:56 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:49:56 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:49:56 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:49:56 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:49:56 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:49:56 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:50:23 Europe/Paris] PHP Notice:  Undefined variable: v in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:50:23 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:50:23 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:50:23 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:50:23 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:50:23 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:50:23 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:50:23 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:50:23 Europe/Paris] PHP Notice:  Trying to get property of non-object in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:50:23 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:50:23 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:50:23 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:50:23 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:50:23 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:50:23 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:50:23 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:50:23 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:50:23 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:50:23 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:50:23 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:50:23 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:50:24 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:50:24 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:50:24 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:51:02 Europe/Paris] PHP Notice:  Undefined variable: v in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:51:02 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:51:02 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:51:02 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:51:02 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:51:02 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:51:02 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:51:02 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:51:02 Europe/Paris] PHP Notice:  Trying to get property of non-object in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:51:02 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:51:02 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:51:02 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:51:02 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:51:02 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:51:02 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:51:02 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:51:02 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:51:02 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:51:02 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:51:02 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:51:02 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:51:02 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:51:02 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:51:02 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:51:11 Europe/Paris] PHP Notice:  Undefined variable: v in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:51:11 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:51:11 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:51:11 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:51:11 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:51:11 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:51:11 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:51:11 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:51:11 Europe/Paris] PHP Notice:  Trying to get property of non-object in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:51:11 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:51:11 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:51:11 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:51:11 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:51:11 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:51:11 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:51:11 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:51:11 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:51:11 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:51:11 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:51:11 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:51:11 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:51:11 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:51:11 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:51:11 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:52:02 Europe/Paris] PHP Notice:  Undefined variable: v in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:52:02 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:52:03 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:52:03 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:52:03 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:52:03 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:52:03 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:52:03 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:52:03 Europe/Paris] PHP Notice:  Trying to get property of non-object in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:52:03 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:52:03 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:52:03 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:52:03 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:52:03 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:52:03 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:52:03 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:52:03 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:52:03 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:52:03 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:52:03 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:52:03 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:52:03 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:52:03 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:52:03 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:52:37 Europe/Paris] PHP Notice:  Undefined variable: v in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:52:37 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:52:37 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:52:37 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:52:37 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:52:37 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:52:37 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:52:37 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:52:37 Europe/Paris] PHP Notice:  Trying to get property of non-object in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:52:37 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:52:37 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:52:37 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:52:37 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:52:37 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:52:37 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:52:37 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:52:37 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:52:37 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:52:37 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:52:37 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:52:37 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:52:37 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:52:37 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:52:37 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:53:07 Europe/Paris] PHP Notice:  Undefined variable: v in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:53:07 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:53:07 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:53:07 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:53:07 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:53:07 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:53:07 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:53:07 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:53:07 Europe/Paris] PHP Notice:  Trying to get property of non-object in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:53:07 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:53:07 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:53:07 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:53:07 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:53:07 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:53:07 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:53:07 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:53:07 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:53:07 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:53:07 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:53:07 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:53:07 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:53:07 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:53:07 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:53:07 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:53:13 Europe/Paris] PHP Notice:  Undefined variable: v in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:53:13 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:53:13 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:53:13 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:53:13 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:53:13 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:53:13 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:53:13 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:53:13 Europe/Paris] PHP Notice:  Trying to get property of non-object in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:53:13 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:53:13 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:53:13 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:53:13 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:53:13 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:53:13 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:53:13 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:53:13 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:53:13 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:53:13 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:53:13 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:53:13 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:53:13 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:376
+[13-Feb-2017 12:53:13 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:53:13 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:53:41 Europe/Paris] PHP Notice:  Undefined variable: v in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:53:41 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:53:41 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:53:41 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:53:41 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:53:41 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:377
+[13-Feb-2017 12:53:41 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:53:41 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:53:41 Europe/Paris] PHP Notice:  Trying to get property of non-object in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:53:41 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:53:41 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:53:41 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:53:41 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:53:41 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:377
+[13-Feb-2017 12:53:41 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:53:41 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:53:41 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/mails/zilu/order_conf.html.php on line 245
+[13-Feb-2017 12:53:41 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:53:41 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:53:41 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:53:41 Europe/Paris] PHP   3. Umail\Umail->prepareContents() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:248
+[13-Feb-2017 12:53:41 Europe/Paris] PHP   4. Umail\TemplateLoader\FileTemplateLoader->load() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:377
+[13-Feb-2017 12:53:41 Europe/Paris] PHP   5. Umail\TemplateLoader\FileTemplateLoader->getFileContent() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:74
+[13-Feb-2017 12:53:41 Europe/Paris] PHP   6. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/TemplateLoader/FileTemplateLoader.php:122
+[13-Feb-2017 12:57:31 Europe/Paris] PHP Notice:  Undefined property: stdClass::$order_details in /private/var/tmp/FOOT1S7HH on line 245
+[13-Feb-2017 12:57:31 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:57:31 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:57:31 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:57:31 Europe/Paris] PHP   3. Umail\Umail->injectVars() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:269
+[13-Feb-2017 12:57:31 Europe/Paris] PHP   4. Umail\Renderer\PhpRenderer->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:420
+[13-Feb-2017 12:57:31 Europe/Paris] PHP   5. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Renderer/PhpRenderer.php:31
+[13-Feb-2017 12:57:31 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /private/var/tmp/FOOT1S7HH on line 245
+[13-Feb-2017 12:57:31 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 12:57:31 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 12:57:31 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:34
+[13-Feb-2017 12:57:31 Europe/Paris] PHP   3. Umail\Umail->injectVars() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:269
+[13-Feb-2017 12:57:31 Europe/Paris] PHP   4. Umail\Renderer\PhpRenderer->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:420
+[13-Feb-2017 12:57:31 Europe/Paris] PHP   5. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Renderer/PhpRenderer.php:31
+[13-Feb-2017 13:02:59 Europe/Paris] PHP Notice:  Array to string conversion in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php on line 414
+[13-Feb-2017 13:02:59 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 13:02:59 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 13:02:59 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:52
+[13-Feb-2017 13:02:59 Europe/Paris] PHP   3. Umail\Umail->injectVars() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:269
+[13-Feb-2017 13:02:59 Europe/Paris] PHP   4. str_replace() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:414
+[13-Feb-2017 13:02:59 Europe/Paris] PHP Notice:  Undefined property: stdClass::$order_details in /private/var/tmp/FOOD3tRPm on line 245
+[13-Feb-2017 13:02:59 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 13:02:59 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 13:02:59 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:52
+[13-Feb-2017 13:02:59 Europe/Paris] PHP   3. Umail\Umail->injectVars() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:269
+[13-Feb-2017 13:02:59 Europe/Paris] PHP   4. Umail\Renderer\PhpRenderer->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:420
+[13-Feb-2017 13:02:59 Europe/Paris] PHP   5. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Renderer/PhpRenderer.php:31
+[13-Feb-2017 13:02:59 Europe/Paris] PHP Warning:  Invalid argument supplied for foreach() in /private/var/tmp/FOOD3tRPm on line 245
+[13-Feb-2017 13:02:59 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 13:02:59 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 13:02:59 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:52
+[13-Feb-2017 13:02:59 Europe/Paris] PHP   3. Umail\Umail->injectVars() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:269
+[13-Feb-2017 13:02:59 Europe/Paris] PHP   4. Umail\Renderer\PhpRenderer->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:420
+[13-Feb-2017 13:02:59 Europe/Paris] PHP   5. include() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Renderer/PhpRenderer.php:31
+[13-Feb-2017 13:02:59 Europe/Paris] PHP Notice:  Array to string conversion in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php on line 425
+[13-Feb-2017 13:02:59 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 13:02:59 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 13:02:59 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:52
+[13-Feb-2017 13:02:59 Europe/Paris] PHP   3. Umail\Umail->injectVars() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:269
+[13-Feb-2017 13:02:59 Europe/Paris] PHP   4. str_replace() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:425
+[13-Feb-2017 13:04:10 Europe/Paris] PHP Notice:  Array to string conversion in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php on line 414
+[13-Feb-2017 13:04:10 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 13:04:10 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 13:04:10 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:52
+[13-Feb-2017 13:04:10 Europe/Paris] PHP   3. Umail\Umail->injectVars() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:269
+[13-Feb-2017 13:04:10 Europe/Paris] PHP   4. str_replace() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:414
+[13-Feb-2017 13:16:18 Europe/Paris] PHP Notice:  Undefined property: Umail\Umail::$varRefWrapper in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php on line 402
+[13-Feb-2017 13:16:18 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 13:16:18 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 13:16:18 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:52
+[13-Feb-2017 13:16:18 Europe/Paris] PHP   3. Umail\Umail->injectVars() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:262
+[13-Feb-2017 13:16:18 Europe/Paris] PHP Notice:  Array to string conversion in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php on line 407
+[13-Feb-2017 13:16:18 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 13:16:18 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 13:16:18 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:52
+[13-Feb-2017 13:16:18 Europe/Paris] PHP   3. Umail\Umail->injectVars() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:262
+[13-Feb-2017 13:16:18 Europe/Paris] PHP   4. str_replace() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:407
+[13-Feb-2017 13:23:05 Europe/Paris] PHP Fatal error:  Class Umail\Umail contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (Umail\UmailInterface::setVarReferenceWrapper) in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php on line 438
+[13-Feb-2017 13:23:05 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 13:23:05 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 13:23:05 Europe/Paris] PHP   2. spl_autoload_call() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:17
+[13-Feb-2017 13:23:05 Europe/Paris] PHP   3. BumbleBee\Autoload\BeeAutoLoader->autoLoader() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:17
+[13-Feb-2017 13:23:05 Europe/Paris] PHP   4. call_user_func_array:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/BumbleBee/Autoload/BeeAutoloader.php:59}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/BumbleBee/Autoload/BeeAutoloader.php:59
+[13-Feb-2017 13:23:05 Europe/Paris] PHP   5. BumbleBee\Autoload\ButineurAutoloader->butineurAutoload() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/BumbleBee/Autoload/BeeAutoloader.php:59
+[13-Feb-2017 13:23:05 Europe/Paris] PHP   6. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/BumbleBee/Autoload/ButineurAutoloader.php:76
+[13-Feb-2017 13:24:23 Europe/Paris] PHP Notice:  Array to string conversion in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Renderer/Renderer.php on line 39
+[13-Feb-2017 13:24:23 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 13:24:23 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 13:24:23 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:52
+[13-Feb-2017 13:24:23 Europe/Paris] PHP   3. Umail\Umail->injectVars() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:257
+[13-Feb-2017 13:24:23 Europe/Paris] PHP   4. Umail\Renderer\PhpRenderer->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:400
+[13-Feb-2017 13:24:23 Europe/Paris] PHP   5. Umail\Renderer\Renderer->replaceReferences() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Renderer/PhpRenderer.php:34
+[13-Feb-2017 13:24:23 Europe/Paris] PHP   6. str_replace() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Renderer/Renderer.php:39
+[13-Feb-2017 13:24:23 Europe/Paris] PHP Notice:  Array to string conversion in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Renderer/Renderer.php on line 39
+[13-Feb-2017 13:24:23 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 13:24:23 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 13:24:23 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:52
+[13-Feb-2017 13:24:23 Europe/Paris] PHP   3. Umail\Umail->injectVars() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:257
+[13-Feb-2017 13:24:23 Europe/Paris] PHP   4. Umail\Renderer\PhpRenderer->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:402
+[13-Feb-2017 13:24:23 Europe/Paris] PHP   5. Umail\Renderer\Renderer->replaceReferences() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Renderer/PhpRenderer.php:34
+[13-Feb-2017 13:24:23 Europe/Paris] PHP   6. str_replace() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Renderer/Renderer.php:39
+[13-Feb-2017 13:26:47 Europe/Paris] PHP Notice:  Array to string conversion in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Renderer/Renderer.php on line 39
+[13-Feb-2017 13:26:47 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 13:26:47 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 13:26:47 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:52
+[13-Feb-2017 13:26:47 Europe/Paris] PHP   3. Umail\Umail->injectVars() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:257
+[13-Feb-2017 13:26:47 Europe/Paris] PHP   4. Umail\Renderer\PhpRenderer->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:399
+[13-Feb-2017 13:26:47 Europe/Paris] PHP   5. Umail\Renderer\Renderer->replaceReferences() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Renderer/PhpRenderer.php:34
+[13-Feb-2017 13:26:47 Europe/Paris] PHP   6. str_replace() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Renderer/Renderer.php:39
+[13-Feb-2017 13:26:47 Europe/Paris] PHP Notice:  Array to string conversion in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Renderer/Renderer.php on line 39
+[13-Feb-2017 13:26:47 Europe/Paris] PHP Stack trace:
+[13-Feb-2017 13:26:47 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[13-Feb-2017 13:26:47 Europe/Paris] PHP   2. Umail\Umail->send() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:52
+[13-Feb-2017 13:26:47 Europe/Paris] PHP   3. Umail\Umail->injectVars() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:257
+[13-Feb-2017 13:26:47 Europe/Paris] PHP   4. Umail\Renderer\PhpRenderer->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Umail.php:401
+[13-Feb-2017 13:26:47 Europe/Paris] PHP   5. Umail\Renderer\Renderer->replaceReferences() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Renderer/PhpRenderer.php:34
+[13-Feb-2017 13:26:47 Europe/Paris] PHP   6. str_replace() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Umail/Renderer/Renderer.php:39

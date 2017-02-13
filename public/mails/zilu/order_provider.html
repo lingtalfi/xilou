@@ -161,28 +161,23 @@
 <table class="table table-mail"
        style="width:100%;margin-top:10px;-moz-box-shadow:0 0 5px #afafaf;-webkit-box-shadow:0 0 5px #afafaf;-o-box-shadow:0 0 5px #afafaf;box-shadow:0 0 5px #afafaf;filter:progid:DXImageTransform.Microsoft.Shadow(color=#afafaf,Direction=134,Strength=5)">
     <tr>
-        <td class="space" style="width:20px;padding:7px 0">&nbsp;</td>
+
         <td align="center" style="padding:7px 0">
             <table class="table" bgcolor="#ffffff" style="width:100%">
                 <tr>
-                    <td align="center" class="logo" style="border-bottom:4px solid #333333;padding:7px 0">
-                        <a title="{shop_name}" href="{shop_url}" style="color:#337ff1">
-                            <img src="{shop_logo}" alt="{shop_name}"
-                                 style="max-width:100%; max-height:100px; height:auto; width:auto;"/>
-                        </a>
-                    </td>
-                </tr>
-
-                <tr>
                     <td align="left" class="titleblock" style="padding:7px 0">
                         <font size="2" face="Open-sans, sans-serif" color="#555454">
-                            <span class="title">Bonjour Didier,</span><br/>
+                            <span class="title">Hi,</span><br/>
                             <span class="subtitle">
-                                Ci-dessous la commande XXX en attente de validation.<br>
-                                Peux-tu y jeter un coup d'oeil et me donner ton feu vert, afin que je puisse faire les demandes de devis aux fournisseurs concernés.<br>
+                                I'm Zilu and I'm responsible for ordering products
+                                for the Leaderfit company (in France).<br><br>
+
+                                We are interested in buying the following products.
                                 <br>
-                                Merci d'avance.<br>
-                                Cordialement, Zilu.
+                                Could you please check the list and tell me if you see any problem (quantity available, price errors, ...)?
+                                <br><br>
+                                Thank you.<br>
+                                Cheers, Zilu.
                             </span>
                         </font>
                     </td>
@@ -195,18 +190,13 @@
                         <table class="table" style="width:100%">
                             <tr>
                                 <td width="10" style="padding:7px 0">&nbsp;</td>
-                                <td style="padding:7px 0">
+                                <td style="padding:2px 0">
                                     <font size="2" face="Open-sans, sans-serif" color="#555454">
-                                        <p data-html-only="1"
-                                           style="border-bottom:1px solid #D6D4D4;margin:3px 0 7px;text-transform:uppercase;font-weight:500;font-size:18px;padding-bottom:10px">
-                                            Détails de la commande </p>
                                         <span style="color:#777">
-							                <span style="color:#333"><strong>Commande:</strong></span> {order_number}<br/><br/>
-							                <span style="color:#333"><strong>Date de livraison estimée:</strong></span> {order_estimated_date}<br/><br/>
+							                <span style="color:#333"><strong>Leaderfit Order Number:</strong></span> {order_number}
 						                </span>
                                     </font>
                                 </td>
-                                <td width="10" style="padding:7px 0">&nbsp;</td>
                             </tr>
                         </table>
                     </td>
@@ -226,10 +216,6 @@
                                         Product
                                     </th>
                                     <th bgcolor="#f8f8f8"
-                                        style="border:1px solid #D6D4D4;background-color: #fbfbfb;color: #333;font-family: Arial;font-size: 13px;padding: 10px;">
-                                        Fournisseur
-                                    </th>
-                                    <th bgcolor="#f8f8f8"
                                         style="border:1px solid #D6D4D4;background-color: #fbfbfb;color: #333;font-family: Arial;font-size: 13px;padding: 10px;"
                                         width="17%">Unit price
                                     </th>
@@ -242,26 +228,13 @@
                                         width="17%">Total price
                                     </th>
                                 </tr>
-                                <tr>
-                                    <td colspan="5"
-                                        style="border:1px solid #D6D4D4;text-align:center;color:#777;padding:7px 0">
-                                        &nbsp;&nbsp;
 
-                                        {foreach $list as $product}
+
+
+
+
+                                <!-- FOREACH -->
                                 <tr>
-                                    <td style="border:1px solid #D6D4D4;">
-                                        <table class="table">
-                                            <tr>
-                                                <td width="10">&nbsp;</td>
-                                                <td>
-                                                    <font size="2" face="Open-sans, sans-serif" color="#555454">
-                                                        {$product['reference']}
-                                                    </font>
-                                                </td>
-                                                <td width="10">&nbsp;</td>
-                                            </tr>
-                                        </table>
-                                    </td>
                                     <td style="border:1px solid #D6D4D4;">
                                         <table class="table">
                                             <tr>
@@ -328,15 +301,15 @@
                                         </table>
                                     </td>
                                 </tr>
-                                {/foreach}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="5"
-                                        style="border:1px solid #D6D4D4;text-align:center;color:#777;padding:7px 0">
-                                        &nbsp;&nbsp;{discounts}
-                                    </td>
-                                </tr>
+                                <!-- END FOREACH -->
+
+
+
+
+
+
+
+
                                 <tr class="conf_body">
                                     <td bgcolor="#f8f8f8" colspan="4"
                                         style="border:1px solid #D6D4D4;color:#333;padding:7px 0">
@@ -345,37 +318,7 @@
                                                 <td width="10" style="color:#333;padding:0">&nbsp;</td>
                                                 <td align="right" style="color:#333;padding:0">
                                                     <font size="2" face="Open-sans, sans-serif" color="#555454">
-                                                        <strong>Products</strong>
-                                                    </font>
-                                                </td>
-                                                <td width="10" style="color:#333;padding:0">&nbsp;</td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td bgcolor="#f8f8f8" align="right" colspan="4"
-                                        style="border:1px solid #D6D4D4;color:#333;padding:7px 0">
-                                        <table class="table" style="width:100%;border-collapse:collapse">
-                                            <tr>
-                                                <td width="10" style="color:#333;padding:0">&nbsp;</td>
-                                                <td align="right" style="color:#333;padding:0">
-                                                    <font size="2" face="Open-sans, sans-serif" color="#555454">
-                                                        {total_products}
-                                                    </font>
-                                                </td>
-                                                <td width="10" style="color:#333;padding:0">&nbsp;</td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr class="conf_body">
-                                    <td bgcolor="#f8f8f8" colspan="4"
-                                        style="border:1px solid #D6D4D4;color:#333;padding:7px 0">
-                                        <table class="table" style="width:100%;border-collapse:collapse">
-                                            <tr>
-                                                <td width="10" style="color:#333;padding:0">&nbsp;</td>
-                                                <td align="right" style="color:#333;padding:0">
-                                                    <font size="2" face="Open-sans, sans-serif" color="#555454">
-                                                        <strong>Total paid</strong>
+                                                        <strong>Total</strong>
                                                     </font>
                                                 </td>
                                                 <td width="10" style="color:#333;padding:0">&nbsp;</td>
@@ -402,14 +345,7 @@
                         </font>
                     </td>
                 </tr>
-                <tr>
-                    <td class="space_footer" style="padding:0!important">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="footer" style="border-top:4px solid #333333;padding:7px 0">
-                        <span><a href="{shop_url}" style="color:#337ff1">{shop_name}</a></span>
-                    </td>
-                </tr>
+
             </table>
         </td>
         <td class="space" style="width:20px;padding:7px 0">&nbsp;</td>
