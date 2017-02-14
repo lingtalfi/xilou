@@ -331,13 +331,23 @@ class CrudListGenerator extends AbstractCrudGenerator
     //--------------------------------------------
     private static function getTableAliases($table, array $foreignTables)
     {
+        $p = explode('.', $table, 2);
+        $noDotTable = $table;
+        if (2 === count($p)) {
+            $noDotTable = $p[1];
+        }
         $tableAliases = [
-            $table => substr($table, 0, 1),
+            $table => substr($noDotTable, 0, 1),
         ];
         foreach ($foreignTables as $t) {
             $c = 1;
             do {
-                $try = substr($t, 0, $c++);
+                $noDotTable = $t;
+                $p = explode('.', $t, 2);
+                if (2 === count($p)) {
+                    $noDotTable = $p[1];
+                }
+                $try = substr($noDotTable, 0, $c++);
 
             } while (in_array($try, $tableAliases, true));
             $tableAliases[$t] = $try;

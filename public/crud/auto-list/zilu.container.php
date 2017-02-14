@@ -7,14 +7,14 @@ $fields = '
 c.id,
 c.nom,
 c.type_container_id,
-z.label as type_container_label
+t.label as type_container_label
 ';
 
 
 $query = "select
 %s
 from zilu.container c
-inner join zilu.type_container z on z.id=c.type_container_id
+inner join zilu.type_container t on t.id=c.type_container_id
 ";
 
 

@@ -5,7 +5,8 @@ use Crud\CrudModule;
 
 $fields = '
 id,
-reference
+reference,
+estimated_date
 ';
 
 
@@ -23,6 +24,7 @@ $table->title = "Commande";
 $table->columnLabels= [
     "id" => "id",
     "reference" => "reference",
+    "estimated_date" => "estimated date",
 ];
 
 

@@ -17,7 +17,6 @@ use QuickPdo\QuickPdo;
 $ll = "zilu";
 
 
-
 $_SESSION['commandeQueryString'] = $_SERVER['QUERY_STRING'];
 
 $idCommande = 0;
@@ -152,7 +151,8 @@ a.id as aid,
 a.reference_lf,
 a.reference_hldp,
 a.descr_fr,
-a.descr_en
+a.descr_en,
+h.sav_id as sav
 ';
 
 
@@ -169,11 +169,17 @@ where c.id=" . $idCommande;
 
                 $list = CommandeAdminTable::create()
                     ->setRic(['id', 'aid'])
+//                    ->setExtraColumn("sav", "",0)
                     ->setListable(QuickPdoListable::create()->setFields($fields)->setQuery($query))
                     ->setRenderer(AdminTableRenderer::create()
                         ->setExtraHiddenFields([
                             "commande" => $idCommande,
                         ])
+                        ->setOnItemIteratedCallback(function (array $item, &$trClass) {
+                            if ($item['sav'] !== null) {
+                                $trClass = 'red';
+                            }
+                        })
                     );
 
                 $list->setTransformer("container", function ($value, $item, $ricValue) {
@@ -192,6 +198,18 @@ where c.id=" . $idCommande;
                     }
                     return '<a class="fournisseur-selector" data-article-id="' . $item['aid'] . '" data-ric="' . htmlspecialchars($ricValue) . '" data-fournisseur-id="' . htmlspecialchars($item['fournisseur_id']) . '" href="#">' . $text . '</a>';
                 });
+
+
+                $list->setTransformer("sav", function ($value, $item, $ricValue) {
+                    if (null === $item['sav']) {
+
+                    } else {
+                        return '
+                    <a class="sav-link" data-id="' . $item['sav'] . '" data-ric="' . htmlspecialchars($ricValue) . '" href="#">Voir le détail</a>
+                    ';
+                    }
+                });
+
 
                 $textMaxLength = 10;
                 $list->setTransformer("descr_fr", function ($value, $item, $ricValue) use ($textMaxLength) {
@@ -229,7 +247,6 @@ where c.id=" . $idCommande;
 
 
         $('#commande-topmenu-link').attr('href', "/commande" + window.location.search);
-
 
 
         $(document).tooltip();

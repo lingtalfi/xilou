@@ -45,12 +45,16 @@ class Layout
         ob_start();
 
         $commandeQueryString = "";
-        if(array_key_exists('commandeQueryString', $_SESSION)){
+        if (array_key_exists('commandeQueryString', $_SESSION)) {
             $commandeQueryString = '?' . $_SESSION['commandeQueryString'];
         }
         $containerQueryString = "";
-        if(array_key_exists('containerQueryString', $_SESSION)){
+        if (array_key_exists('containerQueryString', $_SESSION)) {
             $containerQueryString = '?' . $_SESSION['containerQueryString'];
+        }
+        $savQueryString = "";
+        if (array_key_exists('savQueryString', $_SESSION)) {
+            $savQueryString = '?' . $_SESSION['savQueryString'];
         }
 
 
@@ -58,11 +62,14 @@ class Layout
 
 
         <body class="holygrail">
-<!--        <div class="topbar">--><?php ////LayoutServices::displayTopBar(); ?><!--</div>-->
+        <!--        <div class="topbar">--><?php ////LayoutServices::displayTopBar();
+        ?><!--</div>-->
         <div class="topmenu">
             <ul>
                 <li><a id="commande-topmenu-link" href="/commande<?php echo $commandeQueryString; ?>">Commande</a></li>
-                <li><a id="container-topmenu-link" href="/container<?php echo $containerQueryString; ?>">Container</a></li>
+                <li><a id="container-topmenu-link" href="/container<?php echo $containerQueryString; ?>">Container</a>
+                </li>
+                <li><a id="sav-topmenu-link" href="/sav<?php echo $savQueryString; ?>">Sav</a></li>
             </ul>
         </div>
         <div class="body panes-container">

@@ -32,6 +32,7 @@ if (PrivilegeUser::isConnected()) {
             '/' => 'home.php',
             '/commande' => 'commande.php',
             '/container' => 'container.php',
+            '/sav' => 'sav.php',
             '/test' => 'test.php',
 
             //--------------------------------------------

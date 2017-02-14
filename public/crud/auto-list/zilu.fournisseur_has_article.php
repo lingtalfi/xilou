@@ -5,9 +5,9 @@ use Crud\CrudModule;
 
 $fields = '
 f.fournisseur_id,
-zi.nom as fournisseur_nom,
+fo.nom as fournisseur_nom,
 f.article_id,
-z.reference_lf as article_reference_lf,
+a.reference_lf as article_reference_lf,
 f.reference,
 f.prix,
 f.volume
@@ -17,8 +17,8 @@ f.volume
 $query = "select
 %s
 from zilu.fournisseur_has_article f
-inner join zilu.article z on z.id=f.article_id
-inner join zilu.fournisseur zi on zi.id=f.fournisseur_id
+inner join zilu.article a on a.id=f.article_id
+inner join zilu.fournisseur fo on fo.id=f.fournisseur_id
 ";
 
 

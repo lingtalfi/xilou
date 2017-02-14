@@ -5,23 +5,30 @@ use Crud\CrudModule;
 
 $fields = '
 c.commande_id,
-zi.reference as commande_reference,
+co.reference as commande_reference,
 c.article_id,
-z.reference_lf as article_reference_lf,
+a.reference_lf as article_reference_lf,
 c.container_id,
-zil.nom as container_nom,
+con.nom as container_nom,
 c.fournisseur_id,
-zilu.nom as fournisseur_nom
+f.nom as fournisseur_nom,
+c.sav_id,
+s.fournisseur as sav_fournisseur,
+c.commande_ligne_statut_id,
+com.nom as commande_ligne_statut_nom,
+c.prix_override
 ';
 
 
 $query = "select
 %s
 from zilu.commande_has_article c
-inner join zilu.article z on z.id=c.article_id
-inner join zilu.commande zi on zi.id=c.commande_id
-inner join zilu.container zil on zil.id=c.container_id
-inner join zilu.fournisseur zilu on zilu.id=c.fournisseur_id
+inner join zilu.article a on a.id=c.article_id
+inner join zilu.commande co on co.id=c.commande_id
+inner join zilu.commande_ligne_statut com on com.id=c.commande_ligne_statut_id
+inner join zilu.container con on con.id=c.container_id
+inner join zilu.fournisseur f on f.id=c.fournisseur_id
+inner join zilu.sav s on s.id=c.sav_id
 ";
 
 
@@ -35,6 +42,9 @@ $table->columnLabels= [
     "article_reference_lf" => "article",
     "container_nom" => "container",
     "fournisseur_nom" => "fournisseur",
+    "sav_fournisseur" => "sav",
+    "commande_ligne_statut_nom" => "commande ligne statut",
+    "prix_override" => "prix override",
 ];
 
 
@@ -43,6 +53,8 @@ $table->hiddenColumns = [
     "article_id",
     "container_id",
     "fournisseur_id",
+    "sav_id",
+    "commande_ligne_statut_id",
 ];
 
 
@@ -60,6 +72,14 @@ $table->setTransformer('container_nom', function ($v, array $item) {
 
 $table->setTransformer('fournisseur_nom', function ($v, array $item) {
     return '<a href="' . CrudHelper::getUpdateFormUrl('zilu.fournisseur', $item['fournisseur_id']) . '">' . $v . '</a>';
+});
+
+$table->setTransformer('sav_fournisseur', function ($v, array $item) {
+    return '<a href="' . CrudHelper::getUpdateFormUrl('zilu.sav', $item['sav_id']) . '">' . $v . '</a>';
+});
+
+$table->setTransformer('commande_ligne_statut_nom', function ($v, array $item) {
+    return '<a href="' . CrudHelper::getUpdateFormUrl('zilu.commande_ligne_statut', $item['commande_ligne_statut_id']) . '">' . $v . '</a>';
 });
 
 

@@ -5,6 +5,7 @@ use Commande\CommandeUtil;
 use Container\ContainerUtil;
 use Fournisseur\FournisseurUtil;
 use QuickPdo\QuickPdo;
+use Sav\SavAjaxFormInsert;
 
 require_once __DIR__ . "/../../init.php";
 
@@ -17,6 +18,7 @@ function unric($ricValue)
 
 
 $output = '';
+$isHtml = false;
 if (array_key_exists('action', $_GET)) {
     $action = $_GET['action'];
     switch ($action) {
@@ -124,11 +126,21 @@ if (array_key_exists('action', $_GET)) {
                 }
             }
             break;
+        case 'sav-form-add':
+            $isHtml = true;
+            ob_start();
+            SavAjaxFormInsert::printForm();
+            $output = ob_get_clean();
+            break;
         default;
             break;
     }
 }
 
 
-echo json_encode($output);
+if (false === $isHtml) {
+    echo json_encode($output);
+} else {
+    echo $output;
+}
 

@@ -17,7 +17,7 @@ require_once __DIR__ . "/../init.php";
  * Produit
  * Livré le
  * Quantité
- * Prix
+ * Prix (original)
  * Nbre de pdts défectueux
  * Date de notification
  * Demande de remboursement

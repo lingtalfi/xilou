@@ -27,4 +27,13 @@ class FournisseurUtil
         "
         );
     }
+
+    /**
+     * Use this to feed html select options
+     */
+    public static function getId2Labels()
+    {
+        return QuickPdo::fetchAll("select id, nom from fournisseur order by id asc", [], \PDO::FETCH_COLUMN | \PDO::FETCH_UNIQUE);
+    }
+
 }
