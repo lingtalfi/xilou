@@ -295,3 +295,25 @@
 .zilu .datatable tr.red td {
     background: #cb5b5b;
 }
+
+.array-renderer-table {
+    border-collapse: collapse;
+}
+
+.array-renderer-table tr,
+.array-renderer-table td {
+    border: 1px solid #ddd;
+}
+
+.array-renderer-table td {
+    padding: 5px;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+
+
+
+

@@ -61,3 +61,13 @@ sav
 Tous les champs sont liés à un produit à un instant t, 
 donc on fige les données plutôt que de les collecter dynamiquement
 (comme des stats ou un historique de commandes).
+
+
+livre_le
+------------
+ce champ est une redondance du champ commande_has_article.date_estimee.
+ 
+ 
+ 
+
+

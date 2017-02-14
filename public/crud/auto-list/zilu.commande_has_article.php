@@ -16,7 +16,9 @@ c.sav_id,
 s.fournisseur as sav_fournisseur,
 c.commande_ligne_statut_id,
 com.nom as commande_ligne_statut_nom,
-c.prix_override
+c.prix_override,
+c.date_estimee,
+c.quantite
 ';
 
 
@@ -45,6 +47,8 @@ $table->columnLabels= [
     "sav_fournisseur" => "sav",
     "commande_ligne_statut_nom" => "commande ligne statut",
     "prix_override" => "prix override",
+    "date_estimee" => "date estimee",
+    "quantite" => "quantite",
 ];
 
 

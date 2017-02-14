@@ -6,6 +6,8 @@ use Container\ContainerUtil;
 use Fournisseur\FournisseurUtil;
 use QuickPdo\QuickPdo;
 use Sav\SavAjaxFormInsert;
+use Sav\SavDetailsArrayRenderer;
+use Sav\SavUtil;
 
 require_once __DIR__ . "/../../init.php";
 
@@ -126,13 +128,62 @@ if (array_key_exists('action', $_GET)) {
                 }
             }
             break;
-        case 'sav-form-add':
-            $isHtml = true;
-            ob_start();
-            SavAjaxFormInsert::printForm();
-            $output = ob_get_clean();
+        case 'sav-details':
+            if (array_key_exists('savId', $_GET)) {
+                $savId = $_GET['savId'];
+                $isHtml = true;
+                ob_start();
+                SavDetailsArrayRenderer::create()->prepareBySavId($savId)->render();
+                $output = ob_get_clean();
+            }
             break;
-        default;
+        case 'sav-transform-form':
+            if (array_key_exists('ric', $_GET)) {
+                $isHtml = true;
+                $ric = $_GET['ric'];
+                SavAjaxFormInsert::printForm($ric);
+            }
+            break;
+        case 'sav-transform-insert':
+            if (array_key_exists('ric', $_GET)) {
+                $ric = $_GET['ric'];
+                list($commandeId, $articleId) = unric($ric);
+                $data = $_GET;
+                if (true === SavUtil::addByCommandLine($commandeId, $articleId, $data)) {
+                    $output = 'ok';
+                } else {
+                    $output = 'ko';
+                }
+            }
+            break;
+        case 'update-commande-field':
+            if (
+                array_key_exists('col', $_GET) &&
+                array_key_exists('ric', $_GET) &&
+                array_key_exists('value', $_GET)
+            ) {
+                $col = $_GET['col'];
+                $ric = $_GET['ric'];
+                $value = $_GET['value'];
+
+                list($commandeId, $articleId) = unric($ric);
+
+                $res = QuickPdo::update('commande_has_article', [
+                    $col => $value,
+                ], [
+                    ['commande_id', '=', $commandeId],
+                    ['article_id', '=', $articleId],
+                ]);
+
+
+                if (false !== $res) {
+                    $output = 'ok';
+                } else {
+                    $output = 'ko';
+                }
+            }
+            break;
+        default:
             break;
     }
 }

@@ -1701,3 +1701,135 @@ Stack trace:
 #3 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/index.php(78): require_once('/Volumes/Macint...')
 #4 {main}
   thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/layout-elements/nullos/commande.php on line 172
+[14-Feb-2017 08:45:21 Europe/Paris] PHP Warning:  Missing argument 2 for Layout\Layout::{closure}() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 178
+[14-Feb-2017 08:45:21 Europe/Paris] PHP Stack trace:
+[14-Feb-2017 08:45:21 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[14-Feb-2017 08:45:21 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:78
+[14-Feb-2017 08:45:21 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[14-Feb-2017 08:45:21 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[14-Feb-2017 08:45:21 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[14-Feb-2017 08:45:21 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:232
+[14-Feb-2017 08:45:21 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[14-Feb-2017 08:45:21 Europe/Paris] PHP   8. AdminTable\View\AdminTableRenderer->onItemIterated() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:214
+[14-Feb-2017 08:45:21 Europe/Paris] PHP   9. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:565}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:565
+[14-Feb-2017 08:45:21 Europe/Paris] PHP  10. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:178-182}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:565
+[14-Feb-2017 08:45:21 Europe/Paris] PHP Warning:  Missing argument 2 for Layout\Layout::{closure}() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 178
+[14-Feb-2017 08:45:21 Europe/Paris] PHP Stack trace:
+[14-Feb-2017 08:45:21 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[14-Feb-2017 08:45:21 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:78
+[14-Feb-2017 08:45:21 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[14-Feb-2017 08:45:21 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[14-Feb-2017 08:45:21 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[14-Feb-2017 08:45:21 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:232
+[14-Feb-2017 08:45:21 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[14-Feb-2017 08:45:21 Europe/Paris] PHP   8. AdminTable\View\AdminTableRenderer->onItemIterated() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:214
+[14-Feb-2017 08:45:21 Europe/Paris] PHP   9. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:565}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:565
+[14-Feb-2017 08:45:21 Europe/Paris] PHP  10. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:178-182}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:565
+[14-Feb-2017 08:45:39 Europe/Paris] PHP Warning:  Missing argument 2 for Layout\Layout::{closure}() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 178
+[14-Feb-2017 08:45:39 Europe/Paris] PHP Stack trace:
+[14-Feb-2017 08:45:39 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[14-Feb-2017 08:45:39 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:78
+[14-Feb-2017 08:45:39 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[14-Feb-2017 08:45:39 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[14-Feb-2017 08:45:39 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[14-Feb-2017 08:45:39 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:232
+[14-Feb-2017 08:45:39 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[14-Feb-2017 08:45:39 Europe/Paris] PHP   8. AdminTable\View\AdminTableRenderer->onItemIterated() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:214
+[14-Feb-2017 08:45:39 Europe/Paris] PHP   9. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:565}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:565
+[14-Feb-2017 08:45:39 Europe/Paris] PHP  10. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:178-182}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:565
+[14-Feb-2017 08:45:39 Europe/Paris] PHP Warning:  Missing argument 2 for Layout\Layout::{closure}() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 178
+[14-Feb-2017 08:45:39 Europe/Paris] PHP Stack trace:
+[14-Feb-2017 08:45:39 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[14-Feb-2017 08:45:39 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:78
+[14-Feb-2017 08:45:39 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[14-Feb-2017 08:45:39 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[14-Feb-2017 08:45:39 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[14-Feb-2017 08:45:39 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:232
+[14-Feb-2017 08:45:39 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[14-Feb-2017 08:45:39 Europe/Paris] PHP   8. AdminTable\View\AdminTableRenderer->onItemIterated() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:214
+[14-Feb-2017 08:45:39 Europe/Paris] PHP   9. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:565}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:565
+[14-Feb-2017 08:45:39 Europe/Paris] PHP  10. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:178-182}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:565
+[14-Feb-2017 14:20:57 Europe/Paris] PHP Parse error:  syntax error, unexpected ',' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/libs/jquery-file-upload/server/php/UploadHandler.php on line 1321
+[14-Feb-2017 14:20:57 Europe/Paris] PHP Stack trace:
+[14-Feb-2017 14:20:57 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/libs/jquery-file-upload/server/php/upload.php:0
+[14-Feb-2017 15:00:24 Europe/Paris] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'produit' at row 1' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Sav/SavUtil.php(70): QuickPdo\QuickPdo::insert('sav', Array)
+#2 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php(154): Sav\SavUtil::addByCommandLine('12', '98', Array)
+#3 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[14-Feb-2017 15:02:13 Europe/Paris] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'livre_le' cannot be null' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Sav/SavUtil.php(70): QuickPdo\QuickPdo::insert('sav', Array)
+#2 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php(154): Sav\SavUtil::addByCommandLine('12', '98', Array)
+#3 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[14-Feb-2017 15:10:44 Europe/Paris] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000]: General error: 1366 Incorrect integer value: 'ji' for column 'nb_produits_defec' at row 1' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Sav/SavUtil.php(70): QuickPdo\QuickPdo::insert('sav', Array)
+#2 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php(154): Sav\SavUtil::addByCommandLine('12', '16', Array)
+#3 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[14-Feb-2017 15:11:41 Europe/Paris] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000]: General error: 1366 Incorrect decimal value: '' for column 'demande_remboursement' at row 1' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Sav/SavUtil.php(70): QuickPdo\QuickPdo::insert('sav', Array)
+#2 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php(154): Sav\SavUtil::addByCommandLine('12', '16', Array)
+#3 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[14-Feb-2017 15:12:14 Europe/Paris] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000]: General error: 1366 Incorrect integer value: '' for column 'pourcentage_rembourse' at row 1' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Sav/SavUtil.php(70): QuickPdo\QuickPdo::insert('sav', Array)
+#2 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php(154): Sav\SavUtil::addByCommandLine('12', '16', Array)
+#3 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[14-Feb-2017 15:12:58 Europe/Paris] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '' for column 'date_remboursement' at row 1' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Sav/SavUtil.php(70): QuickPdo\QuickPdo::insert('sav', Array)
+#2 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php(154): Sav\SavUtil::addByCommandLine('12', '16', Array)
+#3 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[14-Feb-2017 15:16:43 Europe/Paris] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '' for column 'date_remboursement' at row 1' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Sav/SavUtil.php(70): QuickPdo\QuickPdo::insert('sav', Array)
+#2 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php(154): Sav\SavUtil::addByCommandLine('12', '51', Array)
+#3 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[14-Feb-2017 16:52:52 Europe/Paris] PHP Notice:  Undefined index: prix_override in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 116
+[14-Feb-2017 16:52:52 Europe/Paris] PHP Stack trace:
+[14-Feb-2017 16:52:52 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[14-Feb-2017 16:52:52 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:78
+[14-Feb-2017 16:52:52 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[14-Feb-2017 16:52:52 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[14-Feb-2017 16:52:52 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[14-Feb-2017 16:52:52 Europe/Paris] PHP Notice:  Undefined index: prix_override in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 116
+[14-Feb-2017 16:52:52 Europe/Paris] PHP Stack trace:
+[14-Feb-2017 16:52:52 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[14-Feb-2017 16:52:52 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:78
+[14-Feb-2017 16:52:52 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[14-Feb-2017 16:52:52 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[14-Feb-2017 16:52:52 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[14-Feb-2017 17:17:37 Europe/Paris] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000]: General error: 1366 Incorrect decimal value: '2017-02-15' for column 'date_estimee' at row 1' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php:217
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php(217): PDOStatement->execute(Array)
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php(176): QuickPdo\QuickPdo::update('commande_has_ar...', Array, Array)
+#2 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 217
+[14-Feb-2017 17:18:17 Europe/Paris] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000]: General error: 1366 Incorrect decimal value: '2017-02-15' for column 'date_estimee' at row 1' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php:217
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php(217): PDOStatement->execute(Array)
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php(176): QuickPdo\QuickPdo::update('commande_has_ar...', Array, Array)
+#2 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 217
+[14-Feb-2017 17:18:21 Europe/Paris] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000]: General error: 1366 Incorrect decimal value: '2017-02-15' for column 'date_estimee' at row 1' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php:217
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php(217): PDOStatement->execute(Array)
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php(176): QuickPdo\QuickPdo::update('commande_has_ar...', Array, Array)
+#2 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 217

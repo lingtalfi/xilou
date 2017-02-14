@@ -75,6 +75,16 @@ function getRandomPriceOrNull()
 }
 
 
+function dateOrNull()
+{
+    global $b;
+    if (0 === rand(0, 1)) {
+        return null;
+    }
+    return $b->dateMysql();
+}
+
+
 foreach ($status as $etat) {
 
     if (false !== $id = (QuickPdo::insert("commande_ligne_statut", [
@@ -165,7 +175,7 @@ for ($i = 0; $i < $nbArticles; $i++) {
 for ($i = 0; $i < $nbCommandes; $i++) {
     if (false !== ($id = QuickPdo::insert("commande", [
             'reference' => $b->letters(8),
-            'estimated_date' => $b->dateMysql(),
+            'estimated_date' => dateOrNull(),
         ]))
     ) {
         $commandeIds[] = $id;
@@ -203,6 +213,8 @@ for ($i = 0; $i < $nbCommandeHasArticle; $i++) {
         'commande_ligne_statut_id' => getRandomId($commandeLigneStatutIds, true),
         'sav_id' => getRandomId($savIds, true),
         'prix_override' => getRandomPriceOrNull(),
+        'date_estimee' => dateOrNull(),
+        'quantite' => rand(1, 30),
     ]);
 }
 

@@ -15,6 +15,8 @@ $form->labels = [
     "sav_id" => "sav",
     "commande_ligne_statut_id" => "commande ligne statut",
     "prix_override" => "prix override",
+    "date_estimee" => "date estimee",
+    "quantite" => "quantite",
 ];
 
 
@@ -28,6 +30,9 @@ $form->addControl("fournisseur_id")->type("selectByRequest", "select id, nom fro
 $form->addControl("sav_id")->type("selectByRequest", "select id, fournisseur from zilu.sav");
 $form->addControl("commande_ligne_statut_id")->type("selectByRequest", "select id, nom from zilu.commande_ligne_statut");
 $form->addControl("prix_override")->type("text");
+$form->addControl("date_estimee")->type("date3");
+$form->addControl("quantite")->type("text")
+->value(0);
 
 
 $form->display();

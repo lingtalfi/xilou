@@ -28,6 +28,8 @@ if (array_key_exists('commande', $_GET)) {
 
 AssetsList::css("style/zilu.css");
 AssetsList::css("/style/admintable.css");
+AssetsList::js("/libs/lightbox2/src/js/lightbox.js");
+AssetsList::css("/libs/lightbox2/src/css/lightbox.css");
 
 
 $commandeId2Refs = CommandeUtil::getId2Labels();
@@ -39,12 +41,12 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
 <div class="zilu" id="zilu">
     <div class="zilu-topbar">
 
-        <button class="button-with-icon sav-add-button">
-            <span>
-                <span>Ajouter une ligne SAV</span>
-                <?php Icons::printIcon("add", 'white'); ?>
-            </span>
-        </button>
+<!--        <button class="button-with-icon sav-add-button">-->
+<!--            <span>-->
+<!--                <span>Ajouter une ligne SAV</span>-->
+<!--                --><?php //Icons::printIcon("add", 'white'); ?>
+<!--            </span>-->
+<!--        </button>-->
         <!--        <div class="commande-actions-group">-->
         <!--            <div class="commande-actions-vertical" id="commande-actions-vertical">-->
         <!--                <form>-->
@@ -129,6 +131,18 @@ from zilu.sav s";
                     ])
                 );
 
+            $list->setTransformer("photo", function ($value, $item, $ricValue) {
+                if ($value) {
+                    $thumb = htmlspecialchars($value);
+                    $big = dirname(dirname($value)) . '/' . basename($value);
+                    return '<a href="' . $big . '" data-lightbox="image-1">
+                <img src="' . $thumb . '">
+                </a>';
+                }
+                return '';
+            });
+
+
             $list->hiddenColumns = [
                 'id',
             ];
@@ -178,6 +192,8 @@ from zilu.sav s";
                 });
             }
         });
+
+
     });
 
 

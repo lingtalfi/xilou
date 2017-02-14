@@ -41,6 +41,8 @@ if (array_key_exists('csvfile', $_FILES)) {
 
 AssetsList::css("style/zilu.css");
 AssetsList::css("/style/admintable.css");
+AssetsList::js("/libs/lightbox2/src/js/lightbox.js");
+AssetsList::css("/libs/lightbox2/src/css/lightbox.css");
 
 
 $commandeId2Refs = CommandeUtil::getId2Labels();
@@ -69,8 +71,10 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
                 <form>
                     <select id="send-mail-selector">
                         <option>Envoyer un email...</option>
-                        <option value="direction">à Didier</option>
-                        <option value="fournisseurs">aux fournisseurs</option>
+                        <option value="direction-test">récapitulatif de commande à Zilu</option>
+                        <option value="direction">récapitulatif de commande à Didier</option>
+                        <option value="fournisseurs-test">de demande de devis à Zilu</option>
+                        <option value="fournisseurs">de demande de devis aux fournisseurs</option>
                     </select>
                 </form>
             </div>
@@ -100,6 +104,8 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
 
                 $query = "select
 a.poids,
+h.prix_override,
+h.quantite,
 fha.prix
 from commande_has_article h
 inner join article a on a.id=h.article_id
@@ -110,7 +116,12 @@ where h.commande_id=" . $idCommande;
                     $prixTotal = 0;
                     $poidsTotal = 0;
                     foreach ($res as $item) {
-                        $prixTotal += $item['prix'];
+                        $prix = $item['prix'];
+                        $qte = $item['quantite'];
+                        if ('' !== trim($item['prix_override'])) {
+                            $prix = $item['prix_override'];
+                        }
+                        $prixTotal += $qte * $prix;
                         $poidsTotal += $item['poids'];
                     }
 
@@ -147,6 +158,9 @@ a.poids,
 f.id as fournisseur_id,
 f.nom as fournisseur,
 fha.prix,
+h.prix_override,
+h.quantite,
+h.date_estimee,
 a.id as aid,
 a.reference_lf,
 a.reference_hldp,
@@ -190,6 +204,30 @@ where c.id=" . $idCommande;
                     return '<a class="container-selector" data-ric="' . htmlspecialchars($ricValue) . '" data-container-id="' . htmlspecialchars($item['container_id']) . '" href="#">' . $text . '</a>';
                 });
 
+                $list->setTransformer("prix_override", function ($value, $item, $ricValue) {
+                    $text = $value;
+                    if (null === $value) {
+                        $text = "(not set)";
+                    }
+                    return '<a class="update-link" data-column="prix_override" data-default="' . htmlspecialchars($value) . '" data-ric="' . htmlspecialchars($ricValue) . '" href="#">' . $text . '</a>';
+                });
+
+                $list->setTransformer("quantite", function ($value, $item, $ricValue) {
+                    $text = $value;
+                    if (null === $value) {
+                        $text = "(not set)";
+                    }
+                    return '<a class="update-link" data-column="quantite" data-default="' . htmlspecialchars($value) . '" data-ric="' . htmlspecialchars($ricValue) . '" href="#">' . $text . '</a>';
+                });
+
+                $list->setTransformer("date_estimee", function ($value, $item, $ricValue) {
+                    $text = $value;
+                    if (null === $value) {
+                        $text = "(not set)";
+                    }
+                    return '<a class="update-link" data-type="date"  data-column="date_estimee" data-default="' . htmlspecialchars($value) . '" data-ric="' . htmlspecialchars($ricValue) . '" href="#">' . $text . '</a>';
+                });
+
 
                 $list->setTransformer("fournisseur", function ($value, $item, $ricValue) {
                     $text = $value;
@@ -202,10 +240,12 @@ where c.id=" . $idCommande;
 
                 $list->setTransformer("sav", function ($value, $item, $ricValue) {
                     if (null === $item['sav']) {
-
+                        return '
+                    <a class="sav-transform-link nowrap" data-ric="' . htmlspecialchars($ricValue) . '" href="#">Créer un SAV pour cette ligne</a>
+                    ';
                     } else {
                         return '
-                    <a class="sav-link" data-id="' . $item['sav'] . '" data-ric="' . htmlspecialchars($ricValue) . '" href="#">Voir le détail</a>
+                    <a class="sav-details-link nowrap" data-id="' . $item['sav'] . '" data-ric="' . htmlspecialchars($ricValue) . '" href="#">Voir le détail</a>
                     ';
                     }
                 });
@@ -331,7 +371,11 @@ where c.id=" . $idCommande;
                 }
             }
         });
-        $("#send-mail-selector").selectmenu();
+        $("#send-mail-selector").selectmenu({
+            select: function (event, data) {
+                console.log("op");
+            }
+        });
 
 
         $('#zilu').on('click', function (e) {
@@ -438,6 +482,89 @@ where c.id=" . $idCommande;
                     }
                 });
             }
+            else if (jTarget.hasClass("sav-details-link")) {
+                e.preventDefault();
+                var savId = jTarget.attr("data-id");
+                $("#sav-details-dialog").dialog({
+                    position: {
+                        my: "right center",
+                        at: "left center",
+                        of: jTarget
+                    },
+                    width: 600,
+                    open: function (event, ui) {
+                        $.get('/services/zilu.php?action=sav-details&savId=' + savId, function (data) {
+                            $("#sav-details-container").html(data);
+                        });
+                    }
+                });
+            }
+            else if (jTarget.hasClass("sav-transform-link")) {
+                e.preventDefault();
+                var _ricVal = jTarget.attr('data-ric');
+                $("#sav-transform-dialog").dialog({
+                    position: {
+                        my: "right center",
+                        at: "left center",
+                        of: jTarget
+                    },
+                    width: 600,
+                    open: function (event, ui) {
+                        $.get('/services/zilu.php?action=sav-transform-form&ric=' + _ricVal, function (data) {
+                            $("#sav-transform-container").html(data);
+                        });
+                    }
+                });
+            }
+            else if (jTarget.hasClass("update-link")) {
+                e.preventDefault();
+
+                var column = jTarget.attr('data-column');
+                var defaultValue = jTarget.attr('data-default');
+                var ricValue = jTarget.attr('data-ric');
+                var type = jTarget.attr('data-type');
+
+
+                $("#update-column-dialog").dialog({
+                    position: {
+                        my: "center",
+                        at: "center",
+                        of: jTarget
+                    },
+                    width: 600,
+                    open: function (event, ui) {
+
+                        var jInput = $("#update-column-input");
+
+
+                        if ('date' === type) {
+                            jInput.datepicker({
+                                dateFormat: "yy-mm-dd"
+                            });
+                            jInput.datepicker("setDate", defaultValue);
+                            jInput.blur();
+
+                        }
+                        else {
+                            jInput.attr('value', defaultValue);
+                        }
+
+                        $("#update-column-submit-btn").on('click', function (e) {
+                            e.preventDefault();
+                            var val = jInput.val();
+                            $.getJSON('/services/zilu.php?action=update-commande-field&col=' + column + '&ric=' + ricValue + '&value=' + val, function (data) {
+                                if ('ok' === data) {
+                                    $("#update-column-dialog").dialog('close');
+                                    window.location.reload();
+                                }
+                            });
+
+                        });
+
+
+                    }
+                });
+            }
         });
 
 
@@ -504,5 +631,19 @@ where c.id=" . $idCommande;
         <p class="hidden loader">
             Veuillez patienter...
         </p>
+    </div>
+    <div id="sav-details-dialog" title="Détails du SAV">
+        <div id="sav-details-container"></div>
+    </div>
+    <div id="sav-transform-dialog" title="Passer cette ligne en SAV">
+        <div id="sav-transform-container"></div>
+    </div>
+    <div id="update-column-dialog" title="Mettre à jour un champ">
+        <form style="text-align: center">
+            <input type="text" value="" id="update-column-input">
+            <br>
+            <br>
+            <button type="submit" id="update-column-submit-btn">Modifier</button>
+        </form>
     </div>
 </div>

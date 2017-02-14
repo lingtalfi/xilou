@@ -29,6 +29,7 @@ $prefs = [
         'sav_id' => 'sav',
         'commande_ligne_statut_id' => 'commande ligne statut',
         'prix_override' => 'prix override',
+        'date_estimee' => 'date estimee',
         'type_container_id' => 'type container',
         'livre_le' => 'livre le',
         'nb_produits_defec' => 'nb produits defec',
