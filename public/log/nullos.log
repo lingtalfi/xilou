@@ -1,0 +1,17 @@
+crud.pdoException.form.insert -- 2017-02-15 15:05:48
+----------
+exception 'PDOException' with message 'SQLSTATE[HY000]: General error: 1366 Incorrect decimal value: '' for column 'prix_override' at row 1' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Crud/Form.php(137): QuickPdo\QuickPdo::insert('zilu.commande_has_article', Array)
+#2 unknown file(unknown line): Crud\Form->Crud\{closure}(Array, 'Oops, something went wrong with the database, sorry...')
+#3 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickForm/QuickForm.php(216): call_user_func_array(Closure, Array)
+#4 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Crud/Form.php(153): QuickForm\QuickForm->play()
+#5 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/crud/auto-form/zilu.commande_has_article.php(38): Crud\Form->display()
+#6 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/modules/crud/crud.php(51): require_once('/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/crud/auto-form/zilu.commande_has_article.php')
+#7 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php(180): require_once('/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/modules/crud/crud.php')
+#8 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php(87): Layout\Layout->includeElement('body')
+#9 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/modules/crud/crud.php(8): Layout\Layout->display()
+#10 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php(78): require_once('/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/modules/crud/crud.php')
+#11 {main}
+

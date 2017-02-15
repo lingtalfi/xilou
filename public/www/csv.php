@@ -8,8 +8,8 @@ use QuickPdo\QuickPdoInfoTool;
 require_once __DIR__ . "/../init.php";
 
 
-$f = __DIR__ . "/../assets/csv-commande/test1.csv";
-$f = "/Volumes/Macintosh HD 2/it/php/projects/xilou/pprivate/Pierre/PRIX MATERIEL LF-msdos.csv";
+
+$f = APP_ROOT_DIR . "/../pprivate/Pierre/PRIX MATERIEL LF-msdos.csv";
 $arr = CsvUtil::readFile($f, ';');
 
 
