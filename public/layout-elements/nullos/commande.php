@@ -373,7 +373,17 @@ where c.id=" . $idCommande;
         });
         $("#send-mail-selector").selectmenu({
             select: function (event, data) {
-                console.log("op");
+                var value = $(this).val();
+                var confMsg = "";
+                if ('direction-test' === value) {
+                    confMsg = "Vous êtes sur le point d'envoyer le mail récapitulatif de commande à zilu.";
+                }
+                confMsg += " ";
+                confMsg += "Etes-vous certain de vouloir exécuter cette action ?";
+                if (true === window.confirm(confMsg)) {
+                    console.log("kk");
+                }
+
             }
         });
 
@@ -487,7 +497,7 @@ where c.id=" . $idCommande;
                 var savId = jTarget.attr("data-id");
                 $("#sav-details-dialog").dialog({
                     position: {
-                        my: "right center",
+                        my: "right top",
                         at: "left center",
                         of: jTarget
                     },

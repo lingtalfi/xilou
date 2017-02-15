@@ -4,6 +4,7 @@
 use Commande\CommandeUtil;
 use Container\ContainerUtil;
 use Fournisseur\FournisseurUtil;
+use Mail\OrderConfMail;
 use QuickPdo\QuickPdo;
 use Sav\SavAjaxFormInsert;
 use Sav\SavDetailsArrayRenderer;
@@ -182,6 +183,26 @@ if (array_key_exists('action', $_GET)) {
                     $output = 'ko';
                 }
             }
+            break;
+        case 'send-mail-purchase-order':
+
+            $mail = MAIL_DIDIER;
+            if (array_key_exists('test', $_GET)) {
+                $mail = MAIL_ZILU;
+            }
+
+
+            OrderConfMail::send($mail);
+
+
+
+
+            if (false !== $res) {
+                $output = 'ok';
+            } else {
+                $output = 'ko';
+            }
+
             break;
         default:
             break;

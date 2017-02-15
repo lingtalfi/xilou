@@ -1833,3 +1833,176 @@ Stack trace:
 #1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php(176): QuickPdo\QuickPdo::update('commande_has_ar...', Array, Array)
 #2 {main}
   thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 217
+[15-Feb-2017 05:40:51 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zilu.csv_materiel_lf' doesn't exist in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php(19): QuickPdo\QuickPdo::insert('csv_materiel_lf', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[15-Feb-2017 05:41:10 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column '0' in 'field list' in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php(19): QuickPdo\QuickPdo::insert('csv_prix_materi...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[15-Feb-2017 05:41:20 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column '0' in 'field list' in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php(20): QuickPdo\QuickPdo::insert('csv_prix_materi...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[15-Feb-2017 05:44:06 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'port' at row 1 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php(59): QuickPdo\QuickPdo::insert('csv_prix_materi...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[15-Feb-2017 05:44:23 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'port' at row 1 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php(60): QuickPdo\QuickPdo::insert('csv_prix_materi...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[15-Feb-2017 05:47:35 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1366 Incorrect decimal value: '$3,55' for column 'pmp_achat_dollar' at row 1 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php(58): QuickPdo\QuickPdo::insert('csv_prix_materi...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[15-Feb-2017 05:47:45 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1366 Incorrect decimal value: '$3,55' for column 'pmp_achat_dollar' at row 1 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php(58): QuickPdo\QuickPdo::insert('csv_prix_materi...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[15-Feb-2017 06:10:03 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1366 Incorrect decimal value: '3,55' for column 'pmp_achat_dollar' at row 1 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php(72): QuickPdo\QuickPdo::insert('csv_prix_materi...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[15-Feb-2017 06:10:23 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'port' at row 1 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php(72): QuickPdo\QuickPdo::insert('csv_prix_materi...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[15-Feb-2017 06:12:50 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'marge_prix_public' at row 1 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php(72): QuickPdo\QuickPdo::insert('csv_prix_materi...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[15-Feb-2017 06:13:00 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'marge_prix_public' at row 1 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php(72): QuickPdo\QuickPdo::insert('csv_prix_materi...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[15-Feb-2017 06:42:10 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1366 Incorrect decimal value: '' for column 'poids_net' at row 1 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php(74): QuickPdo\QuickPdo::insert('csv_prix_materi...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[15-Feb-2017 06:42:50 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1366 Incorrect string value: '\xEF\xBF\xBD po...' for column 'description' at row 1 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php(77): QuickPdo\QuickPdo::insert('csv_prix_materi...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[15-Feb-2017 06:43:44 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1366 Incorrect decimal value: '20,00%' for column 'tva' at row 1 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php(77): QuickPdo\QuickPdo::insert('csv_prix_materi...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[15-Feb-2017 06:44:01 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1366 Incorrect string value: '\xEF\xBF\xBDt-1...' for column 'date_arrivee' at row 1 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php(77): QuickPdo\QuickPdo::insert('csv_prix_materi...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Warning:  utf8_decode() expects exactly 1 parameter, 2 given in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php on line 44
+[15-Feb-2017 06:44:49 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1366 Incorrect string value: '\xEF\xBF\xBD po...' for column 'description' at row 1 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php(79): QuickPdo\QuickPdo::insert('csv_prix_materi...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[15-Feb-2017 06:45:15 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'dimensions' at row 1 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php(81): QuickPdo\QuickPdo::insert('csv_prix_materi...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[15-Feb-2017 06:49:09 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1366 Incorrect decimal value: ' -   _ ' for column 'pv_public_ttc' at row 1 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php(81): QuickPdo\QuickPdo::insert('csv_prix_materi...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[15-Feb-2017 06:49:44 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'poids' at row 1 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/csv.php(79): QuickPdo\QuickPdo::insert('csv_prix_materi...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114

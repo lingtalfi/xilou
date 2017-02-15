@@ -4,7 +4,7 @@
 namespace Mail;
 
 
-use Umail\Renderer\PhpRenderer;
+
 use Umail\TemplateLoader\FileTemplateLoader;
 use Umail\Umail;
 
@@ -64,7 +64,7 @@ class OrderConfMail
             ->setVars($vars)
             ->setTemplateLoader(FileTemplateLoader::create()->setDir(APP_ROOT_DIR . "/mails")->setSuffix('.php'))
             ->setTemplate('zilu/order_conf')
-            ->setRenderer(PhpRenderer::create())
+//            ->setRenderer(PhpRenderer::create())
             ->send();
         a($res);
 
