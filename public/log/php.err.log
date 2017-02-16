@@ -19541,3 +19541,38 @@ Stack trace:
 [16-Feb-2017 05:44:05 Europe/Paris] PHP Notice:  Array to string conversion in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Util/ArrayRenderer.php on line 37
 [16-Feb-2017 05:44:05 Europe/Paris] PHP Notice:  Array to string conversion in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Util/ArrayRenderer.php on line 37
 [16-Feb-2017 05:44:05 Europe/Paris] PHP Notice:  Array to string conversion in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Util/ArrayRenderer.php on line 37
+[16-Feb-2017 10:56:29 Europe/Paris] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] Connection refused' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php:41
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php(41): PDO->__construct('mysql:host=loca...', 'root', '', Array)
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/init.php(101): QuickPdo\QuickPdo::setConnection('mysql:host=loca...', 'root', '', Array)
+#2 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php(11): require_once('/Users/pierrela...')
+#3 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 41
+[16-Feb-2017 14:33:44 Europe/Paris] PHP Notice:  Undefined variable: fournisseurIds in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php on line 11
+[16-Feb-2017 14:33:44 Europe/Paris] PHP Stack trace:
+[16-Feb-2017 14:33:44 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[16-Feb-2017 14:33:44 Europe/Paris] PHP Notice:  Undefined variable: fournisseur in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php on line 11
+[16-Feb-2017 14:33:44 Europe/Paris] PHP Stack trace:
+[16-Feb-2017 14:33:44 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[16-Feb-2017 14:33:57 Europe/Paris] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1-12' for key 'PRIMARY'' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php(20): QuickPdo\QuickPdo::insert('fournisseur_has...', Array)
+#2 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[16-Feb-2017 17:24:53 Europe/Paris] PHP Warning:  move_uploaded_file(/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/commande-imports/C-2017-02-16): failed to open stream: No such file or directory in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php on line 207
+[16-Feb-2017 17:24:53 Europe/Paris] PHP Stack trace:
+[16-Feb-2017 17:24:53 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php:0
+[16-Feb-2017 17:24:53 Europe/Paris] PHP   2. move_uploaded_file() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php:207
+[16-Feb-2017 17:24:53 Europe/Paris] PHP Warning:  move_uploaded_file(): Unable to move '/private/var/tmp/phpHAj5bx' to '/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/commande-imports/C-2017-02-16' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php on line 207
+[16-Feb-2017 17:24:53 Europe/Paris] PHP Stack trace:
+[16-Feb-2017 17:24:53 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php:0
+[16-Feb-2017 17:24:53 Europe/Paris] PHP   2. move_uploaded_file() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php:207
+[16-Feb-2017 17:27:16 Europe/Paris] PHP Warning:  move_uploaded_file(/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/commande-imports/C-2017-02-16): failed to open stream: No such file or directory in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php on line 209
+[16-Feb-2017 17:27:17 Europe/Paris] PHP Stack trace:
+[16-Feb-2017 17:27:17 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php:0
+[16-Feb-2017 17:27:17 Europe/Paris] PHP   2. move_uploaded_file() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php:209
+[16-Feb-2017 17:27:17 Europe/Paris] PHP Warning:  move_uploaded_file(): Unable to move '/private/var/tmp/phphn2OwB' to '/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/commande-imports/C-2017-02-16' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php on line 209
+[16-Feb-2017 17:27:17 Europe/Paris] PHP Stack trace:
+[16-Feb-2017 17:27:17 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php:0
+[16-Feb-2017 17:27:17 Europe/Paris] PHP   2. move_uploaded_file() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php:209

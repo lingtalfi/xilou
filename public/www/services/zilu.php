@@ -200,10 +200,16 @@ if (array_key_exists('action', $_GET)) {
         case 'csv-import-form':
             if (array_key_exists('csvfile', $_FILES) && array_key_exists('nom', $_POST)) {
                 $tmp_name = $_FILES['csvfile']['tmp_name'];
-                $cmdName = "C-" . date('Y-m-d') . '.xlxs';
-                if (move_uploaded_file($tmp_name, APP_COMMANDE_IMPORTS_DIR . "/" . $cmdName)) {
+                $cmdName = $_POST['nom'];
+                $cmdFileBaseName = preg_replace('[^a-zA-Z0-9_.-]', '', $cmdName);
+                $cmdFileName = $cmdFileBaseName . '.xlxs';
 
-                    $output = [];
+                $isUploadedFile = (int)is_uploaded_file($tmp_name);
+
+                if (move_uploaded_file($tmp_name, APP_COMMANDE_IMPORTS_DIR . "/" . $cmdFileName)) {
+                    $output = "ok" . $isUploadedFile;
+                } else {
+                    $output = "ko" . $isUploadedFile;
                 }
             }
 

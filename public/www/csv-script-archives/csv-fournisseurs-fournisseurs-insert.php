@@ -73,7 +73,6 @@ function toDecimal($string)
     if (preg_match('![0-9]+(,[0-9]+)?!', $string, $m)) {
         return str_replace(',', '.', $m[0]);
     }
-
     return "0.00";
 }
 

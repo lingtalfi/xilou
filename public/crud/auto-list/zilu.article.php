@@ -9,7 +9,8 @@ reference_lf,
 reference_hldp,
 poids,
 descr_fr,
-descr_en
+descr_en,
+ean
 ';
 
 
@@ -31,6 +32,7 @@ $table->columnLabels= [
     "poids" => "poids",
     "descr_fr" => "descr fr",
     "descr_en" => "descr en",
+    "ean" => "ean",
 ];
 
 

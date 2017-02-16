@@ -24,6 +24,7 @@ ButineurAutoloader::getInst()->start();
 
 //require_once __DIR__ . "/../public/init.php";
 require_once __DIR__ . "/db-init.inc.php";
+require_once __DIR__ . "/create-db-structure.inc.php";
 
 
 $b = LingBullSheetGenerator::create()->setDir("/myphp/bullsheets-repo/bullsheets");
@@ -163,9 +164,9 @@ for ($i = 0; $i < $nbArticles; $i++) {
     if (false !== ($id = QuickPdo::insert("article", [
             'reference_lf' => $b->letters(5),
             'reference_hldp' => $b->letters(5),
-            'poids' => $b->float(3, 2),
             'descr_fr' => $b->loremSentence(1, 2),
             'descr_en' => $b->loremSentence(1, 2),
+            'ean' => $b->numbers(13),
         ]))
     ) {
         $articleIds[] = $id;
@@ -193,6 +194,7 @@ for ($i = 1; $i <= $nbContainers; $i++) {
 }
 
 
+$unitChoices = ['PIECE', 'PAIRE'];
 for ($i = 0; $i < $nbFournisseurHasArticle; $i++) {
     QuickPdo::insert("fournisseur_has_article", [
         'fournisseur_id' => getRandomId($fournisseurIds),
@@ -200,6 +202,7 @@ for ($i = 0; $i < $nbFournisseurHasArticle; $i++) {
         'reference' => $b->letters(6),
         'prix' => $b->float(3, 2),
         'volume' => $b->float(1, 2),
+        'poids' => $b->float(3, 2),
     ]);
 }
 
@@ -215,6 +218,7 @@ for ($i = 0; $i < $nbCommandeHasArticle; $i++) {
         'prix_override' => getRandomPriceOrNull(),
         'date_estimee' => dateOrNull(),
         'quantite' => rand(1, 30),
+        'unit' => $unitChoices[rand(0, 1)],
     ]);
 }
 
@@ -237,18 +241,9 @@ foreach ($articleIds as $idArticle) {
         'reference' => $b->letters(6),
         'prix' => $b->float(3, 2),
         'volume' => $b->float(1, 2),
+        'poids' => $b->float(3, 2),
     ]);
 }
-
-
-$d = __DIR__ . "/assets";
-QuickPdo::freeQuery(file_get_contents($d . "/csv_fournisseurs_comparatif.sql"));
-QuickPdo::freeQuery(file_get_contents($d . "/csv_fournisseurs_containers.sql"));
-QuickPdo::freeQuery(file_get_contents($d . "/csv_fournisseurs_fournisseurs.sql"));
-QuickPdo::freeQuery(file_get_contents($d . "/csv_fournisseurs_sav.sql"));
-QuickPdo::freeQuery(file_get_contents($d . "/csv_prix_materiel.sql"));
-QuickPdo::freeQuery(file_get_contents($d . "/csv_product_details.sql"));
-QuickPdo::freeQuery(file_get_contents($d . "/csv_product_list.sql"));
 
 
 require_once __DIR__ . "/crudify.php";

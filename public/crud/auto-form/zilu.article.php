@@ -14,6 +14,7 @@ $form->labels = [
     "poids" => "poids",
     "descr_fr" => "descr fr",
     "descr_en" => "descr en",
+    "ean" => "ean",
 ];
 
 
@@ -26,6 +27,7 @@ $form->addControl("reference_hldp")->type("text");
 $form->addControl("poids")->type("text");
 $form->addControl("descr_fr")->type("message");
 $form->addControl("descr_en")->type("message");
+$form->addControl("ean")->type("text");
 
 
 $form->display();

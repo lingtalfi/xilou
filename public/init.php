@@ -41,9 +41,11 @@ if (
     $dbUser = 'root';
     $dbPass = 'root';
     $dbName = 'zilu';
+    $host = 'localhost';
 
     if ("/Users/" === substr(__DIR__, 0, 7)) {
         $dbPass = '';
+        $host = '127.0.0.1';
 
     }
 
@@ -93,7 +95,7 @@ if ('/index.php' === $_SERVER['PHP_SELF']) {
 //--------------------------------------------
 // DATABASE CONNEXION
 //--------------------------------------------
-QuickPdo::setConnection("mysql:host=localhost;dbname=$dbName", $dbUser, $dbPass, [
+QuickPdo::setConnection("mysql:host=$host;dbname=$dbName", $dbUser, $dbPass, [
     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'",
     PDO::MYSQL_ATTR_INIT_COMMAND => "SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY','')), NAMES 'utf8'",
 //    PDO::MYSQL_ATTR_INIT_COMMAND => "SET sql_mode=(SELECT REPLACE(@@sql_mode,'STRICT_TRANS_TABLES','')), NAMES 'utf8'",

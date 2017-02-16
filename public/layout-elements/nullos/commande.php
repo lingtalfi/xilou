@@ -103,10 +103,12 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
             if (0 !== $idCommande) {
 
                 $query = "select
-a.poids,
 h.prix_override,
 h.quantite,
-fha.prix
+fha.prix,
+fha.volume,
+fha.poids
+
 from commande_has_article h
 inner join article a on a.id=h.article_id
 inner join fournisseur_has_article fha on fha.fournisseur_id=h.fournisseur_id and fha.article_id=h.article_id
@@ -115,6 +117,7 @@ where h.commande_id=" . $idCommande;
 
                     $prixTotal = 0;
                     $poidsTotal = 0;
+                    $volumeTotal = 0;
                     foreach ($res as $item) {
                         $prix = $item['prix'];
                         $qte = $item['quantite'];
@@ -122,19 +125,24 @@ where h.commande_id=" . $idCommande;
                             $prix = $item['prix_override'];
                         }
                         $prixTotal += $qte * $prix;
-                        $poidsTotal += $item['poids'];
+                        $poidsTotal += $qte * $item['poids'];
+                        $volumeTotal += $qte * $item['volume'];
                     }
 
                     ?>
 
                     <table class="zilu-info">
                         <tr>
-                            <td>Prix total</td>
+                            <td>Prix total estimé</td>
                             <td><?php echo $prixTotal; ?>€</td>
                         </tr>
                         <tr>
-                            <td>Poids total</td>
+                            <td>Poids total estimé</td>
                             <td><?php echo $poidsTotal; ?> kg</td>
+                        </tr>
+                        <tr>
+                            <td>Volume total estimé</td>
+                            <td><?php echo $volumeTotal; ?> m3</td>
                         </tr>
                     </table>
                     <?php
@@ -154,10 +162,11 @@ c.id,
 co.id as container_id,
 co.nom as container,
 c.reference,
-a.poids,
 f.id as fournisseur_id,
 f.nom as fournisseur,
 fha.prix,
+fha.poids,
+fha.volume,
 h.prix_override,
 h.quantite,
 h.date_estimee,
@@ -266,6 +275,7 @@ where c.id=" . $idCommande;
                     'cid',
                     'id',
                     'aid',
+                    'prix',
                     'container_id',
                     'fournisseur_id',
                 ];
@@ -317,10 +327,9 @@ where c.id=" . $idCommande;
         var csvInput = document.getElementById("import-csv-input");
         var jCsvForm = $("form#csv-import-form");
 
-        ajax_form(jCsvForm, function(data){
+        ajax_form(jCsvForm, function (data) {
             console.log(data);
         });
-
 
 
         var commandeSelect = document.getElementById("commande-select");
@@ -635,7 +644,8 @@ where c.id=" . $idCommande;
     </div>
     <div id="csv-import-dialog" title="Importer une commande par fichier csv" class="zilu-dialog centered">
         <div class="container">
-            <form id="csv-import-form" action="/services/zilu.php?action=csv-import-form" method="post" enctype="multipart/form-data">
+            <form id="csv-import-form" action="/services/zilu.php?action=csv-import-form" method="post"
+                  enctype="multipart/form-data">
                 <ul class="flex-outer">
                     <li>
                         <label for="first-name">Nom de la commande</label>

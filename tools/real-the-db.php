@@ -11,6 +11,7 @@ use Crud\Util\CrudFilesPreferencesGenerator;
 use Crud\Util\LeftMenuPreferencesGenerator;
 use DbTransition\Article;
 use DbTransition\Fournisseur;
+use DbTransition\FournisseurHasArticle;
 use QuickPdo\QuickPdo;
 
 //require_once "bigbang.php";
@@ -29,10 +30,14 @@ require_once __DIR__ . "/db-init.inc.php";
 
 
 
-//Fournisseur::createFournisseurs(); // already done
-$fournisseurIds = Fournisseur::getFournisseurIds();
-Article::createArticles();
 
+
+//require_once __DIR__ . "/create-db-structure.inc.php";
+//Fournisseur::createFournisseurs(); // already done
+//$fournisseurIds = Fournisseur::getFournisseurIds();
+//Article::createArticles();
+
+FournisseurHasArticle::createBindures();
 
 
 

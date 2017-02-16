@@ -2,13 +2,17 @@
 
 
 use Csv\CsvUtil;
+use QuickPdo\QuickPdo;
 use Util\ArrayRenderer;
 use Util\RowsRenderer;
 
 require_once __DIR__ . "/../init.php";
 
 
+
+
 $f = "/Users/lafitte/Downloads/COMMANDE ZILU 02-2017.xlsx";
+$f = "/Users/pierrelafitte/Downloads/COMMANDE ZILU 02-2017.xlsx";
 
 
 /** Include PHPExcel_IOFactory */
@@ -29,14 +33,14 @@ function createCommandeByCsv($commandeName, $csvFile)
             $val = $cell->getValue();
             if ('REFART' !== $val && null !== $val) {
                 $val = (string)$val;
-                a($val);
+
             }
         }
     }
 }
 
 
-createCommandeByCsv($f);
+//createCommandeByCsv("C_test", $f);
 
 function renderCsv($f)
 {
@@ -45,3 +49,4 @@ function renderCsv($f)
     $a = $sheet->toArray();
     RowsRenderer::create()->setValues($a)->render();
 }
+renderCsv($f);

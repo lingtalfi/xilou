@@ -16,15 +16,7 @@ class Article
         $items = QuickPdo::fetchAll('
 select 
 reference, 
-reference_fournisseur,
-fournisseur,
 produits as label_fr,
-libelle_origine as label_en,
-unit,
-pmp_achat_dollar,
-poids,
-dimensions,
-description,
 code_ean
 
 
@@ -40,6 +32,7 @@ from csv_prix_materiel
             if ('' !== $ref) {
 
                 $hldp = "";
+                $ean = $item['code_ean'];
                 if (false !== ($res = QuickPdo::fetch("select ref_hldp from csv_product_list where ref_lf=:ref", [
                         'ref' => $ref,
                     ]))
@@ -48,14 +41,35 @@ from csv_prix_materiel
                 }
 
                 $labelEn = '';
+                if (false !== ($res = QuickPdo::fetch('select product, ean from csv_product_details where ref=:ref', [
+                        'ref' => $ref,
+                    ]))
+                ) {
+                    $labelEn = $res['product'];
+                    if ('' !== $res['ean']) {
+                        $ean = $res['ean'];
+                    }
+                }
+
+
+                if ('' === $ean) {
+                    if (false !== ($res = QuickPdo::fetch('select code_ean from csv_prix_materiel where reference=:ref', [
+                            'ref' => $ref,
+                        ]))
+                    ) {
+                        if ('' !== trim($res['code_ean'])) {
+                            $ean = trim($res['code_ean']);
+                        }
+                    }
+                }
 
 
                 QuickPdo::insert('article', [
                     'reference_lf' => $ref,
                     'reference_hldp' => $hldp,
-                    'poids' => $item['poids'],
                     'descr_fr' => $item['label_fr'],
                     'descr_en' => $labelEn,
+                    'ean' => $ean,
                 ]);
             }
         }
