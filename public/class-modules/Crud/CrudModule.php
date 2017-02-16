@@ -93,7 +93,7 @@ class CrudModule
     public static function getDataTable($table, $query, $fields, array $ric)
     {
         $o= new CrudAdminTable($table, $query, $fields, $ric);
-        $o->nbItemsPerPage = "all";
+        $o->nbItemsPerPage = "50";
         return $o;
     }
 

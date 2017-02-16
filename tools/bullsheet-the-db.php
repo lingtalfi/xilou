@@ -241,22 +241,17 @@ foreach ($articleIds as $idArticle) {
 }
 
 
-//--------------------------------------------
-// CRUD GENERATORS
-//--------------------------------------------
-define('APP_ROOT_DIR', __DIR__ . "/../public");
-$options = [];
-$options[] = new LeftMenuPreferencesResetOption('crud_leftmenu', 'empty the left menu preferences');
-$options[] = new CrudFilesResetOption('crud_files', 'remove the crud files');
-$options[] = new GeneratorsPreferencesResetOption('crud_files_prefs', 'empty the crud files preferences');
-foreach ($options as $o) {
-    $o->reset();
-}
+$d = __DIR__ . "/assets";
+QuickPdo::freeQuery(file_get_contents($d . "/csv_fournisseurs_comparatif.sql"));
+QuickPdo::freeQuery(file_get_contents($d . "/csv_fournisseurs_containers.sql"));
+QuickPdo::freeQuery(file_get_contents($d . "/csv_fournisseurs_fournisseurs.sql"));
+QuickPdo::freeQuery(file_get_contents($d . "/csv_fournisseurs_sav.sql"));
+QuickPdo::freeQuery(file_get_contents($d . "/csv_prix_materiel.sql"));
+QuickPdo::freeQuery(file_get_contents($d . "/csv_product_details.sql"));
+QuickPdo::freeQuery(file_get_contents($d . "/csv_product_list.sql"));
 
-CrudFilesPreferencesGenerator::generate();
-CrudFilesGenerator::generateCrudFormsFromPreferences();
-CrudFilesGenerator::generateCrudListsFromPreferences();
-LeftMenuPreferencesGenerator::create()->generate();
+
+require_once __DIR__ . "/crudify.php";
 
 
 

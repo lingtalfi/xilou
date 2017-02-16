@@ -185,23 +185,28 @@ if (array_key_exists('action', $_GET)) {
             }
             break;
         case 'send-mail-purchase-order':
-
+            // todo
             $mail = MAIL_DIDIER;
             if (array_key_exists('test', $_GET)) {
                 $mail = MAIL_ZILU;
             }
-
-
             OrderConfMail::send($mail);
-
-
-
-
             if (false !== $res) {
                 $output = 'ok';
             } else {
                 $output = 'ko';
             }
+            break;
+        case 'csv-import-form':
+            if (array_key_exists('csvfile', $_FILES) && array_key_exists('nom', $_POST)) {
+                $tmp_name = $_FILES['csvfile']['tmp_name'];
+                $cmdName = "C-" . date('Y-m-d') . '.xlxs';
+                if (move_uploaded_file($tmp_name, APP_COMMANDE_IMPORTS_DIR . "/" . $cmdName)) {
+
+                    $output = [];
+                }
+            }
+
 
             break;
         default:

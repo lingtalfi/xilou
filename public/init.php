@@ -106,6 +106,7 @@ QuickPdo::setConnection("mysql:host=localhost;dbname=$dbName", $dbUser, $dbPass,
 //--------------------------------------------
 // paths
 define('APP_ROOT_DIR', __DIR__);
+define('APP_COMMANDE_IMPORTS_DIR', APP_ROOT_DIR . "/www/commande-imports");
 define('MAIL_ZILU', 'lingtalfi@gmail.com');
 define('MAIL_DIDIER', 'lingtalfi@gmail.com');
 

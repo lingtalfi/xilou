@@ -293,11 +293,41 @@ where c.id=" . $idCommande;
         var commandeId = <?php echo $idCommande; ?>;
 
 
+        // http://stackoverflow.com/questions/10899384/uploading-both-data-and-files-in-one-form-using-ajax
+        function ajax_form($form, on_complete) {
+            var iframe;
+
+            if (!$form.attr('target')) {
+                //create a unique iframe for the form
+                iframe = $("<iframe></iframe>").attr('name', 'ajax_form_' + Math.floor(Math.random() * 999999)).hide().appendTo($('body'));
+                $form.attr('target', iframe.attr('name'));
+            }
+
+            if (on_complete) {
+                iframe = iframe || $('iframe[name=" ' + $form.attr('target') + ' "]');
+                iframe.load(function () {
+                    //get the server response
+                    var response = iframe.contents().find('body').text();
+                    on_complete(response);
+                });
+            }
+        }
+
+
         var csvInput = document.getElementById("import-csv-input");
+        var jCsvForm = $("form#csv-import-form");
+
+        ajax_form(jCsvForm, function(data){
+            console.log(data);
+        });
+
+
+
         var commandeSelect = document.getElementById("commande-select");
         csvInput.addEventListener('change', function () {
             csvInput.parentNode.submit();
         });
+
         commandeSelect.addEventListener('change', function () {
             var value = commandeSelect.value;
             if ('0' !== value) {
@@ -605,8 +635,11 @@ where c.id=" . $idCommande;
     </div>
     <div id="csv-import-dialog" title="Importer une commande par fichier csv" class="zilu-dialog centered">
         <div class="container">
-            <form action="" method="post" enctype="multipart/form-data">
+            <form id="csv-import-form" action="/services/zilu.php?action=csv-import-form" method="post" enctype="multipart/form-data">
                 <ul class="flex-outer">
+                    <li>
+                        <label for="first-name">Nom de la commande</label>
+                        <input name="nom" type="text" value="<?php echo "C-" . date('Y-m-d'); ?>"></li>
                     <li>
                         <label for="first-name">Choisissez un fichier csv</label>
                         <input id="import-csv-input" type="file" name="csvfile"
