@@ -4,8 +4,13 @@
 namespace Mail;
 
 
+use Commande\CommandeUtil;
+use CommandeHasArticle\CommandeHasArticleUtil;
+use QuickPdo\QuickPdo;
+use Umail\Renderer\PhpRenderer;
 use Umail\TemplateLoader\FileTemplateLoader;
 use Umail\Umail;
+use Util\GeneralUtil;
 
 class OrderConfMail
 {
@@ -16,57 +21,80 @@ class OrderConfMail
     }
 
 
-    public static function send($to)
+    public static function sendByCommandeId($to, $commandeId, $estimatedDate = null)
     {
 
+        $res = 0;
 
-        //------------------------------------------------------------------------------/
-        // EMBED A FILE
-        //------------------------------------------------------------------------------/
-        $logoFile = APP_ROOT_DIR . "/www/img/leaderfit-logo-new.jpg";
-        $mail = Umail::create();
+        if (null === $estimatedDate) {
+            $estimatedDate = date("Y-m-d", time() + 30 * 86400);
+        }
+
+        if (false !== ($commande = QuickPdo::fetch("select reference from commande where id=" . (int)$commandeId))) {
+            $orderName = $commande['reference'];
+
+            //------------------------------------------------------------------------------/
+            // EMBED A FILE
+            //------------------------------------------------------------------------------/
+            $logoFile = APP_ROOT_DIR . "/www/img/leaderfit-logo-new.jpg";
+            $mail = Umail::create();
+
+            list($prixTotal, $poidsTotal, $volumeTotal) = CommandeUtil::getCommandeSumInfo($commandeId);
 
 
-        $vars = [
-            'order_number' => 'C_000938',
-            'order_estimated_date' => '2017-04-13',
-            'shop_name' => 'Leaderfit',
-            'total_paid' => '128.80 €',
-            'shop_url' => 'http://leaderfit-equipement.com/',
-            'shop_logo' => $mail->embedFile($logoFile),
-            'order_details' => [
-                [
-                    'reference' => '#P_000382',
-                    'provider_reference' => 'XKOFP',
-                    'fournisseur' => 'Whozang',
-                    'img_src' => $mail->embedFile(APP_ROOT_DIR . "/www/img/ballon-paille-bleu.jpg"),
-                    'name' => 'Ballon bleu',
-                    'unit_price' => '23.90 €',
-                    'quantity' => '2',
-                    'price' => '47.80 €',
-                ],
-                [
-                    'reference' => '#P_000385',
-                    'provider_reference' => 'DXKOFP',
-                    'fournisseur' => 'Asia carpet',
-                    'img_src' => $mail->embedFile(APP_ROOT_DIR . "/www/img/pilates-ring-lf-noir.jpg"),
-                    'name' => 'Haltères 6kg',
-                    'unit_price' => '27 €',
-                    'quantity' => '3',
-                    'price' => '81 €',
-                ],
-            ],
-        ];
+            $dollarToEuroRate = GeneralUtil::getDollarToEuroRate();
+            $prixTotalEuros = $prixTotal * $dollarToEuroRate;
 
-        $res = $mail->to($to)
-            ->from('zilu-bot@leaderfit-equipement.com')
-            ->subject("Commande en cours de préparation")
-            ->setVars($vars)
-            ->setTemplateLoader(FileTemplateLoader::create()->setDir(APP_ROOT_DIR . "/mails")->setSuffix('.php'))
-            ->setTemplate('zilu/order_conf')
-//            ->setRenderer(PhpRenderer::create())
-            ->send();
-        a($res);
+
+            $items = CommandeHasArticleUtil::getCommandeDetails((int)$commandeId);
+            $orderDetails = [];
+            foreach ($items as $item) {
+
+
+                $unitPrice = $item['prix_override'];
+                if ('' !== trim((string)$unitPrice)) {
+                    $unitPrice = $item['prix'];
+                }
+
+                $totalPrice = $unitPrice * (int)$item['quantite'];
+                $image = $item['photo'];
+                if ('/' === trim($image)) {
+                    $image = "/img/blank.jpg";
+                }
+
+                $orderDetails[] = [
+                    'reference' => $item['reference_lf'],
+                    'provider_reference' => $item['reference_pro'],
+                    'fournisseur' => $item['fournisseur'],
+                    'img_src' => $mail->embedFile(APP_ROOT_DIR . "/www" . $image),
+                    'name' => $item['descr_fr'],
+                    'unit_price' => $unitPrice . ' €',
+                    'quantity' => $item['quantite'],
+                    'price' => $totalPrice . ' €',
+                ];
+            }
+
+            $vars = [
+                'order_number' => $orderName,
+                'order_estimated_date' => (string)$estimatedDate,
+                'shop_name' => 'Leaderfit',
+                'total_paid' => $prixTotalEuros . ' €',
+                'shop_url' => 'http://leaderfit-equipement.com/',
+                'shop_logo' => $mail->embedFile($logoFile),
+                'order_details' => $orderDetails,
+            ];
+
+            $res = $mail->to($to)
+                ->from('zilu-bot@leaderfit-equipement.com')
+                ->subject("Commande en cours de préparation")
+                ->setVars($vars)
+                ->setRenderer(PhpRenderer::create())
+                ->setTemplateLoader(FileTemplateLoader::create()->setDir(APP_ROOT_DIR . "/mails")->setSuffix('.php'))
+                ->setTemplate('zilu/order_conf')
+                ->send();
+        }
+
+        return $res;
 
     }
 

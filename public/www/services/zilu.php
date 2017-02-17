@@ -6,6 +6,7 @@ use Container\ContainerUtil;
 use CsvImport\CommandeImporterUtil;
 use Fournisseur\FournisseurUtil;
 use Mail\OrderConfMail;
+use Mail\OrderProviderConfMail;
 use QuickPdo\QuickPdo;
 use Sav\SavAjaxFormInsert;
 use Sav\SavDetailsArrayRenderer;
@@ -186,15 +187,44 @@ if (array_key_exists('action', $_GET)) {
             }
             break;
         case 'send-mail-purchase-order':
-            $mail = MAIL_DIDIER;
-            if (array_key_exists('test', $_GET)) {
-                $mail = MAIL_ZILU;
+
+            if (array_key_exists("commande_id", $_GET) &&
+                array_key_exists('estimated_date', $_GET)
+            ) {
+                $commandeId = $_GET['commande_id'];
+                $estimatedDate = $_GET['estimated_date'];
+
+                $mail = MAIL_DIDIER;
+                if (array_key_exists('test', $_GET)) {
+                    $mail = MAIL_ZILU;
+                }
+                $n = OrderConfMail::sendByCommandeId($mail, $commandeId, $estimatedDate);
+                if (1 === $n) {
+                    $output = 'ok';
+                } else {
+                    $output = "Une erreur est survenue, le mail n'a pas été envoyé; veuillez contacter le webmaster";
+                }
             }
-            $n = OrderConfMail::send($mail);
-            if (1 === $n) {
-                $output = 'ok';
-            } else {
-                $output = 'ko';
+            break;
+        case 'send-mail-pro-purchase-order':
+
+
+            if (array_key_exists("commande_id", $_GET) &&
+                array_key_exists('signature', $_GET)
+            ) {
+                $commandeId = $_GET['commande_id'];
+                $signature = $_GET['signature'];
+
+                $mail = MAIL_DIDIER;
+                if (array_key_exists('test', $_GET)) {
+                    $mail = MAIL_ZILU;
+                }
+                $n = OrderProviderConfMail::sendByCommandeId($mail, $commandeId, $signature);
+                if (1 === $n) {
+                    $output = 'ok';
+                } else {
+                    $output = "Une erreur est survenue, le mail n'a pas été envoyé; veuillez contacter le webmaster";
+                }
             }
             break;
         case 'csv-import-form':
@@ -211,7 +241,8 @@ if (array_key_exists('action', $_GET)) {
                         if (false !== ($idCommande = CommandeImporterUtil::createCommandeByCsvFile($csvFile, $cmdName, $missingRefs))) {
                             if (count($missingRefs) > 0) {
                                 $output = [
-                                    'missingRefs' => "La commande a bien été importée; les références suivantes étaient manquantes et ont été rajoutées: " . implode(',', $missingRefs),
+                                    'missingRefs' => "La commande a bien été importée; les références suivantes étaient manquantes et ont été rajoutées: " . implode(',', $missingRefs) . "
+                                    Veuillez rafrîchir la page pour continuer.",
                                 ];
                             } else {
                                 $output = [

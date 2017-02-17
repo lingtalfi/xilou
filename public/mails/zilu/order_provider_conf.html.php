@@ -328,7 +328,7 @@
                                                 <tr>
                                                     <td width="10">&nbsp;</td>
                                                     <td>
-                                                        <font size="2" face="Open-sans, sans-serif" color="#555454">
+                                                        <font style="white-space: nowrap" size="2" face="Open-sans, sans-serif" color="#555454">
                                                             <?php echo $od->unit_price; ?>
                                                         </font>
                                                     </td>
@@ -354,7 +354,7 @@
                                                 <tr>
                                                     <td width="10">&nbsp;</td>
                                                     <td align="right">
-                                                        <font size="2" face="Open-sans, sans-serif" color="#555454">
+                                                        <font style="white-space: nowrap" size="2" face="Open-sans, sans-serif" color="#555454">
                                                             <?php echo $od->price; ?>
                                                         </font>
                                                     </td>
@@ -373,7 +373,7 @@
                                             <tr>
                                                 <td width="10" style="color:#333;padding:0">&nbsp;</td>
                                                 <td align="right" style="color:#333;padding:0">
-                                                    <font size="2" face="Open-sans, sans-serif" color="#555454">
+                                                    <font style="white-space: nowrap" size="2" face="Open-sans, sans-serif" color="#555454">
                                                         <strong>Total</strong>
                                                     </font>
                                                 </td>
@@ -387,7 +387,7 @@
                                             <tr>
                                                 <td width="10" style="color:#333;padding:0">&nbsp;</td>
                                                 <td align="right" style="color:#333;padding:0">
-                                                    <font size="4" face="Open-sans, sans-serif" color="#555454">
+                                                    <font style="white-space: nowrap" size="4" face="Open-sans, sans-serif" color="#555454">
                                                         {total_paid}
                                                     </font>
                                                 </td>

@@ -32,6 +32,7 @@ from csv_prix_materiel
             if ('' !== $ref) {
 
                 $hldp = "";
+                $photo = "";
                 $ean = $item['code_ean'];
                 if (false !== ($res = QuickPdo::fetch("select ref_hldp from csv_product_list where ref_lf=:ref", [
                         'ref' => $ref,
@@ -41,11 +42,12 @@ from csv_prix_materiel
                 }
 
                 $labelEn = '';
-                if (false !== ($res = QuickPdo::fetch('select product, ean from csv_product_details where ref=:ref', [
+                if (false !== ($res = QuickPdo::fetch('select product, photo, ean from csv_product_details where ref=:ref', [
                         'ref' => $ref,
                     ]))
                 ) {
                     $labelEn = $res['product'];
+                    $photo = $res['photo'];
                     if ('' !== $res['ean']) {
                         $ean = $res['ean'];
                     }
@@ -70,6 +72,7 @@ from csv_prix_materiel
                     'descr_fr' => $item['label_fr'],
                     'descr_en' => $labelEn,
                     'ean' => $ean,
+                    'photo' => $photo,
                 ]);
             }
         }

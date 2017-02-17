@@ -101,51 +101,24 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
 
             if (0 !== $idCommande) {
 
-                $query = "select
-h.prix_override,
-h.quantite,
-fha.prix,
-fha.volume,
-fha.poids
+                list($prixTotal, $poidsTotal, $volumeTotal) = CommandeUtil::getCommandeSumInfo($idCommande);
 
-from commande_has_article h
-inner join article a on a.id=h.article_id
-inner join fournisseur_has_article fha on fha.fournisseur_id=h.fournisseur_id and fha.article_id=h.article_id
-where h.commande_id=" . $idCommande;
-                if (false !== ($res = QuickPdo::fetchAll($query))):
-
-                    $prixTotal = 0;
-                    $poidsTotal = 0;
-                    $volumeTotal = 0;
-                    foreach ($res as $item) {
-                        $prix = $item['prix'];
-                        $qte = $item['quantite'];
-                        if ('' !== trim($item['prix_override'])) {
-                            $prix = $item['prix_override'];
-                        }
-                        $prixTotal += $qte * $prix;
-                        $poidsTotal += $qte * $item['poids'];
-                        $volumeTotal += $qte * $item['volume'];
-                    }
-
-                    ?>
-
-                    <table class="zilu-info">
-                        <tr>
-                            <td>Prix total estimé</td>
-                            <td><?php echo $prixTotal; ?>€</td>
-                        </tr>
-                        <tr>
-                            <td>Poids total estimé</td>
-                            <td><?php echo $poidsTotal; ?> kg</td>
-                        </tr>
-                        <tr>
-                            <td>Volume total estimé</td>
-                            <td><?php echo $volumeTotal; ?> m3</td>
-                        </tr>
-                    </table>
-                    <?php
-                endif;
+                ?>
+                <table class="zilu-info">
+                    <tr>
+                        <td>Prix total estimé</td>
+                        <td><?php echo $prixTotal; ?>€</td>
+                    </tr>
+                    <tr>
+                        <td>Poids total estimé</td>
+                        <td><?php echo $poidsTotal; ?> kg</td>
+                    </tr>
+                    <tr>
+                        <td>Volume total estimé</td>
+                        <td><?php echo $volumeTotal; ?> m3</td>
+                    </tr>
+                </table>
+                <?php
             }
 
             ?>
@@ -323,7 +296,6 @@ where c.id=" . $idCommande;
         }
 
 
-        var csvInput = document.getElementById("import-csv-input");
         var jCsvForm = $("form#csv-import-form");
 
         ajax_form(jCsvForm, function (data) {
@@ -430,17 +402,108 @@ where c.id=" . $idCommande;
                 }
             }
         });
+
+
+        function getDatePlusDays(dt, days) {
+            return new Date(dt.getTime() + (days * 86400000));
+        }
+
         $("#send-mail-selector").selectmenu({
-            select: function (event, data) {
+            select: function (e, data) {
+
                 var value = $(this).val();
-                var confMsg = "";
-                if ('direction-test' === value) {
-                    confMsg = "Vous êtes sur le point d'envoyer le mail récapitulatif de commande à zilu.";
+
+                if ('direction-test' === value || 'direction' === value) {
+
+                    var argTest = "";
+                    if ("direction-test" === value) {
+                        argTest = "&test=1";
+                    }
+
+
+                    $("#order-conf-mail-dialog").dialog({
+                        position: {
+                            my: "left top",
+                            at: "left center",
+                            of: $(".zilu-topbar")
+                        },
+                        width: 600,
+                        open: function (event, ui) {
+                            var curDate = getDatePlusDays(new Date(), 30);
+                            var defaultValue = curDate.toISOString().slice(0, 19).replace('T', ' ');
+                            var jDate = $("#order-conf-mail-dialog").find('.datepicker');
+                            var jBtn = $("#order-conf-mail-dialog").find('.order-conf-mail-submit-btn');
+                            jDate.datepicker({
+                                dateFormat: "yy-mm-dd"
+                            });
+                            jDate.datepicker("setDate", defaultValue);
+                            jDate.blur();
+
+
+                            jBtn.on('click', function (e) {
+                                e.preventDefault();
+                                var jForm = jBtn.closest('form');
+                                var formData = jForm.serialize();
+
+
+                                var jLoader = $("#order-conf-mail-dialog").find(".loader");
+                                jLoader.removeClass("hidden");
+                                var jBlock = $("#order-conf-mail-dialog").find(".block");
+                                jBlock.addClass("hidden");
+
+
+                                $.getJSON('/services/zilu.php?action=send-mail-purchase-order' + argTest + '&' + formData, function (data) {
+                                    if ('ok' === data) {
+                                        $("order-conf-mail-dialog").dialog('close');
+                                        window.location.reload();
+                                    }
+                                    else {
+                                        jLoader.html(data);
+                                    }
+                                });
+                            });
+                        }
+                    });
                 }
-                confMsg += " ";
-                confMsg += "Etes-vous certain de vouloir exécuter cette action ?";
-                if (true === window.confirm(confMsg)) {
-                    console.log("kk");
+                else if ("fournisseurs" === value || "fournisseurs-test" === value) {
+                    var argTest = "";
+                    if ("fournisseurs-test" === value) {
+                        argTest = "&test=1";
+                    }
+
+
+                    $("#order-pro-conf-mail-dialog").dialog({
+                        position: {
+                            my: "left top",
+                            at: "left center",
+                            of: $(".zilu-topbar")
+                        },
+                        width: 600,
+                        open: function (event, ui) {
+
+                            var jSignature = $("#order-pro-conf-mail-dialog").find('.selector');
+                            var jBtn = $("#order-pro-conf-mail-dialog").find('.order-pro-conf-mail-submit-btn');
+                            jBtn.on('click', function (e) {
+                                e.preventDefault();
+                                var jForm = jBtn.closest('form');
+                                var formData = jForm.serialize();
+                                var jLoader = $("#order-pro-conf-mail-dialog").find(".loader");
+                                jLoader.removeClass("hidden");
+                                var jBlock = $("#order-pro-conf-mail-dialog").find(".block");
+                                jBlock.addClass("hidden");
+
+                                $.getJSON('/services/zilu.php?action=send-mail-pro-purchase-order' + argTest + '&' + formData, function (data) {
+                                    if ('ok' === data) {
+                                        $("order-pro-conf-mail-dialog").dialog('close');
+                                        window.location.reload();
+                                    }
+                                    else {
+                                        jLoader.html(data);
+                                    }
+                                });
+                            });
+                        }
+                    });
                 }
 
             }
@@ -584,6 +647,7 @@ where c.id=" . $idCommande;
                         });
                     }
                 });
+
             }
             else if (jTarget.hasClass("update-link")) {
                 e.preventDefault();
@@ -713,5 +777,46 @@ where c.id=" . $idCommande;
             <br>
             <button type="submit" id="update-column-submit-btn">Modifier</button>
         </form>
+    </div>
+    <div id="order-conf-mail-dialog" title="Informations à inscrire dans le mail">
+        <div class="block">
+            <form style="text-align: center">
+                <ul class="flex-outer">
+                    <li>
+                        <label>Date estimée</label>
+                        <input type="text" name="estimated_date" class="datepicker" value="">
+                    </li>
+                    <li>
+                        <button class="order-conf-mail-submit-btn" type="submit">Envoyer le mail</button>
+                    </li>
+                </ul>
+                <input type="hidden" name="commande_id" value="<?php echo $idCommande; ?>">
+            </form>
+        </div>
+        <div class="loader hidden">
+            Veuillez patienter un instant...
+        </div>
+    </div>
+    <div id="order-pro-conf-mail-dialog" title="Informations à inscrire dans le mail">
+        <div class="block">
+            <form style="text-align: center">
+                <ul class="flex-outer">
+                    <li>
+                        <label>Signature à utiliser</label>
+                        <select class="selector" name="signature">
+                            <option value="leaderfit">Leaderfit</option>
+                            <option value="hldp">Hldp</option>
+                        </select>
+                    </li>
+                    <li>
+                        <button class="order-pro-conf-mail-submit-btn" type="submit">Envoyer le mail</button>
+                    </li>
+                </ul>
+                <input type="hidden" name="commande_id" value="<?php echo $idCommande; ?>">
+            </form>
+        </div>
+        <div class="loader hidden">
+            Veuillez patienter un instant...
+        </div>
     </div>
 </div>

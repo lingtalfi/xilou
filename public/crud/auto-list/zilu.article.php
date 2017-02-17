@@ -9,7 +9,8 @@ reference_lf,
 reference_hldp,
 descr_fr,
 descr_en,
-ean
+ean,
+photo
 ';
 
 
@@ -31,6 +32,7 @@ $table->columnLabels= [
     "descr_fr" => "descr fr",
     "descr_en" => "descr en",
     "ean" => "ean",
+    "photo" => "photo",
 ];
 
 

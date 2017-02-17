@@ -10,6 +10,38 @@ class CommandeUtil
 {
 
 
+    public static function getCommandeSumInfo($commandeId)
+    {
+        $prixTotal = 0;
+        $poidsTotal = 0;
+        $volumeTotal = 0;
+
+        $query = "select
+h.prix_override,
+h.quantite,
+fha.prix,
+fha.volume,
+fha.poids
+
+from commande_has_article h
+inner join article a on a.id=h.article_id
+inner join fournisseur_has_article fha on fha.fournisseur_id=h.fournisseur_id and fha.article_id=h.article_id
+where h.commande_id=" . $commandeId;
+        if (false !== ($res = QuickPdo::fetchAll($query))) {
+            foreach ($res as $item) {
+                $prix = $item['prix'];
+                $qte = $item['quantite'];
+                if ('' !== trim($item['prix_override'])) {
+                    $prix = $item['prix_override'];
+                }
+                $prixTotal += $qte * $prix;
+                $poidsTotal += $qte * $item['poids'];
+                $volumeTotal += $qte * $item['volume'];
+            }
+        }
+        return [$prixTotal, $poidsTotal, $volumeTotal];
+    }
+
     public static function insertCommande(array $values)
     {
         $values = array_merge([

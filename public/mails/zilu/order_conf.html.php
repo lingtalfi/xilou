@@ -237,7 +237,7 @@
                                     <th bgcolor="#f8f8f8"
                                         style="border:1px solid #D6D4D4;background-color: #fbfbfb;color: #333;font-family: Arial;font-size: 13px;padding: 10px;"
                                         width="17%"
-                                        >Prix unitaire
+                                    >Prix unitaire
                                     </th>
                                     <th bgcolor="#f8f8f8"
                                         style="border:1px solid #D6D4D4;background-color: #fbfbfb;color: #333;font-family: Arial;font-size: 13px;padding: 10px;">
@@ -295,7 +295,8 @@
                                                     <td width="10">&nbsp;</td>
                                                     <td>
                                                         <font size="2" face="Open-sans, sans-serif" color="#555454">
-                                                            <img style="max-width:30%; max-height:40px; vertical-align: middle; height:auto; width:auto;" src="<?php echo $od->img_src; ?>">
+                                                            <img style="max-width:30%; max-height:40px; vertical-align: middle; height:auto; width:auto;"
+                                                                 src="<?php echo $od->img_src; ?>">
                                                             <strong><?php echo $od->name; ?></strong>
                                                         </font>
                                                     </td>
@@ -308,7 +309,8 @@
                                                 <tr>
                                                     <td width="10">&nbsp;</td>
                                                     <td align="right">
-                                                        <font size="2" face="Open-sans, sans-serif" color="#555454">
+                                                        <font size="2" style="white-space: nowrap"
+                                                              face="Open-sans, sans-serif" color="#555454">
                                                             <?php echo $od->unit_price; ?>
                                                         </font>
                                                     </td>
@@ -334,7 +336,8 @@
                                                 <tr>
                                                     <td width="10">&nbsp;</td>
                                                     <td align="right">
-                                                        <font size="2" face="Open-sans, sans-serif" color="#555454">
+                                                        <font size="2" style="white-space: nowrap"
+                                                              face="Open-sans, sans-serif" color="#555454">
                                                             <?php echo $od->price; ?>
                                                         </font>
                                                     </td>

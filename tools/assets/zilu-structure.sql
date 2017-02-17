@@ -51,14 +51,15 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `zilu`.`article`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `zilu`.`article` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `reference_lf` VARCHAR(45) NOT NULL,
-  `reference_hldp` VARCHAR(45) NOT NULL,
-  `descr_fr` TEXT NOT NULL,
-  `descr_en` TEXT NOT NULL,
-  `ean` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
+CREATE  TABLE IF NOT EXISTS `zilu`.`article` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `reference_lf` VARCHAR(45) NOT NULL ,
+  `reference_hldp` VARCHAR(45) NOT NULL ,
+  `descr_fr` TEXT NOT NULL ,
+  `descr_en` TEXT NOT NULL ,
+  `ean` VARCHAR(45) NOT NULL ,
+  `photo` VARCHAR(128) NULL ,
+  PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
 

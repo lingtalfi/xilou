@@ -67,7 +67,6 @@ if (
     $privilegeSessionTimeout = 60 * 5;
 }
 
-
 //--------------------------------------------
 // PHP
 //--------------------------------------------
@@ -78,7 +77,9 @@ if (null !== $privilegeSessionTimeout) { // or session expires when browser quit
 } else {
     ini_set('session.cookie_lifetime', 10 * 12 * 31 * 86400); // ~10 years
 }
+
 session_start();
+
 
 
 //--------------------------------------------

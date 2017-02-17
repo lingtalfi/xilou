@@ -4,9 +4,13 @@
 namespace Mail;
 
 
+use Commande\CommandeUtil;
+use CommandeHasArticle\CommandeHasArticleUtil;
+use QuickPdo\QuickPdo;
 use Umail\Renderer\PhpRenderer;
 use Umail\TemplateLoader\FileTemplateLoader;
 use Umail\Umail;
+use Util\GeneralUtil;
 
 class OrderProviderConfMail
 {
@@ -17,56 +21,73 @@ class OrderProviderConfMail
     }
 
 
-    public static function send($to)
+    public static function sendByCommandeId($to, $commandeId, $signature = "leaderfit")
     {
         $mail = Umail::create();
 
+        $res = 0;
 
-        $vars = [
-            'order_number' => 'C_000938',
-            'total_paid' => '128.80 €',
-            'signature' => $mail->embedFile(APP_ROOT_DIR . "/www/img/email-signature.jpg"),
-            'company' => "Leaderfit", // HDLP
-            'order_details' => [
-                [
-                    'reference' => '#P_000382',
-                    'provider_reference' => '#jKFZEO',
-                    'name' => 'Ballon bleu',
-                    'img_src' => $mail->embedFile(APP_ROOT_DIR . "/www/img/ballon-paille-bleu.jpg"),
-                    'ean' => '3825203492042',
-                    'packing' => '2 in a box',
-                    'description' => '20cm wide',
+        if (false !== ($commande = QuickPdo::fetch("select reference from commande where id=" . (int)$commandeId))) {
+            $orderName = $commande['reference'];
+
+            list($prixTotal, $poidsTotal, $volumeTotal) = CommandeUtil::getCommandeSumInfo($commandeId);
+
+
+            $signImg = ('hldp' === $signature) ? "email-signature2.jpg" : "email-signature.jpg";
+
+
+            $items = CommandeHasArticleUtil::getCommandeDetails((int)$commandeId);
+            $orderDetails = [];
+            foreach ($items as $item) {
+
+
+                $unitPrice = $item['prix_override'];
+                if ('' !== trim((string)$unitPrice)) {
+                    $unitPrice = $item['prix'];
+                }
+
+                $totalPrice = $unitPrice * (int)$item['quantite'];
+                $image = $item['photo'];
+                if ('/' === trim($image)) {
+                    $image = "/img/blank.jpg";
+                }
+
+                $orderDetails[] = [
+                    'reference' => $item['reference_lf'],
+                    'provider_reference' => $item['reference_pro'],
+                    'fournisseur' => $item['fournisseur'],
+                    'img_src' => $mail->embedFile(APP_ROOT_DIR . "/www" . $image),
+                    'name' => $item['descr_fr'],
+                    'unit_price' => $unitPrice . ' €',
+                    'quantity' => $item['quantite'],
+                    'price' => $totalPrice . ' €',
+                    'ean' => $item['ean'],
+                    'packing' => $item['unit'],
+                    'description' => $item['descr_en'],
                     'logo' => $mail->embedFile(APP_ROOT_DIR . "/www/img/logo.jpg"),
-                    'unit_price' => '23.90 €',
-                    'quantity' => '2',
-                    'price' => '47.80 €',
-                ],
-                [
-                    'reference' => '#P_000385',
-                    'provider_reference' => '#fzAJFFOZz',
-                    'name' => 'Haltères 6kg',
-                    'img_src' => $mail->embedFile(APP_ROOT_DIR . "/www/img/pilates-ring-lf-noir.jpg"),
-                    'ean' => '3825205632042',
-                    'packing' => 'par lot de 3',
-                    'description' => '2m',
-                    'logo' => $mail->embedFile(APP_ROOT_DIR . "/www/img/logo2.png"),
-                    'unit_price' => '27 €',
-                    'quantity' => '3',
-                    'price' => '81 €',
-                ],
-            ],
-        ];
-        $res = $mail->to($to)
-            ->from('zilu-bot@leaderfit-equipement.com')
-//            ->subject("Pre-ordering products for Leaderfit")
-            ->subject("Purchase order")
-            ->setVars($vars)
-            ->setTemplateLoader(FileTemplateLoader::create()->setDir(APP_ROOT_DIR . "/mails")->setSuffix('.php'))
-            ->setTemplate('zilu/order_provider_conf')
-            ->setRenderer(PhpRenderer::create())
-            ->send();
-        a($res);
 
+                ];
+            }
+
+
+            $vars = [
+                'order_number' => $orderName,
+                'total_paid' => $prixTotal . ' €',
+                'signature' => $mail->embedFile(APP_ROOT_DIR . "/www/img/" . $signImg),
+                'company' => "Leaderfit", // HDLP
+                'order_details' => $orderDetails,
+            ];
+            $res = $mail->to($to)
+                ->from('zilu-bot@leaderfit-equipement.com')
+//            ->subject("Pre-ordering products for Leaderfit")
+                ->subject("Purchase order")
+                ->setVars($vars)
+                ->setTemplateLoader(FileTemplateLoader::create()->setDir(APP_ROOT_DIR . "/mails")->setSuffix('.php'))
+                ->setTemplate('zilu/order_provider_conf')
+                ->setRenderer(PhpRenderer::create())
+                ->send();
+        }
+        return $res;
     }
 
 
