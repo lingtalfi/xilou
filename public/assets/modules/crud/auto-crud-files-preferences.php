@@ -28,7 +28,6 @@ $prefs = [
         'reference_hldp' => 'reference hldp',
         'descr_fr' => 'descr fr',
         'descr_en' => 'descr en',
-        'estimated_date' => 'estimated date',
         'commande_id' => 'commande',
         'article_id' => 'article',
         'container_id' => 'container',

@@ -5,6 +5,7 @@ namespace DbTransition;
 
 
 use QuickPdo\QuickPdo;
+use Util\GeneralUtil;
 
 class FournisseurHasArticle
 {
@@ -42,9 +43,9 @@ select fournisseur, ref_hldp, ref, unit, unit_price, m3_unit, poids_unit from cs
                         'fournisseur_id' => $fId,
                         'article_id' => $res['id'],
                         'reference' => $item['ref'],
-                        'prix' => self::toDecimal($item['unit_price']),
-                        'volume' => self::toDecimal($item['m3_unit']),
-                        'poids' => self::toDecimal($item['poids_unit']),
+                        'prix' => GeneralUtil::toDecimal($item['unit_price']),
+                        'volume' => GeneralUtil::toDecimal($item['m3_unit']),
+                        'poids' => GeneralUtil::toDecimal($item['poids_unit']),
                     ];
                     self::replaceData($ins);
                 }
@@ -89,13 +90,7 @@ from csv_prix_materiel
     //------------------------------------------------------------------------------/
     //
     //------------------------------------------------------------------------------/
-    private static function toDecimal($string)
-    {
-        if (preg_match('![0-9]+(,[0-9]+)?!', $string, $m)) {
-            return str_replace(',', '.', $m[0]);
-        }
-        return "0.00";
-    }
+
 
     private static function replaceData(array $item)
     {

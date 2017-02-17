@@ -4,7 +4,6 @@
 namespace Mail;
 
 
-
 use Umail\TemplateLoader\FileTemplateLoader;
 use Umail\Umail;
 
@@ -58,6 +57,7 @@ class OrderConfMail
                 ],
             ],
         ];
+
         $res = $mail->to($to)
             ->from('zilu-bot@leaderfit-equipement.com')
             ->subject("Commande en cours de préparation")

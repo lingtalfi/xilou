@@ -17,6 +17,7 @@ $form->labels = [
     "prix_override" => "prix override",
     "date_estimee" => "date estimee",
     "quantite" => "quantite",
+    "unit" => "unit",
 ];
 
 
@@ -33,6 +34,7 @@ $form->addControl("prix_override")->type("text");
 $form->addControl("date_estimee")->type("date3");
 $form->addControl("quantite")->type("text")
 ->value(0);
+$form->addControl("unit")->type("text");
 
 
 $form->display();

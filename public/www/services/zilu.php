@@ -3,6 +3,7 @@
 
 use Commande\CommandeUtil;
 use Container\ContainerUtil;
+use CsvImport\CommandeImporterUtil;
 use Fournisseur\FournisseurUtil;
 use Mail\OrderConfMail;
 use QuickPdo\QuickPdo;
@@ -185,13 +186,12 @@ if (array_key_exists('action', $_GET)) {
             }
             break;
         case 'send-mail-purchase-order':
-            // todo
             $mail = MAIL_DIDIER;
             if (array_key_exists('test', $_GET)) {
                 $mail = MAIL_ZILU;
             }
-            OrderConfMail::send($mail);
-            if (false !== $res) {
+            $n = OrderConfMail::send($mail);
+            if (1 === $n) {
                 $output = 'ok';
             } else {
                 $output = 'ko';
@@ -202,18 +202,44 @@ if (array_key_exists('action', $_GET)) {
                 $tmp_name = $_FILES['csvfile']['tmp_name'];
                 $cmdName = $_POST['nom'];
                 $cmdFileBaseName = preg_replace('[^a-zA-Z0-9_.-]', '', $cmdName);
-                $cmdFileName = $cmdFileBaseName . '.xlxs';
+                $cmdFileName = $cmdFileBaseName . '.xlsx';
+                $csvFile = APP_COMMANDE_IMPORTS_DIR . "/" . $cmdFileName;
 
-                $isUploadedFile = (int)is_uploaded_file($tmp_name);
-
-                if (move_uploaded_file($tmp_name, APP_COMMANDE_IMPORTS_DIR . "/" . $cmdFileName)) {
-                    $output = "ok" . $isUploadedFile;
+                if (move_uploaded_file($tmp_name, $csvFile)) {
+                    try {
+                        $missingRefs = [];
+                        if (false !== ($idCommande = CommandeImporterUtil::createCommandeByCsvFile($csvFile, $cmdName, $missingRefs))) {
+                            if (count($missingRefs) > 0) {
+                                $output = [
+                                    'missingRefs' => "La commande a bien été importée; les références suivantes étaient manquantes et ont été rajoutées: " . implode(',', $missingRefs),
+                                ];
+                            } else {
+                                $output = [
+                                    'success' => $idCommande,
+                                ];
+                            }
+                        } else {
+                            $output = [
+                                'error' => "Un problème est survenu, veuillez contacter le webmaster",
+                            ];
+                        }
+                    } catch (\Exception $e) {
+                        if ('23000' === $e->getCode()) {
+                            $output = [
+                                'error' => "Ce nom de commande existe déjà",
+                            ];
+                        } else {
+                            $output = [
+                                'error' => $e->getMessage(),
+                            ];
+                        }
+                    }
                 } else {
-                    $output = "ko" . $isUploadedFile;
+                    $output = [
+                        "error" => "Veuillez charger un fichier csv",
+                    ];
                 }
             }
-
-
             break;
         default:
             break;

@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Structure de la table `csv_prix_materiel`
 --
 
-CREATE TABLE `csv_prix_materiel` (
+CREATE TABLE IF NOT EXISTS  `csv_prix_materiel` (
   `id` int(11) NOT NULL,
   `reference` varchar(64) DEFAULT NULL,
   `reference_fournisseur` varchar(64) DEFAULT NULL,

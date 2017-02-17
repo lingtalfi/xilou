@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Structure de la table `csv_fournisseurs_comparatif`
 --
 
-CREATE TABLE `csv_fournisseurs_comparatif` (
+CREATE TABLE IF NOT EXISTS  `csv_fournisseurs_comparatif` (
   `id` int(11) NOT NULL,
   `ref_hldp` varchar(64) NOT NULL,
   `ref_lf` varchar(64) NOT NULL,

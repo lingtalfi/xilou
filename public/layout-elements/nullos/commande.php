@@ -65,7 +65,6 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
                     <select id="change-all-fournisseurs-selector">
                         <option>Pour tous les articles de cette commande...</option>
                         <option value="moinscher">Appliquer le fournisseur le moins cher pour chaque produit</option>
-                        <option value="leaderfit">Appliquer le fournisseur leaderfit pour chaque produit</option>
                     </select>
                 </form>
                 <form>
@@ -161,7 +160,9 @@ where h.commande_id=" . $idCommande;
 c.id,
 co.id as container_id,
 co.nom as container,
-c.reference,
+c.reference as commande,
+a.reference_lf,
+a.reference_hldp,
 f.id as fournisseur_id,
 f.nom as fournisseur,
 fha.prix,
@@ -171,8 +172,6 @@ h.prix_override,
 h.quantite,
 h.date_estimee,
 a.id as aid,
-a.reference_lf,
-a.reference_hldp,
 a.descr_fr,
 a.descr_en,
 h.sav_id as sav
@@ -328,14 +327,35 @@ where c.id=" . $idCommande;
         var jCsvForm = $("form#csv-import-form");
 
         ajax_form(jCsvForm, function (data) {
-            console.log(data);
+            var oData = JSON.parse(data);
+
+            var jFormError = $("#csv-import-dialog").find(".formerror");
+            var jFormWarning = $("#csv-import-dialog").find(".formwarning");
+            jFormError.addClass('hidden');
+            jFormWarning.addClass('hidden');
+
+
+            if ("error" in oData) {
+                var formError = oData.error;
+                jFormError.removeClass('hidden');
+                jFormError.html(formError);
+            }
+            else if ("success" in oData) {
+                var idCommande = oData.success;
+                window.location.href = "/commande?commande=" + idCommande;
+            }
+            else if ("missingRefs" in oData) {
+                var missingRefs = oData.missingRefs;
+                jFormWarning.removeClass('hidden');
+                jFormWarning.html(missingRefs);
+
+            }
+
         });
 
 
         var commandeSelect = document.getElementById("commande-select");
-        csvInput.addEventListener('change', function () {
-            csvInput.parentNode.submit();
-        });
+
 
         commandeSelect.addEventListener('change', function () {
             var value = commandeSelect.value;
@@ -646,6 +666,8 @@ where c.id=" . $idCommande;
         <div class="container">
             <form id="csv-import-form" action="/services/zilu.php?action=csv-import-form" method="post"
                   enctype="multipart/form-data">
+                <div class="formerror"></div>
+                <div class="formwarning"></div>
                 <ul class="flex-outer">
                     <li>
                         <label for="first-name">Nom de la commande</label>
@@ -654,13 +676,6 @@ where c.id=" . $idCommande;
                         <label for="first-name">Choisissez un fichier csv</label>
                         <input id="import-csv-input" type="file" name="csvfile"
                                accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-                    </li>
-                    <li>
-                        <label for="last-name">Pour tous les articles, choisir le fournisseur</label>
-                        <select>
-                            <option value="moinscher">le moins cher</option>
-                            <option value="leaderfit">Leaderfit</option>
-                        </select>
                     </li>
                     <li>
                         <button type="submit">Importer</button>

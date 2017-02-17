@@ -7,7 +7,6 @@ $fields = '
 id,
 reference_lf,
 reference_hldp,
-poids,
 descr_fr,
 descr_en,
 ean
@@ -29,7 +28,6 @@ $table->columnLabels= [
     "id" => "id",
     "reference_lf" => "reference lf",
     "reference_hldp" => "reference hldp",
-    "poids" => "poids",
     "descr_fr" => "descr fr",
     "descr_en" => "descr en",
     "ean" => "ean",

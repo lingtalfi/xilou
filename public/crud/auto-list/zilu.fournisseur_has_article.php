@@ -10,7 +10,8 @@ f.article_id,
 a.reference_lf as article_reference_lf,
 f.reference,
 f.prix,
-f.volume
+f.volume,
+f.poids
 ';
 
 
@@ -33,6 +34,7 @@ $table->columnLabels= [
     "reference" => "reference",
     "prix" => "prix",
     "volume" => "volume",
+    "poids" => "poids",
 ];
 
 

@@ -19576,3 +19576,225 @@ Stack trace:
 [16-Feb-2017 17:27:17 Europe/Paris] PHP Stack trace:
 [16-Feb-2017 17:27:17 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php:0
 [16-Feb-2017 17:27:17 Europe/Paris] PHP   2. move_uploaded_file() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/services/zilu.php:209
+[16-Feb-2017 20:39:23 Europe/Paris] PHP Fatal error:  Uncaught Error: Class 'PHPExcel_IOFactory' not found in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/no.php:28
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/no.php(33): renderCsv('/Users/pierrela...')
+#1 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/no.php on line 28
+[16-Feb-2017 20:39:35 Europe/Paris] PHP Fatal error:  Uncaught PHPExcel_Reader_Exception: Could not open /Users/pierrelafitte/Downloads/COMMANDE ZILU 02-2017.xlsx for reading! File does not exist. in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/PHPExcel/Classes/PHPExcel/Reader/Excel2007.php:73
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/PHPExcel/Classes/PHPExcel/IOFactory.php(269): PHPExcel_Reader_Excel2007->canRead('/Users/pierrela...')
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/PHPExcel/Classes/PHPExcel/IOFactory.php(191): PHPExcel_IOFactory::createReaderForFile('/Users/pierrela...')
+#2 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/no.php(28): PHPExcel_IOFactory::load('/Users/pierrela...')
+#3 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/no.php(33): renderCsv('/Users/pierrela...')
+#4 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/PHPExcel/Classes/PHPExcel/Reader/Excel2007.php on line 73
+[16-Feb-2017 20:57:06 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '' for column 'estimated_date' at row 1 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Commande/CommandeUtil.php(19): QuickPdo\QuickPdo::insert('commande', Array)
+#2 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/CsvImport/CommandeImporterUtil.php(24): Commande\CommandeUtil::insertCommande(Array)
+#3 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/no.php(28): CsvImport\CommandeImporterUtil::createCommandeByCsvFile('/Users/lafitte/...', 'c00')
+#4 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[16-Feb-2017 20:59:08 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1364 Field 'estimated_date' doesn't have a default value in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Commande/CommandeUtil.php(18): QuickPdo\QuickPdo::insert('commande', Array)
+#2 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/CsvImport/CommandeImporterUtil.php(24): Commande\CommandeUtil::insertCommande(Array)
+#3 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/no.php(28): CsvImport\CommandeImporterUtil::createCommandeByCsvFile('/Users/lafitte/...', 'c00')
+#4 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[16-Feb-2017 20:59:47 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1364 Field 'estimated_date' doesn't have a default value in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Commande/CommandeUtil.php(18): QuickPdo\QuickPdo::insert('commande', Array)
+#2 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/CsvImport/CommandeImporterUtil.php(24): Commande\CommandeUtil::insertCommande(Array)
+#3 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/no.php(28): CsvImport\CommandeImporterUtil::createCommandeByCsvFile('/Users/lafitte/...', 'c00')
+#4 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[16-Feb-2017 21:04:23 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'c00' for key 'reference_UNIQUE' in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Commande/CommandeUtil.php(18): QuickPdo\QuickPdo::insert('commande', Array)
+#2 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/CsvImport/CommandeImporterUtil.php(24): Commande\CommandeUtil::insertCommande(Array)
+#3 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/no.php(28): CsvImport\CommandeImporterUtil::createCommandeByCsvFile('/Users/lafitte/...', 'c00')
+#4 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[16-Feb-2017 21:13:20 Europe/Paris] PHP Notice:  Use of undefined constant true  - assumed 'true ' in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/CsvImport/CommandeImporterUtil.php on line 25
+[16-Feb-2017 21:18:28 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1364 Field 'id' doesn't have a default value in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/no.php(27): QuickPdo\QuickPdo::insert('commande_ligne_...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[16-Feb-2017 21:18:46 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1364 Field 'id' doesn't have a default value in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/no.php(27): QuickPdo\QuickPdo::insert('commande_ligne_...', Array)
+#2 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[16-Feb-2017 21:23:30 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '' for column 'date_estimee' at row 1 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/CsvImport/CommandeImporterUtil.php(64): QuickPdo\QuickPdo::insert('commande_has_ar...', Array)
+#2 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/no.php(28): CsvImport\CommandeImporterUtil::createCommandeByCsvFile('/Users/lafitte/...', 'c00')
+#3 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[16-Feb-2017 21:31:39 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'c05' for key 'reference_UNIQUE' in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Commande/CommandeUtil.php(18): QuickPdo\QuickPdo::insert('commande', Array)
+#2 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/CsvImport/CommandeImporterUtil.php(28): Commande\CommandeUtil::insertCommande(Array)
+#3 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/no.php(27): CsvImport\CommandeImporterUtil::createCommandeByCsvFile('/Users/lafitte/...', 'c05')
+#4 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[16-Feb-2017 21:32:06 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'c05' for key 'reference_UNIQUE' in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Commande/CommandeUtil.php(18): QuickPdo\QuickPdo::insert('commande', Array)
+#2 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/CsvImport/CommandeImporterUtil.php(28): Commande\CommandeUtil::insertCommande(Array)
+#3 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/no.php(21): CsvImport\CommandeImporterUtil::createCommandeByCsvFile('/Users/lafitte/...', 'c05')
+#4 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 114
+[16-Feb-2017 21:42:52 Europe/Paris] PHP Notice:  Undefined variable: f in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/services/zilu.php on line 212
+[17-Feb-2017 05:52:30 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'co.id' in 'field list' in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:264
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(264): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/Listable/QuickPdoListable.php(115): QuickPdo\QuickPdo::fetchAll('select\n\nc.id,\nc...', Array)
+#2 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/Table/AdminTable.php(324): AdminTable\Listable\QuickPdoListable->getRows()
+#3 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/Table/AdminTable.php(375): AdminTable\Table\AdminTable->prepareParameters()
+#4 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/no.php(76): AdminTable\Table\AdminTable->displayTable()
+#5 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 264
+[17-Feb-2017 05:53:03 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.id' in 'field list' in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:264
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(264): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/Listable/QuickPdoListable.php(115): QuickPdo\QuickPdo::fetchAll('select\n\nc.id,\n#...', Array)
+#2 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/Table/AdminTable.php(324): AdminTable\Listable\QuickPdoListable->getRows()
+#3 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/Table/AdminTable.php(375): AdminTable\Table\AdminTable->prepareParameters()
+#4 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/no.php(98): AdminTable\Table\AdminTable->displayTable()
+#5 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 264
+[17-Feb-2017 05:53:31 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from zilu.commande c
+where c.id=2 limit 0, 50' at line 22 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:264
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(264): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/Listable/QuickPdoListable.php(115): QuickPdo\QuickPdo::fetchAll('select\n\nc.id,\n#...', Array)
+#2 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/Table/AdminTable.php(324): AdminTable\Listable\QuickPdoListable->getRows()
+#3 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/Table/AdminTable.php(375): AdminTable\Table\AdminTable->prepareParameters()
+#4 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/no.php(98): Admi in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 264
+[17-Feb-2017 05:53:50 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from zilu.commande 
+where id=2 limit 0, 50' at line 22 in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php:264
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php(264): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/Listable/QuickPdoListable.php(115): QuickPdo\QuickPdo::fetchAll('select\n\nc.id,\n#...', Array)
+#2 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/Table/AdminTable.php(324): AdminTable\Listable\QuickPdoListable->getRows()
+#3 /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/Table/AdminTable.php(375): AdminTable\Table\AdminTable->prepareParameters()
+#4 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/no.php(98): AdminTa in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/QuickPdo/QuickPdo.php on line 264
+[17-Feb-2017 05:54:15 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:27 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 05:55:51 Europe/Paris] PHP Notice:  Undefined index: aid in /Volumes/Macintosh HD 2/it/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php on line 605
+[17-Feb-2017 07:57:54 Europe/Paris] PHP Fatal error:  Uncaught Exception: oops in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Commande/CommandeUtil.php:73
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/services/zilu.php(94): Commande\CommandeUtil::applyFournisseurs(3, 'leaderfit')
+#1 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Commande/CommandeUtil.php on line 73

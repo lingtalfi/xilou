@@ -14,7 +14,7 @@ class FournisseurUtil
      */
     public static function getComparisonInfo($articleId)
     {
-        $articleId=(int)$articleId;
+        $articleId = (int)$articleId;
         return QuickPdo::fetchAll("
         select 
         f.id, 
@@ -34,6 +34,14 @@ class FournisseurUtil
     public static function getId2Labels()
     {
         return QuickPdo::fetchAll("select id, nom from fournisseur order by id asc", [], \PDO::FETCH_COLUMN | \PDO::FETCH_UNIQUE);
+    }
+
+
+    public static function getFournisseurByNom($nom)
+    {
+        return QuickPdo::fetch('select * from fournisseur where nom=:nom', [
+            'nom' => $nom,
+        ]);
     }
 
 }

@@ -13,6 +13,7 @@ $form->labels = [
     "reference" => "reference",
     "prix" => "prix",
     "volume" => "volume",
+    "poids" => "poids",
 ];
 
 
@@ -24,6 +25,7 @@ $form->addControl("article_id")->type("selectByRequest", "select id, reference_l
 $form->addControl("reference")->type("text");
 $form->addControl("prix")->type("text");
 $form->addControl("volume")->type("text");
+$form->addControl("poids")->type("text");
 
 
 $form->display();

@@ -18,7 +18,8 @@ c.commande_ligne_statut_id,
 com.nom as commande_ligne_statut_nom,
 c.prix_override,
 c.date_estimee,
-c.quantite
+c.quantite,
+c.unit
 ';
 
 
@@ -49,6 +50,7 @@ $table->columnLabels= [
     "prix_override" => "prix override",
     "date_estimee" => "date estimee",
     "quantite" => "quantite",
+    "unit" => "unit",
 ];
 
 

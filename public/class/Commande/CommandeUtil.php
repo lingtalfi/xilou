@@ -10,13 +10,12 @@ class CommandeUtil
 {
 
 
-    /**
-     * Process the data file,
-     * and returns the number of successfully parsed lines.
-     */
-    public static function importCommandeByCsvData(array $data)
+    public static function insertCommande(array $values)
     {
-        return count($data);
+        $values = array_merge([
+            'reference' => "",
+        ], $values);
+        return QuickPdo::insert("commande", $values);
     }
 
     /**

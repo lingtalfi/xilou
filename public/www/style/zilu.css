@@ -314,6 +314,12 @@
 }
 
 
+.formerror{
+    color: red;
+}
 
+.formwarning{
+    color: orange;
+}
 
 
