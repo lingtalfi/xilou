@@ -33,6 +33,7 @@ class Article
             'descr_fr' => "",
             'descr_en' => $descrEn,
             'ean' => "unknown",
+            'long_desc_en' => "",
         ]);
     }
 

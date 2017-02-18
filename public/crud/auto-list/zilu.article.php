@@ -10,7 +10,9 @@ reference_hldp,
 descr_fr,
 descr_en,
 ean,
-photo
+photo,
+logo,
+long_desc_en
 ';
 
 
@@ -33,6 +35,8 @@ $table->columnLabels= [
     "descr_en" => "descr en",
     "ean" => "ean",
     "photo" => "photo",
+    "logo" => "logo",
+    "long_desc_en" => "long desc en",
 ];
 
 
@@ -46,6 +50,9 @@ $table->setTransformer('descr_fr', function ($v) use ($n) {
     return substr($v, 0, $n) . '...';
 });
 $table->setTransformer('descr_en', function ($v) use ($n) {
+    return substr($v, 0, $n) . '...';
+});
+$table->setTransformer('long_desc_en', function ($v) use ($n) {
     return substr($v, 0, $n) . '...';
 });
 

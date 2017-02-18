@@ -10,6 +10,7 @@ use Commande\AdminTable\CommandeAdminTable;
 use Commande\CommandeUtil;
 use Container\ContainerUtil;
 use Csv\CsvUtil;
+use Fournisseur\FournisseurUtil;
 use Icons\Icons;
 use Layout\Goofy;
 use QuickPdo\QuickPdo;
@@ -808,6 +809,35 @@ where c.id=" . $idCommande;
                             <option value="hldp">Hldp</option>
                         </select>
                     </li>
+                    <li>
+
+                        <table>
+                            <tr>
+                                <td>
+                                    <table>
+                                        <?php
+                                        $providerId2Labels = FournisseurUtil::getId2LabelsByCommandeId($idCommande);
+                                        foreach ($providerId2Labels as $id => $label): ?>
+                                            <tr>
+                                                <td style="text-align: left">
+                                                    <label>
+                                                        <input type="checkbox" name="providers[]"
+                                                               value="<?php echo $id; ?>">
+                                                        <?php echo $label; ?>
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </table>
+                                </td>
+                                <td>
+                                    <button>Cocher tout</button>
+                                    <br>
+                                    <button>Décocher tout</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </li
                     <li>
                         <button class="order-pro-conf-mail-submit-btn" type="submit">Envoyer le mail</button>
                     </li>

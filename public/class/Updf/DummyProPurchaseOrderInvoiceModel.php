@@ -18,22 +18,6 @@ class DummyProPurchaseOrderInvoiceModel extends ProPurchaseOrderInvoiceModel
         return [];
     }
 
-    protected function getTextVariables()
-    {
-
-        return [
-            "text_reference_lf" => "Leaderfit ref.",
-            "text_reference_pro" => "Your ref.",
-            "text_product" => "Product",
-            "text_ean" => "Ean",
-            "text_packing" => "Packing",
-            "text_description" => "Description",
-            "text_logo" => "Logo",
-            "text_unit_price" => "Price",
-            "text_quantity" => "Qty",
-            "text_total" => "Total",
-        ];
-    }
 
 
     protected function getTemplateVariables()
@@ -47,6 +31,7 @@ class DummyProPurchaseOrderInvoiceModel extends ProPurchaseOrderInvoiceModel
             'header_logo_img_src' => UpdfUtil::getImgSrc(APP_ROOT_DIR . "/www/img/leaderfit-logo-new.jpg"),
             'header_date' => date('Y-m-d'),
             'header_order' => "#FA000027",
+            'header_provider' => "WOHLSTAND",
 
 
             // products

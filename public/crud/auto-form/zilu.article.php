@@ -15,6 +15,8 @@ $form->labels = [
     "descr_en" => "descr en",
     "ean" => "ean",
     "photo" => "photo",
+    "logo" => "logo",
+    "long_desc_en" => "long desc en",
 ];
 
 
@@ -28,6 +30,8 @@ $form->addControl("descr_fr")->type("message");
 $form->addControl("descr_en")->type("message");
 $form->addControl("ean")->type("text");
 $form->addControl("photo")->type("text");
+$form->addControl("logo")->type("text");
+$form->addControl("long_desc_en")->type("message");
 
 
 $form->display();

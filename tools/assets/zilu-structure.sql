@@ -59,6 +59,8 @@ CREATE  TABLE IF NOT EXISTS `zilu`.`article` (
   `descr_en` TEXT NOT NULL ,
   `ean` VARCHAR(45) NOT NULL ,
   `photo` VARCHAR(128) NULL ,
+  `logo` VARCHAR(128) NULL ,
+  `long_desc_en` TEXT NOT NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 

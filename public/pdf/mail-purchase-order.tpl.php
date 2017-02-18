@@ -10,6 +10,7 @@
         color: white;
         text-align: center;
         vertical-align: middle;
+        font-size: 8px;
     }
 
     table.grid-table tr.color_line_even {
@@ -53,11 +54,11 @@
     }
 
     .biggest-font-size {
-        font-size: 14px;
+        font-size: 11px;
     }
 
     .total_bgcolor {
-        background-color: #c00;
+        background-color: #000;
         color: #fff;
     }
 
@@ -73,11 +74,15 @@
                 <tr>
                     <td colspan="6">
                         <img src="__header_logo_img_src__" width="__header_logo_width__"/>
+<!--                        <p style="font-size: 8px">9 rue du général Mocquery-->
+<!--                            <br>37550 Saint-Avertin-->
+<!--                        </p>-->
                     </td>
                     <td colspan="6" align="right" class="biggest-font-size">
                         <b>Purchase order</b>
                         <br><span class="grayed_out">__header_date__</span>
                         <br><span class="grayed_out">__header_order__</span>
+                        <br><span class="grayed_out">__header_provider__</span>
                     </td>
                 </tr>
             </table>
@@ -100,13 +105,12 @@
                 <tr>
                     <th width="10%">__text_reference_lf__</th>
                     <th width="10%">__text_reference_pro__</th>
-                    <th width="10%">__text_product__</th>
-                    <th width="10%">__text_ean__</th>
-                    <th width="10%">__text_packing__</th>
-                    <th width="10%">__text_description__</th>
-                    <th width="10%">__text_logo__</th>
+                    <th width="20%">__text_product__</th>
+                    <th width="15%">__text_ean__</th>
+                    <th width="5%">__text_packing__</th>
+                    <th width="15%">__text_logo__</th>
                     <th width="10%">__text_unit_price__</th>
-                    <th width="10%">__text_quantity__</th>
+                    <th width="5%">__text_quantity__</th>
                     <th width="10%">__text_total__</th>
                 </tr>
 
@@ -130,22 +134,27 @@
                         <td align="left">
                             <table>
                                 <tr>
-                                    <td width="30%"><img width="40" src="<?php echo $od->product_image_src; ?>">
-                                    </td>
+                                    <?php if ('' !== $od->product_image_src): ?>
+                                        <td width="30%"><img width="40" src="<?php echo $od->product_image_src; ?>">
+                                        </td>
+                                    <?php endif; ?>
                                     <td width="70%"><?php echo $od->product_name; ?></td>
                                 </tr>
                             </table>
                         </td>
                         <td>
-                            <?php echo $od->ean; ?>
+                            <font style="white-space: nowrap">
+                                <?php echo $od->ean; ?>
+                            </font>
                         </td>
                         <td align="center">
                             <?php echo $od->packing; ?>
                         </td>
                         <td>
-                            <?php echo $od->description; ?>
+                            <?php if ('' !== $od->logo): ?>
+                                <img src="<?php echo $od->logo; ?>">
+                            <?php endif; ?>
                         </td>
-                        <td><img width="30" src="<?php echo $od->logo; ?>"></td>
                         <td align="center">
                             <?php echo $od->unit_price; ?>
                         </td>
@@ -177,7 +186,7 @@
         </td>
         <!-- Calcule TVA -->
         <td colspan="3">
-            <table class="soft-table align-right" cellpadding="5">
+            <table class="soft-table align-right">
                 <tr class="bold bigger">
                     <td class="total_bgcolor" align="center">
                         __text_total__
