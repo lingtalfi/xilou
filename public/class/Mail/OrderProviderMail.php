@@ -44,7 +44,7 @@ class OrderProviderMail
             ],
         ];
         $res = $mail->to($to)
-            ->from('zilu-bot@leaderfit-equipement.com')
+            ->from(MAIL_FROM)
             ->subject("Ordering products for Leaderfit")
             ->setVars($vars)
             ->setTemplateLoader(FileTemplateLoader::create()->setDir(APP_ROOT_DIR . "/mails")->setSuffix('.php'))

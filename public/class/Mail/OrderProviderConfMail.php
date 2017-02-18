@@ -21,7 +21,7 @@ class OrderProviderConfMail
     }
 
 
-    public static function sendByCommandeId($to, $commandeId, $signature = "leaderfit")
+    public static function sendByCommandeIdFournisseurId($to, $commandeId, $fournisseurId, $signature = "leaderfit")
     {
         $mail = Umail::create();
 
@@ -36,7 +36,7 @@ class OrderProviderConfMail
             $signImg = ('hldp' === $signature) ? "email-signature2.jpg" : "email-signature.jpg";
 
 
-            $items = CommandeHasArticleUtil::getCommandeDetails((int)$commandeId);
+            $items = CommandeHasArticleUtil::getCommandeDetailsByFournisseurId($commandeId, $fournisseurId);
             $orderDetails = [];
             foreach ($items as $item) {
 
@@ -78,7 +78,7 @@ class OrderProviderConfMail
                 'order_details' => $orderDetails,
             ];
             $res = $mail->to($to)
-                ->from('zilu-bot@leaderfit-equipement.com')
+                ->from(MAIL_FROM)
 //            ->subject("Pre-ordering products for Leaderfit")
                 ->subject("Purchase order")
                 ->setVars($vars)

@@ -207,23 +207,35 @@ if (array_key_exists('action', $_GET)) {
             }
             break;
         case 'send-mail-pro-purchase-order':
-
-
-            if (array_key_exists("commande_id", $_GET) &&
+            if (
+                array_key_exists("commande_id", $_GET) &&
+                array_key_exists("provider_id", $_GET) &&
                 array_key_exists('signature', $_GET)
             ) {
                 $commandeId = $_GET['commande_id'];
+                $providerId = $_GET['provider_id'];
                 $signature = $_GET['signature'];
 
                 $mail = MAIL_DIDIER;
                 if (array_key_exists('test', $_GET)) {
                     $mail = MAIL_ZILU;
                 }
-                $n = OrderProviderConfMail::sendByCommandeId($mail, $commandeId, $signature);
-                if (1 === $n) {
-                    $output = 'ok';
-                } else {
-                    $output = "Une erreur est survenue, le mail n'a pas été envoyé; veuillez contacter le webmaster";
+
+                try {
+                    $n = OrderProviderConfMail::sendByCommandeIdFournisseurId($mail, $commandeId, $providerId, $signature);
+                    if (1 === $n) {
+                        $output = [
+                            'success' => 'ok',
+                        ];
+                    } else {
+                        $output = [
+                            "error" => "Une erreur est survenue, le mail n'a pas été envoyé; veuillez contacter le webmaster",
+                        ];
+                    }
+                } catch (\Exception $e) {
+                    $output = [
+                        'error' => $e->getMessage(),
+                    ];
                 }
             }
             break;

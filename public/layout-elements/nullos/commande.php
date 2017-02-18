@@ -484,24 +484,67 @@ where c.id=" . $idCommande;
 
                             var jSignature = $("#order-pro-conf-mail-dialog").find('.selector');
                             var jBtn = $("#order-pro-conf-mail-dialog").find('.order-pro-conf-mail-submit-btn');
+
+
                             jBtn.on('click', function (e) {
                                 e.preventDefault();
                                 var jForm = jBtn.closest('form');
                                 var formData = jForm.serialize();
+
+
+                                var jProviders = $('#mail-providers-checkboxes').find('input');
+                                var aProviders = [];
+                                jProviders.each(function () {
+                                    var jInput = $(this);
+                                    if (true === jInput.prop('checked')) {
+                                        aProviders.push([jInput.val(), jInput.parent().text().trim()]);
+                                    }
+                                });
+
+                                var nbProviders = aProviders.length;
+                                var currentProvider = 0;
+
                                 var jLoader = $("#order-pro-conf-mail-dialog").find(".loader");
                                 jLoader.removeClass("hidden");
                                 var jBlock = $("#order-pro-conf-mail-dialog").find(".block");
                                 jBlock.addClass("hidden");
 
-                                $.getJSON('/services/zilu.php?action=send-mail-pro-purchase-order' + argTest + '&' + formData, function (data) {
-                                    if ('ok' === data) {
-                                        $("order-pro-conf-mail-dialog").dialog('close');
-                                        window.location.reload();
+
+                                function processProvider() {
+                                    console.log("jiss");
+                                    var providerInfo = aProviders.shift();
+                                    console.log(providerInfo);
+                                    if ('undefined' !== typeof providerInfo) {
+                                        console.log("k");
+                                        var providerId = providerInfo[0];
+                                        var providerName = providerInfo[1];
+
+                                        currentProvider++;
+                                        var jLine = $("<p>Préparation du mail pour " + providerName + " (" + currentProvider + "/" + nbProviders + ") ...</p>");
+                                        jLoader.append(jLine);
+
+                                        $.getJSON('/services/zilu.php?action=send-mail-pro-purchase-order' + argTest + '&provider_id=' + providerId + '&' + formData, function (data) {
+
+                                            console.log("ojo");
+                                            if ("success" in data) {
+                                                jLine.append('<span class="zilu-success">ok</span>');
+//                                                $("order-pro-conf-mail-dialog").dialog('close');
+//                                                window.location.reload();
+                                            }
+                                            else if ("error" in data) {
+                                                jLine.append('<span class="zilu-error">' + data['error'] + '</span>');
+                                            }
+
+
+                                            // recursion
+                                            if (currentProvider < nbProviders) {
+                                                processProvider();
+                                            }
+                                        });
                                     }
-                                    else {
-                                        jLoader.html(data);
-                                    }
-                                });
+                                }
+
+                                processProvider();
                             });
                         }
                     });
@@ -702,6 +745,21 @@ where c.id=" . $idCommande;
         });
 
 
+        $('body').on('click', function (e) {
+            var jTarget = $(e.target);
+            if (jTarget.hasClass("providers-checkall")) {
+                e.preventDefault();
+                $('#mail-providers-checkboxes').find('input').prop('checked', true);
+                return false;
+            }
+            else if (jTarget.hasClass("providers-uncheckall")) {
+                e.preventDefault();
+                $('#mail-providers-checkboxes').find('input').prop('checked', false);
+                return false;
+            }
+        });
+
+
     });
 
 
@@ -801,7 +859,7 @@ where c.id=" . $idCommande;
     <div id="order-pro-conf-mail-dialog" title="Informations à inscrire dans le mail">
         <div class="block">
             <form style="text-align: center">
-                <ul class="flex-outer">
+                <ul class="zilu-nobullet">
                     <li>
                         <label>Signature à utiliser</label>
                         <select class="selector" name="signature">
@@ -814,15 +872,15 @@ where c.id=" . $idCommande;
                         <table>
                             <tr>
                                 <td>
-                                    <table>
+                                    <table id="mail-providers-checkboxes">
                                         <?php
                                         $providerId2Labels = FournisseurUtil::getId2LabelsByCommandeId($idCommande);
                                         foreach ($providerId2Labels as $id => $label): ?>
                                             <tr>
                                                 <td style="text-align: left">
                                                     <label>
-                                                        <input type="checkbox" name="providers[]"
-                                                               value="<?php echo $id; ?>">
+                                                        <input type="checkbox"
+                                                               value="<?php echo $id; ?>" checked>
                                                         <?php echo $label; ?>
                                                     </label>
                                                 </td>
@@ -831,15 +889,23 @@ where c.id=" . $idCommande;
                                     </table>
                                 </td>
                                 <td>
-                                    <button>Cocher tout</button>
-                                    <br>
-                                    <button>Décocher tout</button>
+                                    <table>
+                                        <tr>
+                                            <td style="text-align: left">
+                                                <button class="providers-checkall">Cocher tout</button>
+                                            </td>
+                                            <td style="text-align: left">
+                                                <button class="providers-uncheckall">Décocher tout</button>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </td>
                             </tr>
                         </table>
                     </li
                     <li>
-                        <button class="order-pro-conf-mail-submit-btn" type="submit">Envoyer le mail</button>
+                        <button class="order-pro-conf-mail-submit-btn zilu-black-button" type="submit">Envoyer le mail
+                        </button>
                     </li>
                 </ul>
                 <input type="hidden" name="commande_id" value="<?php echo $idCommande; ?>">

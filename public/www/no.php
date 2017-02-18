@@ -29,5 +29,32 @@ $f = "/Users/lafitte/Downloads/COMMANDE ZILU 02-2017.xlsx";
 
 
 $mail = "lingtalfi@gmail.com";
-$n = OrderProviderConfMail::send($mail);
-a($n);
+$commandeId = 1;
+$providerId = 1;
+$signature = 'leaderfit';
+
+$mail = MAIL_DIDIER;
+if (array_key_exists('test', $_GET)) {
+    $mail = MAIL_ZILU;
+}
+
+$output = "";
+
+try {
+    $n = OrderProviderConfMail::sendByCommandeIdFournisseurId($mail, $commandeId, $providerId, $signature);
+    if (1 === $n) {
+        $output = [
+            'success' => 'ok',
+        ];
+    } else {
+        $output = [
+            "error" => "Une erreur est survenue, le mail n'a pas été envoyé; veuillez contacter le webmaster",
+        ];
+    }
+} catch (\Exception $e) {
+    $output = [
+        'error' => $e->getMessage(),
+    ];
+}
+
+a($output);

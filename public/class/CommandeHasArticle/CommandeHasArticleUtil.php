@@ -10,7 +10,7 @@ class CommandeHasArticleUtil
 {
 
 
-    public static function getCommandeDetailsByFournisseur($commandeId, $fournisseur)
+    public static function getCommandeDetailsByFournisseurId($commandeId, $fournisseurId)
     {
 
 
@@ -48,12 +48,10 @@ inner join fournisseur f on f.id=h.fournisseur_id
 inner join fournisseur_has_article fha on fha.fournisseur_id=h.fournisseur_id and fha.article_id=h.article_id
 inner join article a on a.id=h.article_id
 left join container co on co.id=h.container_id
-where c.id=" . $commandeId . " and f.id=" . (int)$fournisseur;
+where c.id=" . (int)$commandeId . " and f.id=" . (int)$fournisseurId;
 
 
-        return QuickPdo::fetchAll($query, [
-//            'fournisseur' => $fournisseur,
-        ]);
+        return QuickPdo::fetchAll($query);
 
     }
 

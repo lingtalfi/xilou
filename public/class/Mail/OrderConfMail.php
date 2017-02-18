@@ -85,7 +85,7 @@ class OrderConfMail
             ];
 
             $res = $mail->to($to)
-                ->from('zilu-bot@leaderfit-equipement.com')
+                ->from(MAIL_FROM)
                 ->subject("Commande en cours de préparation")
                 ->setVars($vars)
                 ->setRenderer(PhpRenderer::create())
