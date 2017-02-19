@@ -139,9 +139,9 @@ a.reference_lf,
 a.reference_hldp,
 f.id as fournisseur_id,
 f.nom as fournisseur,
-fha.prix,
 fha.poids,
 fha.volume,
+fha.prix,
 h.prix_override,
 h.quantite,
 h.date_estimee,
@@ -184,6 +184,16 @@ where c.id=" . $idCommande;
                         $text = "(choisissez un container)";
                     }
                     return '<a class="container-selector" data-ric="' . htmlspecialchars($ricValue) . '" data-container-id="' . htmlspecialchars($item['container_id']) . '" href="#">' . $text . '</a>';
+                });
+
+                $list->setTransformer("poids", function ($value, $item, $ricValue) {
+                    $text = $value;
+                    return '<a class="update-link" data-column="poids" data-default="' . htmlspecialchars($value) . '" data-fid="' . $item['fournisseur_id'] . '" data-aid="' . $item['aid'] . '" href="#">' . $text . '</a>';
+                });
+
+                $list->setTransformer("volume", function ($value, $item, $ricValue) {
+                    $text = $value;
+                    return '<a class="update-link" data-column="volume" data-default="' . htmlspecialchars($value) . '" data-fid="' . $item['fournisseur_id'] . '" data-aid="' . $item['aid'] . '" href="#">' . $text . '</a>';
                 });
 
                 $list->setTransformer("prix_override", function ($value, $item, $ricValue) {
@@ -248,7 +258,6 @@ where c.id=" . $idCommande;
                     'cid',
                     'id',
                     'aid',
-                    'prix',
                     'container_id',
                     'fournisseur_id',
                 ];
@@ -511,11 +520,9 @@ where c.id=" . $idCommande;
 
 
                                 function processProvider() {
-                                    console.log("jiss");
                                     var providerInfo = aProviders.shift();
-                                    console.log(providerInfo);
                                     if ('undefined' !== typeof providerInfo) {
-                                        console.log("k");
+
                                         var providerId = providerInfo[0];
                                         var providerName = providerInfo[1];
 
@@ -525,11 +532,8 @@ where c.id=" . $idCommande;
 
                                         $.getJSON('/services/zilu.php?action=send-mail-pro-purchase-order' + argTest + '&provider_id=' + providerId + '&' + formData, function (data) {
 
-                                            console.log("ojo");
                                             if ("success" in data) {
-                                                jLine.append('<span class="zilu-success">ok</span>');
-//                                                $("order-pro-conf-mail-dialog").dialog('close');
-//                                                window.location.reload();
+                                                jLine.append('<span class="zilu-success">envoyé</span>');
                                             }
                                             else if ("error" in data) {
                                                 jLine.append('<span class="zilu-error">' + data['error'] + '</span>');
@@ -539,6 +543,9 @@ where c.id=" . $idCommande;
                                             // recursion
                                             if (currentProvider < nbProviders) {
                                                 processProvider();
+                                            }
+                                            else {
+                                                jLine.append('<div style="height: 20px;"></div><div style="text-align: center"><button class="zilu-close zilu-black-button">Ok</button></div>');
                                             }
                                         });
                                     }
@@ -699,6 +706,8 @@ where c.id=" . $idCommande;
                 var column = jTarget.attr('data-column');
                 var defaultValue = jTarget.attr('data-default');
                 var ricValue = jTarget.attr('data-ric');
+                var fournisseurId = jTarget.attr('data-fid');
+                var articleId = jTarget.attr('data-aid');
                 var type = jTarget.attr('data-type');
 
 
@@ -729,7 +738,14 @@ where c.id=" . $idCommande;
                         $("#update-column-submit-btn").on('click', function (e) {
                             e.preventDefault();
                             var val = jInput.val();
-                            $.getJSON('/services/zilu.php?action=update-commande-field&col=' + column + '&ric=' + ricValue + '&value=' + val, function (data) {
+                            var url = '/services/zilu.php?action=update-commande-field&col=' + column + '&value=' + val;
+                            if ('undefined' !== typeof ricValue) {
+                                url += '&ric=' + ricValue;
+                            }
+                            if ('undefined' !== typeof fournisseurId && 'undefined' !== typeof articleId) {
+                                url += '&fid=' + fournisseurId + '&aid=' + articleId;
+                            }
+                            $.getJSON(url, function (data) {
                                 if ('ok' === data) {
                                     $("#update-column-dialog").dialog('close');
                                     window.location.reload();
@@ -755,6 +771,11 @@ where c.id=" . $idCommande;
             else if (jTarget.hasClass("providers-uncheckall")) {
                 e.preventDefault();
                 $('#mail-providers-checkboxes').find('input').prop('checked', false);
+                return false;
+            }
+            else if (jTarget.hasClass("zilu-close")) {
+                e.preventDefault();
+                $("#order-pro-conf-mail-dialog").dialog("close");
                 return false;
             }
         });

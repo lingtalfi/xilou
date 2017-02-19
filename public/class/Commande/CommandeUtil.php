@@ -5,6 +5,7 @@ namespace Commande;
 
 
 use QuickPdo\QuickPdo;
+use Util\GeneralUtil;
 
 class CommandeUtil
 {
@@ -47,6 +48,12 @@ where h.commande_id=" . $commandeId;
                 $volumeTotal += $qte * $item['volume'];
             }
         }
+
+
+        $prixTotal = GeneralUtil::formatDollar($prixTotal);
+        $poidsTotal = GeneralUtil::formatDollar($poidsTotal);
+        $volumeTotal = GeneralUtil::formatDollar($volumeTotal);
+
         return [$prixTotal, $poidsTotal, $volumeTotal];
     }
 
@@ -113,7 +120,5 @@ where h.commande_id=" . $commandeId;
                 throw new \Exception("oops");
             }
         }
-
-
     }
 }

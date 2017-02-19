@@ -11,6 +11,7 @@ use DbTransition\CommandeLigneStatut;
 use Mail\OrderConfMail;
 use Mail\OrderProviderConfMail;
 use QuickPdo\QuickPdo;
+use Umail\Umail;
 use Util\ArrayRenderer;
 use Util\GeneralUtil;
 use Util\RowsRenderer;
@@ -22,14 +23,23 @@ $f = "/Users/pierrelafitte/Downloads/COMMANDE ZILU 02-2017.xlsx";
 $f = "/Users/lafitte/Downloads/COMMANDE ZILU 02-2017.xlsx";
 
 
+$pdfPath = "/private/tmp/updf/zilu-personal-tmp.pdf";
 
-
-
-
+//a(Umail::create()
+//    ->to("lingtalfi@gmail.com")
+//    ->from('ling@localhost.com')
+//    ->attachFile($pdfPath)
+//    ->subject("Hello")
+//    ->htmlBody("<span style='color: red'>hello, this is just a test message</span>")
+//    ->send());
+//az();
 
 
 $mail = "lingtalfi@gmail.com";
 $commandeId = 1;
+
+
+
 $providerId = 1;
 $signature = 'leaderfit';
 
@@ -42,6 +52,7 @@ $output = "";
 
 try {
     $n = OrderProviderConfMail::sendByCommandeIdFournisseurId($mail, $commandeId, $providerId, $signature);
+    a($n);
     if (1 === $n) {
         $output = [
             'success' => 'ok',
@@ -52,6 +63,7 @@ try {
         ];
     }
 } catch (\Exception $e) {
+    az($e);
     $output = [
         'error' => $e->getMessage(),
     ];

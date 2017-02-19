@@ -22199,3 +22199,606 @@ Stack trace:
 [18-Feb-2017 07:37:44 Europe/Paris] PHP   4. BumbleBee\Autoload\BeeAutoLoader->autoLoader() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:60
 [18-Feb-2017 07:37:44 Europe/Paris] PHP   5. call_user_func_array:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/BumbleBee/Autoload/BeeAutoloader.php:59}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/BumbleBee/Autoload/BeeAutoloader.php:59
 [18-Feb-2017 07:37:44 Europe/Paris] PHP   6. BumbleBee\Autoload\ButineurAutoloader->butineurAutoload() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/BumbleBee/Autoload/BeeAutoloader.php:59
+[18-Feb-2017 14:23:17 Europe/Paris] PHP Fatal error:  Uncaught exception 'Exception' with message 'Cannot find info for commande #4' in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/ProPurchaseOrderInvoiceModel.php:102
+Stack trace:
+#0 /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php(37): Updf\ProPurchaseOrderInvoiceModel->prepareByCommandeIdFournisseurId(4, 1)
+#1 {main}
+  thrown in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/ProPurchaseOrderInvoiceModel.php on line 102
+[18-Feb-2017 14:31:44 Europe/Paris] PHP Fatal error:  Call to undefined method CommandeHasArticle\CommandeHasArticleUtil::getCommandeDetailsByFournisseur() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/ProPurchaseOrderInvoiceModel.php on line 34
+[18-Feb-2017 14:31:44 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 14:31:44 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:0
+[18-Feb-2017 14:31:44 Europe/Paris] PHP   2. Updf\ProPurchaseOrderInvoiceModel->prepareByCommandeIdFournisseurId() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/pdf.php:37
+[18-Feb-2017 14:58:24 Europe/Paris] PHP Fatal error:  Class 'TCPDF' not found in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Updf/Tcpdf/Utcpdf.php on line 9
+[18-Feb-2017 14:58:24 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 14:58:24 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[18-Feb-2017 14:58:24 Europe/Paris] PHP   2. Mail\OrderProviderConfMail::sendByCommandeIdFournisseurId() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:44
+[18-Feb-2017 14:58:24 Europe/Paris] PHP   3. Updf\AppUpdfUtil::createProPurchaseOrderInvoicePdf() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Mail/OrderProviderConfMail.php:85
+[18-Feb-2017 14:58:24 Europe/Paris] PHP   4. Updf\Updf::create() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/AppUpdfUtil.php:14
+[18-Feb-2017 14:58:24 Europe/Paris] PHP   5. Updf\Updf->__construct() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Updf/Updf.php:53
+[18-Feb-2017 14:58:24 Europe/Paris] PHP   6. spl_autoload_call() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Updf/Updf.php:42
+[18-Feb-2017 14:58:24 Europe/Paris] PHP   7. BumbleBee\Autoload\BeeAutoLoader->autoLoader() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Updf/Updf.php:42
+[18-Feb-2017 14:58:24 Europe/Paris] PHP   8. call_user_func_array:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/BumbleBee/Autoload/BeeAutoloader.php:59}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/BumbleBee/Autoload/BeeAutoloader.php:59
+[18-Feb-2017 14:58:24 Europe/Paris] PHP   9. BumbleBee\Autoload\ButineurAutoloader->butineurAutoload() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/BumbleBee/Autoload/BeeAutoloader.php:59
+[18-Feb-2017 14:58:24 Europe/Paris] PHP  10. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/BumbleBee/Autoload/ButineurAutoloader.php:76
+[18-Feb-2017 14:59:49 Europe/Paris] PHP Warning:  fopen(file:///tmp/updf/zilu-personal-tmp.pdf): failed to open stream: No such file or directory in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/TCPDF/include/tcpdf_static.php on line 1854
+[18-Feb-2017 14:59:49 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 14:59:49 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[18-Feb-2017 14:59:49 Europe/Paris] PHP   2. Mail\OrderProviderConfMail::sendByCommandeIdFournisseurId() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:44
+[18-Feb-2017 14:59:49 Europe/Paris] PHP   3. Updf\AppUpdfUtil::createProPurchaseOrderInvoicePdf() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Mail/OrderProviderConfMail.php:85
+[18-Feb-2017 14:59:49 Europe/Paris] PHP   4. Updf\Updf->render() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Updf/AppUpdfUtil.php:21
+[18-Feb-2017 14:59:49 Europe/Paris] PHP   5. TCPDF->Output() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/Updf/Updf.php:147
+[18-Feb-2017 14:59:49 Europe/Paris] PHP   6. TCPDF_STATIC::fopenLocal() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/TCPDF/tcpdf.php:7673
+[18-Feb-2017 14:59:49 Europe/Paris] PHP   7. fopen() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/TCPDF/include/tcpdf_static.php:1854
+[18-Feb-2017 15:16:13 Europe/Paris] PHP Warning:  mkdir(): File exists in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Mail/OrderProviderConfMail.php on line 83
+[18-Feb-2017 15:16:13 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 15:16:13 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[18-Feb-2017 15:16:13 Europe/Paris] PHP   2. Mail\OrderProviderConfMail::sendByCommandeIdFournisseurId() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:44
+[18-Feb-2017 15:16:13 Europe/Paris] PHP   3. mkdir() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Mail/OrderProviderConfMail.php:83
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Notice:  Undefined index: article_id in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php on line 191
+[18-Feb-2017 18:57:46 Europe/Paris] PHP Stack trace:
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:0
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   2. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/index.php:79
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   3. Layout\Layout->display() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/pages/commande.php:8
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   4. Layout\Layout->includeElement() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:87
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   5. require_once() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class-modules/Layout/Layout.php:180
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   6. AdminTable\Table\AdminTable->displayTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:259
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   7. AdminTable\View\AdminTableRenderer->renderTable() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/Table/AdminTable.php:376
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   8. call_user_func:{/Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[18-Feb-2017 18:57:46 Europe/Paris] PHP   9. Layout\Layout->{closure:/Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/layout-elements/nullos/commande.php:189-192}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/universe/planets/AdminTable/View/AdminTableRenderer.php:237
+[19-Feb-2017 13:12:42 Europe/Paris] PHP Warning:  usort() expects parameter 1 to be array, null given in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php on line 81
+[19-Feb-2017 13:12:42 Europe/Paris] PHP Stack trace:
+[19-Feb-2017 13:12:42 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/bintest.php:0
+[19-Feb-2017 13:12:42 Europe/Paris] PHP   2. Bin\LingSwapBinUtil->getContainersToUse() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/bintest.php:42
+[19-Feb-2017 13:12:42 Europe/Paris] PHP   3. usort() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php:81
+[19-Feb-2017 13:12:42 Europe/Paris] PHP Fatal error:  Call to undefined function Bin\getMinContainer() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php on line 95
+[19-Feb-2017 13:12:42 Europe/Paris] PHP Stack trace:
+[19-Feb-2017 13:12:42 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/bintest.php:0
+[19-Feb-2017 13:12:42 Europe/Paris] PHP   2. Bin\LingSwapBinUtil->getContainersToUse() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/bintest.php:42
+[19-Feb-2017 13:13:12 Europe/Paris] PHP Fatal error:  Call to undefined function Bin\getMinContainer() in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php on line 96
+[19-Feb-2017 13:13:12 Europe/Paris] PHP Stack trace:
+[19-Feb-2017 13:13:12 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/bintest.php:0
+[19-Feb-2017 13:13:12 Europe/Paris] PHP   2. Bin\LingSwapBinUtil->getContainersToUse() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/bintest.php:42
+[19-Feb-2017 20:48:28 Europe/Paris] PHP Warning:  copy(): Filename cannot be empty in /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Mail/OrderProviderConfMail.php on line 89
+[19-Feb-2017 20:48:28 Europe/Paris] PHP Stack trace:
+[19-Feb-2017 20:48:28 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
+[19-Feb-2017 20:48:28 Europe/Paris] PHP   2. Mail\OrderProviderConfMail::sendByCommandeIdFournisseurId() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:54
+[19-Feb-2017 20:48:28 Europe/Paris] PHP   3. copy() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Mail/OrderProviderConfMail.php:89

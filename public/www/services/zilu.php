@@ -162,21 +162,37 @@ if (array_key_exists('action', $_GET)) {
         case 'update-commande-field':
             if (
                 array_key_exists('col', $_GET) &&
-                array_key_exists('ric', $_GET) &&
                 array_key_exists('value', $_GET)
             ) {
                 $col = $_GET['col'];
-                $ric = $_GET['ric'];
                 $value = $_GET['value'];
+                $ric = null;
+                $fournisseurId = null;
+                $articleId = null;
 
-                list($commandeId, $articleId) = unric($ric);
 
-                $res = QuickPdo::update('commande_has_article', [
-                    $col => $value,
-                ], [
-                    ['commande_id', '=', $commandeId],
-                    ['article_id', '=', $articleId],
-                ]);
+                if (array_key_exists('ric', $_GET)) {
+                    $ric = $_GET['ric'];
+                    list($commandeId, $articleId) = unric($ric);
+
+                    $res = QuickPdo::update('commande_has_article', [
+                        $col => $value,
+                    ], [
+                        ['commande_id', '=', $commandeId],
+                        ['article_id', '=', $articleId],
+                    ]);
+                }
+                if (array_key_exists('fid', $_GET) && array_key_exists('aid', $_GET)) {
+                    $fournisseurId = $_GET['fid'];
+                    $articleId = $_GET['aid'];
+
+                    $res = QuickPdo::update('fournisseur_has_article', [
+                        $col => $value,
+                    ], [
+                        ['article_id', '=', $articleId],
+                        ['fournisseur_id', '=', $fournisseurId],
+                    ]);
+                }
 
 
                 if (false !== $res) {
@@ -221,6 +237,20 @@ if (array_key_exists('action', $_GET)) {
                     $mail = MAIL_ZILU;
                 }
 
+                if (1 === rand(0, 1)) {
+                    $output = [
+                        'success' => 'ok',
+                    ];
+                } else {
+                    $output = [
+                        "error" => "Une erreur est survenue, le mail n'a pas été envoyé; veuillez contacter le webmaster",
+                    ];
+                }
+
+
+                /**
+                 * Uncomment when you've got access to email
+                 */
                 try {
                     $n = OrderProviderConfMail::sendByCommandeIdFournisseurId($mail, $commandeId, $providerId, $signature);
                     if (1 === $n) {

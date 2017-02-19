@@ -10,7 +10,7 @@ use QuickPdo\QuickPdo;
 use Umail\Renderer\PhpRenderer;
 use Umail\TemplateLoader\FileTemplateLoader;
 use Umail\Umail;
-use Util\GeneralUtil;
+use Updf\AppUpdfUtil;
 
 class OrderProviderConfMail
 {
@@ -52,21 +52,20 @@ class OrderProviderConfMail
                     $image = "/img/blank.jpg";
                 }
 
-                $orderDetails[] = [
-                    'reference' => $item['reference_lf'],
-                    'provider_reference' => $item['reference_pro'],
-                    'fournisseur' => $item['fournisseur'],
-                    'img_src' => $mail->embedFile(APP_ROOT_DIR . "/www" . $image),
-                    'name' => $item['descr_fr'],
-                    'unit_price' => $unitPrice . ' €',
-                    'quantity' => $item['quantite'],
-                    'price' => $totalPrice . ' €',
-                    'ean' => $item['ean'],
-                    'packing' => $item['unit'],
-                    'description' => $item['descr_en'],
-                    'logo' => $mail->embedFile(APP_ROOT_DIR . "/www/img/logo.jpg"),
-
-                ];
+//                $orderDetails[] = [
+//                    'reference' => $item['reference_lf'],
+//                    'provider_reference' => $item['reference_pro'],
+//                    'fournisseur' => $item['fournisseur'],
+//                    'img_src' => $mail->embedFile(APP_ROOT_DIR . "/www" . $image),
+//                    'name' => $item['descr_fr'],
+//                    'unit_price' => $unitPrice . ' €',
+//                    'quantity' => $item['quantite'],
+//                    'price' => $totalPrice . ' €',
+//                    'ean' => $item['ean'],
+//                    'packing' => $item['unit'],
+//                    'description' => $item['descr_en'],
+//                    'logo' => $mail->embedFile(APP_ROOT_DIR . "/www/img/logo.jpg"),
+//                ];
             }
 
 
@@ -75,8 +74,20 @@ class OrderProviderConfMail
                 'total_paid' => $prixTotal . ' €',
                 'signature' => $mail->embedFile(APP_ROOT_DIR . "/www/img/" . $signImg),
                 'company' => "Leaderfit", // HDLP
-                'order_details' => $orderDetails,
+//                'order_details' => $orderDetails,
             ];
+
+
+            $location = "/tmp/updf/zilu-personal-tmp.pdf";
+            $dir = dirname($location);
+            if (false === is_dir($dir)) {
+                mkdir($dir);
+            }
+
+            AppUpdfUtil::createProPurchaseOrderInvoicePdf($location, $commandeId, $fournisseurId);
+
+
+
             $res = $mail->to($to)
                 ->from(MAIL_FROM)
 //            ->subject("Pre-ordering products for Leaderfit")
@@ -85,6 +96,7 @@ class OrderProviderConfMail
                 ->setTemplateLoader(FileTemplateLoader::create()->setDir(APP_ROOT_DIR . "/mails")->setSuffix('.php'))
                 ->setTemplate('zilu/order_provider_conf')
                 ->setRenderer(PhpRenderer::create())
+                ->attachFile($location, "purchase-order.pdf", "application/pdf", true)
                 ->send();
         }
         return $res;

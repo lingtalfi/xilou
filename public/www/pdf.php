@@ -22,15 +22,17 @@ require_once __DIR__ . "/TCPDF/tcpdf.php";
 //    ->render();
 
 
-//Updf::create()
-//    ->setModel(DummyInvoiceModel::create())
-//    ->setTemplate('invoice')
-//    ->setTemplateLoader(TemplateLoader::create())
-//    ->render();
-//exit;
+Updf::create()
+    ->setModel(DummyInvoiceModel::create())
+    ->setTemplate('invoice')
+    ->setTemplateLoader(TemplateLoader::create())
+    ->render();
+exit;
 
 
-$commandeId = 4;
+$location = APP_ROOT_DIR . "/www/test.pdf";
+
+$commandeId = 1;
 $fournisseurId = 1;
 Updf::create()
     ->setTemplateLoader(TemplateLoader::create()->setTemplateDir(APP_ROOT_DIR . "/pdf"))
@@ -38,5 +40,5 @@ Updf::create()
 //    ->setModel(DummyProPurchaseOrderInvoiceModel::create())
     ->setTemplate('mail-purchase-order')
     ->setFooterModel(FooterModel::create()->setFooterText("Leaderfit - France"))
-    ->render();
+    ->render($location);
 

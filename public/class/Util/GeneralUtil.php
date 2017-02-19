@@ -13,6 +13,7 @@ class GeneralUtil
         return "0.00";
     }
 
+
     public static function getDollarToEuroRate()
     {
         return 0.94;
