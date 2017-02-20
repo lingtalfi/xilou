@@ -15,26 +15,46 @@ require_once __DIR__ . "/../init.php";
 $containers = [
     [
         'name' => "small",
-        'weight' => 2,
-        'volume' => 2,
+        'weight' => 10,
+        'volume' => 10,
     ],
     [
         'name' => "medium",
-        'weight' => 4,
-        'volume' => 4,
+        'weight' => 20,
+        'volume' => 20,
     ],
 ];
 
 $items = [
     [
-        'ref' => "p1",
-        'weight' => 3,
+        'name' => "p1",
+        'weight' => 7,
         'volume' => 3,
     ],
     [
-        'ref' => "p2",
-        'weight' => 2,
+        'name' => "p2",
+        'weight' => 7,
         'volume' => 2,
+    ],
+    [
+        'name' => "p3",
+        'weight' => 6,
+        'volume' => 4,
+    ],
+    [
+        'name' => "p4",
+        'weight' => 3,
+        'volume' => 5,
+    ],
+    [
+        'name' => "p5",
+        'weight' => 7,
+        'volume' => 4,
+    ],
+    [
+        'name' => "p6",
+        'weight' => 1,
+        'volume' => 6,
     ],
 ];
 
@@ -42,6 +62,9 @@ $items = [
 $o = LingSwapBinUtil::create()->setContainers($containers)->setItems($items);
 $containersToUse = $o->getContainersToUse();
 a($containersToUse);
-$o->bestFit($containersToUse);
-
+$unusedSpace = 0;
+$c = $o->bestFit($containersToUse, $unusedSpace);
+echo '<hr>';
+a($c);
+a("Unused space: " . $unusedSpace);
 

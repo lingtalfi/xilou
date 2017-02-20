@@ -30,4 +30,15 @@ class ContainerUtil
             'type_container_id' => (int)$typeId,
         ]);
     }
+
+    public static function getContainersDetails(){
+        return QuickPdo::fetchAll("select 
+c.nom, 
+t.poids_max,
+t.volume_max
+
+from container c 
+inner join type_container t on t.id=c.type_container_id
+");
+    }
 }

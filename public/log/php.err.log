@@ -22802,3 +22802,26 @@ Stack trace:
 [19-Feb-2017 20:48:28 Europe/Paris] PHP   1. {main}() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:0
 [19-Feb-2017 20:48:28 Europe/Paris] PHP   2. Mail\OrderProviderConfMail::sendByCommandeIdFournisseurId() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/www/no.php:54
 [19-Feb-2017 20:48:28 Europe/Paris] PHP   3. copy() /Users/pierrelafitte/Desktop/mondossier/web/php/projects/xilou/public/class/Mail/OrderProviderConfMail.php:89
+[20-Feb-2017 05:51:06 Europe/Paris] PHP Fatal error:  Maximum execution time of -1 seconds exceeded in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php on line 141
+[20-Feb-2017 05:52:23 Europe/Paris] PHP Fatal error:  Maximum execution time of -1 seconds exceeded in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php on line 138
+[20-Feb-2017 05:53:55 Europe/Paris] PHP Fatal error:  Maximum execution time of -1 seconds exceeded in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php on line 138
+[20-Feb-2017 05:57:27 Europe/Paris] PHP Notice:  Undefined index: remainingVolume in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php on line 138
+[20-Feb-2017 05:57:27 Europe/Paris] PHP Notice:  Undefined index: remainingVolume in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php on line 138
+[20-Feb-2017 05:57:27 Europe/Paris] PHP Notice:  Undefined index: remainingVolume in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php on line 138
+[20-Feb-2017 05:57:27 Europe/Paris] PHP Notice:  Undefined index: remainingVolume in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php on line 138
+[20-Feb-2017 05:57:27 Europe/Paris] PHP Notice:  Undefined index: remainingVolume in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php on line 138
+[20-Feb-2017 05:57:27 Europe/Paris] PHP Notice:  Undefined index: remainingVolume in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php on line 138
+[20-Feb-2017 05:57:27 Europe/Paris] PHP Notice:  Undefined index: remainingVolume in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php on line 138
+[20-Feb-2017 05:58:02 Europe/Paris] PHP Notice:  Undefined offset: 2 in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php on line 139
+[20-Feb-2017 06:04:25 Europe/Paris] PHP Fatal error:  Uncaught Exception: cannot put the item in any container (volume: 6; weight: 6) in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php:150
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/bintest.php(50): Bin\LingSwapBinUtil->bestFit(Array)
+#1 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php on line 150
+[20-Feb-2017 08:05:39 Europe/Paris] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to Bin\LingSwapBinUtil::sortItems() must be of the type array, null given, called in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php on line 104 and defined in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php:220
+Stack trace:
+#0 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php(104): Bin\LingSwapBinUtil->sortItems(NULL, 'volume')
+#1 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php(92): Bin\LingSwapBinUtil->getContainersToUseByKey(24, 'volume', 'volume')
+#2 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/bintest.php(63): Bin\LingSwapBinUtil->getContainersToUse()
+#3 {main}
+  thrown in /Volumes/Macintosh HD 2/it/php/projects/xilou/public/class/Bin/LingSwapBinUtil.php on line 220
