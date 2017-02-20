@@ -63,8 +63,10 @@ $o = LingSwapBinUtil::create()->setContainers($containers)->setItems($items);
 $containersToUse = $o->getContainersToUse();
 a($containersToUse);
 $unusedSpace = 0;
-$c = $o->bestFit($containersToUse, $unusedSpace);
+$unusedWeight = 0;
+$c = $o->bestFit($containersToUse, $unusedSpace, $unusedWeight);
 echo '<hr>';
 a($c);
 a("Unused space: " . $unusedSpace);
+a("Unused weight: " . $unusedWeight);
 

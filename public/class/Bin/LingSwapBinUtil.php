@@ -6,6 +6,29 @@ namespace Bin;
 /**
  *
  *
+ * Nomenclature
+ * ===============
+ * container:
+ *      - name
+ *      - maxVolume
+ *      - maxWeight
+ *
+ * containerUsed:
+ *      - id
+ *      - name
+ *      - remainingVolume
+ *      - remainingWeight
+ *      - items
+ *
+ *
+ * - positive sum: remaining quantity (container max quantity - items used quantity)
+ * - negative sum: quantity which doesn't fit a container; indicates containers overloads
+ * - balanced sum: positive sum + negative sum
+ *
+ *
+ *
+ *
+ *
  * $containers = [
  *      [
  *          'name' => "small",
@@ -39,6 +62,7 @@ class LingSwapBinUtil
     private $containers;
     private $keyItemVolume;
     private $keyItemWeight;
+    private $keyItemId;
     private $keyContainerVolume;
     private $keyContainerWeight;
     private $keyContainerName;
@@ -48,6 +72,7 @@ class LingSwapBinUtil
     {
         $this->items = [];
         $this->containers = [];
+        $this->keyItemId = 'id';
         $this->keyItemVolume = 'volume';
         $this->keyItemWeight = 'weight';
         $this->keyContainerVolume = 'volume';
@@ -87,7 +112,7 @@ class LingSwapBinUtil
 
 
         $containersToUseVol = $this->getContainersToUseByKey($remainingVolume, $this->keyContainerVolume, $this->keyItemVolume);
-        $containersToUseWeight = $this->getContainersToUseByKey($remainingWeight, $this->keyContainerWeight, $this->keyContainerWeight);
+        $containersToUseWeight = $this->getContainersToUseByKey($remainingWeight, $this->keyContainerWeight, $this->keyItemWeight);
 
         // we choose the container combination that gives us the most space and weight capacity
         $scoreVol = $this->getContainersScore($containersToUseVol);
@@ -96,7 +121,17 @@ class LingSwapBinUtil
 
         $containersToUse = ($scoreVol > $scoreWeight) ? $containersToUseVol : $containersToUseWeight;
 
+
         return $containersToUse;
+    }
+
+
+    private function giveIdsToContainersToUse(array &$containersToUse)
+    {
+        $i = 1;
+        foreach ($containersToUse as $k => $c) {
+            $containersToUse[$k] = array('id' => $i++) + $containersToUse[$k];
+        }
     }
 
     private function getContainersToUseByKey($remainingQty, $containerKey, $itemKey)
@@ -125,15 +160,20 @@ class LingSwapBinUtil
     }
 
 
+
+
+
     /**
      * Distribute the items in the given containers, and
-     * returns an array of:
-     *      - containerName
+     * returns an array of usedContainers:
+     *      - name
+     *      - remainingVolume
+     *      - remainingWeight
      *      - items
      *
      *
      */
-    public function bestFit(array $containersToUse, &$unusedSpace = 0)
+    public function bestFit(array $containersToUse)
     {
         $ret = [];
         $items = $this->items;
@@ -185,19 +225,98 @@ class LingSwapBinUtil
             }
         }
 
-
-        // check volume
-        $this->fixVolume($ret);
-
-
-        $unusedSpace = $this->getUnusedSpace($ret);
+        $this->giveIdsToContainersToUse($ret);
         return $ret;
     }
 
-    public function fixVolume(array &$containersInfo)
-    {
 
+    public function setKeyItemVolume($keyItemVolume)
+    {
+        $this->keyItemVolume = $keyItemVolume;
+        return $this;
     }
+
+    public function setKeyItemWeight($keyItemWeight)
+    {
+        $this->keyItemWeight = $keyItemWeight;
+        return $this;
+    }
+
+    public function setKeyItemId($keyItemId)
+    {
+        $this->keyItemId = $keyItemId;
+        return $this;
+    }
+
+    public function setKeyContainerVolume($keyContainerVolume)
+    {
+        $this->keyContainerVolume = $keyContainerVolume;
+        return $this;
+    }
+
+    public function setKeyContainerWeight($keyContainerWeight)
+    {
+        $this->keyContainerWeight = $keyContainerWeight;
+        return $this;
+    }
+
+    public function setKeyContainerName($keyContainerName)
+    {
+        $this->keyContainerName = $keyContainerName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKeyItemVolume()
+    {
+        return $this->keyItemVolume;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKeyItemWeight()
+    {
+        return $this->keyItemWeight;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKeyItemId()
+    {
+        return $this->keyItemId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKeyContainerVolume()
+    {
+        return $this->keyContainerVolume;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKeyContainerWeight()
+    {
+        return $this->keyContainerWeight;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKeyContainerName()
+    {
+        return $this->keyContainerName;
+    }
+
+
+
+
 
 
 
@@ -240,15 +359,6 @@ class LingSwapBinUtil
     }
 
 
-    private function getUnusedSpace(array $containersInfo)
-    {
-        $unusedSpace = 0;
-        foreach ($containersInfo as $c) {
-            $unusedSpace += $c['remainingVolume'];
-        }
-        return $unusedSpace;
-    }
-
     private function findItemsSmallestVolume(array $items)
     {
         $ret = 0;
@@ -266,9 +376,9 @@ class LingSwapBinUtil
     private function getContainersScore(array $containers)
     {
         $score = 0;
-        foreach($containers as $c){
-            $score += $c['weight'];
-            $score += $c['volume'];
+        foreach ($containers as $c) {
+            $score += $c[$this->keyContainerVolume];
+            $score += $c[$this->keyContainerWeight];
         }
         return $score;
     }
