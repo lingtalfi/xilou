@@ -19,6 +19,17 @@ class CommandeUtil
         return false;
     }
 
+    public static function getIdByReference($ref)
+    {
+        if (false !== ($res = QuickPdo::fetch('select id from commande where reference=:ref', [
+                'ref' => $ref,
+            ]))
+        ) {
+            return $res['id'];
+        }
+        return false;
+    }
+
     public static function getCommandeSumInfo($commandeId)
     {
         $prixTotal = 0;

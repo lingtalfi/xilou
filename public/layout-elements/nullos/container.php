@@ -102,7 +102,7 @@ $containerId2Refs = ContainerUtil::getId2Labels();
 
                             $query = "select
 fha.volume,
-a.poids
+fha.poids
 from commande_has_article h
 inner join article a on a.id=h.article_id
 inner join fournisseur_has_article fha on fha.fournisseur_id=h.fournisseur_id and fha.article_id=h.article_id
@@ -177,7 +177,7 @@ c.id,
 co.id as container_id,
 co.nom as container,
 c.reference,
-a.poids,
+fha.poids,
 fha.volume,
 f.id as fournisseur_id,
 f.nom as fournisseur,
@@ -262,6 +262,20 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
 <script>
 
 
+    function updateRepartitionPanel(commandeId) {
+        $.get('/services/zilu.php?action=order-auto-repartition&commande_id=' + commandeId, function (data) {
+            $('#automatic-repartition-table').empty().html(data);
+            var jSubmitContainer = $("#repartition-container-dialog").find(".repartition-btn-container");
+            if ('' !== data) {
+                jSubmitContainer.removeClass("hidden");
+            }
+            else {
+                jSubmitContainer.addClass("hidden");
+            }
+        });
+    }
+
+
     $(document).ready(function () {
 
 
@@ -316,7 +330,7 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
         $("#send-mail-selector").selectmenu();
 
 
-        $('#zilu').on('click', function (e) {
+        $('body').on('click', function (e) {
             var jTarget = $(e.target);
 
             if (jTarget.hasClass("container-selector")) {
@@ -424,6 +438,14 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
             else if (jTarget.hasClass("repartition-container-button")) {
                 e.preventDefault();
 
+                var jCommandeSelector = $("#repartition-container-dialog").find("select[name='commande_id']");
+
+                if ('undefined' !== typeof $("#repartition-container-dialog").dialog("instance")) {
+                    $("#repartition-container-dialog").dialog("close");
+                    $('#automatic-repartition-table').empty();
+                    jCommandeSelector.val(0);
+                }
+
                 $("#repartition-container-dialog").dialog({
                     position: {
                         my: "left top",
@@ -434,43 +456,81 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
                     open: function (event, ui) {
                         var jErrorCommandEmpty = $("#repartition-container-dialog").find('.error-commande-empty');
 
+                        var jSubmit = $("#repartition-container-dialog").find("#repartition-submit-btn");
 
-                        var jCommandeSelector = $("#repartition-container-dialog").find("select[name='commande_id']");
+                        var jCancel = $("#repartition-container-dialog").find("#repartition-cancel-btn");
+                        jCancel
+                            .off('click')
+                            .on('click', function (e) {
+                                e.preventDefault();
+                                $("#repartition-container-dialog").dialog("close");
+                                return false;
+                            });
+
+                        var lastCommandeId = 0;
+
                         jCommandeSelector.off('change');
                         jCommandeSelector.on('change', function () {
+                            lastCommandeId = $(this).val();
                             jErrorCommandEmpty.addClass('hidden');
+                            updateRepartitionPanel($(this).val());
+
                         });
-                        var jSubmit = $("#repartition-container-dialog").find("#repartition-submit-btn")
                         jSubmit
                             .off('click')
                             .on('click', function (e) {
                                 e.preventDefault();
-                                var jForm = $("#repartition-container-dialog").find('form');
-                                $.getJSON('/services/zilu.php?action=container-distribute&' + jForm.serialize(), function (data) {
-                                    if ('error' in data && 'errorType' in data) {
-                                        if ('error-commande-empty' === data['errorType']) {
-                                            jErrorCommandEmpty.removeClass('hidden');
-                                            jErrorCommandEmpty.find(".error").html(data['error']);
-                                        }
-                                    }
-                                });
 
+                                jErrorCommandEmpty.addClass('hidden');
+
+                                var theJson = $('#decorated-used-containers-json').text();
+
+                                $.post('/services/zilu.php?action=container-distribute&commande_id=' + lastCommandeId, {
+                                    'json': theJson
+                                }, function (data) {
+                                    console.log("jjj");
+                                    console.log(data);
+                                    if ('ok' === data) {
+                                        console.log("ok");
+                                        $("#repartition-container-dialog").dialog("close");
+                                        location.reload();
+                                    }
+                                    else {
+                                        jErrorCommandEmpty.removeClass("hidden");
+                                        jErrorCommandEmpty.find('.error').html(data);
+                                    }
+                                }, 'json');
                             });
                     }
                 });
             }
+            else if (jTarget.hasClass("container-item-link")) {
+                e.preventDefault();
+                var commandeId = jTarget.attr('data-cid');
+                var containerId = jTarget.attr('data-coid');
+                var jsonItems = jTarget.parent().find('.json-items').text();
+
+                $.post('/services/zilu.php?action=display-container-items&cid=' + commandeId + '&coid=' + containerId, {
+                    'jsonItems': jsonItems
+                }, function (data) {
+
+                    $("#container-items-dialog").dialog({
+                        maxHeight: 500,
+                        width: 600,
+                        position: {
+                            my: "center",
+                            at: "center",
+                            of: jTarget
+                        },
+                        open: function (event, ui) {
+                            var jContainer = $("#container-items-dialog").find(".articles-container");
+                            jContainer.html(data);
+                        }
+                    });
+                });
+
+            }
         });
-
-
-//        $(".article-autocomplete-input").autocomplete({
-//            source: "/services/zilu.php?action=article-autocomplete",
-//            minLength: 2,
-////            appendTo: "#repartition-container-dialog",
-//            classes: {
-//                "ui-autocomplete": "zilu-auto-complete"
-//            }
-//        });
-
     });
 
 
@@ -556,10 +616,13 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
             dans les containers sélectionnés.
         </p>
         <p class="warning">
-            Attention, cette opération supprimera toutes les liaisons existantes pour ces containers
+            Attention, cette opération créé de nouveaux containers
         </p>
         <form action="" method="post">
             <ul class="flex-outer">
+                <li class="error-commande-empty hidden">
+                    <div class="error"></div>
+                </li>
                 <li>
                     <select name="commande_id">
                         <option value="0">Choisissez une commande...</option>
@@ -572,21 +635,27 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
                         ?>
                     </select>
                 </li>
-                <li class="error-commande-empty hidden">
-                    <div class="error"></div>
+                <li id="automatic-repartition-table">
+
                 </li>
                 <li>
-                    <fieldset>
-                        <legend>Options:</legend>
-                        <label for="create-container-1">Créer des nouveaux containers automatiquement</label>
-                        <input class="ui-checkbox" type="checkbox" checked name="create-container"
-                               id="create-container-1">
-                    </fieldset>
-                </li>
-                <li>
-                    <button id="repartition-submit-btn" type="submit">Créer</button>
+                    <div class="repartition-btn-container hidden">
+                        <button id="repartition-cancel-btn" type="submit">Annuler</button>
+                        <button id="repartition-submit-btn" type="submit">Accepter</button>
+                    </div>
                 </li>
             </ul>
+        </form>
+    </div>
+    <div id="container-items-dialog" title="Articles du container">
+        <div class="articles-container"></div>
+    </div>
+    <div id="update-column-dialog" title="Mettre à jour un champ">
+        <form style="text-align: center">
+            <input type="text" value="" id="update-column-input">
+            <br>
+            <br>
+            <button type="submit" id="update-column-submit-btn">Modifier</button>
         </form>
     </div>
 </div>

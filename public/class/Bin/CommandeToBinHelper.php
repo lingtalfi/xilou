@@ -26,6 +26,7 @@ class CommandeToBinHelper
         $o->setKeyItemVolume('volume');
         $o->setKeyItemWeight('poids');
         $o->setKeyItemId('aid');
+        $o->setKeyItemQuantity('quantite');
 
         $o->setContainers($containers);
         $o->setItems($details);

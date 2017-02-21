@@ -63,6 +63,7 @@ class LingSwapBinUtil
     private $keyItemVolume;
     private $keyItemWeight;
     private $keyItemId;
+    private $keyItemQuantity;
     private $keyContainerVolume;
     private $keyContainerWeight;
     private $keyContainerName;
@@ -75,6 +76,7 @@ class LingSwapBinUtil
         $this->keyItemId = 'id';
         $this->keyItemVolume = 'volume';
         $this->keyItemWeight = 'weight';
+        $this->keyItemQuantity = 'quantity';
         $this->keyContainerVolume = 'volume';
         $this->keyContainerWeight = 'weight';
         $this->keyContainerName = 'name';
@@ -104,8 +106,8 @@ class LingSwapBinUtil
         $totalItemsVolume = 0;
         $totalItemsWeight = 0;
         array_walk($items, function ($item) use (&$totalItemsVolume, &$totalItemsWeight) {
-            $totalItemsVolume += $item[$this->keyItemVolume];
-            $totalItemsWeight += $item[$this->keyItemWeight];
+            $totalItemsVolume += $item[$this->keyItemVolume] * $item[$this->keyItemQuantity];
+            $totalItemsWeight += $item[$this->keyItemWeight] * $item[$this->keyItemQuantity];
         });
         $remainingVolume = $totalItemsVolume;
         $remainingWeight = $totalItemsWeight;
@@ -223,9 +225,9 @@ class LingSwapBinUtil
                 $curIndex = $curIndex % $nbContainers;
 
                 // does the item fit in the container?
-                if ($ret[$curIndex]['remainingVolume'] - $item[$this->keyItemVolume] >= 0) {
-                    $ret[$curIndex]['remainingVolume'] -= $item[$this->keyItemVolume];
-                    $ret[$curIndex]['remainingWeight'] -= $item[$this->keyItemWeight];
+                if ($ret[$curIndex]['remainingVolume'] - ($item[$this->keyItemVolume] * $item[$this->keyItemQuantity]) >= 0) {
+                    $ret[$curIndex]['remainingVolume'] -= ($item[$this->keyItemVolume] * $item[$this->keyItemQuantity]);
+                    $ret[$curIndex]['remainingWeight'] -= ($item[$this->keyItemWeight] * $item[$this->keyItemQuantity]);
                     $ret[$curIndex]['items'][] = $item;
                     $curIndex++;
                     break;
@@ -285,6 +287,12 @@ class LingSwapBinUtil
         return $this;
     }
 
+    public function setKeyItemQuantity($keyItemQuantity)
+    {
+        $this->keyItemQuantity = $keyItemQuantity;
+        return $this;
+    }
+
     /**
      * @return string
      */
@@ -333,6 +341,13 @@ class LingSwapBinUtil
         return $this->keyContainerName;
     }
 
+    /**
+     * @return string
+     */
+    public function getKeyItemQuantity()
+    {
+        return $this->keyItemQuantity;
+    }
 
 
 

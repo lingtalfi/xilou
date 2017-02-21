@@ -1,7 +1,11 @@
 <?php
 
 
+use Bin\BinGuiUtil;
+use Bin\CommandeToBinHelper;
+use Bin\Exception\WeightOverloadException;
 use Commande\CommandeUtil;
+use CommandeHasArticle\CommandeHasArticleUtil;
 use Container\ContainerUtil;
 use CsvImport\CommandeImporterUtil;
 use Fournisseur\FournisseurUtil;
@@ -11,6 +15,8 @@ use QuickPdo\QuickPdo;
 use Sav\SavAjaxFormInsert;
 use Sav\SavDetailsArrayRenderer;
 use Sav\SavUtil;
+use TypeContainer\TypeContainer;
+use UniqueNameGenerator\Generator\ItemUniqueNameGenerator;
 
 require_once __DIR__ . "/../../init.php";
 
@@ -111,23 +117,38 @@ if (array_key_exists('action', $_GET)) {
             }
             break;
         case 'container-distribute':
-            /**
-             *  The problem of packing a set of items into a number of bins such that the total weight, volume, etc. does not exceed some maximum value. A simple algorithm (the first-fit algorithm) takes items in the order they come and places them in the first bin in which they fit. In 1973, J. Ullman proved that this algorithm can differ from an optimal packing by as much at 70% (Hoffman 1998, p. 171). An alternative strategy first orders the items from largest to smallest, then places them sequentially in the first bin in which they fit. In 1973, D. Johnson showed that this strategy is never suboptimal by more than 22%, and furthermore that no efficient bin-packing algorithm can be guaranteed to do better than 22% (Hoffman 1998, p. 172).
-             */
-            // http://www.geeksforgeeks.org/bin-packing-problem-minimize-number-of-used-bins/
+            if (
+                array_key_exists('commande_id', $_GET) &&
+                array_key_exists('json', $_POST)
+            ) {
+                $commandeId = $_GET['commande_id'];
+                $usedContainers = json_decode($_POST['json'], true);
 
-            if (array_key_exists('commande_id', $_GET)) {
-                $commande_id = (int)$_GET['commande_id'];
-                $createContainer = false;
-                if (array_key_exists('create-container', $_GET) && 'on' === $_GET['create-container']) {
-                    $createContainer = true;
-                }
+                $label2Ids = TypeContainer::getLabel2Id();
 
-                if (0 === $commande_id) {
-                    $output = [
-                        'errorType' => "error-commande-empty",
-                        'error' => "Veuillez choisir une commande",
-                    ];
+                try {
+
+                    foreach ($usedContainers as $usedContainer) {
+
+
+                        // create the container
+                        $typeContainerId = $label2Ids[$usedContainer['name']];
+                        $suggestedName = $usedContainer['suggestedName'];
+                        $containerId = ContainerUtil::createContainer($suggestedName, $typeContainerId);
+
+                        ;
+
+                        // bind all items
+                        $items = $usedContainer['items'];
+                        foreach ($items as $item) {
+                            $articleId = $item['aid'];
+                            $fournisseurId = $item['fournisseur_id'];
+                            CommandeHasArticleUtil::bindContainer($containerId, $commandeId, $articleId, $fournisseurId);
+                        }
+                    }
+                    $output = "ok";
+                } catch (\Exception $e) {
+                    $output = $e->getMessage();
                 }
             }
             break;
@@ -313,6 +334,80 @@ if (array_key_exists('action', $_GET)) {
                     ];
                 }
             }
+            break;
+        case 'order-auto-repartition':
+            if (array_key_exists('commande_id', $_GET)) {
+                $commandeId = (int)$_GET['commande_id'];
+                $isHtml = true;
+
+                if (0 !== $commandeId) {
+
+                    $overloadWarning = false;
+                    try {
+                        $usedContainers = CommandeToBinHelper::distributeCommandeById($commandeId);
+                    } catch (WeightOverloadException $e) {
+                        $usedContainers = $e->usedContainers;
+                        $overloadWarning = true;
+                    }
+
+                    BinGuiUtil::decorateUsedContainers($usedContainers, $commandeId);
+
+                    ob_start();
+                    BinGuiUtil::displayDecoratedUsedContainers($usedContainers, $commandeId);
+                    $output = ob_get_clean();
+
+                } else {
+                    $output = "";
+                }
+            }
+            break;
+        case 'display-container-items':
+            if (
+                array_key_exists('jsonItems', $_POST) &&
+                array_key_exists('cid', $_GET) &&
+                array_key_exists('coid', $_GET)
+            ) {
+
+                $jsonItems = json_decode($_POST['jsonItems'], true);
+                $commandeId = (int)$_GET['cid'];
+                $containerId = (int)$_GET['coid'];
+                $isHtml = true;
+
+                ob_start();
+                BinGuiUtil::displayContainerItems($jsonItems);
+                $output = ob_get_clean();
+            }
+            break;
+
+        case 'update-container-article-column':
+            $fournisseurId = null;
+            $articleId = null;
+
+            if (
+                array_key_exists('col', $_GET) &&
+                array_key_exists('value', $_GET) &&
+                array_key_exists('fid', $_GET) &&
+                array_key_exists('aid', $_GET)
+            ) {
+                $col = $_GET['col'];
+                $value = $_GET['value'];
+                $fournisseurId = $_GET['fid'];
+                $articleId = $_GET['aid'];
+
+                $res = QuickPdo::update('fournisseur_has_article', [
+                    $col => $value,
+                ], [
+                    ['article_id', '=', $articleId],
+                    ['fournisseur_id', '=', $fournisseurId],
+                ]);
+            }
+
+            if (false !== $res) {
+                $output = 'ok';
+            } else {
+                $output = 'ko';
+            }
+
             break;
         default:
             break;

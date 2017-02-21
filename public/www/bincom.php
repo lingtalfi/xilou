@@ -1,25 +1,54 @@
 <?php
 
 
+use Bin\BinGuiUtil;
 use Bin\CommandeToBinHelper;
 use Bin\Exception\WeightOverloadException;
-use Bin\SummaryInfoTool;
-use CommandeHasArticle\CommandeHasArticleUtil;
 
 require_once __DIR__ . "/../init.php";
 
 
 
+
+$commandeId = 1;
 $overloadWarning = false;
 try {
-    $res = CommandeToBinHelper::distributeCommandeById(1);
+    $usedContainers = CommandeToBinHelper::distributeCommandeById($commandeId);
 } catch (WeightOverloadException $e) {
-    $res = $e->usedContainers;
+    $usedContainers = $e->usedContainers;
     $overloadWarning = true;
 }
-echo "<hr>";
-a($overloadWarning);
-a($res);
+
+
+
+BinGuiUtil::decorateUsedContainers($usedContainers, $commandeId);
+a("kk");
+az($usedContainers);
+
+ob_start();
+BinGuiUtil::displayDecoratedUsedContainers($usedContainers, $commandeId);
+$output = ob_get_clean();
+echo $output;
+
+
+exit;
+
+
+$commandeId = 1;
+$overloadWarning = false;
+try {
+    $usedContainers = CommandeToBinHelper::distributeCommandeById($commandeId);
+} catch (WeightOverloadException $e) {
+    $usedContainers = $e->usedContainers;
+    $overloadWarning = true;
+}
+az($usedContainers);
+
+$c1 = $usedContainers[0];
+$items = $c1['items'];
+
+BinGuiUtil::displayContainerItems($items);
+
 
 
 

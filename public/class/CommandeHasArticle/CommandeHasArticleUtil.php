@@ -99,4 +99,30 @@ where c.id=" . $commandeId;
 
     }
 
+
+    public static function bindContainer($containerId, $commandeId, $articleId, $fournisseurId){
+        QuickPdo::update("commande_has_article", [
+            'container_id' => $containerId,
+        ], [
+            ['commande_id', '=', (int)$commandeId],
+            ['article_id', '=', (int)$articleId],
+            ['fournisseur_id', '=', (int)$fournisseurId],
+        ]);
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
