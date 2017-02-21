@@ -160,7 +160,22 @@ class LingSwapBinUtil
     }
 
 
-
+    /**
+     * Distribute the items in the given containers, and
+     * returns an array of usedContainers:
+     *      - name
+     *      - remainingVolume
+     *      - remainingWeight
+     *      - maxVolume
+     *      - maxWeight
+     *      - items
+     *
+     *
+     */
+    public function safeFit(array $containersToUse)
+    {
+        throw new \Exception("Not implemented yet: safeFit algorithm"); // I believe bestFit should always work (or am I just lazy?)
+    }
 
 
     /**
@@ -169,6 +184,8 @@ class LingSwapBinUtil
      *      - name
      *      - remainingVolume
      *      - remainingWeight
+     *      - maxVolume
+     *      - maxWeight
      *      - items
      *
      *
@@ -187,6 +204,8 @@ class LingSwapBinUtil
                 'name' => $c[$this->keyContainerName],
                 'remainingVolume' => $c[$this->keyContainerVolume],
                 'remainingWeight' => $c[$this->keyContainerWeight],
+                'maxVolume' => $c[$this->keyContainerVolume],
+                'maxWeight' => $c[$this->keyContainerWeight],
                 'items' => [],
             ];
         }

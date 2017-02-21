@@ -3,11 +3,9 @@
 
 namespace Bin;
 
-use Bin\Swapper\ItemsSelector\BestFitItemsSelector;
-use Bin\Swapper\ItemsSelector\ItemsSelector;
-use Bin\Swapper\Swapper;
+use Bin\Exception\WeightOverloadException;
+use Bin\Swapper\NegativeWeightSwapper;
 use CommandeHasArticle\CommandeHasArticleUtil;
-use Container\ContainerUtil;
 use TypeContainer\TypeContainer;
 
 class CommandeToBinHelper
@@ -35,6 +33,12 @@ class CommandeToBinHelper
         $usedContainers = $o->bestFit($containers);
 
 
+        $swapper = NegativeWeightSwapper::create()->setNbTries(3);
+        while (false !== $tmpUsedContainers = $swapper->swap($usedContainers)) {
+            $usedContainers = $tmpUsedContainers;
+        }
+
+
         $so = new SummaryInfoTool();
         $so->keyContainerName = $o->getKeyContainerName();
         $so->keyContainerWeight = $o->getKeyContainerWeight();
@@ -45,16 +49,12 @@ class CommandeToBinHelper
         $summary = $so->getSummaryInfo($details, $usedContainers, $containers);
 
 
-        a($summary);
-        a($usedContainers);
-
-
-        $swapper = Swapper::create()
-            ->setItemSelector(BestFitItemsSelector::create()->setSummary($summary));
-        $swapper->swap($usedContainers);
-
-
-
+        if ($summary['containersWeightNegativeSum'] < 0 || $summary['containersVolumeNegativeSum'] < 0) {
+            $e = new  WeightOverloadException("Warning: some containers have been overloaded");
+            $e->usedContainers = $usedContainers;
+            throw $e;
+//            $usedContainers = $o->safeFit($containers);
+        }
         return $usedContainers;
     }
 

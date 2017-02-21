@@ -69,11 +69,33 @@ class SummaryInfoTool
     }
 
 
+
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+    public static function findNegativePositiveWeightContainers(array $usedContainers)
+    {
+        $negWeight = [];
+        $posWeight = [];
+        foreach ($usedContainers as $c) {
+            if ($c['remainingWeight'] < 0) {
+                $negWeight[$c['id']] = $c['remainingWeight'];
+            } elseif ($c['remainingWeight'] > 0) {
+                $posWeight[$c['id']] = $c['remainingWeight'];
+            }
+        }
+        return [
+            $negWeight,
+            $posWeight,
+        ];
+    }
+
+
     //------------------------------------------------------------------------------/
     //
     //------------------------------------------------------------------------------/
 
-    private function getUsedContainerInfo(array $containersInfo, $isWeight)
+    private function getUsedContainerInfo(array $usedContainers, $isWeight)
     {
         $balance = 0;
         $negative = 0;
@@ -82,7 +104,7 @@ class SummaryInfoTool
 
         $w = (true === $isWeight) ? 'remainingWeight' : 'remainingVolume';
 
-        foreach ($containersInfo as $c) {
+        foreach ($usedContainers as $c) {
             $balance += $c[$w];
             if ($c[$w] < 0) {
                 $negative += $c[$w];
@@ -145,13 +167,13 @@ class SummaryInfoTool
     }
 
 
-    private function findNegativePositiveContainers(array $containersToUse)
+    private function findNegativePositiveContainers(array $usedContainers)
     {
         $negVol = [];
         $negWeight = [];
         $posVol = [];
         $posWeight = [];
-        foreach ($containersToUse as $c) {
+        foreach ($usedContainers as $c) {
             if ($c['remainingVolume'] < 0) {
                 $negVol[$c['id']] = $c['remainingVolume'];
             } elseif ($c['remainingVolume'] > 0) {
@@ -170,5 +192,6 @@ class SummaryInfoTool
             $posWeight,
         ];
     }
+
 
 }
