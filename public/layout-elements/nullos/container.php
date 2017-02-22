@@ -13,6 +13,7 @@ use Csv\CsvUtil;
 use Icons\Icons;
 use Layout\Goofy;
 use QuickPdo\QuickPdo;
+use TypeContainer\TypeContainer;
 
 $ll = "zilu";
 
@@ -21,15 +22,19 @@ $_SESSION['containerQueryString'] = $_SERVER['QUERY_STRING'];
 
 
 $containerIds = [];
-if (array_key_exists('container-commande-id', $_SESSION)) {
-    $cid = $_SESSION['container-commande-id'];
-    $containerIds = ContainerUtil::getContainerIdsByCommandeId($cid);
-}
+$inactiveContainerIds = [];
+$summaryIsPercent = 0; // 0|1: false|true
+
 if (array_key_exists('container-container-ids', $_SESSION)) {
     $cids = $_SESSION['container-container-ids'];
     $containerIds = array_merge($containerIds, $cids);
-    $containerIds = array_merge($containerIds, $cids);
-
+}
+if (array_key_exists('container-inactive-container-ids', $_SESSION)) {
+    $inactiveContainerIds = $_SESSION['container-inactive-container-ids'];
+    $inactiveContainerIds = array_unique($inactiveContainerIds);
+}
+if (array_key_exists('summaryIsPercent', $_SESSION)) {
+    $summaryIsPercent = (int)$_SESSION['summaryIsPercent'];
 }
 
 $containerIds = array_unique($containerIds);
@@ -63,15 +68,23 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
     <div class="zilu-split">
         <div class="zilu-summary">
 
-            <select id="commande-select" name="commande">
-                <option value="0">Choisissez une commande</option>
-                <?php foreach ($commandeId2Refs as $id => $label):
-                    $sel = ($idCommande === (int)$id) ? 'selected="selected"' : '';
+            <div>
+                <select id="commande-select" name="commande">
+                    <option value="0">Choisissez une commande</option>
+                    <?php foreach ($commandeId2Refs as $id => $label):
+                        $sel = ($idCommande === (int)$id) ? 'selected="selected"' : '';
+                        ?>
+                        <option <?php echo $sel; ?>
+                                value="<?php echo $id; ?>"><?php echo htmlspecialchars($label); ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <label>
+                    <?php
+                    $checked = (1 === $summaryIsPercent) ? 'checked' : '';
                     ?>
-                    <option <?php echo $sel; ?>
-                            value="<?php echo $id; ?>"><?php echo htmlspecialchars($label); ?></option>
-                <?php endforeach; ?>
-            </select>
+                    <input id="container-summary-switch-percent" type="checkbox" <?php echo $checked; ?>> pourcentage
+                </label>
+            </div>
             <br>
             <br>
 
@@ -80,13 +93,23 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
             $cptContainer = 0;
             $nbContainers = count($containerIds);
             if ($nbContainers > 0):
+
+
+                $unitVol = (1 === $summaryIsPercent) ? '(%)' : '(m3)';
+                $unitWeight = (1 === $summaryIsPercent) ? '(%)' : '(kg)';
+
+
+                $checked = (0 === count($inactiveContainerIds)) ? 'checked' : '';
                 ?>
-                <table>
+                <table id="container-summary-table">
                     <tr>
-                        <th></th>
+                        <th><input
+                                    id="summary-checkbox-toggle"
+                                    data-id="0"
+                                    type="checkbox" <?php echo $checked; ?>></th>
                         <th>Container</th>
-                        <th>Volume</th>
-                        <th>Poids</th>
+                        <th>Volume <?php echo $unitVol; ?></th>
+                        <th>Poids <?php echo $unitWeight; ?></th>
                         <th></th>
                     </tr>
 
@@ -103,6 +126,7 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
                             $query = "select
 c.nom,
 h.quantite,
+h.container_id,
 fha.volume,
 fha.poids
 from commande_has_article h
@@ -114,22 +138,70 @@ where h.container_id=" . $containerId;
                             if (false !== ($res = QuickPdo::fetchAll($query))):
                                 $poids = 0;
                                 $volume = 0;
-                                if (count($res) > 0) {
+                                if (count($res) > 0):
+
+                                    $idsUsed = [];
 
                                     foreach ($res as $item) {
                                         $poids += $item['poids'] * $item['quantite'];
                                         $volume += $item['volume'] * $item['quantite'];
                                     }
+
+
+                                    $details = TypeContainer::getDetailsByContainerId($containerId);
+                                    $poidsMax = $details['poids_max'];
+                                    $volumeMax = $details['volume_max'];
+
+                                    $poidsPercent = $poids / $poidsMax * 100;
+                                    $volumePercent = $volume / $volumeMax * 100;
+
+                                    if (1 === $summaryIsPercent) {
+                                        $poids = $poidsPercent;
+                                        $volume = $volumePercent;
+                                    }
+
+                                    $sOverload = '';
+                                    if ($poidsPercent > 100 || $volumePercent > 100) {
+                                        $sOverload = 'zilu-overload';
+                                    }
+
+
+                                    $checked = "";
+                                    if (false === in_array($containerId, $inactiveContainerIds)) {
+                                        $checked = "checked";
+                                    }
+
                                     ?>
-                                    <tr>
-                                        <td><input type="checkbox" checked></td>
+                                    <tr class="<?php echo $sOverload; ?>">
+                                        <td><input data-id="<?php echo $containerId; ?>"
+                                                   type="checkbox" <?php echo $checked; ?>></td>
                                         <td><?php echo $item['nom']; ?></td>
-                                        <td><?php echo $volume; ?></td>
-                                        <td><?php echo $poids; ?></td>
-                                        <td><a href="#">X</a></td>
+                                        <td><?php echo round($volume, 2); ?></td>
+                                        <td><?php echo round($poids, 2); ?></td>
+                                        <td><a href="#" data-id="<?php echo $containerId; ?>"
+                                               class="container-delete">X</a></td>
                                     </tr>
                                     <?php
-                                }
+                                else:
+                                    $containerName = $containerId2Refs[$containerId];
+
+                                    $checked = "";
+                                    if (false === in_array($containerId, $inactiveContainerIds)) {
+                                        $checked = "checked";
+                                    }
+
+                                    ?>
+                                    <tr>
+                                        <td><input data-id="<?php echo $containerId; ?>"
+                                                   type="checkbox" <?php echo $checked; ?>></td>
+                                        <td><?php echo $containerName; ?></td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td><a href="#" data-id="<?php echo $containerId; ?>"
+                                               class="container-delete">X</a></td>
+                                    </tr>
+                                    <?php
+                                endif;
                             endif;
                         endif;
                     endforeach; ?>
@@ -156,6 +228,7 @@ where h.container_id=" . $containerId;
             <?php
 
 
+            $containerIds = array_diff($containerIds, $inactiveContainerIds);
             $realContainerIds = array_filter($containerIds, function ($v) {
                 return (0 !== $v);
             });
@@ -279,7 +352,50 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
     }
 
 
+    function rebindSummaryTable() {
+
+        $('#container-summary-table').find("input[type='checkbox']").not('#summary-checkbox-toggle')
+            .off('change')
+            .on('change', function () {
+                var containerId = $(this).attr('data-id');
+
+
+                var word = "inactive";
+                if (true === $(this).prop('checked')) {
+                    word = "active";
+                }
+
+                $.getJSON("/services/zilu.php?action=container-container-" + word + "&id=" + containerId, function (data) {
+                    if ('ok' === data) {
+                        location.reload();
+                    }
+                });
+                rebindSummaryTable();
+            });
+    }
+
+
     $(document).ready(function () {
+
+        rebindSummaryTable();
+
+        $('#summary-checkbox-toggle').on("change", function () {
+            var checked = ($(this).prop('checked')) ? 1 : 0;
+            $.getJSON('/services/zilu.php?action=container-summary-toggle&active=' + checked, function (data) {
+                if ('ok' === data) {
+                    location.reload();
+                }
+            });
+        });
+
+        $('#container-summary-switch-percent').on('change', function () {
+            var checked = ($(this).prop('checked')) ? 1 : 0;
+            $.getJSON('/services/zilu.php?action=container-summary-percent&percent=' + checked, function (data) {
+                if ('ok' === data) {
+                    location.reload();
+                }
+            });
+        });
 
 
         $('#container-topmenu-link').attr('href', "/container" + window.location.search);
@@ -603,6 +719,16 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
                         });
 
 
+                    }
+                });
+            }
+            else if (jTarget.hasClass("container-delete")) {
+                e.preventDefault();
+                var containerId = jTarget.attr('data-id');
+
+                $.getJSON("/services/zilu.php?action=container-container-delete&id=" + containerId, function (data) {
+                    if ('ok' === data) {
+                        location.reload();
                     }
                 });
             }

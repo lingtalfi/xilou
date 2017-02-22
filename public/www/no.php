@@ -19,53 +19,12 @@ use Util\RowsRenderer;
 require_once __DIR__ . "/../init.php";
 
 
-$f = "/Users/pierrelafitte/Downloads/COMMANDE ZILU 02-2017.xlsx";
-$f = "/Users/lafitte/Downloads/COMMANDE ZILU 02-2017.xlsx";
+$tel = "09 34 02 38 48";
+$tel2 = "06 34 02 38 48";
+$tel = "06 34 02 38 48";
+$tel2 = "09 34 02 38 48";
 
 
-$pdfPath = "/private/tmp/updf/zilu-personal-tmp.pdf";
+list($phone, $mobile) = TelHelper::getPhoneAndMobile($tel, $tel2);
 
-//a(Umail::create()
-//    ->to("lingtalfi@gmail.com")
-//    ->from('ling@localhost.com')
-//    ->attachFile($pdfPath)
-//    ->subject("Hello")
-//    ->htmlBody("<span style='color: red'>hello, this is just a test message</span>")
-//    ->send());
-//az();
-
-
-$mail = "lingtalfi@gmail.com";
-$commandeId = 1;
-
-
-$providerId = 1;
-$signature = 'leaderfit';
-
-$mail = MAIL_DIDIER;
-if (array_key_exists('test', $_GET)) {
-    $mail = MAIL_ZILU;
-}
-
-$output = "";
-
-try {
-    $n = OrderProviderConfMail::sendByCommandeIdFournisseurId($mail, $commandeId, $providerId, $signature);
-    a($n);
-    if (1 === $n) {
-        $output = [
-            'success' => 'ok',
-        ];
-    } else {
-        $output = [
-            "error" => "Une erreur est survenue, le mail n'a pas été envoyé; veuillez contacter le webmaster",
-        ];
-    }
-} catch (\Exception $e) {
-    az($e);
-    $output = [
-        'error' => $e->getMessage(),
-    ];
-}
-
-a($output);
+a($phone, $mobile);

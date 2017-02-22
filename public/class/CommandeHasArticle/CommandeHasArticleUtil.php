@@ -10,6 +10,15 @@ class CommandeHasArticleUtil
 {
 
 
+    public static function updateStatutByCommandeId($commandeId, $statut)
+    {
+        return QuickPdo::update("commande_has_article", [
+            "commande_ligne_statut_id" => $statut,
+        ], [
+            ['commande_id', "=", $commandeId],
+        ]);
+    }
+
     public static function getCommandeDetailsByFournisseurId($commandeId, $fournisseurId)
     {
 
@@ -100,7 +109,8 @@ where c.id=" . $commandeId;
     }
 
 
-    public static function bindContainer($containerId, $commandeId, $articleId, $fournisseurId){
+    public static function bindContainer($containerId, $commandeId, $articleId, $fournisseurId)
+    {
         QuickPdo::update("commande_has_article", [
             'container_id' => $containerId,
         ], [

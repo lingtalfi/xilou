@@ -6,6 +6,7 @@ use Bin\CommandeToBinHelper;
 use Bin\Exception\WeightOverloadException;
 use Commande\CommandeUtil;
 use CommandeHasArticle\CommandeHasArticleUtil;
+use CommandeLigneStatut\CommandeLigneStatutUtil;
 use Container\ContainerUtil;
 use CsvImport\CommandeImporterUtil;
 use Fournisseur\FournisseurUtil;
@@ -234,6 +235,9 @@ if (array_key_exists('action', $_GET)) {
                     $mail = MAIL_ZILU;
                 }
                 $n = OrderConfMail::sendByCommandeId($mail, $commandeId, $estimatedDate);
+                CommandeHasArticleUtil::updateStatutByCommandeId($commandeId, CommandeLigneStatutUtil::STATUT_DEUX_ENVOYE_PAR_MAIL_A_DIDIER);
+
+
                 if (1 === $n) {
                     $output = 'ok';
                 } else {
@@ -406,16 +410,76 @@ if (array_key_exists('action', $_GET)) {
             }
 
             break;
+        /**
+         * container left table works with the following session arrays:
+         *
+         * - container-commande-id
+         * - container-container-ids   // for extra ids
+         * - container-deleted-container-ids   // to substract from container-commande-id
+         * - container-inactive-container-ids   // to substract from container-commande-id, but only the table on the right
+         *
+         */
         case 'container-commande-select':
             if (array_key_exists('cid', $_GET)) {
-                $_SESSION['container-commande-id'] = $_GET['cid'];
-                $_SESSION['container-container-ids'] = [];
+                $cid = $_GET['cid'];
+                $containerIds = ContainerUtil::getContainerIdsByCommandeId($cid);
+                $_SESSION['container-container-ids'] = $containerIds;
+                $_SESSION['container-inactive-container-ids'] = [];
                 $output = "ok";
             }
             break;
         case 'container-container-select':
             if (array_key_exists('id', $_GET)) {
                 $_SESSION['container-container-ids'][] = $_GET['id'];
+                $_SESSION['container-container-ids'] = array_unique($_SESSION['container-container-ids']);
+                if (false !== ($index = array_search($_GET['id'], $_SESSION['container-inactive-container-ids']))) {
+                    unset($_SESSION['container-inactive-container-ids'][$index]);
+                }
+                $output = "ok";
+            }
+            break;
+        case 'container-container-delete':
+            if (array_key_exists('id', $_GET)) {
+                if (false !== ($index = array_search($_GET['id'], $_SESSION['container-container-ids']))) {
+                    unset($_SESSION['container-container-ids'][$index]);
+                    if (false !== ($index = array_search($_GET['id'], $_SESSION['container-inactive-container-ids']))) {
+                        unset($_SESSION['container-inactive-container-ids'][$index]);
+                    }
+                }
+                $output = "ok";
+            }
+            break;
+        case 'container-container-inactive':
+            if (array_key_exists('id', $_GET)) {
+                $_SESSION['container-inactive-container-ids'][] = $_GET['id'];
+                $_SESSION['container-inactive-container-ids'] = array_unique($_SESSION['container-inactive-container-ids']);
+                $output = "ok";
+            }
+            break;
+        case 'container-container-active':
+            if (array_key_exists('id', $_GET)) {
+                if (false !== ($index = array_search($_GET['id'], $_SESSION['container-inactive-container-ids']))) {
+                    unset($_SESSION['container-inactive-container-ids'][$index]);
+                }
+                $output = "ok";
+            }
+            break;
+        case 'container-summary-toggle':
+            if (array_key_exists('active', $_GET)) {
+                if (true === (bool)$_GET['active']) {
+                    $_SESSION['container-inactive-container-ids'] = [];
+                } else {
+                    foreach ($_SESSION['container-container-ids'] as $id) {
+                        $_SESSION['container-inactive-container-ids'][] = $id;
+                        $_SESSION['container-inactive-container-ids'] = array_unique($_SESSION['container-inactive-container-ids']);
+                    }
+                }
+                $output = "ok";
+            }
+            break;
+        case 'container-summary-percent':
+            if (array_key_exists('percent', $_GET)) {
+                $_SESSION['summaryIsPercent'] = $_GET['percent'];
                 $output = "ok";
             }
             break;

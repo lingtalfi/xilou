@@ -336,12 +336,16 @@ button.zilu-black-button {
 }
 
 /*.zilu .zilu-summary {*/
-    /*box-sizing: border-box;*/
-    /*padding: 20px;*/
-    /*background: #ddd;*/
-    /*border: 1px solid #eee;*/
-    /*border-right: none;*/
+/*box-sizing: border-box;*/
+/*padding: 20px;*/
+/*background: #ddd;*/
+/*border: 1px solid #eee;*/
+/*border-right: none;*/
 /*}*/
+
+.zilu-summary {
+    margin-right: 20px;
+}
 
 .zilu-summary table {
     font-size: 0.9em;
@@ -349,10 +353,12 @@ button.zilu-black-button {
 }
 
 .zilu-summary td,
-.zilu-summary th
-{
+.zilu-summary th {
     padding: 5px;
     border: 1px solid black;
     text-align: left;
 }
 
+.zilu-overload {
+    background-color: #f2a6a6;
+}

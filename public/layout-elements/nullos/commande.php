@@ -2,18 +2,15 @@
 
 
 use AdminTable\Listable\QuickPdoListable;
-use AdminTable\Table\AdminTable;
-use AdminTable\Table\ListParameters;
 use AdminTable\View\AdminTableRenderer;
 use AssetsList\AssetsList;
 use Commande\AdminTable\CommandeAdminTable;
 use Commande\CommandeUtil;
-use Container\ContainerUtil;
+use CommandeLigneStatut\CommandeLigneStatutUtil;
 use Csv\CsvUtil;
 use Fournisseur\FournisseurUtil;
 use Icons\Icons;
 use Layout\Goofy;
-use QuickPdo\QuickPdo;
 
 $ll = "zilu";
 
@@ -132,6 +129,7 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
 
                 $fields = '
 c.id,
+h.commande_ligne_statut_id as statut,
 co.id as container_id,
 co.nom as container,
 c.reference as commande,
@@ -178,6 +176,10 @@ where c.id=" . $idCommande;
                         })
                     );
 
+                $list->setTransformer("statut", function ($value, $item, $ricValue) {
+                    return '<a class="update-link" data-column="commande_ligne_statut_id" data-default="' . htmlspecialchars($value) . '" data-fid="' . $item['fournisseur_id'] . '" data-aid="' . $item['aid'] . '" href="#" style="white-space: nowrap">' . CommandeLigneStatutUtil::toString($value) . '</a>';
+                });
+
                 $list->setTransformer("container", function ($value, $item, $ricValue) {
                     $text = $value;
                     if (null === $value) {
@@ -185,6 +187,7 @@ where c.id=" . $idCommande;
                     }
                     return '<a class="container-selector" data-ric="' . htmlspecialchars($ricValue) . '" data-container-id="' . htmlspecialchars($item['container_id']) . '" href="#">' . $text . '</a>';
                 });
+
 
                 $list->setTransformer("poids", function ($value, $item, $ricValue) {
                     $text = $value;
