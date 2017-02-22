@@ -21,14 +21,18 @@ $_SESSION['containerQueryString'] = $_SERVER['QUERY_STRING'];
 
 
 $containerIds = [];
-if (array_key_exists('containers', $_GET) && is_array($_GET['containers'])) {
-    $containerIds = array_map(function ($v) {
-        return intval($v);
-    }, $_GET['containers']);
+if (array_key_exists('container-commande-id', $_SESSION)) {
+    $cid = $_SESSION['container-commande-id'];
+    $containerIds = ContainerUtil::getContainerIdsByCommandeId($cid);
 }
-if (0 === count($containerIds)) {
-    $containerIds[] = 0;
+if (array_key_exists('container-container-ids', $_SESSION)) {
+    $cids = $_SESSION['container-container-ids'];
+    $containerIds = array_merge($containerIds, $cids);
+    $containerIds = array_merge($containerIds, $cids);
+
 }
+
+$containerIds = array_unique($containerIds);
 
 
 AssetsList::css("style/zilu.css");
@@ -36,6 +40,7 @@ AssetsList::css("/style/admintable.css");
 
 
 $containerId2Refs = ContainerUtil::getId2Labels();
+$commandeId2Refs = CommandeUtil::getId2Labels();
 
 ?>
 
@@ -58,127 +63,114 @@ $containerId2Refs = ContainerUtil::getId2Labels();
     <div class="zilu-split">
         <div class="zilu-summary">
 
-            <form action="" method="get" id="container-form">
-
-
-                <?php
-
-                $cptContainer = 0;
-                $nbContainers = count($containerIds);
-                foreach ($containerIds as $containerId):
-                    $sFirst = (0 === $cptContainer) ? "first" : "";
+            <select id="commande-select" name="commande">
+                <option value="0">Choisissez une commande</option>
+                <?php foreach ($commandeId2Refs as $id => $label):
+                    $sel = ($idCommande === (int)$id) ? 'selected="selected"' : '';
                     ?>
+                    <option <?php echo $sel; ?>
+                            value="<?php echo $id; ?>"><?php echo htmlspecialchars($label); ?></option>
+                <?php endforeach; ?>
+            </select>
+            <br>
+            <br>
 
 
-                    <div class="container-spy-block <?php echo $sFirst; ?>" data-id="<?php echo $containerId; ?>">
-                        <select class="container-spy-selector" name="containers[]">
-                            <option value="0">Choisissez un container</option>
-                            <option value="-1">Nouveau container</option>
-                            <?php foreach ($containerId2Refs as $id => $label):
-                                $sel = ($containerId === (int)$id) ? 'selected="selected"' : '';
-                                ?>
-                                <option <?php echo $sel; ?>
-                                        value="<?php echo $id; ?>"><?php echo htmlspecialchars($label); ?></option>
-                            <?php endforeach; ?>
-                        </select>
+            <?php
+            $cptContainer = 0;
+            $nbContainers = count($containerIds);
+            if ($nbContainers > 0):
+                ?>
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>Container</th>
+                        <th>Volume</th>
+                        <th>Poids</th>
+                        <th></th>
+                    </tr>
 
-                        <?php
+
+                    <?php
+
+
+                    foreach ($containerIds as $containerId):
+                        $sFirst = (0 === $cptContainer) ? "first" : "";
 
                         if (0 !== $containerId):
 
-                            $prixTotal = 0;
-                            $poidsTotal = 0;
-
-                            $res = QuickPdo::fetch('
-                select label, poids_max, volume_max
-                from type_container t
-                inner join container c on c.type_container_id=t.id
-                where c.id=' . (int)$containerId);
-
-                            $typeContainer = $res['label'];
-                            $poidsMax = $res['poids_max'];
-                            $volumeMax = $res['volume_max'];
-
 
                             $query = "select
+c.nom,
+h.quantite,
 fha.volume,
 fha.poids
 from commande_has_article h
 inner join article a on a.id=h.article_id
 inner join fournisseur_has_article fha on fha.fournisseur_id=h.fournisseur_id and fha.article_id=h.article_id
+inner join container c on c.id=h.container_id
 where h.container_id=" . $containerId;
 
                             if (false !== ($res = QuickPdo::fetchAll($query))):
-
-
                                 $poids = 0;
                                 $volume = 0;
-                                foreach ($res as $item) {
-                                    $poids += $item['poids'];
-                                    $volume += $item['volume'];
+                                if (count($res) > 0) {
+
+                                    foreach ($res as $item) {
+                                        $poids += $item['poids'] * $item['quantite'];
+                                        $volume += $item['volume'] * $item['quantite'];
+                                    }
+                                    ?>
+                                    <tr>
+                                        <td><input type="checkbox" checked></td>
+                                        <td><?php echo $item['nom']; ?></td>
+                                        <td><?php echo $volume; ?></td>
+                                        <td><?php echo $poids; ?></td>
+                                        <td><a href="#">X</a></td>
+                                    </tr>
+                                    <?php
                                 }
+                            endif;
+                        endif;
+                    endforeach; ?>
 
-
-                                ?>
-                                <table class="zilu-info">
-                                    <tr>
-                                        <td>Type container</td>
-                                        <td><?php echo $typeContainer; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Poids max</td>
-                                        <td><?php echo $poidsMax; ?> kg</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Volume max</td>
-                                        <td><?php echo $volumeMax; ?> m&#179;</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Poids actuel</td>
-                                        <td><?php echo $poids; ?> kg</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Volume actuel</td>
-                                        <td><?php echo $volume; ?> m&#179;</td>
-                                    </tr>
-                                </table>
-
-                            <?php endif; ?>
-                        <?php endif; ?>
-
-
-                        <?php if (0 !== $cptContainer || $nbContainers > 1): ?>
-                            <button type="submit" class="remove-container-spy">Supprimer ce container</button>
-                        <?php endif; ?>
-
-                    </div>
-                    <?php
-                    $cptContainer++;
-                endforeach; ?>
-                <button class="add-container-spy">ajouter un container</button>
-            </form>
-
-
+                    <tr>
+                        <td></td>
+                        <td>
+                            <select id="container-add-selector">
+                                <option>Ajouter un container</option>
+                                <?php foreach ($containerId2Refs as $id => $ref): ?>
+                                    <option value="<?php echo $id; ?>"><?php echo $ref; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            <?php endif; ?>
         </div>
 
-        <?php
-
-        $realContainerIds = array_filter($containerIds, function ($v) {
-            return (0 !== $v);
-        });
-
-        if (count($realContainerIds) > 0) {
-
-        ?>
         <div id="zilu-table" class="zilu-table">
             <?php
-            $fields = '
+
+
+            $realContainerIds = array_filter($containerIds, function ($v) {
+                return (0 !== $v);
+            });
+
+
+            if (count($realContainerIds) > 0) {
+
+                $fields = '
 c.id,
 co.id as container_id,
 co.nom as container,
 c.reference,
-fha.poids,
+h.quantite,
 fha.volume,
+fha.poids,
 f.id as fournisseur_id,
 f.nom as fournisseur,
 fha.prix,
@@ -190,9 +182,9 @@ a.descr_en
 ';
 
 
-            $textMaxLength = 10;
+                $textMaxLength = 10;
 
-            $query = "select
+                $query = "select
 %s
 from zilu.commande c
 inner join commande_has_article h on h.commande_id=c.id
@@ -203,49 +195,60 @@ left join container co on co.id=h.container_id
 where co.id in (" . implode(', ', $realContainerIds) . ")";
 
 
-            $list = CommandeAdminTable::create()
-                ->setRic(['id', 'aid'])
-                ->setListable(QuickPdoListable::create()->setFields($fields)->setQuery($query))
-                ->setRenderer(AdminTableRenderer::create()
-                    ->setExtraHiddenFields([
-                        "containers[]" => $realContainerIds,
-                    ])
-                );
+                $list = CommandeAdminTable::create()
+                    ->setRic(['id', 'aid'])
+                    ->setListable(QuickPdoListable::create()->setFields($fields)->setQuery($query))
+                    ->setRenderer(AdminTableRenderer::create()
+                        ->setExtraHiddenFields([
+                            "containers[]" => $realContainerIds,
+                        ])
+                    );
 
-            $list->setTransformer("container", function ($value, $item, $ricValue) {
-                $text = $value;
-                if (null === $value) {
-                    $text = "(choisissez un container)";
-                }
-                return '<a class="container-selector" data-ric="' . htmlspecialchars($ricValue) . '" data-container-id="' . htmlspecialchars($item['container_id']) . '" href="#">' . $text . '</a>';
-            });
+                $list->setTransformer("container", function ($value, $item, $ricValue) {
+                    $text = $value;
+                    if (null === $value) {
+                        $text = "(choisissez un container)";
+                    }
+                    return '<a class="container-selector" data-ric="' . htmlspecialchars($ricValue) . '" data-container-id="' . htmlspecialchars($item['container_id']) . '" href="#">' . $text . '</a>';
+                });
 
 
-            $list->setTransformer("fournisseur", function ($value, $item, $ricValue) {
-                $text = $value;
-                if (null === $value) {
-                    $text = "(choisissez un fournisseur)";
-                }
-                return '<a class="fournisseur-selector" data-article-id="' . $item['aid'] . '" data-ric="' . htmlspecialchars($ricValue) . '" data-fournisseur-id="' . htmlspecialchars($item['fournisseur_id']) . '" href="#">' . $text . '</a>';
-            });
+                $list->setTransformer("poids", function ($value, $item, $ricValue) {
+                    $text = $value;
+                    return '<a class="update-link" data-column="poids" data-default="' . htmlspecialchars($value) . '" data-fid="' . $item['fournisseur_id'] . '" data-aid="' . $item['aid'] . '" href="#">' . $text . '</a>';
+                });
 
-            $list->setTransformer("descr_fr", function ($value, $item, $ricValue) use ($textMaxLength) {
-                $cut = substr($value, 0, $textMaxLength);
-                return '<span class="longtext" title="' . $value . '">' . htmlspecialchars($cut) . '...</span>';
-            });
-            $list->setTransformer("descr_en", function ($value, $item, $ricValue) use ($textMaxLength) {
-                $cut = substr($value, 0, $textMaxLength);
-                return '<span class="longtext" title="' . $value . '">' . htmlspecialchars($cut) . '...</span>';
-            });
+                $list->setTransformer("volume", function ($value, $item, $ricValue) {
+                    $text = $value;
+                    return '<a class="update-link" data-column="volume" data-default="' . htmlspecialchars($value) . '" data-fid="' . $item['fournisseur_id'] . '" data-aid="' . $item['aid'] . '" href="#">' . $text . '</a>';
+                });
 
-            $list->hiddenColumns = [
-                'cid',
-                'id',
-                'aid',
-                'container_id',
-                'fournisseur_id',
-            ];
-            $list->displayTable();
+
+                $list->setTransformer("fournisseur", function ($value, $item, $ricValue) {
+                    $text = $value;
+                    if (null === $value) {
+                        $text = "(choisissez un fournisseur)";
+                    }
+                    return '<a class="fournisseur-selector" data-article-id="' . $item['aid'] . '" data-ric="' . htmlspecialchars($ricValue) . '" data-fournisseur-id="' . htmlspecialchars($item['fournisseur_id']) . '" href="#">' . $text . '</a>';
+                });
+
+                $list->setTransformer("descr_fr", function ($value, $item, $ricValue) use ($textMaxLength) {
+                    $cut = substr($value, 0, $textMaxLength);
+                    return '<span class="longtext" title="' . $value . '">' . htmlspecialchars($cut) . '...</span>';
+                });
+                $list->setTransformer("descr_en", function ($value, $item, $ricValue) use ($textMaxLength) {
+                    $cut = substr($value, 0, $textMaxLength);
+                    return '<span class="longtext" title="' . $value . '">' . htmlspecialchars($cut) . '...</span>';
+                });
+
+                $list->hiddenColumns = [
+                    'cid',
+                    'id',
+                    'aid',
+                    'container_id',
+                    'fournisseur_id',
+                ];
+                $list->displayTable();
 
             }
 
@@ -286,44 +289,60 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
 
         $(document).tooltip();
 
-        $(".container-spy-selector").on('change', function () {
-            if ('-1' === $(this).val()) {
-                $("#new-container-form-dialog").dialog({
-                    position: {
-                        my: "left top",
-                        at: "left top",
-                        of: $(this)
-                    },
-                    width: 600,
-                    open: function (event, ui) {
-                        var jBtn = $("#new-container-form-dialog").find('button');
-                        var jForm = $("#new-container-form-dialog").find('form');
-                        var jInput = $("#new-container-form-dialog").find('input');
-                        jBtn.on("click", function (e) {
-                            e.preventDefault();
-                            var s = jForm.serialize();
-                            $.getJSON('/services/zilu.php?action=container-create&' + s, function (data) {
-                                if ('duplicate' === data) {
-                                    var jError = $("#new-container-form-dialog").find('p.error');
-                                    jError.removeClass("hidden");
-                                    jInput.on("focus", function () {
-                                        jError.addClass("hidden");
-                                    });
-                                }
-                                else {
-                                    $(".container-spy-selector:last").append('<option value="' + data + '" selected="selected">any</option>');
-                                    var jMainForm = $('#container-form');
-                                    jMainForm.submit();
-                                }
-                            });
-                        });
-                    }
-                });
-            }
-            else {
-                $(this).parent().parent().submit();
-            }
+        $("#commande-select").on('change', function () {
+            $.getJSON('/services/zilu.php?action=container-commande-select&cid=' + $(this).val(), function (data) {
+                if ('ok' === data) {
+                    location.reload();
+                }
+            });
         });
+        $("#container-add-selector").on('change', function () {
+            $.getJSON('/services/zilu.php?action=container-container-select&id=' + $(this).val(), function (data) {
+                if ('ok' === data) {
+                    location.reload();
+                }
+            });
+        });
+
+
+//        $(".container-spy-selector").on('change', function () {
+//            if ('-1' === $(this).val()) {
+//                $("#new-container-form-dialog").dialog({
+//                    position: {
+//                        my: "left top",
+//                        at: "left top",
+//                        of: $(this)
+//                    },
+//                    width: 600,
+//                    open: function (event, ui) {
+//                        var jBtn = $("#new-container-form-dialog").find('button');
+//                        var jForm = $("#new-container-form-dialog").find('form');
+//                        var jInput = $("#new-container-form-dialog").find('input');
+//                        jBtn.on("click", function (e) {
+//                            e.preventDefault();
+//                            var s = jForm.serialize();
+//                            $.getJSON('/services/zilu.php?action=container-create&' + s, function (data) {
+//                                if ('duplicate' === data) {
+//                                    var jError = $("#new-container-form-dialog").find('p.error');
+//                                    jError.removeClass("hidden");
+//                                    jInput.on("focus", function () {
+//                                        jError.addClass("hidden");
+//                                    });
+//                                }
+//                                else {
+//                                    $(".container-spy-selector:last").append('<option value="' + data + '" selected="selected">any</option>');
+//                                    var jMainForm = $('#container-form');
+//                                    jMainForm.submit();
+//                                }
+//                            });
+//                        });
+//                    }
+//                });
+//            }
+//            else {
+//                $(this).parent().parent().submit();
+//            }
+//        });
 
 
         $("#change-all-fournisseurs-selector").selectmenu();
@@ -528,7 +547,64 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
                         }
                     });
                 });
+            }
+            else if (jTarget.hasClass("update-link")) {
+                e.preventDefault();
 
+                var column = jTarget.attr('data-column');
+                var defaultValue = jTarget.attr('data-default');
+                var ricValue = jTarget.attr('data-ric');
+                var fournisseurId = jTarget.attr('data-fid');
+                var articleId = jTarget.attr('data-aid');
+                var type = jTarget.attr('data-type');
+
+
+                $("#update-column-dialog").dialog({
+                    position: {
+                        my: "center",
+                        at: "center",
+                        of: jTarget
+                    },
+                    width: 600,
+                    open: function (event, ui) {
+
+                        var jInput = $("#update-column-input");
+
+
+                        if ('date' === type) {
+                            jInput.datepicker({
+                                dateFormat: "yy-mm-dd"
+                            });
+                            jInput.datepicker("setDate", defaultValue);
+                            jInput.blur();
+
+                        }
+                        else {
+                            jInput.attr('value', defaultValue);
+                        }
+
+                        $("#update-column-submit-btn").on('click', function (e) {
+                            e.preventDefault();
+                            var val = jInput.val();
+                            var url = '/services/zilu.php?action=update-commande-field&col=' + column + '&value=' + val;
+                            if ('undefined' !== typeof ricValue) {
+                                url += '&ric=' + ricValue;
+                            }
+                            if ('undefined' !== typeof fournisseurId && 'undefined' !== typeof articleId) {
+                                url += '&fid=' + fournisseurId + '&aid=' + articleId;
+                            }
+                            $.getJSON(url, function (data) {
+                                if ('ok' === data) {
+                                    $("#update-column-dialog").dialog('close');
+                                    window.location.reload();
+                                }
+                            });
+
+                        });
+
+
+                    }
+                });
             }
         });
     });

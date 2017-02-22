@@ -30,4 +30,13 @@ class ContainerUtil
             'type_container_id' => (int)$typeId,
         ]);
     }
+
+
+    public static function getContainerIdsByCommandeId($commandeId)
+    {
+        return QuickPdo::fetchAll('select distinct container_id 
+from commande_has_article
+where commande_id=' . (int)$commandeId . ' and container_id is not null', [], \PDO::FETCH_COLUMN);
+
+    }
 }

@@ -134,9 +134,7 @@ if (array_key_exists('action', $_GET)) {
                         // create the container
                         $typeContainerId = $label2Ids[$usedContainer['name']];
                         $suggestedName = $usedContainer['suggestedName'];
-                        $containerId = ContainerUtil::createContainer($suggestedName, $typeContainerId);
-
-                        ;
+                        $containerId = ContainerUtil::createContainer($suggestedName, $typeContainerId);;
 
                         // bind all items
                         $items = $usedContainer['items'];
@@ -378,7 +376,6 @@ if (array_key_exists('action', $_GET)) {
                 $output = ob_get_clean();
             }
             break;
-
         case 'update-container-article-column':
             $fournisseurId = null;
             $articleId = null;
@@ -408,6 +405,19 @@ if (array_key_exists('action', $_GET)) {
                 $output = 'ko';
             }
 
+            break;
+        case 'container-commande-select':
+            if (array_key_exists('cid', $_GET)) {
+                $_SESSION['container-commande-id'] = $_GET['cid'];
+                $_SESSION['container-container-ids'] = [];
+                $output = "ok";
+            }
+            break;
+        case 'container-container-select':
+            if (array_key_exists('id', $_GET)) {
+                $_SESSION['container-container-ids'][] = $_GET['id'];
+                $output = "ok";
+            }
             break;
         default:
             break;
