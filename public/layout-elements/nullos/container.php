@@ -285,6 +285,13 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
                     return '<a class="container-selector" data-ric="' . htmlspecialchars($ricValue) . '" data-container-id="' . htmlspecialchars($item['container_id']) . '" href="#">' . $text . '</a>';
                 });
 
+                $list->setTransformer("quantite", function ($value, $item, $ricValue) {
+                    $text = $value;
+                    if (null === $value) {
+                        $text = "(not set)";
+                    }
+                    return '<a class="update-link" data-column="quantite" data-default="' . htmlspecialchars($value) . '" data-ric="' . htmlspecialchars($ricValue) . '" href="#">' . $text . '</a>';
+                });
 
                 $list->setTransformer("poids", function ($value, $item, $ricValue) {
                     $text = $value;

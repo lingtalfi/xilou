@@ -10,7 +10,7 @@ class CommandeLigneStatut{
     public static function create(){
         $status = [
             "Pas encore traité",
-            "Envoyé par mail à Didier",
+            "Envoyé par mail à la direction",
             "Devis envoyé par mail au fournisseur",
             "Proformat Invoice confirmé avec signature",
             "30% payé par Leaderfit",

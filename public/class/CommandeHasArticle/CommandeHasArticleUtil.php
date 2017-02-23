@@ -19,6 +19,26 @@ class CommandeHasArticleUtil
         ]);
     }
 
+    public static function updateStatutByCommandeIdProviderId($commandeId, $providerId, $statut)
+    {
+        return QuickPdo::update("commande_has_article", [
+            "commande_ligne_statut_id" => $statut,
+        ], [
+            ['commande_id', "=", $commandeId],
+            ['fournisseur_id', "=", $providerId],
+        ]);
+    }
+
+    public static function updateStatut($commandeId, $articleId, $statut)
+    {
+        return QuickPdo::update("commande_has_article", [
+            "commande_ligne_statut_id" => $statut,
+        ], [
+            ['commande_id', "=", $commandeId],
+            ['article_id', "=", $articleId],
+        ]);
+    }
+
     public static function getCommandeDetailsByFournisseurId($commandeId, $fournisseurId)
     {
 

@@ -137,11 +137,11 @@ a.reference_lf,
 a.reference_hldp,
 f.id as fournisseur_id,
 f.nom as fournisseur,
+h.quantite,
 fha.poids,
 fha.volume,
 fha.prix,
 h.prix_override,
-h.quantite,
 h.date_estimee,
 a.id as aid,
 a.descr_fr,
@@ -177,7 +177,7 @@ where c.id=" . $idCommande;
                     );
 
                 $list->setTransformer("statut", function ($value, $item, $ricValue) {
-                    return '<a class="update-link" data-column="commande_ligne_statut_id" data-default="' . htmlspecialchars($value) . '" data-fid="' . $item['fournisseur_id'] . '" data-aid="' . $item['aid'] . '" href="#" style="white-space: nowrap">' . CommandeLigneStatutUtil::toString($value) . '</a>';
+                    return '<a class="update-statut-link" data-value="' . $value . '" data-cid="' . $item['id'] . '" data-aid="' . $item['aid'] . '" href="#" style="white-space: nowrap">' . CommandeLigneStatutUtil::toString($value) . '</a>';
                 });
 
                 $list->setTransformer("container", function ($value, $item, $ricValue) {
@@ -564,7 +564,7 @@ where c.id=" . $idCommande;
         });
 
 
-        $('#zilu').on('click', function (e) {
+        $('body').on('click', function (e) {
             var jTarget = $(e.target);
             if (jTarget.hasClass("postlink")) {
                 e.preventDefault();
@@ -761,12 +761,7 @@ where c.id=" . $idCommande;
                     }
                 });
             }
-        });
-
-
-        $('body').on('click', function (e) {
-            var jTarget = $(e.target);
-            if (jTarget.hasClass("providers-checkall")) {
+            else if (jTarget.hasClass("providers-checkall")) {
                 e.preventDefault();
                 $('#mail-providers-checkboxes').find('input').prop('checked', true);
                 return false;
@@ -779,7 +774,41 @@ where c.id=" . $idCommande;
             else if (jTarget.hasClass("zilu-close")) {
                 e.preventDefault();
                 $("#order-pro-conf-mail-dialog").dialog("close");
+                location.reload();
                 return false;
+            }
+            else if (jTarget.hasClass("update-statut-link")) {
+                e.preventDefault();
+                var articleId = jTarget.attr('data-aid');
+                var commandeId = jTarget.attr('data-cid');
+                var statutValue = jTarget.attr('data-value');
+
+
+                if ('undefined' !== typeof $("#container-status-dialog").dialog('instance')) {
+                    $("#container-status-dialog").dialog("close");
+                }
+
+                $("#container-status-dialog").dialog({
+                    position: {
+                        my: "center",
+                        at: "center",
+                        of: jTarget
+                    },
+                    open: function (event, ui) {
+                        var jSelect = $("#container-status-dialog").find('select');
+                        jSelect.val(statutValue);
+
+
+                        jSelect.on('change', function () {
+                            var value = jSelect.val();
+                            $.getJSON('/services/zilu.php?action=commande-update-statut&statut=' + value + "&cid=" + commandeId + "&aid=" + articleId, function (data) {
+                                if ('ok' === data) {
+                                    location.reload();
+                                }
+                            });
+                        });
+                    }
+                });
             }
         });
 
@@ -938,5 +967,16 @@ where c.id=" . $idCommande;
         <div class="loader hidden">
             Veuillez patienter un instant...
         </div>
+    </div>
+    <div id="container-status-dialog" title="Mise à jour du statut">
+        <select>
+            <?php
+            $id2labels = CommandeLigneStatutUtil::getIds2Labels();
+
+            foreach ($id2labels as $id => $label):
+                ?>
+                <option value="<?php echo $id; ?>"><?php echo $label; ?></option>
+            <?php endforeach; ?>
+        </select>
     </div>
 </div>

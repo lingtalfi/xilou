@@ -255,41 +255,41 @@ if (array_key_exists('action', $_GET)) {
                 $providerId = $_GET['provider_id'];
                 $signature = $_GET['signature'];
 
-                $mail = MAIL_DIDIER;
                 if (array_key_exists('test', $_GET)) {
                     $mail = MAIL_ZILU;
                 }
-
-                if (1 === rand(0, 1)) {
-                    $output = [
-                        'success' => 'ok',
-                    ];
-                } else {
-                    $output = [
-                        "error" => "Une erreur est survenue, le mail n'a pas été envoyé; veuillez contacter le webmaster",
-                    ];
+                else{
+                    $mail = FournisseurUtil::getEmail($providerId);
                 }
+
+
+                $output = [
+                    'success' => 'ok',
+                ];
+                CommandeHasArticleUtil::updateStatutByCommandeIdProviderId($commandeId, $providerId, CommandeLigneStatutUtil::STATUT_TROIS_ENVOYE_PAR_MAIL_AUX_FOURNISSEURS);
 
 
                 /**
                  * Uncomment when you've got access to email
                  */
-                try {
-                    $n = OrderProviderConfMail::sendByCommandeIdFournisseurId($mail, $commandeId, $providerId, $signature);
-                    if (1 === $n) {
-                        $output = [
-                            'success' => 'ok',
-                        ];
-                    } else {
-                        $output = [
-                            "error" => "Une erreur est survenue, le mail n'a pas été envoyé; veuillez contacter le webmaster",
-                        ];
-                    }
-                } catch (\Exception $e) {
-                    $output = [
-                        'error' => $e->getMessage(),
-                    ];
-                }
+//                try {
+//                    $n = OrderProviderConfMail::sendByCommandeIdFournisseurId($mail, $commandeId, $providerId, $signature);
+//                    if (1 === $n) {
+//                        $output = [
+//                            'success' => 'ok',
+//                        ];
+//                        CommandeHasArticleUtil::updateStatutByCommandeIdProviderId($commandeId, $providerId, CommandeLigneStatutUtil::STATUT_TROIS_ENVOYE_PAR_MAIL_AUX_FOURNISSEURS);
+//
+//                    } else {
+//                        $output = [
+//                            "error" => "Une erreur est survenue, le mail n'a pas été envoyé; veuillez contacter le webmaster",
+//                        ];
+//                    }
+//                } catch (\Exception $e) {
+//                    $output = [
+//                        'error' => $e->getMessage(),
+//                    ];
+//                }
             }
             break;
         case 'csv-import-form':
@@ -480,6 +480,19 @@ if (array_key_exists('action', $_GET)) {
         case 'container-summary-percent':
             if (array_key_exists('percent', $_GET)) {
                 $_SESSION['summaryIsPercent'] = $_GET['percent'];
+                $output = "ok";
+            }
+            break;
+        case 'commande-update-statut':
+            if (
+                array_key_exists('statut', $_GET) &&
+                array_key_exists('cid', $_GET) &&
+                array_key_exists('aid', $_GET)
+            ) {
+                $statut = $_GET['statut'];
+                $commandeId = $_GET['cid'];
+                $articleId = $_GET['aid'];
+                CommandeHasArticleUtil::updateStatut($commandeId, $articleId, $statut);
                 $output = "ok";
             }
             break;

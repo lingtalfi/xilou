@@ -28,4 +28,9 @@ class CommandeLigneStatutUtil
     {
         return self::$statuts[$statut];
     }
+
+    public static function getIds2Labels()
+    {
+        return self::$statuts;
+    }
 }

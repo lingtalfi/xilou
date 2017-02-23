@@ -43,7 +43,6 @@ class FournisseurUtil
         from fournisseur f 
         inner join commande_has_article h on h.fournisseur_id=f.id
         where h.commande_id=$commandId
-        
         order by id asc",
             [], \PDO::FETCH_COLUMN | \PDO::FETCH_UNIQUE);
     }
@@ -60,6 +59,14 @@ class FournisseurUtil
     {
         if (false !== ($res = QuickPdo::fetch('select nom from fournisseur where id=' . (int)$id))) {
             return $res['nom'];
+        }
+        return false;
+    }
+
+    public static function getEmail($id)
+    {
+        if (false !== ($res = QuickPdo::fetch('select email from fournisseur where id=' . (int)$id))) {
+            return $res['email'];
         }
         return false;
     }
