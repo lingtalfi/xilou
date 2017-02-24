@@ -81,7 +81,6 @@ if (null !== $privilegeSessionTimeout) { // or session expires when browser quit
 session_start();
 
 
-
 //--------------------------------------------
 // REDIRECTION
 //--------------------------------------------
@@ -109,6 +108,8 @@ QuickPdo::setConnection("mysql:host=$host;dbname=$dbName", $dbUser, $dbPass, [
 //--------------------------------------------
 // paths
 define('APP_ROOT_DIR', __DIR__);
+define('PATH_TO_MYSQLDUMP', "/usr/local/mysql/bin/mysqldump"); // might be different on zilu's computer
+define('PATH_TO_MYSQL', "/usr/local/mysql/bin/mysql"); // might be different on zilu's computer
 define('APP_COMMANDE_IMPORTS_DIR', APP_ROOT_DIR . "/www/commande-imports");
 define('MAIL_ZILU', 'lingtalfi@gmail.com');
 define('MAIL_DIDIER', 'lingtalfi@gmail.com');

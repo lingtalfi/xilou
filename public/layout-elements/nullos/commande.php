@@ -8,6 +8,7 @@ use Commande\AdminTable\CommandeAdminTable;
 use Commande\CommandeUtil;
 use CommandeLigneStatut\CommandeLigneStatutUtil;
 use Csv\CsvUtil;
+use Devis\DevisUtil;
 use Fournisseur\FournisseurUtil;
 use Icons\Icons;
 use Layout\Goofy;
@@ -51,7 +52,7 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
 <div class="zilu" id="zilu">
     <div class="zilu-topbar">
 
-        <button class="button-with-icon csv-import-button">
+        <button class="button-with-icon csv-import-button" id="csv-import-button">
             <span>
                 <span>Importer un fichier csv</span>
                 <?php Icons::printIcon("add", 'white'); ?>
@@ -63,6 +64,7 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
                     <select id="change-all-fournisseurs-selector">
                         <option>Pour tous les articles de cette commande...</option>
                         <option value="moinscher">Appliquer le fournisseur le moins cher pour chaque produit</option>
+                        <option value="devis">Associer un devis à tous les articles d'une commande</option>
                     </select>
                 </form>
                 <form>
@@ -413,9 +415,37 @@ where c.id=" . $idCommande;
                         }
                     });
                 }
+                else if ('devis' === data.item.value) {
+                    $("#commande-dialog-apply-devis").dialog({
+                        position: {
+                            my: "left top",
+                            at: "left top",
+                            of: '#csv-import-button'
+                        },
+                        resizable: false,
+                        height: "auto",
+                        width: 400,
+                        buttons: {
+                            "Appliquer": function () {
+                                $(this).dialog().find(".text").addClass('hidden');
+                                $(this).dialog().find(".loader").removeClass('hidden');
+                                $.getJSON('/services/zilu.php?action=apply-fournisseurs&type=leaderfit&commandeId=' + commandeId, function (data) {
+                                    console.log(data);
+                                    if ('ok' === data) {
+                                        location.reload();
+                                    }
+                                });
+
+
+                            },
+                            "Annuler": function () {
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+                }
             }
         });
-
 
         function getDatePlusDays(dt, days) {
             return new Date(dt.getTime() + (days * 86400000));
@@ -561,6 +591,17 @@ where c.id=" . $idCommande;
                 }
 
             }
+        });
+
+
+
+
+        $('#commande-dialog-applydevis-devis-selector').on('change', function(){
+
+            //todo...
+            $.get('/services/zilu.php?action=commande-getcommande-by-devis', function(){
+
+            });
         });
 
 
@@ -867,6 +908,33 @@ where c.id=" . $idCommande;
         <p class="hidden loader">
             Veuillez patienter...
         </p>
+    </div>
+    <div id="commande-dialog-apply-devis" title="Associer un devis à tous les articles d'une commande">
+        <table>
+            <tr>
+                <td>Devis</td>
+                <td>Commande</td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="commande-dialog-applydevis-devis-selector">
+                        <option value="0">Choisissez un devis</option>
+                        <?php
+                        $id2Labels = DevisUtil::getId2Labels();
+                        foreach ($id2Labels as $id => $label):
+                            ?>
+                            <option value="<?php echo $id; ?>"><?php echo $label; ?></option><?php
+                        endforeach;
+                        ?>
+                    </select>
+                </td>
+                <td>
+                    <select id="commande-dialog-applydevis-commande-selector">
+                        <option value="0">Choisissez une commande</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
     </div>
     <div id="apply-fournisseur-leaderfit-confirm-dialog" title="Appliquer le fournisseur leaderfit">
         <p class="text"><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Etes-vous

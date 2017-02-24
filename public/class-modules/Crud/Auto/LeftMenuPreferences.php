@@ -24,6 +24,8 @@ class LeftMenuPreferences
         'zilu.csv_prix_materiel',
         'zilu.csv_product_details',
         'zilu.csv_product_list',
+        'zilu.devis',
+        'zilu.devis_has_commande_has_article',
         'zilu.fournisseur',
         'zilu.fournisseur_has_article',
         'zilu.sav',
@@ -47,6 +49,7 @@ class LeftMenuPreferences
     'zilu.csv_prix_materiel' => 'csv prix materiel',
     'zilu.csv_product_details' => 'csv product details',
     'zilu.csv_product_list' => 'csv product list',
+    'zilu.devis_has_commande_has_article' => 'devis has commande has article',
     'zilu.fournisseur_has_article' => 'fournisseur has article',
     'zilu.type_container' => 'type container',
 ];

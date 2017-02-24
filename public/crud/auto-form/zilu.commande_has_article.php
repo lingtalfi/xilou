@@ -34,7 +34,8 @@ $form->addControl("prix_override")->type("text");
 $form->addControl("date_estimee")->type("date3");
 $form->addControl("quantite")->type("text")
 ->value(0);
-$form->addControl("unit")->type("text");
+$form->addControl("unit")->type("text")
+->addConstraint("required");
 
 
 $form->display();

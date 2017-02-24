@@ -1,6 +1,7 @@
 <?php
 
 
+use Backup\AppBackup;
 use Boot\BootConfig;
 use Boot\BootModule;
 use Events\EventsServices;
@@ -12,7 +13,6 @@ if (file_exists(__DIR__ . "/../init.php")) {
 } else {
     require_once __DIR__ . "/../init-fallback.php";
 }
-
 
 
 //--------------------------------------------
@@ -34,6 +34,7 @@ if (PrivilegeUser::isConnected()) {
             '/commande' => 'commande.php',
             '/container' => 'container.php',
             '/sav' => 'sav.php',
+            '/backups' => 'backups.php',
             '/test' => 'test.php',
 
             //--------------------------------------------
@@ -75,6 +76,9 @@ if (PrivilegeUser::isConnected()) {
 } else {
     $page = 'login.php';
 }
+
+
+AppBackup::create()->createBackup(); // create a backup every day, with FileCleaner handling rotation
 
 require_once APP_ROOT_DIR . "/pages/" . $page;
 echo ob_get_clean();

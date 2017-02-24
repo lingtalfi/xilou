@@ -1,6 +1,7 @@
 <?php
 
 
+use Backup\AppBackup;
 use Bin\BinGuiUtil;
 use Bin\CommandeToBinHelper;
 use Bin\Exception\WeightOverloadException;
@@ -257,8 +258,7 @@ if (array_key_exists('action', $_GET)) {
 
                 if (array_key_exists('test', $_GET)) {
                     $mail = MAIL_ZILU;
-                }
-                else{
+                } else {
                     $mail = FournisseurUtil::getEmail($providerId);
                 }
 
@@ -493,6 +493,13 @@ if (array_key_exists('action', $_GET)) {
                 $commandeId = $_GET['cid'];
                 $articleId = $_GET['aid'];
                 CommandeHasArticleUtil::updateStatut($commandeId, $articleId, $statut);
+                $output = "ok";
+            }
+            break;
+        case 'backups-newbackup':
+            if (array_key_exists('relativepath', $_GET)) {
+                $relativePath = str_replace('/', '', $_GET['relativepath']);
+                AppBackup::create()->createBackup('manual/' . $relativePath);
                 $output = "ok";
             }
             break;

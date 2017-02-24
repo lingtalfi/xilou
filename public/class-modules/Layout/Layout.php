@@ -56,6 +56,10 @@ class Layout
         if (array_key_exists('savQueryString', $_SESSION)) {
             $savQueryString = '?' . $_SESSION['savQueryString'];
         }
+        $backupsQueryString = "";
+        if (array_key_exists('backupsQueryString', $_SESSION)) {
+            $backupsQueryString = '?' . $_SESSION['backupsQueryString'];
+        }
 
 
         ?>
@@ -70,6 +74,7 @@ class Layout
                 <li><a id="container-topmenu-link" href="/container<?php echo $containerQueryString; ?>">Container</a>
                 </li>
                 <li><a id="sav-topmenu-link" href="/sav<?php echo $savQueryString; ?>">Sav</a></li>
+                <li><a id="backups-topmenu-link" href="/backups<?php echo $backupsQueryString; ?>">Backups</a></li>
             </ul>
         </div>
         <div class="body panes-container">

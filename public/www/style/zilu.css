@@ -362,3 +362,7 @@ button.zilu-black-button {
 .zilu-overload {
     background-color: #f2a6a6;
 }
+
+#zilu-backups .datatable td {
+    padding: 10px;
+}

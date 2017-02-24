@@ -630,10 +630,7 @@ where co.id in (" . implode(', ', $realContainerIds) . ")";
                                 $.post('/services/zilu.php?action=container-distribute&commande_id=' + lastCommandeId, {
                                     'json': theJson
                                 }, function (data) {
-                                    console.log("jjj");
-                                    console.log(data);
                                     if ('ok' === data) {
-                                        console.log("ok");
                                         $("#repartition-container-dialog").dialog("close");
                                         location.reload();
                                     }
