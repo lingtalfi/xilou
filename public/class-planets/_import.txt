@@ -12,6 +12,7 @@ Csv
 DirScanner
 DirTransformer
 Explorer
+FileCleaner
 FileCreator
 Icons
 Installer
