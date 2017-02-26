@@ -10,7 +10,7 @@ class CommandeExporterUtil
 {
 
 
-    public static function createCsvFileByCommande($file, $commandeId)
+    public static function createCsvFileByCommande($file, $commandeId, $type = 'default')
     {
         self::start();
 
@@ -42,6 +42,10 @@ inner join article a on a.id=h.article_id
 left join container co on co.id=h.container_id
 where c.id=" . $commandeId;
 
+        if ('container' === $type) {
+            $query .= " order by co.nom asc";
+        }
+
 
         $quantiteTotale = 0;
         $prixTotal = 0;
@@ -58,31 +62,59 @@ where c.id=" . $commandeId;
             $prixTotal += $total;
 
 
-            $csvItems[] = [
-                $item['refart'],
-                $item['fournisseur_nom'],
-                $item['descr_fr'],
-                '$' . $prix,
-                $item['quantite'],
-                $item['unit'],
-                $item['container_nom'],
-                $item['date_estimee'],
-                '$' . $total,
-            ];
+            if ('container' === $type) {
+                $csvItems[] = [
+                    $item['container_nom'],
+                    $item['date_estimee'],
+                    $item['refart'],
+                    $item['fournisseur_nom'],
+                    $item['descr_fr'],
+                    '$' . $prix,
+                    $item['quantite'],
+                    $item['unit'],
+                    '$' . $total,
+                ];
+            } else {
+                $csvItems[] = [
+                    $item['refart'],
+                    $item['fournisseur_nom'],
+                    $item['descr_fr'],
+                    '$' . $prix,
+                    $item['quantite'],
+                    $item['unit'],
+                    $item['container_nom'],
+                    $item['date_estimee'],
+                    '$' . $total,
+                ];
+            }
         }
 
 
-        $headers = [
-            "REFART",
-            "NOM",
-            "DESIGN",
-            "PRIX",
-            "QUANTITÉ",
-            "PC/PR",
-            "CONTAINER",
-            "DATE ESTIMÉE",
-            "TOTAL",
-        ];
+        if ('container' === $type) {
+            $headers = [
+                "CONTAINER",
+                "DATE ESTIMÉE",
+                "REFART",
+                "NOM",
+                "DESIGN",
+                "PRIX",
+                "QUANTITÉ",
+                "PC/PR",
+                "TOTAL",
+            ];
+        } else {
+            $headers = [
+                "REFART",
+                "NOM",
+                "DESIGN",
+                "PRIX",
+                "QUANTITÉ",
+                "PC/PR",
+                "CONTAINER",
+                "DATE ESTIMÉE",
+                "TOTAL",
+            ];
+        }
 
         $objPHPExcel = new \PHPExcel();
         $ws = $objPHPExcel->setActiveSheetIndex(0);
@@ -97,20 +129,38 @@ where c.id=" . $commandeId;
 
 
         // $objPHPExcel->getActiveSheet()->getStyle('G1')->applyFromArray($boldArray);
-        $objPHPExcel->getActiveSheet()->getStyle('D')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
-        $objPHPExcel->getActiveSheet()->getStyle('H')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-        $objPHPExcel->getActiveSheet()->getStyle('I')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+        if ('container' === $type) {
+            $objPHPExcel->getActiveSheet()->getStyle('F')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+            $objPHPExcel->getActiveSheet()->getStyle('B')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+            $objPHPExcel->getActiveSheet()->getStyle('I')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(20);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
+
+            $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(10);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(50);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(10);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(10);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(10);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(10);
+        } else {
+            $objPHPExcel->getActiveSheet()->getStyle('D')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+            $objPHPExcel->getActiveSheet()->getStyle('H')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+            $objPHPExcel->getActiveSheet()->getStyle('I')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(10);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(50);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(10);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(10);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(10);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(20);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(10);
+
+        }
 
 
-        $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(10);
-        $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
-        $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(50);
-        $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(10);
-        $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(10);
-        $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(10);
-        $objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
-        $objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(20);
-        $objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(10);
+
 
 
         self::arrayToCells($headers, $csvItems, $ws, $i);

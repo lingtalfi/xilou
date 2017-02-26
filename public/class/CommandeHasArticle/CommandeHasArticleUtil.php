@@ -4,6 +4,7 @@
 namespace CommandeHasArticle;
 
 
+use Devis\DevisUtil;
 use QuickPdo\QuickPdo;
 
 class CommandeHasArticleUtil
@@ -140,6 +141,73 @@ where c.id=" . $commandeId;
         ]);
     }
 
+
+    public static function getDevisByLine($commandeId, $articleId)
+    {
+        $commandeId = (int)$commandeId;
+        $articleId = (int)$articleId;
+        return QuickPdo::fetchAll("
+select 
+d.id,
+d.reference,
+d.date_reception,
+f.nom 
+from devis d 
+inner join devis_has_commande_has_article hh on hh.devis_id=d.id
+inner join commande_has_article h on h.commande_id=hh.commande_has_article_commande_id and h.article_id=hh.commande_has_article_article_id
+inner join fournisseur f on f.id=d.fournisseur_id
+where 
+h.commande_id=$commandeId
+and h.article_id=$articleId
+
+        ");
+    }
+
+    public static function displayDevisTableByLine($commandeId, $articleId)
+    {
+        if (false !== ($items = self::getDevisByLine($commandeId, $articleId))) {
+            ?>
+            <table class="zilu-table-devis"
+                   data-cid="<?php echo $commandeId; ?>"
+                   data-aid="<?php echo $articleId; ?>"
+            >
+                <tr>
+                    <th>Référence</th>
+                    <th>Date réception</th>
+                    <th>Fournisseur</th>
+                    <th></th>
+                </tr>
+                <?php foreach ($items as $item): ?>
+                    <tr>
+                        <td><?php echo $item['reference']; ?></td>
+                        <td><?php echo $item['date_reception']; ?></td>
+                        <td><?php echo $item['nom']; ?></td>
+                        <td>
+                            <button class="devis-remove-bindure" data-did="<?php echo $item['id']; ?>">Supprimer</button>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                <tr style="height: 20px;">
+                    <td colspan="4"></td>
+                </tr>
+                <tr style="text-align: right;">
+                    <td colspan="4">
+                        <select class="devis-add-bindure-selector">
+                            <option>Associer un devis supplémentaire</option>
+                            <?php
+
+                            $items = DevisUtil::getId2Labels();
+                            foreach ($items as $id => $label): ?>
+                                <option value="<?php echo $id; ?>"><?php echo $label; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <button class="devis-add-bindure">+</button>
+                    </td>
+                </tr>
+            </table>
+            <?php
+        }
+    }
 }
 
 

@@ -32,6 +32,7 @@ if (PrivilegeUser::isConnected()) {
         $uri2pagesMap = [
             '/' => 'home.php',
             '/commande' => 'commande.php',
+            '/devis' => 'devis.php',
             '/container' => 'container.php',
             '/sav' => 'sav.php',
             '/backups' => 'backups.php',

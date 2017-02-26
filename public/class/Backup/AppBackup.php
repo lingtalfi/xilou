@@ -37,7 +37,8 @@ class AppBackup
         $file = $this->dir . "/" . $relativePath;
 
         if (false === file_exists($file)) {
-            $cmd = PATH_TO_MYSQLDUMP . ' -uroot --default-character-set=utf8 --add-drop-database -B zilu > "' . $file . '"';
+            $sPass = ('' !== DB_PASS) ? ' -p' . DB_PASS : '';
+            $cmd = PATH_TO_MYSQLDUMP . ' -uroot' . $sPass . ' --default-character-set=utf8 --add-drop-database -B zilu > "' . $file . '"';
             $this->executeCmd($cmd);
 
             SimpleFileCleaner::create()

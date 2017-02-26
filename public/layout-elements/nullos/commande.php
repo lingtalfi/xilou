@@ -10,6 +10,7 @@ use CommandeLigneStatut\CommandeLigneStatutUtil;
 use Csv\CsvUtil;
 use Devis\DevisUtil;
 use Fournisseur\FournisseurUtil;
+use Http\HttpResponseUtil;
 use Icons\Icons;
 use Layout\Goofy;
 
@@ -23,18 +24,13 @@ if (array_key_exists('commande', $_GET)) {
     $idCommande = (int)$_GET['commande'];
 }
 
-if (array_key_exists('csvfile', $_FILES)) {
-    $uploaddir = APP_ROOT_DIR . "/fixtures/csv-commande/";
-    $uploadfile = $uploaddir . basename($_FILES['csvfile']['name']);
-    if (move_uploaded_file($_FILES['csvfile']['tmp_name'], $uploadfile)) {
-        $data = CsvUtil::readFile($uploadfile);
-        $nbSuccess = CommandeUtil::importCommandeByCsvData($data);
-        $nbTotal = count($data);
-        Goofy::alertSuccess("Import réussi, $nbSuccess/$nbTotal lignes ont été correctement traitées");
-        // todo: set idCommande here
-    } else {
-        Goofy::alertError("Un problème est survenu, veuillez contacter le webmaster");
-    }
+
+if (array_key_exists("download", $_SESSION)) {
+
+    $file = $_SESSION['download'];
+    unset($_SESSION['download']);
+    HttpResponseUtil::downloadFile($file, "application/xlsx");
+
 }
 
 
@@ -52,19 +48,35 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
 <div class="zilu" id="zilu">
     <div class="zilu-topbar">
 
-        <button class="button-with-icon csv-import-button" id="csv-import-button">
+        <div>
+            <button class="button-with-icon csv-import-button" id="csv-import-button">
             <span>
-                <span>Importer un fichier csv</span>
+                <span>Importer un fichier excel</span>
                 <?php Icons::printIcon("add", 'white'); ?>
             </span>
-        </button>
+            </button>
+        </div>
+        <div style="margin-left:20px;">
+            <button class="button-with-icon csv-export-button">
+            <span>
+                <span>Exporter un fichier excel</span>
+                <?php Icons::printIcon("add", 'white'); ?>
+            </span>
+            </button>
+        </div>
+
         <div class="commande-actions-group">
             <div class="commande-actions-vertical" id="commande-actions-vertical">
                 <form>
                     <select id="change-all-fournisseurs-selector">
                         <option>Pour tous les articles de cette commande...</option>
                         <option value="moinscher">Appliquer le fournisseur le moins cher pour chaque produit</option>
-                        <option value="devis">Associer un devis à tous les articles d'une commande</option>
+                    </select>
+                </form>
+                <form>
+                    <select id="apply-devis-selector">
+                        <option>Appliquer le devis d'un fournisseur...</option>
+                        <option value="devis">à tous les articles de ce fournisseur pour cette commande</option>
                     </select>
                 </form>
                 <form>
@@ -148,6 +160,7 @@ h.date_estimee,
 a.id as aid,
 a.descr_fr,
 a.descr_en,
+(select count(*) from devis_has_commande_has_article where commande_has_article_commande_id=h.commande_id and commande_has_article_article_id=h.article_id) as devis,
 h.sav_id as sav
 ';
 
@@ -194,6 +207,12 @@ where c.id=" . $idCommande;
                 $list->setTransformer("poids", function ($value, $item, $ricValue) {
                     $text = $value;
                     return '<a class="update-link" data-column="poids" data-default="' . htmlspecialchars($value) . '" data-fid="' . $item['fournisseur_id'] . '" data-aid="' . $item['aid'] . '" href="#">' . $text . '</a>';
+                });
+
+
+                $list->setTransformer("devis", function ($value, $item, $ricValue) {
+                    $text = $value;
+                    return '<a class="show-devis-list" data-ric="' . $ricValue . '" href="#">' . $text . '</a>';
                 });
 
                 $list->setTransformer("volume", function ($value, $item, $ricValue) {
@@ -283,6 +302,8 @@ where c.id=" . $idCommande;
     $(document).ready(function () {
 
 
+        var jGlobalTarget = null;
+
         $('#commande-topmenu-link').attr('href', "/commande" + window.location.search);
 
 
@@ -314,7 +335,11 @@ where c.id=" . $idCommande;
         var jCsvForm = $("form#csv-import-form");
 
         ajax_form(jCsvForm, function (data) {
-            var oData = JSON.parse(data);
+
+            var oData = {};
+            if ('' !== data) {
+                oData = JSON.parse(data);
+            }
 
             var jFormError = $("#csv-import-dialog").find(".formerror");
             var jFormWarning = $("#csv-import-dialog").find(".formwarning");
@@ -353,6 +378,21 @@ where c.id=" . $idCommande;
         });
 
 
+        $("#apply-devis-selector").selectmenu({
+            select: function (event, data) {
+                if ('devis' === data.item.value) {
+                    $("#commande-dialog-apply-devis").dialog({
+                        position: {
+                            my: "left top",
+                            at: "left top",
+                            of: '#csv-import-button'
+                        },
+                        height: "auto",
+                        width: 600
+                    });
+                }
+            }
+        });
         $("#change-all-fournisseurs-selector").selectmenu({
             select: function (event, data) {
                 if ('moinscher' === data.item.value) {
@@ -396,35 +436,6 @@ where c.id=" . $idCommande;
                         height: "auto",
                         width: 400,
                         modal: true,
-                        buttons: {
-                            "Appliquer": function () {
-                                $(this).dialog().find(".text").addClass('hidden');
-                                $(this).dialog().find(".loader").removeClass('hidden');
-                                $.getJSON('/services/zilu.php?action=apply-fournisseurs&type=leaderfit&commandeId=' + commandeId, function (data) {
-                                    console.log(data);
-                                    if ('ok' === data) {
-                                        location.reload();
-                                    }
-                                });
-
-
-                            },
-                            "Annuler": function () {
-                                $(this).dialog("close");
-                            }
-                        }
-                    });
-                }
-                else if ('devis' === data.item.value) {
-                    $("#commande-dialog-apply-devis").dialog({
-                        position: {
-                            my: "left top",
-                            at: "left top",
-                            of: '#csv-import-button'
-                        },
-                        resizable: false,
-                        height: "auto",
-                        width: 400,
                         buttons: {
                             "Appliquer": function () {
                                 $(this).dialog().find(".text").addClass('hidden');
@@ -594,13 +605,22 @@ where c.id=" . $idCommande;
         });
 
 
+        $('#commande-dialog-applydevis-devis-selector').on('change', function () {
 
 
-        $('#commande-dialog-applydevis-devis-selector').on('change', function(){
+            var jLoader = $('#commande-dialog-apply-devis').find('.loader');
+            var jMain = $('#commande-dialog-apply-devis').find('.maincontent');
+            jLoader.removeClass('hidden');
+            jMain.addClass('hidden');
 
-            //todo...
-            $.get('/services/zilu.php?action=commande-getcommande-by-devis', function(){
+            var devisId = $(this).val();
+            var commandeId = $(this).attr('data-cid');
 
+
+            $.getJSON('/services/zilu.php?action=commande-applydevis&did=' + devisId + "&cid=" + commandeId, function (data) {
+                if ('ok' === data) {
+                    location.reload();
+                }
             });
         });
 
@@ -699,6 +719,19 @@ where c.id=" . $idCommande;
             else if (jTarget.hasClass("csv-import-button")) {
                 e.preventDefault();
                 $("#csv-import-dialog").dialog({
+                    position: {
+                        my: "top",
+                        at: "center",
+                        of: jTarget
+                    },
+                    width: 600,
+                    open: function (event, ui) {
+                    }
+                });
+            }
+            else if (jTarget.hasClass("csv-export-button")) {
+                e.preventDefault();
+                $("#csv-export-dialog").dialog({
                     position: {
                         my: "top",
                         at: "center",
@@ -851,6 +884,76 @@ where c.id=" . $idCommande;
                     }
                 });
             }
+            else if (jTarget.hasClass("show-devis-list")) {
+                e.preventDefault();
+                var ricValue = jTarget.attr('data-ric');
+                var fid = jTarget.attr('data-fid');
+                jGlobalTarget = jTarget;
+
+
+                if ('undefined' !== typeof $("#commande-dialog-devislist").dialog('instance')) {
+                    $("#commande-dialog-devislist").dialog("close");
+                }
+
+                $("#commande-dialog-devislist").dialog({
+                    position: {
+                        my: "center",
+                        at: "center",
+                        of: jTarget
+                    },
+                    width: 600,
+                    open: function (event, ui) {
+                        var jMain = $("#commande-dialog-devislist").find('.mainbody');
+                        $.get('/services/zilu.php?action=commande-devislist&ric=' + ricValue, function (data) {
+                            jMain.html(data);
+                        });
+                    }
+                });
+            }
+            else if (jTarget.hasClass("devis-add-bindure")) {
+                e.preventDefault();
+                var jTable = jTarget.closest("table");
+                var did = jTable.find('.devis-add-bindure-selector').val();
+                var articleId = jTable.attr('data-aid');
+                var commandeId = jTable.attr('data-cid');
+                $.getJSON('/services/zilu.php?action=devis-add-bindure&did=' + did + "&cid=" + commandeId + "&aid=" + articleId, function (data) {
+                    if ('html' in data) {
+                        var jMain = $("#commande-dialog-devislist").find('.mainbody');
+                        jMain.html(data['html']);
+                    }
+                    if ('nbDevis' in data) {
+                        jGlobalTarget.text(data['nbDevis']);
+                    }
+                });
+            }
+            else if (jTarget.hasClass("devis-remove-bindure")) {
+                e.preventDefault();
+                var jTable = jTarget.closest("table");
+                var did = jTarget.attr('data-did');
+                var articleId = jTable.attr('data-aid');
+                var commandeId = jTable.attr('data-cid');
+                $.getJSON('/services/zilu.php?action=devis-remove-bindure&did=' + did + "&cid=" + commandeId + "&aid=" + articleId, function (data) {
+                    if ('html' in data) {
+                        var jMain = $("#commande-dialog-devislist").find('.mainbody');
+                        jMain.html(data['html']);
+                    }
+                    if ('nbDevis' in data) {
+                        jGlobalTarget.text(data['nbDevis']);
+                    }
+                });
+            }
+            else if (jTarget.hasClass("export-csv-button")) {
+                e.preventDefault();
+
+                var commandeId = $('#exportcsv-commande').val();
+                var type = $('#exportcsv-type').val();
+
+                $.getJSON('/services/zilu.php?action=commande-exportcsv&type=' + type + "&cid=" + commandeId, function (data) {
+                    if ('ok' === data) {
+                        location.reload();
+                    }
+                });
+            }
         });
 
 
@@ -879,7 +982,7 @@ where c.id=" . $idCommande;
             </tbody>
         </table>
     </div>
-    <div id="csv-import-dialog" title="Importer une commande par fichier csv" class="zilu-dialog centered">
+    <div id="csv-import-dialog" title="Importer une commande par fichier excel" class="zilu-dialog centered">
         <div class="container">
             <form id="csv-import-form" action="/services/zilu.php?action=csv-import-form" method="post"
                   enctype="multipart/form-data">
@@ -908,33 +1011,6 @@ where c.id=" . $idCommande;
         <p class="hidden loader">
             Veuillez patienter...
         </p>
-    </div>
-    <div id="commande-dialog-apply-devis" title="Associer un devis à tous les articles d'une commande">
-        <table>
-            <tr>
-                <td>Devis</td>
-                <td>Commande</td>
-            </tr>
-            <tr>
-                <td>
-                    <select id="commande-dialog-applydevis-devis-selector">
-                        <option value="0">Choisissez un devis</option>
-                        <?php
-                        $id2Labels = DevisUtil::getId2Labels();
-                        foreach ($id2Labels as $id => $label):
-                            ?>
-                            <option value="<?php echo $id; ?>"><?php echo $label; ?></option><?php
-                        endforeach;
-                        ?>
-                    </select>
-                </td>
-                <td>
-                    <select id="commande-dialog-applydevis-commande-selector">
-                        <option value="0">Choisissez une commande</option>
-                    </select>
-                </td>
-            </tr>
-        </table>
     </div>
     <div id="apply-fournisseur-leaderfit-confirm-dialog" title="Appliquer le fournisseur leaderfit">
         <p class="text"><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Etes-vous
@@ -1046,5 +1122,57 @@ where c.id=" . $idCommande;
                 <option value="<?php echo $id; ?>"><?php echo $label; ?></option>
             <?php endforeach; ?>
         </select>
+    </div>
+    <div id="commande-dialog-apply-devis" title="Associer le devis d'un fournisseur aux articles correspondants"
+         style="text-align: center"
+    >
+        <table style="width: 100%">
+            <tr class="maincontent">
+                <td>
+                    <select data-cid="<?php echo $idCommande; ?>" id="commande-dialog-applydevis-devis-selector">
+                        <option value="0">Choisissez un devis</option>
+                        <?php
+                        $id2Labels = DevisUtil::getAppliableId2LabelsByCommande($idCommande);
+                        foreach ($id2Labels as $id => $label):
+                            ?>
+                            <option value="<?php echo $id; ?>"><?php echo $label; ?></option><?php
+                        endforeach;
+                        ?>
+                    </select>
+                </td>
+            </tr>
+            <tr class="loader hidden">
+                <td>
+                    Veuillez patienter un instant...
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="commande-dialog-devislist" title="Liste des devis associés à cette ligne">
+        <div class="mainbody"></div>
+    </div>
+    <div id="csv-export-dialog" title="Exporter une commande au format xlsx" class="zilu-dialog centered">
+        <div class="container">
+            <ul class="flex-outer">
+                <li>
+                    <label for="exportcsv-commande">Commande</label>
+                    <select id="exportcsv-commande">
+                        <?php foreach ($commandeId2Refs as $id => $ref): ?>
+                            <option value="<?php echo $id; ?>"><?php echo $ref; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </li>
+                <li>
+                    <label for="exportcsv-type">Type</label>
+                    <select id="exportcsv-type">
+                        <option value="default">Comme import</option>
+                        <option value="container">Par container</option>
+                    </select>
+                </li>
+                <li>
+                    <button type="submit" class="export-csv-button">Exporter</button>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

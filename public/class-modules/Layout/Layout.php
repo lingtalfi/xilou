@@ -48,6 +48,10 @@ class Layout
         if (array_key_exists('commandeQueryString', $_SESSION)) {
             $commandeQueryString = '?' . $_SESSION['commandeQueryString'];
         }
+        $devisQueryString = "";
+        if (array_key_exists('devisQueryString', $_SESSION)) {
+            $devisQueryString = '?' . $_SESSION['devisQueryString'];
+        }
         $containerQueryString = "";
         if (array_key_exists('containerQueryString', $_SESSION)) {
             $containerQueryString = '?' . $_SESSION['containerQueryString'];
@@ -73,6 +77,7 @@ class Layout
                 <li><a id="commande-topmenu-link" href="/commande<?php echo $commandeQueryString; ?>">Commande</a></li>
                 <li><a id="container-topmenu-link" href="/container<?php echo $containerQueryString; ?>">Container</a>
                 </li>
+                <li><a id="devis-topmenu-link" href="/devis<?php echo $devisQueryString; ?>">Devis</a></li>
                 <li><a id="sav-topmenu-link" href="/sav<?php echo $savQueryString; ?>">Sav</a></li>
                 <li><a id="backups-topmenu-link" href="/backups<?php echo $backupsQueryString; ?>">Backups</a></li>
             </ul>
@@ -166,6 +171,7 @@ class Layout
 
 
             <script src="<?php echo url('/libs/jquery-ui-1.12.1/external/jquery/jquery.js'); ?>"></script>
+            <script src="<?php echo url('/libs/sneaky/sneaky.js'); ?>"></script>
             <script src="<?php echo url('/libs/jquery-ui-1.12.1/jquery-ui.js'); ?>"></script>
             <script src="<?php echo url('/libs/split/split.js'); ?>"></script>
             <?php

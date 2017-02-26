@@ -366,3 +366,11 @@ button.zilu-black-button {
 #zilu-backups .datatable td {
     padding: 10px;
 }
+
+.zilu-table-devis{
+    width: 100%;
+}
+
+.zilu-table-devis tr th{
+    text-align: left;
+}

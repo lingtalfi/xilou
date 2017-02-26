@@ -9,7 +9,10 @@ use Commande\CommandeUtil;
 use CommandeHasArticle\CommandeHasArticleUtil;
 use CommandeLigneStatut\CommandeLigneStatutUtil;
 use Container\ContainerUtil;
+use CsvExport\CommandeExporterUtil;
 use CsvImport\CommandeImporterUtil;
+use Devis\DevisUtil;
+use DevisHasCommandeHasArticle\DevisHasCommandeHasArticleUtil;
 use Fournisseur\FournisseurUtil;
 use Mail\OrderConfMail;
 use Mail\OrderProviderConfMail;
@@ -269,27 +272,26 @@ if (array_key_exists('action', $_GET)) {
                 CommandeHasArticleUtil::updateStatutByCommandeIdProviderId($commandeId, $providerId, CommandeLigneStatutUtil::STATUT_TROIS_ENVOYE_PAR_MAIL_AUX_FOURNISSEURS);
 
 
-                /**
-                 * Uncomment when you've got access to email
-                 */
-//                try {
-//                    $n = OrderProviderConfMail::sendByCommandeIdFournisseurId($mail, $commandeId, $providerId, $signature);
-//                    if (1 === $n) {
-//                        $output = [
-//                            'success' => 'ok',
-//                        ];
-//                        CommandeHasArticleUtil::updateStatutByCommandeIdProviderId($commandeId, $providerId, CommandeLigneStatutUtil::STATUT_TROIS_ENVOYE_PAR_MAIL_AUX_FOURNISSEURS);
-//
-//                    } else {
-//                        $output = [
-//                            "error" => "Une erreur est survenue, le mail n'a pas été envoyé; veuillez contacter le webmaster",
-//                        ];
-//                    }
-//                } catch (\Exception $e) {
-//                    $output = [
-//                        'error' => $e->getMessage(),
-//                    ];
-//                }
+                if (true === MAIL_ENABLE) {
+                    try {
+                        $n = OrderProviderConfMail::sendByCommandeIdFournisseurId($mail, $commandeId, $providerId, $signature);
+                        if (1 === $n) {
+                            $output = [
+                                'success' => 'ok',
+                            ];
+                            CommandeHasArticleUtil::updateStatutByCommandeIdProviderId($commandeId, $providerId, CommandeLigneStatutUtil::STATUT_TROIS_ENVOYE_PAR_MAIL_AUX_FOURNISSEURS);
+
+                        } else {
+                            $output = [
+                                "error" => "Une erreur est survenue, le mail n'a pas été envoyé; veuillez contacter le webmaster",
+                            ];
+                        }
+                    } catch (\Exception $e) {
+                        $output = [
+                            'error' => $e->getMessage(),
+                        ];
+                    }
+                }
             }
             break;
         case 'csv-import-form':
@@ -501,6 +503,96 @@ if (array_key_exists('action', $_GET)) {
                 $relativePath = str_replace('/', '', $_GET['relativepath']);
                 AppBackup::create()->createBackup('manual/' . $relativePath);
                 $output = "ok";
+            }
+            break;
+        case 'commande-applydevis':
+            if (
+                array_key_exists('did', $_GET) &&
+                array_key_exists('cid', $_GET)
+            ) {
+                $did = $_GET['did'];
+                $cid = $_GET['cid'];
+
+                DevisHasCommandeHasArticleUtil::bindDevisToCommande($did, $cid);
+                $output = "ok";
+            }
+            break;
+        case 'commande-devislist':
+            if (
+            array_key_exists('ric', $_GET)
+            ) {
+                $isHtml = true;
+                $ric = $_GET['ric'];
+                list($commandeId, $articleId) = unric($ric);
+                CommandeHasArticleUtil::displayDevisTableByLine($commandeId, $articleId);
+            }
+            break;
+        case 'devis-add-bindure':
+            if (
+                array_key_exists('did', $_GET) &&
+                array_key_exists('cid', $_GET) &&
+                array_key_exists('aid', $_GET)
+            ) {
+                $did = $_GET['did'];
+                $cid = $_GET['cid'];
+                $aid = $_GET['aid'];
+
+                try {
+                    DevisHasCommandeHasArticleUtil::insert($did, $cid, $aid);
+                } catch (\Exception $e) {
+
+                }
+
+                ob_start();
+                CommandeHasArticleUtil::displayDevisTableByLine($cid, $aid);
+                $html = ob_get_clean();
+
+                $nbDevis = DevisHasCommandeHasArticleUtil::getNbDevisPerLine($cid, $aid);
+                $output = [
+                    'html' => $html,
+                    'nbDevis' => $nbDevis,
+                ];
+
+            }
+            break;
+        case 'devis-remove-bindure':
+            if (
+                array_key_exists('did', $_GET) &&
+                array_key_exists('cid', $_GET) &&
+                array_key_exists('aid', $_GET)
+            ) {
+                $did = $_GET['did'];
+                $cid = $_GET['cid'];
+                $aid = $_GET['aid'];
+
+                DevisHasCommandeHasArticleUtil::remove($did, $cid, $aid);
+
+
+                ob_start();
+                CommandeHasArticleUtil::displayDevisTableByLine($cid, $aid);
+                $html = ob_get_clean();
+                $nbDevis = DevisHasCommandeHasArticleUtil::getNbDevisPerLine($cid, $aid);
+                $output = [
+                    'html' => $html,
+                    'nbDevis' => $nbDevis,
+                ];
+
+            }
+            break;
+        case 'commande-exportcsv':
+            if (
+                array_key_exists('type', $_GET) &&
+                array_key_exists('cid', $_GET)
+            ) {
+                $type = $_GET['type'];
+                $cid = $_GET['cid'];
+
+                if (false !== ($ref = CommandeUtil::getReferenceById($cid))) {
+                    $file = APP_COMMANDE_EXPORTS_DIR . "/$ref.xlsx";
+                    $_SESSION['download'] = $file;
+                    CommandeExporterUtil::createCsvFileByCommande($file, $cid, $type);
+                    $output = "ok";
+                }
             }
             break;
         default:

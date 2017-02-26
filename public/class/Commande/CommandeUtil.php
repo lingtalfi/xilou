@@ -4,6 +4,7 @@
 namespace Commande;
 
 
+use Devis\DevisUtil;
 use QuickPdo\QuickPdo;
 use Util\GeneralUtil;
 
@@ -68,6 +69,48 @@ where h.commande_id=" . $commandeId;
         return [$prixTotal, $poidsTotal, $volumeTotal];
     }
 
+
+    public static function getCommandeSumInfoByDevis($devisId)
+    {
+        $prixTotal = 0;
+        $poidsTotal = 0;
+        $volumeTotal = 0;
+
+        $query = "select
+h.prix_override,
+h.quantite,
+fha.prix,
+fha.volume,
+fha.poids
+
+from commande_has_article h
+inner join article a on a.id=h.article_id
+inner join fournisseur_has_article fha on fha.fournisseur_id=h.fournisseur_id and fha.article_id=h.article_id
+inner join devis_has_commande_has_article dh on dh.commande_has_article_commande_id=h.commande_id and dh.commande_has_article_article_id=h.article_id
+inner join devis d on d.id=dh.devis_id
+where dh.devis_id=" . $devisId;
+
+        if (false !== ($res = QuickPdo::fetchAll($query))) {
+            foreach ($res as $item) {
+                $prix = $item['prix'];
+                $qte = $item['quantite'];
+                if ('' !== trim($item['prix_override'])) {
+                    $prix = $item['prix_override'];
+                }
+                $prixTotal += $qte * $prix;
+                $poidsTotal += $qte * $item['poids'];
+                $volumeTotal += $qte * $item['volume'];
+            }
+        }
+
+
+        $prixTotal = GeneralUtil::formatDollar($prixTotal);
+        $poidsTotal = GeneralUtil::formatDollar($poidsTotal);
+        $volumeTotal = GeneralUtil::formatDollar($volumeTotal);
+
+        return [$prixTotal, $poidsTotal, $volumeTotal];
+    }
+
     public static function insertCommande(array $values)
     {
         $values = array_merge([
@@ -83,6 +126,7 @@ where h.commande_id=" . $commandeId;
     {
         return QuickPdo::fetchAll("select id, reference from commande order by id asc", [], \PDO::FETCH_COLUMN | \PDO::FETCH_UNIQUE);
     }
+
 
 
     /**
@@ -132,4 +176,6 @@ where h.commande_id=" . $commandeId;
             }
         }
     }
+
+
 }

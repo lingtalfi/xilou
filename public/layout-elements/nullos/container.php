@@ -47,6 +47,15 @@ AssetsList::css("/style/admintable.css");
 $containerId2Refs = ContainerUtil::getId2Labels();
 $commandeId2Refs = CommandeUtil::getId2Labels();
 
+
+// eliminate old obsolete sessions data
+foreach ($containerIds as $k => $id) {
+    if (false === array_key_exists($id, $containerId2Refs)) {
+        unset($containerIds[$k]);
+    }
+}
+
+
 ?>
 
 
@@ -55,14 +64,7 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
 
         <button class="button-with-icon repartition-container-button">Répartition automatique...</button>
 
-        <div class="commande-actions-group">
-            <button class="button-with-icon csv-import-button">
-            <span>
-                <span>Exporter les fichiers csv...</span>
-                <?php Icons::printIcon("add", 'white'); ?>
-            </span>
-            </button>
-        </div>
+
 
     </div>
     <div class="zilu-split">
@@ -221,6 +223,10 @@ where h.container_id=" . $containerId;
                         <td></td>
                     </tr>
                 </table>
+            <?php else: ?>
+                <div>
+                    Veuillez créer un container d'abord, ou bien utiliser le bouton Répartition automatique.
+                </div>
             <?php endif; ?>
         </div>
 

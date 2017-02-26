@@ -42,11 +42,12 @@ if (
     $dbPass = 'root';
     $dbName = 'zilu';
     $host = 'localhost';
+    $mailEnable = false;
 
     if ("/Users/" === substr(__DIR__, 0, 7)) {
         $dbPass = '';
         $host = '127.0.0.1';
-
+        $mailEnable = true;
     }
 
 
@@ -65,6 +66,7 @@ if (
 
     // privilege
     $privilegeSessionTimeout = 60 * 5;
+    $mailEnable = true;
 }
 
 //--------------------------------------------
@@ -108,12 +110,19 @@ QuickPdo::setConnection("mysql:host=$host;dbname=$dbName", $dbUser, $dbPass, [
 //--------------------------------------------
 // paths
 define('APP_ROOT_DIR', __DIR__);
+
+
 define('PATH_TO_MYSQLDUMP', "/usr/local/mysql/bin/mysqldump"); // might be different on zilu's computer
 define('PATH_TO_MYSQL', "/usr/local/mysql/bin/mysql"); // might be different on zilu's computer
+define('DB_PASS', $dbPass);
+
+
 define('APP_COMMANDE_IMPORTS_DIR', APP_ROOT_DIR . "/www/commande-imports");
+define('APP_COMMANDE_EXPORTS_DIR', APP_ROOT_DIR . "/www/commande-exports");
 define('MAIL_ZILU', 'lingtalfi@gmail.com');
 define('MAIL_DIDIER', 'lingtalfi@gmail.com');
 define('MAIL_FROM', 'zilu-bot@leaderfit-equipement.com');
+define('MAIL_ENABLE', $mailEnable);
 
 
 // website
