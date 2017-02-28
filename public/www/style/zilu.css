@@ -374,3 +374,11 @@ button.zilu-black-button {
 .zilu-table-devis tr th{
     text-align: left;
 }
+
+
+
+
+.zilu .datatable .checkbox {
+    width: 20px;
+    height: 20px;
+}

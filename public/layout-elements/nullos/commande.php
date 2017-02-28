@@ -149,6 +149,7 @@ co.nom as container,
 c.reference as commande,
 a.reference_lf,
 a.reference_hldp,
+a.logo,
 f.id as fournisseur_id,
 f.nom as fournisseur,
 h.quantite,
@@ -208,6 +209,14 @@ where c.id=" . $idCommande;
                     $text = $value;
                     return '<a class="update-link" data-column="poids" data-default="' . htmlspecialchars($value) . '" data-fid="' . $item['fournisseur_id'] . '" data-aid="' . $item['aid'] . '" href="#">' . $text . '</a>';
                 });
+
+                $list->setTransformer("logo", function ($value, $item, $ricValue) {
+                    if('/' === $value){
+                        return "";
+                    }
+                    return '<img width="50" src="'. htmlspecialchars($value) . '">';
+                });
+
 
 
                 $list->setTransformer("devis", function ($value, $item, $ricValue) {

@@ -124,8 +124,8 @@ define('DB_PASS', $dbPass);
 
 define('APP_COMMANDE_IMPORTS_DIR', APP_ROOT_DIR . "/www/commande-imports");
 define('APP_COMMANDE_EXPORTS_DIR', APP_ROOT_DIR . "/www/commande-exports");
-define('MAIL_ZILU', 'lingtalfi@gmail.com');
-define('MAIL_DIDIER', 'lingtalfi@gmail.com');
+define('MAIL_ZILU', 'zilu@leaderfit.com');
+define('MAIL_DIDIER', 'zilu@leaderfit.com');
 define('MAIL_FROM', 'zilu-bot@leaderfit-equipement.com');
 define('MAIL_ENABLE', $mailEnable);
 

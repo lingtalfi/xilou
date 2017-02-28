@@ -1,0 +1,5 @@
+sending mail to fournisseurs:
+
+Notice: tempnam(): file created in the system's temporary directory in /Users/zilu/Desktop/web/xilou/public/class-planets/Umail/Renderer/PhpRenderer.php on line 50
+
+Notice: tempnam(): file created in the system's temporary directory in /Users/zilu/Desktop/web/xilou/public/class-planets/Umail/Renderer/PhpRenderer.php on line 50
