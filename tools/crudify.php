@@ -9,7 +9,7 @@ use Crud\Util\CrudFilesGenerator;
 use Crud\Util\CrudFilesPreferencesGenerator;
 use Crud\Util\LeftMenuPreferencesGenerator;
 
-define('APP_ROOT_DIR', __DIR__ . "/../public");
+// define('APP_ROOT_DIR', __DIR__ . "/../public");
 $options = [];
 $options[] = new LeftMenuPreferencesResetOption('crud_leftmenu', 'empty the left menu preferences');
 $options[] = new CrudFilesResetOption('crud_files', 'remove the crud files');

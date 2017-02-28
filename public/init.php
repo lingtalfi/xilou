@@ -21,6 +21,7 @@ ButineurAutoloader::getInst()->start();
 require_once __DIR__ . '/vendor/autoload.php';
 
 
+
 //--------------------------------------------
 // FUNCTIONS
 //--------------------------------------------
@@ -45,8 +46,9 @@ if (
     $mailEnable = false;
 
     if ("/Users/" === substr(__DIR__, 0, 7)) {
-        $dbPass = '';
-        $host = '127.0.0.1';
+        $dbPass = 'root';
+
+        $host = 'localhost';
         $mailEnable = true;
     }
 
@@ -112,8 +114,11 @@ QuickPdo::setConnection("mysql:host=$host;dbname=$dbName", $dbUser, $dbPass, [
 define('APP_ROOT_DIR', __DIR__);
 
 
-define('PATH_TO_MYSQLDUMP', "/usr/local/mysql/bin/mysqldump"); // might be different on zilu's computer
-define('PATH_TO_MYSQL', "/usr/local/mysql/bin/mysql"); // might be different on zilu's computer
+define('PATH_TO_MYSQLDUMP', "/usr/local/mysql/bin/mysqldump"); 
+//define('PATH_TO_MYSQL', "/usr/local/mysql/bin/mysql"); 
+define('PATH_TO_MYSQL', "/Applications/MAMP/Library/bin/mysql"); 
+
+
 define('DB_PASS', $dbPass);
 
 

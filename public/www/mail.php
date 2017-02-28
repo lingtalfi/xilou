@@ -11,7 +11,7 @@ require_once __DIR__ . "/../init.php";
 //------------------------------------------------------------------------------/
 
 
-$logoFile = __DIR__ . "/myshop-logo.jpg";
+// $logoFile = __DIR__ . "/myshop-logo.jpg";
 $mail = Umail::create();
 
 
@@ -49,19 +49,19 @@ $vars = function ($email) use ($mail) {
      * (i.e. although it has tracking capabilities, marker is still just an image)
      *
      */
-    $markerImage = 'https://www.leaderfit-equipement.com/ling/service/tracker.php?email=' . $email;
+    //$markerImage = 'https://www.leaderfit-equipement.com/ling/service/tracker.php?email=' . $email;
 //    $ret['marker'] = $mail->embedFile($markerImage); // didn't work: file was embedded as an .exe file
-    $ret['marker'] = $markerImage; // worked detecting email opening on my macbookpro,
+    //$ret['marker'] = $markerImage; // worked detecting email opening on my macbookpro,
     return $ret;
 };
 $commonVars = [
     'shop_name' => 'my shop',
     'shop_url' => 'http://my_shop.com',
-    'shop_logo' => $mail->embedFile($logoFile),
+    //'shop_logo' => $mail->embedFile($logoFile),
 ];
 $res = $mail->to([
-    'lingtalfi@gmail.com' => 'ling',
-    'delphine@myshop.com',
+    'zilu@leaderfit.com' => 'zilu',
+    //'delphine@myshop.com',
 ])
     ->from('johndoe@gmail.com')
     ->subject("Hi, testing template")
