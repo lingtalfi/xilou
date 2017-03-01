@@ -43,8 +43,8 @@ class OrderConfMail
 
 
             $dollarToEuroRate = GeneralUtil::getDollarToEuroRate();
-            $prixTotalEuros = $prixTotal * $dollarToEuroRate;
-            
+            $prixTotalEuros = (float)str_replace(',','',$prixTotal) * (float)str_replace(',','',$dollarToEuroRate);
+
 
 
             $items = CommandeHasArticleUtil::getCommandeDetails((int)$commandeId);

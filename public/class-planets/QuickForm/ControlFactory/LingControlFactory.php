@@ -188,6 +188,7 @@ class LingControlFactory implements ControlFactoryInterface
                 $items = $args[0];
                 $value = $c->getValue();
                 $htmlArgs = (array_key_exists(1, $args)) ? $args[1] : [];
+                $optionsArgs = (array_key_exists(2, $args)) ? $args[2] : [];
 
                 $nonScalar = '';
                 if ('selectMultiple' === $type) {
@@ -211,9 +212,10 @@ class LingControlFactory implements ControlFactoryInterface
                             <optgroup label="<?php echo htmlspecialchars($k); ?>">
                                 <?php foreach ($v as $_k => $_v):
                                     $sel = ($value == $_k) ? ' selected="selected"' : '';
+                                    $optArgs = (array_key_exists($_k, $optionsArgs))?$optionsArgs[$_k]:[];
                                     ?>
                                     <option
-                                        <?php echo $sel; ?>value="<?php echo htmlspecialchars($_k); ?>"><?php echo $_v; ?></option>
+                                        <?php echo $sel; ?>value="<?php echo htmlspecialchars($_k); ?>" <?php echo StringTool::htmlAttributes($optArgs); ?>><?php echo $_v; ?></option>
                                 <?php endforeach; ?>
                             </optgroup>
                             <?php
@@ -221,9 +223,10 @@ class LingControlFactory implements ControlFactoryInterface
 
 
                             $sel = ($value == $k) ? ' selected="selected"' : '';
+                            $optArgs = (array_key_exists($k, $optionsArgs))?$optionsArgs[$k]:[];
                             ?>
                             <option
-                                <?php echo $sel; ?>value="<?php echo htmlspecialchars($k); ?>"><?php echo $v; ?></option>
+                                <?php echo $sel; ?>value="<?php echo htmlspecialchars($k); ?>" <?php echo StringTool::htmlAttributes($optArgs); ?>><?php echo $v; ?></option>
                             <?php
                         endif;
                     endforeach; ?>

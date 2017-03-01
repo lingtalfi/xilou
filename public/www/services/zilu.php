@@ -14,6 +14,8 @@ use CsvImport\CommandeImporterUtil;
 use Devis\DevisUtil;
 use DevisHasCommandeHasArticle\DevisHasCommandeHasArticleUtil;
 use Fournisseur\FournisseurUtil;
+use HistoriqueStatut\HistoriqueStatut;
+use Mail\MailHelper;
 use Mail\OrderConfMail;
 use Mail\OrderProviderConfMail;
 use QuickPdo\QuickPdo;
@@ -234,9 +236,10 @@ if (array_key_exists('action', $_GET)) {
                 $commandeId = $_GET['commande_id'];
                 $estimatedDate = $_GET['estimated_date'];
 
-                $mail = MAIL_DIDIER;
                 if (array_key_exists('test', $_GET)) {
-                    $mail = MAIL_ZILU;
+                    $mail = MailHelper::getZiluMails();
+                } else {
+                    $mail = MailHelper::getDirectionMails();
                 }
                 $n = OrderConfMail::sendByCommandeId($mail, $commandeId, $estimatedDate);
                 CommandeHasArticleUtil::updateStatutByCommandeId($commandeId, CommandeLigneStatutUtil::STATUT_DEUX_ENVOYE_PAR_MAIL_A_DIDIER);
@@ -260,7 +263,7 @@ if (array_key_exists('action', $_GET)) {
                 $signature = $_GET['signature'];
 
                 if (array_key_exists('test', $_GET)) {
-                    $mail = MAIL_ZILU;
+                    $mail = MailHelper::getZiluMails();
                 } else {
                     $mail = FournisseurUtil::getEmail($providerId);
                 }
@@ -592,6 +595,46 @@ if (array_key_exists('action', $_GET)) {
                     $_SESSION['download'] = $file;
                     CommandeExporterUtil::createCsvFileByCommande($file, $cid, $type);
                     $output = "ok";
+                }
+            }
+            break;
+        case 'commande-multipleaction-control':
+            $isHtml = true;
+            if (array_key_exists('control', $_GET)) {
+                $control = $_GET['control'];
+                switch ($control) {
+                    case 'statut':
+                        $id2Labels = CommandeLigneStatutUtil::getIds2Labels();
+                        $s = '';
+                        foreach ($id2Labels as $id => $label) {
+                            $s .= '<option value="' . $id . '">' . $label . '</option>';
+                        }
+                        $output = '<select class="valueholder">' . $s . '</select>';
+
+                        break;
+                    default:
+                        break;
+                }
+            }
+            break;
+        case 'multipleaction':
+            if (
+                array_key_exists('type', $_GET) &&
+                array_key_exists('cid', $_GET) &&
+                array_key_exists('aid', $_GET) &&
+                array_key_exists('value', $_GET)
+            ) {
+                $type = $_GET['type'];
+                $value = $_GET['value'];
+                switch ($type) {
+                    case 'statut':
+
+                        HistoriqueStatut::insert($value);
+                        $output = 'ok';
+
+                        break;
+                    default:
+                        break;
                 }
             }
             break;

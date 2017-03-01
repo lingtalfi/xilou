@@ -77,7 +77,7 @@ class Form
         // PROXY TO QUICKFORM
         //--------------------------------------------
         $this->qform->validationTranslateFunc = function ($v) {
-            return __($v, $this->translatorContext);
+            return __($v, $this->_translatorContext);
         };
 
         $messages = $this->messages;

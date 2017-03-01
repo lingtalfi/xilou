@@ -1,0 +1,4 @@
+[Tue Feb 28 20:55:43 2017] [error] [client 127.0.0.1] client denied by server configuration: /Volumes/Macintosh HD 2/it/php/projects/xilou/.DS_Store
+[Tue Feb 28 20:55:46 2017] [error] [client 127.0.0.1] client denied by server configuration: /Volumes/Macintosh HD 2/it/php/projects/xilou/public/.DS_Store, referer: http://zilu/
+[Tue Feb 28 20:56:31 2017] [error] [client 127.0.0.1] File does not exist: /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/public, referer: http://zilu/public/
+[Tue Feb 28 21:20:05 2017] [error] [client 127.0.0.1] File does not exist: /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/commande, referer: http://zilu/

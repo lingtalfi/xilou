@@ -37,4 +37,19 @@ class Article
         ]);
     }
 
+    public static function getLogoList()
+    {
+        $ret = [
+            "/Products-list.fld/image034.png",
+            "/Products-list.fld/image051.png",
+            "/Products-list.fld/image427.png",
+            "/Products-list.fld/image496.png",
+        ];
+//        $list = QuickPdo::fetchAll("select logo from article where logo != '/' and logo != '' order by logo asc", [], \PDO::FETCH_COLUMN);
+//        foreach ($list as $v) {
+//            $ret[$v] = $v;
+//        }
+        return $ret;
+    }
+
 }

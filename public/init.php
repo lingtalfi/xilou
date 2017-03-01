@@ -7,6 +7,9 @@ use Privilege\PrivilegeUser;
 use QuickPdo\QuickPdo;
 
 
+// https://postimg.org/image/ixw7ww9cv/
+
+
 //------------------------------------------------------------------------------/
 // UNIVERSE AUTOLOADER (bigbang)
 //------------------------------------------------------------------------------/
@@ -125,7 +128,11 @@ define('DB_PASS', $dbPass);
 define('APP_COMMANDE_IMPORTS_DIR', APP_ROOT_DIR . "/www/commande-imports");
 define('APP_COMMANDE_EXPORTS_DIR', APP_ROOT_DIR . "/www/commande-exports");
 define('MAIL_ZILU', 'zilu@leaderfit.com');
+define('MAIL_ZILU2', 'contact@hldpdevelopment.com');
+define('MAIL_ZILU3', 'lingtalfi@gmail.com');
+
 define('MAIL_DIDIER', 'zilu@leaderfit.com');
+define('MAIL_DIDIER2', 'lingtalfi@gmail.com');
 define('MAIL_FROM', 'zilu-bot@leaderfit-equipement.com');
 define('MAIL_ENABLE', $mailEnable);
 

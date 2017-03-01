@@ -10,6 +10,7 @@ class ListParameters
     public $page;
     public $nipp;
     public $nbPages;
+    public $nbItemsTotal;
     public $sortColumn;
     public $sortColumnDir;
     public $items;
@@ -24,6 +25,7 @@ class ListParameters
     // widgets
     public $hasPageSelector;
     public $hasSearch;
+    public $hasItemsCounter;
     public $hasNippSelector;
     public $hasPagination;
     public $hasMultipleActions;

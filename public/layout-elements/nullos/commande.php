@@ -211,12 +211,11 @@ where c.id=" . $idCommande;
                 });
 
                 $list->setTransformer("logo", function ($value, $item, $ricValue) {
-                    if('/' === $value){
+                    if ('/' === $value) {
                         return "";
                     }
-                    return '<img width="50" src="'. htmlspecialchars($value) . '">';
+                    return '<img width="50" src="' . htmlspecialchars($value) . '">';
                 });
-
 
 
                 $list->setTransformer("devis", function ($value, $item, $ricValue) {
@@ -294,6 +293,10 @@ where c.id=" . $idCommande;
                     'container_id',
                     'fournisseur_id',
                 ];
+
+
+//                $list->setMultipleActionHandler("changestatut", "Changer le statut", $fn, $conf=false);
+
                 $list->displayTable();
 
             }
@@ -483,6 +486,10 @@ where c.id=" . $idCommande;
                         argTest = "&test=1";
                     }
 
+                    if ('undefined' !== typeof $("#order-conf-mail-dialog").dialog('instance')) {
+                        $("#order-conf-mail-dialog").dialog("close");
+                    }
+
 
                     $("#order-conf-mail-dialog").dialog({
                         position: {
@@ -502,29 +509,34 @@ where c.id=" . $idCommande;
                             jDate.datepicker("setDate", defaultValue);
                             jDate.blur();
 
-
-                            jBtn.on('click', function (e) {
-                                e.preventDefault();
-                                var jForm = jBtn.closest('form');
-                                var formData = jForm.serialize();
-
-
-                                var jLoader = $("#order-conf-mail-dialog").find(".loader");
-                                jLoader.removeClass("hidden");
-                                var jBlock = $("#order-conf-mail-dialog").find(".block");
-                                jBlock.addClass("hidden");
+                            var jLoader = $("#order-conf-mail-dialog").find(".loader");
+                            var jBlock = $("#order-conf-mail-dialog").find(".block");
+                            jLoader.addClass("hidden");
+                            jBlock.removeClass("hidden");
 
 
-                                $.getJSON('/services/zilu.php?action=send-mail-purchase-order' + argTest + '&' + formData, function (data) {
-                                    if ('ok' === data) {
-                                        $("order-conf-mail-dialog").dialog('close');
-                                        window.location.reload();
-                                    }
-                                    else {
-                                        jLoader.html(data);
-                                    }
+                            jBtn
+                                .off('click')
+                                .on('click', function (e) {
+                                    e.preventDefault();
+                                    var jForm = jBtn.closest('form');
+                                    var formData = jForm.serialize();
+
+
+                                    jLoader.removeClass("hidden");
+                                    jBlock.addClass("hidden");
+
+
+                                    $.getJSON('/services/zilu.php?action=send-mail-purchase-order' + argTest + '&' + formData, function (data) {
+                                        if ('ok' === data) {
+                                            $("order-conf-mail-dialog").dialog('close');
+                                            window.location.reload();
+                                        }
+                                        else {
+                                            jLoader.html(data);
+                                        }
+                                    });
                                 });
-                            });
                         }
                     });
                 }
@@ -534,6 +546,10 @@ where c.id=" . $idCommande;
                         argTest = "&test=1";
                     }
 
+
+                    if ('undefined' !== typeof $("#order-pro-conf-mail-dialog").dialog('instance')) {
+                        $("#order-pro-conf-mail-dialog").dialog("close");
+                    }
 
                     $("#order-pro-conf-mail-dialog").dialog({
                         position: {
@@ -547,65 +563,71 @@ where c.id=" . $idCommande;
                             var jSignature = $("#order-pro-conf-mail-dialog").find('.selector');
                             var jBtn = $("#order-pro-conf-mail-dialog").find('.order-pro-conf-mail-submit-btn');
 
+                            var jLoader = $("#order-pro-conf-mail-dialog").find(".loader");
+                            var jBlock = $("#order-pro-conf-mail-dialog").find(".block");
+                            jLoader.addClass("hidden");
+                            jBlock.removeClass("hidden");
 
-                            jBtn.on('click', function (e) {
-                                e.preventDefault();
-                                var jForm = jBtn.closest('form');
-                                var formData = jForm.serialize();
+
+                            jBtn
+                                .off('click')
+                                .on('click', function (e) {
+                                    e.preventDefault();
+                                    var jForm = jBtn.closest('form');
+                                    var formData = jForm.serialize();
 
 
-                                var jProviders = $('#mail-providers-checkboxes').find('input');
-                                var aProviders = [];
-                                jProviders.each(function () {
-                                    var jInput = $(this);
-                                    if (true === jInput.prop('checked')) {
-                                        aProviders.push([jInput.val(), jInput.parent().text().trim()]);
+                                    var jProviders = $('#mail-providers-checkboxes').find('input');
+                                    var aProviders = [];
+                                    jProviders.each(function () {
+                                        var jInput = $(this);
+                                        if (true === jInput.prop('checked')) {
+                                            aProviders.push([jInput.val(), jInput.parent().text().trim()]);
+                                        }
+                                    });
+
+                                    var nbProviders = aProviders.length;
+                                    var currentProvider = 0;
+
+
+                                    jLoader.removeClass("hidden");
+                                    jBlock.addClass("hidden");
+
+
+                                    function processProvider() {
+                                        var providerInfo = aProviders.shift();
+                                        if ('undefined' !== typeof providerInfo) {
+
+                                            var providerId = providerInfo[0];
+                                            var providerName = providerInfo[1];
+
+                                            currentProvider++;
+                                            var jLine = $("<p>Préparation du mail pour " + providerName + " (" + currentProvider + "/" + nbProviders + ") ...</p>");
+                                            jLoader.append(jLine);
+
+                                            $.getJSON('/services/zilu.php?action=send-mail-pro-purchase-order' + argTest + '&provider_id=' + providerId + '&' + formData, function (data) {
+
+                                                if ("success" in data) {
+                                                    jLine.append('<span class="zilu-success">envoyé</span>');
+                                                }
+                                                else if ("error" in data) {
+                                                    jLine.append('<span class="zilu-error">' + data['error'] + '</span>');
+                                                }
+
+
+                                                // recursion
+                                                if (currentProvider < nbProviders) {
+                                                    processProvider();
+                                                }
+                                                else {
+                                                    jLine.append('<div style="height: 20px;"></div><div style="text-align: center"><button class="zilu-close zilu-black-button">Ok</button></div>');
+                                                }
+                                            });
+                                        }
                                     }
+
+                                    processProvider();
                                 });
-
-                                var nbProviders = aProviders.length;
-                                var currentProvider = 0;
-
-                                var jLoader = $("#order-pro-conf-mail-dialog").find(".loader");
-                                jLoader.removeClass("hidden");
-                                var jBlock = $("#order-pro-conf-mail-dialog").find(".block");
-                                jBlock.addClass("hidden");
-
-
-                                function processProvider() {
-                                    var providerInfo = aProviders.shift();
-                                    if ('undefined' !== typeof providerInfo) {
-
-                                        var providerId = providerInfo[0];
-                                        var providerName = providerInfo[1];
-
-                                        currentProvider++;
-                                        var jLine = $("<p>Préparation du mail pour " + providerName + " (" + currentProvider + "/" + nbProviders + ") ...</p>");
-                                        jLoader.append(jLine);
-
-                                        $.getJSON('/services/zilu.php?action=send-mail-pro-purchase-order' + argTest + '&provider_id=' + providerId + '&' + formData, function (data) {
-
-                                            if ("success" in data) {
-                                                jLine.append('<span class="zilu-success">envoyé</span>');
-                                            }
-                                            else if ("error" in data) {
-                                                jLine.append('<span class="zilu-error">' + data['error'] + '</span>');
-                                            }
-
-
-                                            // recursion
-                                            if (currentProvider < nbProviders) {
-                                                processProvider();
-                                            }
-                                            else {
-                                                jLine.append('<div style="height: 20px;"></div><div style="text-align: center"><button class="zilu-close zilu-black-button">Ok</button></div>');
-                                            }
-                                        });
-                                    }
-                                }
-
-                                processProvider();
-                            });
                         }
                     });
                 }
@@ -963,6 +985,65 @@ where c.id=" . $idCommande;
                     }
                 });
             }
+            else if (jTarget.hasClass("multiple-action-selector")) {
+                e.preventDefault();
+
+                var jUpdateZone = null;
+                var updateType = null;
+
+
+                $("#commande-dialog-multipleaction-choices").dialog({
+                    position: {
+                        my: "bottom",
+                        at: "bottom",
+                        of: jTarget
+                    },
+                    width: 600,
+                    buttons: {
+                        "Appliquer": function () {
+                            var value = jUpdateZone.find('.valueholder').val();
+                            $.getJSON('/services/zilu.php?action=multipleaction&type=' + updateType + '&value=' + value, function (data) {
+                                if ('ok' === data) {
+                                    location.reload();
+                                }
+                            });
+                        },
+                        "Annuler": function () {
+                            $(this).dialog("close");
+                        }
+                    },
+                    open: function (event, ui) {
+                        var jUpdateZone = $(this).dialog().find("#multipleaction-choices-zone");
+                        var jButtonPane = $(this).dialog().parent().find(".ui-dialog-buttonpane");
+
+                        jButtonPane.hide();
+                        jUpdateZone.hide();
+
+
+                        var jSelect = $(this).dialog().find("#multipleaction-choices-selector");
+
+                        jSelect
+                            .off('change')
+                            .on('change', function () {
+                                var value = $(this).val();
+                                if ('0' === value) {
+                                    jButtonPane.hide();
+                                    jUpdateZone.hide();
+                                }
+                                else {
+                                    updateType = value;
+                                    jButtonPane.show();
+                                    jUpdateZone.show();
+                                    $.get('/services/zilu.php?action=commande-multipleaction-control&control=' + value, function (data) {
+                                        jUpdateZone.empty().html(data);
+                                    });
+                                }
+                            });
+
+
+                    }
+                });
+            }
         });
 
 
@@ -1124,9 +1205,9 @@ where c.id=" . $idCommande;
     <div id="container-status-dialog" title="Mise à jour du statut">
         <select>
             <?php
-            $id2labels = CommandeLigneStatutUtil::getIds2Labels();
+            $id2CommandeLigneStatutLabels = CommandeLigneStatutUtil::getIds2Labels();
 
-            foreach ($id2labels as $id => $label):
+            foreach ($id2CommandeLigneStatutLabels as $id => $label):
                 ?>
                 <option value="<?php echo $id; ?>"><?php echo $label; ?></option>
             <?php endforeach; ?>
@@ -1182,6 +1263,17 @@ where c.id=" . $idCommande;
                     <button type="submit" class="export-csv-button">Exporter</button>
                 </li>
             </ul>
+        </div>
+    </div>
+    <div id="commande-dialog-multipleaction-choices" title="Action à effectuer pour toutes les lignes sélectionnées">
+        <div class="mainbody">
+            <select id="multipleaction-choices-selector">
+                <option value="0">Choisissez une action...</option>
+                <option value="statut">Changer le statut</option>
+            </select>
+            <div id="multipleaction-choices-zone">
+
+            </div>
         </div>
     </div>
 </div>

@@ -13,6 +13,7 @@ $prefs = [
         'zilu.csv_product_list' => 'csv product list',
         'zilu.devis_has_commande_has_article' => 'devis has commande has article',
         'zilu.fournisseur_has_article' => 'fournisseur has article',
+        'zilu.historique_statut' => 'historique statut',
         'zilu.type_container' => 'type container',
     ],
     'foreignKeyPrettierColumns' => [
@@ -158,6 +159,9 @@ $prefs = [
         'devis_id' => 'devis',
         'commande_has_article_commande_id' => 'commande has article commande',
         'commande_has_article_article_id' => 'commande has article article',
+        'statut_nom' => 'statut nom',
+        'fournisseur_nom' => 'fournisseur nom',
+        'commande_nom' => 'commande nom',
         'pourcentage_rembourse' => 'pourcentage rembourse',
         'poids_max' => 'poids max',
         'volume_max' => 'volume max',

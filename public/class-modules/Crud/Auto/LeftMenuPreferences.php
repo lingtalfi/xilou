@@ -28,6 +28,7 @@ class LeftMenuPreferences
         'zilu.devis_has_commande_has_article',
         'zilu.fournisseur',
         'zilu.fournisseur_has_article',
+        'zilu.historique_statut',
         'zilu.sav',
         'zilu.type_container',
     ],
@@ -51,6 +52,7 @@ class LeftMenuPreferences
     'zilu.csv_product_list' => 'csv product list',
     'zilu.devis_has_commande_has_article' => 'devis has commande has article',
     'zilu.fournisseur_has_article' => 'fournisseur has article',
+    'zilu.historique_statut' => 'historique statut',
     'zilu.type_container' => 'type container',
 ];
     }

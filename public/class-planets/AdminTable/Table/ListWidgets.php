@@ -14,6 +14,7 @@ class ListWidgets
         $this->widgets = [
             'pageSelector' => true,
             'search' => true,
+            'itemsCounter' => true,
             'nippSelector' => true,
             'pagination' => true,
             'multipleActions' => true,
@@ -50,6 +51,12 @@ class ListWidgets
     public function disableSearch()
     {
         $this->widgets['search'] = false;
+        return $this;
+    }
+
+    public function disableItemsCounter()
+    {
+        $this->widgets['itemsCounter'] = false;
         return $this;
     }
 
