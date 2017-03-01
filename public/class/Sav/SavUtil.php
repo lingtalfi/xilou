@@ -10,12 +10,10 @@ class SavUtil
 {
 
 
-    public static function addByCommandLine($commandeId, $articleId, array $data)
+    public static function addByCommandLine($lineId, array $data)
     {
 
-        $commandeId = (int)$commandeId;
-        $articleId = (int)$articleId;
-
+        $lineId = (int)$lineId;
 
         if (false !== ($res = QuickPdo::fetch(
                 'select 
@@ -31,8 +29,7 @@ from commande_has_article h
 inner join fournisseur f on f.id=h.fournisseur_id
 inner join article a on a.id=h.article_id
 inner join fournisseur_has_article fh on fh.fournisseur_id=f.id and fh.article_id=a.id
-where h.commande_id=' . $commandeId . '
-and h.article_id=' . $articleId
+where h.id=' . $lineId
             ))
         ) {
 
@@ -78,8 +75,7 @@ and h.article_id=' . $articleId
                 ]))
             ) {
                 QuickPdo::update('commande_has_article', ['sav_id' => $id], [
-                    ["commande_id", '=', $commandeId],
-                    ["article_id", '=', $articleId],
+                    ["id", '=', $lineId],
                 ]);
                 return true;
             }

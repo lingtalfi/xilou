@@ -5,6 +5,7 @@ namespace CommandeHasArticle;
 
 
 use Devis\DevisUtil;
+use HistoriqueStatut\HistoriqueStatut;
 use QuickPdo\QuickPdo;
 
 class CommandeHasArticleUtil
@@ -30,13 +31,13 @@ class CommandeHasArticleUtil
         ]);
     }
 
-    public static function updateStatut($commandeId, $articleId, $statut)
+    public static function updateStatut($lineId, $statutId, $commentaire = "")
     {
+        HistoriqueStatut::insert($lineId, $statutId, $commentaire);
         return QuickPdo::update("commande_has_article", [
-            "commande_ligne_statut_id" => $statut,
+            "commande_ligne_statut_id" => $statutId,
         ], [
-            ['commande_id', "=", $commandeId],
-            ['article_id', "=", $articleId],
+            ['id', "=", $lineId],
         ]);
     }
 
@@ -130,22 +131,20 @@ where c.id=" . $commandeId;
     }
 
 
-    public static function bindContainer($containerId, $commandeId, $articleId, $fournisseurId)
+    public static function bindContainer($containerId, $lineId)
     {
         QuickPdo::update("commande_has_article", [
             'container_id' => $containerId,
         ], [
-            ['commande_id', '=', (int)$commandeId],
-            ['article_id', '=', (int)$articleId],
-            ['fournisseur_id', '=', (int)$fournisseurId],
+            ['id', '=', (int)$lineId],
         ]);
     }
 
 
-    public static function getDevisByLine($commandeId, $articleId)
+    public static function getDevisByLine($lineId)
     {
-        $commandeId = (int)$commandeId;
-        $articleId = (int)$articleId;
+        $lineId = (int)$lineId;
+
         return QuickPdo::fetchAll("
 select 
 d.id,
@@ -154,22 +153,19 @@ d.date_reception,
 f.nom 
 from devis d 
 inner join devis_has_commande_has_article hh on hh.devis_id=d.id
-inner join commande_has_article h on h.commande_id=hh.commande_has_article_commande_id and h.article_id=hh.commande_has_article_article_id
+inner join commande_has_article h on h.id=hh.commande_has_article_id
 inner join fournisseur f on f.id=d.fournisseur_id
 where 
-h.commande_id=$commandeId
-and h.article_id=$articleId
-
+h.id=$lineId
         ");
     }
 
-    public static function displayDevisTableByLine($commandeId, $articleId)
+    public static function displayDevisTableByLine($lineId)
     {
-        if (false !== ($items = self::getDevisByLine($commandeId, $articleId))) {
+        if (false !== ($items = self::getDevisByLine($lineId))) {
             ?>
             <table class="zilu-table-devis"
-                   data-cid="<?php echo $commandeId; ?>"
-                   data-aid="<?php echo $articleId; ?>"
+                   data-id="<?php echo $lineId; ?>"
             >
                 <tr>
                     <th>Référence</th>
@@ -183,7 +179,8 @@ and h.article_id=$articleId
                         <td><?php echo $item['date_reception']; ?></td>
                         <td><?php echo $item['nom']; ?></td>
                         <td>
-                            <button class="devis-remove-bindure" data-did="<?php echo $item['id']; ?>">Supprimer</button>
+                            <button class="devis-remove-bindure" data-did="<?php echo $item['id']; ?>">Supprimer
+                            </button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -207,6 +204,29 @@ and h.article_id=$articleId
             </table>
             <?php
         }
+    }
+
+
+    public static function getLineInfo($lineId)
+    {
+
+
+        $query = "select
+
+c.reference as commande_reference,
+a.reference_lf,
+f.nom as fournisseur_nom,
+fha.reference as reference_fournisseur
+
+from zilu.commande c
+inner join commande_has_article h on h.commande_id=c.id
+inner join fournisseur f on f.id=h.fournisseur_id
+inner join fournisseur_has_article fha on fha.fournisseur_id=h.fournisseur_id and fha.article_id=h.article_id
+inner join article a on a.id=h.article_id
+#left join container co on co.id=h.container_id
+where h.id=" . (int)$lineId;
+        $ret = QuickPdo::fetch($query);
+        return $ret;
     }
 }
 

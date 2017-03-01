@@ -3,11 +3,12 @@
 
 use Crud\CrudModule;
 
-$form = CrudModule::getForm("zilu.commande_has_article", ['commande_id', 'article_id']);
+$form = CrudModule::getForm("zilu.commande_has_article", ['id']);
 
 
 
 $form->labels = [
+    "id" => "id",
     "commande_id" => "commande",
     "article_id" => "article",
     "container_id" => "container",

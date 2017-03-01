@@ -4,6 +4,7 @@ use Crud\CrudHelper;
 use Crud\CrudModule;
 
 $fields = '
+c.id,
 c.commande_id,
 co.reference as commande_reference,
 c.article_id,
@@ -35,12 +36,13 @@ inner join zilu.sav s on s.id=c.sav_id
 ";
 
 
-$table = CrudModule::getDataTable("zilu.commande_has_article", $query, $fields, ['commande_id', 'article_id']);
+$table = CrudModule::getDataTable("zilu.commande_has_article", $query, $fields, ['id']);
 
 $table->title = "Commande has article";
 
 
 $table->columnLabels= [
+    "id" => "id",
     "commande_reference" => "commande",
     "article_reference_lf" => "article",
     "container_nom" => "container",
@@ -55,6 +57,7 @@ $table->columnLabels= [
 
 
 $table->hiddenColumns = [
+    "id",
     "commande_id",
     "article_id",
     "container_id",

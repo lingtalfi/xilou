@@ -43,4 +43,10 @@ class GeneralUtil
 
         return $main . $comma;
     }
+
+    public static function unric($ric)
+    {
+        $ricSep = '--*--';
+        return explode($ricSep, $ric);
+    }
 }

@@ -1,0 +1,1 @@
+[Wed Mar 01 09:15:52 2017] [error] [client ::1] File does not exist: /myphp/xilou/public/www/docs-assets

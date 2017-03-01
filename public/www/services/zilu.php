@@ -54,15 +54,12 @@ if (array_key_exists('action', $_GET)) {
                 if (0 === $value) {
                     $value = null;
                 }
-                $ric = $_GET['ric'];
-                list($commandeId, $articleId) = unric($ric);
-                $commandeId = (int)$commandeId;
-                $articleId = (int)$articleId;
+                $lineId = (int)$_GET['ric'];
+
                 QuickPdo::update('commande_has_article', [
                     'container_id' => $value,
                 ], [
-                    ['commande_id', '=', $commandeId],
-                    ['article_id', '=', $articleId],
+                    ['id', '=', $lineId],
                 ]);
                 $output = "ok";
             }
@@ -70,15 +67,11 @@ if (array_key_exists('action', $_GET)) {
         case 'commande-change-fournisseur':
             if (array_key_exists('value', $_GET) && array_key_exists('ric', $_GET)) {
                 $value = $_GET['value'];
-                $ric = $_GET['ric'];
-                list($commandeId, $articleId) = unric($ric);
-                $commandeId = (int)$commandeId;
-                $articleId = (int)$articleId;
+                $lineId = $_GET['ric'];
                 QuickPdo::update('commande_has_article', [
                     'fournisseur_id' => $value,
                 ], [
-                    ['commande_id', '=', $commandeId],
-                    ['article_id', '=', $articleId],
+                    ['id', '=', $lineId],
                 ]);
                 $output = "ok";
             }
@@ -175,10 +168,9 @@ if (array_key_exists('action', $_GET)) {
             break;
         case 'sav-transform-insert':
             if (array_key_exists('ric', $_GET)) {
-                $ric = $_GET['ric'];
-                list($commandeId, $articleId) = unric($ric);
+                $lineId = $_GET['ric'];
                 $data = $_GET;
-                if (true === SavUtil::addByCommandLine($commandeId, $articleId, $data)) {
+                if (true === SavUtil::addByCommandLine($lineId, $data)) {
                     $output = 'ok';
                 } else {
                     $output = 'ko';
@@ -198,14 +190,12 @@ if (array_key_exists('action', $_GET)) {
 
 
                 if (array_key_exists('ric', $_GET)) {
-                    $ric = $_GET['ric'];
-                    list($commandeId, $articleId) = unric($ric);
+                    $lineId = $_GET['ric'];
 
                     $res = QuickPdo::update('commande_has_article', [
                         $col => $value,
                     ], [
-                        ['commande_id', '=', $commandeId],
-                        ['article_id', '=', $articleId],
+                        ['id', '=', $lineId],
                     ]);
                 }
                 if (array_key_exists('fid', $_GET) && array_key_exists('aid', $_GET)) {
@@ -245,7 +235,7 @@ if (array_key_exists('action', $_GET)) {
                 CommandeHasArticleUtil::updateStatutByCommandeId($commandeId, CommandeLigneStatutUtil::STATUT_DEUX_ENVOYE_PAR_MAIL_A_DIDIER);
 
 
-                if (1 === $n) {
+                if (count($mail) === $n) {
                     $output = 'ok';
                 } else {
                     $output = "Une erreur est survenue, le mail n'a pas été envoyé; veuillez contacter le webmaster";
@@ -275,26 +265,25 @@ if (array_key_exists('action', $_GET)) {
                 CommandeHasArticleUtil::updateStatutByCommandeIdProviderId($commandeId, $providerId, CommandeLigneStatutUtil::STATUT_TROIS_ENVOYE_PAR_MAIL_AUX_FOURNISSEURS);
 
 
-                if (true === MAIL_ENABLE) {
-                    try {
-                        $n = OrderProviderConfMail::sendByCommandeIdFournisseurId($mail, $commandeId, $providerId, $signature);
-                        if (1 === $n) {
-                            $output = [
-                                'success' => 'ok',
-                            ];
-                            CommandeHasArticleUtil::updateStatutByCommandeIdProviderId($commandeId, $providerId, CommandeLigneStatutUtil::STATUT_TROIS_ENVOYE_PAR_MAIL_AUX_FOURNISSEURS);
-
-                        } else {
-                            $output = [
-                                "error" => "Une erreur est survenue, le mail n'a pas été envoyé; veuillez contacter le webmaster",
-                            ];
-                        }
-                    } catch (\Exception $e) {
+                try {
+                    $n = OrderProviderConfMail::sendByCommandeIdFournisseurId($mail, $commandeId, $providerId, $signature);
+                    if (count($mail) === $n) {
                         $output = [
-                            'error' => $e->getMessage(),
+                            'success' => 'ok',
+                        ];
+                        CommandeHasArticleUtil::updateStatutByCommandeIdProviderId($commandeId, $providerId, CommandeLigneStatutUtil::STATUT_TROIS_ENVOYE_PAR_MAIL_AUX_FOURNISSEURS);
+
+                    } else {
+                        $output = [
+                            "error" => "Une erreur est survenue, le mail n'a pas été envoyé; veuillez contacter le webmaster",
                         ];
                     }
+                } catch (\Exception $e) {
+                    $output = [
+                        'error' => $e->getMessage(),
+                    ];
                 }
+
             }
             break;
         case 'csv-import-form':
@@ -491,13 +480,13 @@ if (array_key_exists('action', $_GET)) {
         case 'commande-update-statut':
             if (
                 array_key_exists('statut', $_GET) &&
-                array_key_exists('cid', $_GET) &&
-                array_key_exists('aid', $_GET)
+                array_key_exists('commentaire', $_POST) &&
+                array_key_exists('id', $_GET)
             ) {
                 $statut = $_GET['statut'];
-                $commandeId = $_GET['cid'];
-                $articleId = $_GET['aid'];
-                CommandeHasArticleUtil::updateStatut($commandeId, $articleId, $statut);
+                $lineId = $_GET['id'];
+                $commentaire = $_POST['commentaire'];
+                CommandeHasArticleUtil::updateStatut($lineId, $statut, $commentaire);
                 $output = "ok";
             }
             break;
@@ -525,32 +514,29 @@ if (array_key_exists('action', $_GET)) {
             array_key_exists('ric', $_GET)
             ) {
                 $isHtml = true;
-                $ric = $_GET['ric'];
-                list($commandeId, $articleId) = unric($ric);
-                CommandeHasArticleUtil::displayDevisTableByLine($commandeId, $articleId);
+                $lineId = $_GET['ric'];
+                CommandeHasArticleUtil::displayDevisTableByLine($lineId);
             }
             break;
         case 'devis-add-bindure':
             if (
                 array_key_exists('did', $_GET) &&
-                array_key_exists('cid', $_GET) &&
-                array_key_exists('aid', $_GET)
+                array_key_exists('id', $_GET)
             ) {
                 $did = $_GET['did'];
-                $cid = $_GET['cid'];
-                $aid = $_GET['aid'];
+                $lineId = $_GET['id'];
 
                 try {
-                    DevisHasCommandeHasArticleUtil::insert($did, $cid, $aid);
+                    DevisHasCommandeHasArticleUtil::insert($did, $lineId);
                 } catch (\Exception $e) {
 
                 }
 
                 ob_start();
-                CommandeHasArticleUtil::displayDevisTableByLine($cid, $aid);
+                CommandeHasArticleUtil::displayDevisTableByLine($lineId);
                 $html = ob_get_clean();
 
-                $nbDevis = DevisHasCommandeHasArticleUtil::getNbDevisPerLine($cid, $aid);
+                $nbDevis = DevisHasCommandeHasArticleUtil::getNbDevisPerLine($lineId);
                 $output = [
                     'html' => $html,
                     'nbDevis' => $nbDevis,
@@ -561,20 +547,18 @@ if (array_key_exists('action', $_GET)) {
         case 'devis-remove-bindure':
             if (
                 array_key_exists('did', $_GET) &&
-                array_key_exists('cid', $_GET) &&
-                array_key_exists('aid', $_GET)
+                array_key_exists('id', $_GET)
             ) {
                 $did = $_GET['did'];
-                $cid = $_GET['cid'];
-                $aid = $_GET['aid'];
+                $lineId = $_GET['id'];
 
-                DevisHasCommandeHasArticleUtil::remove($did, $cid, $aid);
+                DevisHasCommandeHasArticleUtil::remove($did, $lineId);
 
 
                 ob_start();
-                CommandeHasArticleUtil::displayDevisTableByLine($cid, $aid);
+                CommandeHasArticleUtil::displayDevisTableByLine($lineId);
                 $html = ob_get_clean();
-                $nbDevis = DevisHasCommandeHasArticleUtil::getNbDevisPerLine($cid, $aid);
+                $nbDevis = DevisHasCommandeHasArticleUtil::getNbDevisPerLine($lineId);
                 $output = [
                     'html' => $html,
                     'nbDevis' => $nbDevis,
@@ -620,22 +604,33 @@ if (array_key_exists('action', $_GET)) {
         case 'multipleaction':
             if (
                 array_key_exists('type', $_GET) &&
-                array_key_exists('cid', $_GET) &&
-                array_key_exists('aid', $_GET) &&
+                array_key_exists('rics', $_POST) &&
                 array_key_exists('value', $_GET)
             ) {
                 $type = $_GET['type'];
                 $value = $_GET['value'];
+                $rics = $_POST['rics'];
                 switch ($type) {
                     case 'statut':
-
-                        HistoriqueStatut::insert($value);
+                        foreach ($rics as $ric) {
+                            list($cid, $aid) = \Util\GeneralUtil::unric($ric);
+                            HistoriqueStatut::insert($cid, $aid, $value);
+                        }
                         $output = 'ok';
 
                         break;
                     default:
                         break;
                 }
+            }
+            break;
+        case 'commande-get-historiquestatut':
+            if (array_key_exists('id', $_GET)) {
+                $isHtml = true;
+                $id = $_GET['id'];
+                ob_start();
+                HistoriqueStatut::displayHistoriqueByLineId($id);
+                $output = ob_get_clean();
             }
             break;
         default:

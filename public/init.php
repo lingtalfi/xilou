@@ -24,7 +24,6 @@ ButineurAutoloader::getInst()->start();
 require_once __DIR__ . '/vendor/autoload.php';
 
 
-
 //--------------------------------------------
 // FUNCTIONS
 //--------------------------------------------
@@ -45,13 +44,12 @@ if (
     $dbUser = 'root';
     $dbPass = 'root';
     $dbName = 'zilu';
-    $host = 'localhost';
+    $host = 'host=localhost';
     $mailEnable = false;
 
-    if ("/Users/" === substr(__DIR__, 0, 7)) {
+    if ('mamp' || "/Users/" === substr(__DIR__, 0, 7)) {
         $dbPass = 'root';
-
-        $host = 'localhost';
+        $host = 'unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock';
         $mailEnable = true;
     }
 
@@ -67,6 +65,7 @@ if (
     $dbUser = 'root';
     $dbPass = '';
     $dbName = 'zilu';
+    $host = 'host=localhost';
 
 
     // privilege
@@ -102,12 +101,15 @@ if ('/index.php' === $_SERVER['PHP_SELF']) {
 //--------------------------------------------
 // DATABASE CONNEXION
 //--------------------------------------------
-QuickPdo::setConnection("mysql:host=$host;dbname=$dbName", $dbUser, $dbPass, [
+QuickPdo::setConnection("mysql:$host;dbname=$dbName", $dbUser, $dbPass, [
+//QuickPdo::setConnection("mysql:host=$host;dbname=$dbName", $dbUser, $dbPass, [
     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'",
     PDO::MYSQL_ATTR_INIT_COMMAND => "SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY','')), NAMES 'utf8'",
 //    PDO::MYSQL_ATTR_INIT_COMMAND => "SET sql_mode=(SELECT REPLACE(@@sql_mode,'STRICT_TRANS_TABLES','')), NAMES 'utf8'",
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 ]);
+
+
 
 
 //--------------------------------------------
@@ -117,9 +119,10 @@ QuickPdo::setConnection("mysql:host=$host;dbname=$dbName", $dbUser, $dbPass, [
 define('APP_ROOT_DIR', __DIR__);
 
 
-define('PATH_TO_MYSQLDUMP', "/usr/local/mysql/bin/mysqldump"); 
-//define('PATH_TO_MYSQL', "/usr/local/mysql/bin/mysql"); 
-define('PATH_TO_MYSQL', "/Applications/MAMP/Library/bin/mysql"); 
+//define('PATH_TO_MYSQLDUMP', "/usr/local/mysql/bin/mysqldump");
+//define('PATH_TO_MYSQL', "/usr/local/mysql/bin/mysql");
+define('PATH_TO_MYSQLDUMP', "/Applications/MAMP/Library/bin/mysqldump");
+define('PATH_TO_MYSQL', "/Applications/MAMP/Library/bin/mysql");
 
 
 define('DB_PASS', $dbPass);

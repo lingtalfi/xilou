@@ -367,18 +367,38 @@ button.zilu-black-button {
     padding: 10px;
 }
 
-.zilu-table-devis{
+.zilu-table-devis {
     width: 100%;
 }
 
-.zilu-table-devis tr th{
+.zilu-table-devis tr th {
     text-align: left;
 }
-
-
-
 
 .zilu .datatable .checkbox {
     width: 20px;
     height: 20px;
+}
+
+.zilu-commande-historique-statut-table {
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.zilu-commande-historique-statut-table tr,
+.zilu-commande-historique-statut-table td,
+.zilu-commande-historique-statut-table th
+{
+    border: 1px solid black;
+}
+
+.zilu-commande-historique-statut-table td,
+.zilu-commande-historique-statut-table th
+{
+    padding: 5px;
+}
+
+.zilu-commande-historique-statut-table tr:first-of-type
+{
+    background: #ccc;
 }

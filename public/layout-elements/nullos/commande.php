@@ -142,7 +142,8 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
 
 
                 $fields = '
-c.id,
+c.id as commande_id,
+h.id,
 h.commande_ligne_statut_id as statut,
 co.id as container_id,
 co.nom as container,
@@ -161,7 +162,7 @@ h.date_estimee,
 a.id as aid,
 a.descr_fr,
 a.descr_en,
-(select count(*) from devis_has_commande_has_article where commande_has_article_commande_id=h.commande_id and commande_has_article_article_id=h.article_id) as devis,
+(select count(*) from devis_has_commande_has_article where commande_has_article_id=h.id) as devis,
 h.sav_id as sav
 ';
 
@@ -178,7 +179,7 @@ where c.id=" . $idCommande;
 
 
                 $list = CommandeAdminTable::create()
-                    ->setRic(['id', 'aid'])
+                    ->setRic(['id'])
 //                    ->setExtraColumn("sav", "",0)
                     ->setListable(QuickPdoListable::create()->setFields($fields)->setQuery($query))
                     ->setRenderer(AdminTableRenderer::create()
@@ -193,7 +194,7 @@ where c.id=" . $idCommande;
                     );
 
                 $list->setTransformer("statut", function ($value, $item, $ricValue) {
-                    return '<a class="update-statut-link" data-value="' . $value . '" data-cid="' . $item['id'] . '" data-aid="' . $item['aid'] . '" href="#" style="white-space: nowrap">' . CommandeLigneStatutUtil::toString($value) . '</a>';
+                    return '<a class="update-statut-link" data-value="' . $value . '" data-id="' . $item['id'] . '" href="#" style="white-space: nowrap">' . CommandeLigneStatutUtil::toString($value) . '</a>';
                 });
 
                 $list->setTransformer("container", function ($value, $item, $ricValue) {
@@ -287,6 +288,7 @@ where c.id=" . $idCommande;
 
 
                 $list->hiddenColumns = [
+                    'commande_id',
                     'cid',
                     'id',
                     'aid',
@@ -884,8 +886,7 @@ where c.id=" . $idCommande;
             }
             else if (jTarget.hasClass("update-statut-link")) {
                 e.preventDefault();
-                var articleId = jTarget.attr('data-aid');
-                var commandeId = jTarget.attr('data-cid');
+                var lineId = jTarget.attr('data-id');
                 var statutValue = jTarget.attr('data-value');
 
 
@@ -899,18 +900,59 @@ where c.id=" . $idCommande;
                         at: "center",
                         of: jTarget
                     },
-                    open: function (event, ui) {
-                        var jSelect = $("#container-status-dialog").find('select');
-                        jSelect.val(statutValue);
+                    width: 600,
+                    buttons: {
+                        "Appliquer": function () {
 
-
-                        jSelect.on('change', function () {
+                            var jSelect = $("#container-status-dialog").find('select');
+                            var jComment = $("#container-status-dialog").find('textarea');
                             var value = jSelect.val();
-                            $.getJSON('/services/zilu.php?action=commande-update-statut&statut=' + value + "&cid=" + commandeId + "&aid=" + articleId, function (data) {
+                            var comment = jComment.val();
+                            $.post('/services/zilu.php?action=commande-update-statut&statut=' + value + "&id=" + lineId, {
+                                'commentaire': comment
+                            }, function (data) {
                                 if ('ok' === data) {
                                     location.reload();
                                 }
+                            }, 'json');
+                        },
+                        "Annuler": function () {
+                            $(this).dialog("close");
+                        }
+                    },
+                    open: function (event, ui) {
+                        var jSelect = $("#container-status-dialog").find('select');
+                        jSelect.val(statutValue);
+                        var jHistoContainer = $("#container-status-dialog").find('.historique-statuts');
+                        var jShowTable = $("#container-status-dialog").find('.showtable');
+                        var jHideTable = $("#container-status-dialog").find('.hidetable');
+
+
+                        jHistoContainer.hide();
+                        jShowTable.hide();
+                        jHideTable.hide();
+                        jShowTable.show();
+
+                        jShowTable
+                            .off('click')
+                            .on('click', function (e) {
+                                e.preventDefault();
+                                jHideTable.show();
+                                jShowTable.hide();
+                                jHistoContainer.show();
                             });
+
+                        jHideTable
+                            .off('click')
+                            .on('click', function (e) {
+                                e.preventDefault();
+                                jShowTable.show();
+                                jHideTable.hide();
+                                jHistoContainer.hide();
+                            });
+
+                        $.get('/services/zilu.php?action=commande-get-historiquestatut&id=' + lineId, function (data) {
+                            jHistoContainer.html(data);
                         });
                     }
                 });
@@ -945,9 +987,8 @@ where c.id=" . $idCommande;
                 e.preventDefault();
                 var jTable = jTarget.closest("table");
                 var did = jTable.find('.devis-add-bindure-selector').val();
-                var articleId = jTable.attr('data-aid');
-                var commandeId = jTable.attr('data-cid');
-                $.getJSON('/services/zilu.php?action=devis-add-bindure&did=' + did + "&cid=" + commandeId + "&aid=" + articleId, function (data) {
+                var lineId = jTable.attr('data-id');
+                $.getJSON('/services/zilu.php?action=devis-add-bindure&did=' + did + "&id=" + lineId, function (data) {
                     if ('html' in data) {
                         var jMain = $("#commande-dialog-devislist").find('.mainbody');
                         jMain.html(data['html']);
@@ -961,9 +1002,8 @@ where c.id=" . $idCommande;
                 e.preventDefault();
                 var jTable = jTarget.closest("table");
                 var did = jTarget.attr('data-did');
-                var articleId = jTable.attr('data-aid');
-                var commandeId = jTable.attr('data-cid');
-                $.getJSON('/services/zilu.php?action=devis-remove-bindure&did=' + did + "&cid=" + commandeId + "&aid=" + articleId, function (data) {
+                var lineId = jTable.attr('data-id');
+                $.getJSON('/services/zilu.php?action=devis-remove-bindure&did=' + did + "&id=" + lineId, function (data) {
                     if ('html' in data) {
                         var jMain = $("#commande-dialog-devislist").find('.mainbody');
                         jMain.html(data['html']);
@@ -1002,18 +1042,29 @@ where c.id=" . $idCommande;
                     buttons: {
                         "Appliquer": function () {
                             var value = jUpdateZone.find('.valueholder').val();
-                            $.getJSON('/services/zilu.php?action=multipleaction&type=' + updateType + '&value=' + value, function (data) {
+
+                            // get all checked ids
+                            var jDataTable = $("table.datatable");
+                            var aRics = [];
+                            jDataTable.find("input.checkbox").each(function () {
+                                if ($(this).prop('checked')) {
+                                    aRics.push($(this).val());
+                                }
+                            });
+                            $.post('/services/zilu.php?action=multipleaction&type=' + updateType + '&value=' + value, {
+                                'rics': aRics
+                            }, function (data) {
                                 if ('ok' === data) {
                                     location.reload();
                                 }
-                            });
+                            }, 'json');
                         },
                         "Annuler": function () {
                             $(this).dialog("close");
                         }
                     },
                     open: function (event, ui) {
-                        var jUpdateZone = $(this).dialog().find("#multipleaction-choices-zone");
+                        jUpdateZone = $(this).dialog().find("#multipleaction-choices-zone");
                         var jButtonPane = $(this).dialog().parent().find(".ui-dialog-buttonpane");
 
                         jButtonPane.hide();
@@ -1203,15 +1254,30 @@ where c.id=" . $idCommande;
         </div>
     </div>
     <div id="container-status-dialog" title="Mise à jour du statut">
-        <select>
-            <?php
-            $id2CommandeLigneStatutLabels = CommandeLigneStatutUtil::getIds2Labels();
+        <ul style="list-style-type: none">
+            <li>
+                <select>
+                    <?php
+                    $id2CommandeLigneStatutLabels = CommandeLigneStatutUtil::getIds2Labels();
 
-            foreach ($id2CommandeLigneStatutLabels as $id => $label):
-                ?>
-                <option value="<?php echo $id; ?>"><?php echo $label; ?></option>
-            <?php endforeach; ?>
-        </select>
+                    foreach ($id2CommandeLigneStatutLabels as $id => $label):
+                        ?>
+                        <option value="<?php echo $id; ?>"><?php echo $label; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </li>
+            <li style="display: flex; align-items: flex-start; margin-top: 10px">
+                <span style="margin-right: 10px">Commentaire</span>
+                <textarea></textarea>
+            </li>
+            <li style="margin-top: 20px;">
+                <a class="showtable" href="#">Montrer la table des statuts</a>
+                <a class="hidetable" href="#">Masquer la table des statuts</a>
+            </li>
+            <li class="historique-statuts">
+
+            </li>
+        </ul>
     </div>
     <div id="commande-dialog-apply-devis" title="Associer le devis d'un fournisseur aux articles correspondants"
          style="text-align: center"

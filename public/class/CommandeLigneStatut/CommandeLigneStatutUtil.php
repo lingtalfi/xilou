@@ -3,6 +3,8 @@
 
 namespace CommandeLigneStatut;
 
+use QuickPdo\QuickPdo;
+
 class CommandeLigneStatutUtil
 {
     const STATUT_UN_PAS_ENCORE_TRAITE = 1;
@@ -32,5 +34,14 @@ class CommandeLigneStatutUtil
     public static function getIds2Labels()
     {
         return self::$statuts;
+    }
+
+
+    public static function getNom($statutId)
+    {
+        if (false !== ($res = QuickPdo::fetch("select nom from commande_ligne_statut where id=" . (int)$statutId))) {
+            return $res['nom'];
+        }
+        return false;
     }
 }

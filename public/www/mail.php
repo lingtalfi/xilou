@@ -60,7 +60,7 @@ $commonVars = [
     //'shop_logo' => $mail->embedFile($logoFile),
 ];
 $res = $mail->to([
-    'zilu@leaderfit.com' => 'zilu',
+    'lingtalfi@gmail.com' => 'Ling',
     //'delphine@myshop.com',
 ])
     ->from('johndoe@gmail.com')
