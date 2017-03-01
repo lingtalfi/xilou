@@ -6,6 +6,7 @@ namespace Mail;
 
 use Commande\CommandeUtil;
 use CommandeHasArticle\CommandeHasArticleUtil;
+use CsvExport\CommandeExporterUtil;
 use QuickPdo\QuickPdo;
 use Umail\Renderer\PhpRenderer;
 use Umail\TemplateLoader\FileTemplateLoader;
@@ -85,13 +86,23 @@ class OrderConfMail
                 'order_details' => $orderDetails,
             ];
 
+            $location = "/tmp/xilou/zilu-personal-tmp.xlsx";
+            $dir = dirname($location);
+            if (false === is_dir($dir)) {
+                mkdir($dir);
+            }
+            CommandeExporterUtil::createCsvFileByCommande($location, $commandeId);
+
+
             $res = $mail->to($to)
                 ->from(MAIL_FROM)
                 ->subject("Commande en cours de préparation")
                 ->setVars($vars)
                 ->setRenderer(PhpRenderer::create())
                 ->setTemplateLoader(FileTemplateLoader::create()->setDir(APP_ROOT_DIR . "/mails")->setSuffix('.php'))
-                ->setTemplate('zilu/order_conf')
+//                ->setTemplate('zilu/order_conf')
+                ->setTemplate('zilu/order_conf_with_xlsx')
+                ->attachFile($location, "order-conf.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", true)
                 ->send();
         }
 
