@@ -123,64 +123,65 @@ class AdminTableRenderer implements TableRendererInterface
 
         ?>
         <section id="<?php echo $tableId; ?>" class="admintable">
-            <?php if (count($items) > 0): ?>
-                <div class="toolbar">
-                    <?php if ($p->hasPageSelector): ?>
+
+            <div class="toolbar">
+                <?php if ($p->hasPageSelector): ?>
+                    <form method="get" action="">
+                        <?php $this->printHiddenFields('page', $p, $currentPage, $sortColumn, $sortColumnDir, $search, $nbItemsPerPageChoice); ?>
+                        <select name="<?php echo $p->pageGetKey; ?>" class="page-selector">
+                            <?php for ($i = 1; $i <= $nbPages; $i++):
+                                $sel = ($i === $currentPage) ? ' selected="selected"' : '';
+                                ?>
+                                <option <?php echo $sel; ?> value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                            <?php endfor; ?>
+                        </select>
+                    </form>
+                <?php endif; ?>
+
+
+
+                <?php if ($p->hasItemsCounter): ?>
+                    <div class="itemscounter"><?php echo $p->nbItemsTotal; ?> <?php echo $this->texts['itemscounter.items']; ?></div>
+                <?php endif; ?>
+
+
+                <?php if ($p->hasSearch): ?>
+                    <div class="search">
+                        <form class="search-form" method="get" action="">
+                            <?php $this->printHiddenFields('search', $p, 1, $sortColumn, $sortColumnDir, $search, $nbItemsPerPageChoice); ?>
+                            <input name="<?php echo $p->searchGetKey; ?>" class="search-input" type="text"
+                                   value="<?php echo htmlspecialchars($search); ?>"
+                                   placeholder="<?php echo $this->texts['search.placeholder']; ?>">
+                            <input class="search-submit-btn" type="submit"
+                                   value="<?php echo $this->texts['search.btn']; ?>">
+                        </form>
+                    </div>
+                <?php endif; ?>
+
+
+                <?php if ($p->hasNippSelector): ?>
+                    <div class="nblines_per_page">
                         <form method="get" action="">
-                            <?php $this->printHiddenFields('page', $p, $currentPage, $sortColumn, $sortColumnDir, $search, $nbItemsPerPageChoice); ?>
-                            <select name="<?php echo $p->pageGetKey; ?>" class="page-selector">
-                                <?php for ($i = 1; $i <= $nbPages; $i++):
-                                    $sel = ($i === $currentPage) ? ' selected="selected"' : '';
+                            <span><?php echo $this->texts['nipp.label']; ?></span>
+                            <?php $this->printHiddenFields('nipp', $p, $currentPage, $sortColumn, $sortColumnDir, $search, $nbItemsPerPageChoice); ?>
+                            <select name="<?php echo $p->nbItemsPerPageGetKey; ?>" class="nipp-selected">
+                                <?php foreach ($p->nbItemsPerPageList as $value):
+                                    $sel = ((int)$value === (int)$nbItemsPerPageChoice) ? ' selected="selected"' : '';
                                     ?>
-                                    <option <?php echo $sel; ?> value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                                <?php endfor; ?>
+                                    <option
+                                        <?php echo $sel; ?>
+                                            value="<?php echo $value; ?>"><?php echo ucfirst((string)$value); ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </form>
-                    <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+            </div>
 
-
-
-                    <?php if ($p->hasItemsCounter): ?>
-                        <div class="itemscounter"><?php echo $p->nbItemsTotal; ?> <?php echo $this->texts['itemscounter.items']; ?></div>
-                    <?php endif; ?>
-
-
-                    <?php if ($p->hasSearch): ?>
-                        <div class="search">
-                            <form class="search-form" method="get" action="">
-                                <?php $this->printHiddenFields('search', $p, 1, $sortColumn, $sortColumnDir, $search, $nbItemsPerPageChoice); ?>
-                                <input name="<?php echo $p->searchGetKey; ?>" class="search-input" type="text"
-                                       value="<?php echo htmlspecialchars($search); ?>"
-                                       placeholder="<?php echo $this->texts['search.placeholder']; ?>">
-                                <input class="search-submit-btn" type="submit"
-                                       value="<?php echo $this->texts['search.btn']; ?>">
-                            </form>
-                        </div>
-                    <?php endif; ?>
-
-
-                    <?php if ($p->hasNippSelector): ?>
-                        <div class="nblines_per_page">
-                            <form method="get" action="">
-                                <span><?php echo $this->texts['nipp.label']; ?></span>
-                                <?php $this->printHiddenFields('nipp', $p, $currentPage, $sortColumn, $sortColumnDir, $search, $nbItemsPerPageChoice); ?>
-                                <select name="<?php echo $p->nbItemsPerPageGetKey; ?>" class="nipp-selected">
-                                    <?php foreach ($p->nbItemsPerPageList as $value):
-                                        $sel = ((int)$value === (int)$nbItemsPerPageChoice) ? ' selected="selected"' : '';
-                                        ?>
-                                        <option
-                                            <?php echo $sel; ?>
-                                                value="<?php echo $value; ?>"><?php echo ucfirst((string)$value); ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </form>
-                        </div>
-                    <?php endif; ?>
-                </div>
-
-
+            <?php if (count($items) > 0): ?>
                 <form method="post" action="" class="datatable-form">
                     <table class="datatable">
+
                         <thead>
                         <tr class="headerrow">
 
@@ -301,13 +302,9 @@ class AdminTableRenderer implements TableRendererInterface
                     <?php endif; ?>
 
                 </form>
-                <div class="hidden blackhole"></div>
-
-            <?php else: ?>
-                <p>
-                    <?php echo $this->texts['list.noresult']; ?>
-                </p>
             <?php endif; ?>
+            <div class="hidden blackhole"></div>
+
         </section>
         <script>
 

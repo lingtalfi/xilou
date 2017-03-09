@@ -646,6 +646,17 @@ if (array_key_exists('action', $_GET)) {
 ';
 
                         break;
+                    case 'devis':
+                        $output = '
+<table>
+<tr>
+<td>Texte du mail</td>
+<td><textarea cols="60" rows="10" class="valueholder"></textarea></td>
+</tr>
+</table>
+';
+
+                        break;
                     default:
                         break;
                 }
@@ -671,6 +682,16 @@ if (array_key_exists('action', $_GET)) {
                             $chaId = $ric;
                             CommandeHasArticleUtil::updateStatut($chaId, $statutId, $commentaire);
                         }
+                        $output = 'ok';
+
+                        break;
+                    case 'devis':
+                        $texte = $value;
+                        $lineIds = $rics;
+                        $email = null;
+                        $email = "lingtalfi@gmail.com";
+                        $signature = "leaderfit";
+                        OrderProviderConfMail::sendByLineIds($lineIds, $email, $signature, $texte);
                         $output = 'ok';
 
                         break;

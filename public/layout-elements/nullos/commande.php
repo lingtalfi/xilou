@@ -1345,6 +1345,7 @@ where c.id=" . $idCommande;
             <select id="multipleaction-choices-selector">
                 <option value="0">Choisissez une action...</option>
                 <option value="statut">Changer le statut</option>
+                <option value="devis">Envoyer un email de demande de devis</option>
             </select>
             <div id="multipleaction-choices-zone" style="margin-top: 10px;">
 

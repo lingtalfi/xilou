@@ -171,6 +171,11 @@
                                 Dear Sir / Madam,<br>
                                 You are requested to accept this purchase order for the items mentioned in the attached pdf file.
                             </span>
+                            <?php if (isset($v->text)): ?>
+                                <span>
+                                <?php echo $v->text; ?>
+                                </span>
+                            <?php endif; ?>
                         </font>
                     </td>
                 </tr>

@@ -41,12 +41,12 @@ class AppBackup
             $cmd = PATH_TO_MYSQLDUMP . ' -uroot' . $sPass . ' --default-character-set=utf8 --add-drop-database -B zilu > "' . $file . '"';
             $this->executeCmd($cmd);
 
-            SimpleFileCleaner::create()
-//                ->setTestMode(true)// remove this line in prod
-                ->setDir($this->dir)
-                ->keep('last 7 days')
-                ->keep('1 per month')
-                ->clean();
+//            SimpleFileCleaner::create()
+////                ->setTestMode(true)// remove this line in prod
+//                ->setDir($this->dir)
+//                ->keep('last 7 days')
+//                ->keep('1 per month')
+//                ->clean();
         }
     }
 
@@ -55,8 +55,9 @@ class AppBackup
     {
         $file = $this->dir . "/" . $file;
         if (file_exists($file)) {
+
             // assuming only zilu is using the system (i.e. no checking on double quotes...)
-            $cmd = PATH_TO_MYSQL . ' -uroot zilu < "' . $file . '"';
+            $cmd = PATH_TO_MYSQL . ' -uroot -proot zilu < "' . $file . '"';
             $this->executeCmd($cmd);
             return true;
 

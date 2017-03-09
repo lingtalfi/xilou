@@ -64,7 +64,6 @@ AssetsList::css("/style/admintable.css");
             })
             ->setSingleActionHandler('restore', function ($ric) {
                 try {
-
                     if (true === AppBackup::create()->restoreBackup($ric['file'])) {
                         Goofy::alertSuccess("Backup restauré");
                     } else {
