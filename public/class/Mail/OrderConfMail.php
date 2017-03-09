@@ -64,22 +64,22 @@ class OrderConfMail
                     $image = "/img/blank.jpg";
                 }
 
-                $orderDetails[] = [
-                    'reference' => $item['reference_lf'],
-                    'provider_reference' => $item['reference_pro'],
-                    'fournisseur' => $item['fournisseur'],
-                    'img_src' => $mail->embedFile(APP_ROOT_DIR . "/www" . $image),
-                    'name' => $item['descr_fr'],
-                    'unit_price' => $unitPrice . ' €',
-                    'quantity' => $item['quantite'],
-                    'price' => $totalPrice . ' €',
-                ];
+//                $orderDetails[] = [
+//                    'reference' => $item['reference_lf'],
+//                    'provider_reference' => $item['reference_pro'],
+//                    'fournisseur' => $item['fournisseur'],
+//                    'img_src' => $mail->embedFile(APP_ROOT_DIR . "/www" . $image),
+//                    'name' => $item['descr_fr'],
+//                    'unit_price' => $unitPrice . ' €',
+//                    'quantity' => $item['quantite'],
+//                    'price' => $totalPrice . ' €',
+//                ];
             }
 
             $vars = [
                 'order_number' => $orderName,
                 'order_estimated_date' => (string)$estimatedDate,
-                'shop_name' => 'Leaderfit',
+                'shop_name' => 'Leaderfit Equipement',
                 'total_paid' => $prixTotalEuros . ' €',
                 'shop_url' => 'http://leaderfit-equipement.com/',
                 'shop_logo' => $mail->embedFile($logoFile),
@@ -92,6 +92,9 @@ class OrderConfMail
                 mkdir($dir);
             }
             CommandeExporterUtil::createCsvFileByCommande($location, $commandeId);
+
+
+
 
 
             $res = $mail->to($to)

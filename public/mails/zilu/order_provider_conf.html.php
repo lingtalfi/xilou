@@ -190,7 +190,7 @@
                         <font size="2" face="Open-sans, sans-serif" color="#555454">
                                         <span style="color:#777">
 							                <span style="color:#333"><strong>Purchase by:</strong></span> {company}<br>
-							                <span style="color:#333"><strong>Delivery address:</strong></span> 9 rue général Mocquery - 37750 TOURS <br>
+							                <span style="color:#333"><strong>Delivery address:</strong></span> 9 rue général Mocquery - 37550 Saint-Avertin<br>
 							                <span style="color:#333"><strong>Payment:</strong></span> 30% deposit, 70% against bill of loading<br>
 						                </span>
                         </font>

@@ -38,10 +38,10 @@ $table->columnLabels= [
 ];
 
 
-$table->hiddenColumns = [
-    "fournisseur_id",
-    "article_id",
-];
+//$table->hiddenColumns = [
+//    "fournisseur_id",
+//    "article_id",
+//];
 
 
 $table->setTransformer('fournisseur_nom', function ($v, array $item) {

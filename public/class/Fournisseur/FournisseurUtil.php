@@ -71,4 +71,22 @@ class FournisseurUtil
         return false;
     }
 
+    public static function getEmailByLineIds(array $ids)
+    {
+        $ret = [];
+        array_walk($ids, 'intval');
+        $sIds = implode(', ', $ids);
+
+
+        if (false !== ($res = QuickPdo::fetchAll('select distinct f.email from commande_has_article h 
+inner join fournisseur f on f.id=h.fournisseur_id
+where h.id in(' . $sIds . ')'))
+        ) {
+            foreach ($res as $item) {
+                $ret[] = $item['email'];
+            }
+        }
+        return $ret;
+    }
+
 }

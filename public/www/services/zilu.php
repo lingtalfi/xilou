@@ -231,14 +231,23 @@ if (array_key_exists('action', $_GET)) {
                 } else {
                     $mail = MailHelper::getDirectionMails();
                 }
-                $n = OrderConfMail::sendByCommandeId($mail, $commandeId, $estimatedDate);
-                CommandeHasArticleUtil::updateStatutByCommandeId($commandeId, CommandeLigneStatutUtil::STATUT_DEUX_ENVOYE_PAR_MAIL_A_DIDIER);
+
+                if (!is_array($mail)) {
+                    $mail = [$mail];
+                }
+
+
+                $n = 0;
+                foreach ($mail as $to) {
+                    $n += OrderConfMail::sendByCommandeId($to, $commandeId, $estimatedDate);
+                }
 
 
                 if (count($mail) === $n) {
+                    CommandeHasArticleUtil::updateStatutByCommandeId($commandeId, CommandeLigneStatutUtil::STATUT_DEUX_ENVOYE_PAR_MAIL_A_DIDIER);
                     $output = 'ok';
                 } else {
-                    $output = "Une erreur est survenue, le mail n'a pas été envoyé; veuillez contacter le webmaster";
+                    $output = "Une erreur est survenue, le mail n'a pas été envoyé; veuillez contacter le webmaster. Code erreur: $n";
                 }
             }
             break;
@@ -258,15 +267,17 @@ if (array_key_exists('action', $_GET)) {
                     $mail = FournisseurUtil::getEmail($providerId);
                 }
 
-
-                $output = [
-                    'success' => 'ok',
-                ];
-                CommandeHasArticleUtil::updateStatutByCommandeIdProviderId($commandeId, $providerId, CommandeLigneStatutUtil::STATUT_TROIS_ENVOYE_PAR_MAIL_AUX_FOURNISSEURS);
+                if (!is_array($mail)) {
+                    $mail = [$mail];
+                }
 
 
                 try {
-                    $n = OrderProviderConfMail::sendByCommandeIdFournisseurId($mail, $commandeId, $providerId, $signature);
+
+                    $n = 0;
+                    foreach ($mail as $to) {
+                        $n += OrderProviderConfMail::sendByCommandeIdFournisseurId($to, $commandeId, $providerId, $signature);
+                    }
                     if (count($mail) === $n) {
                         $output = [
                             'success' => 'ok',
@@ -278,6 +289,34 @@ if (array_key_exists('action', $_GET)) {
                             "error" => "Une erreur est survenue, le mail n'a pas été envoyé; veuillez contacter le webmaster",
                         ];
                     }
+
+
+                } catch (\Exception $e) {
+                    $output = [
+                        'error' => $e->getMessage(),
+                    ];
+                }
+
+            }
+            break;
+        case 'send-mail-pro-purchase-order-ids':
+            if (array_key_exists("ids", $_POST)) {
+
+                $lineIds = $_POST['ids'];
+                if (array_key_exists('test', $_POST)) {
+                    $mail = MailHelper::getZiluMails();
+                } else {
+                    $mail = FournisseurUtil::getEmailByLineIds($lineIds);
+                }
+                if (!is_array($mail)) {
+                    $mail = [$mail];
+                }
+
+
+                try {
+
+                    $n = OrderProviderConfMail::sendByLineIds($to, $lineIds);
+
                 } catch (\Exception $e) {
                     $output = [
                         'error' => $e->getMessage(),
@@ -593,7 +632,18 @@ if (array_key_exists('action', $_GET)) {
                         foreach ($id2Labels as $id => $label) {
                             $s .= '<option value="' . $id . '">' . $label . '</option>';
                         }
-                        $output = '<select class="valueholder">' . $s . '</select>';
+                        $output = '
+<table>
+<tr>
+<td>Statut</td>
+<td><select class="valueholder">' . $s . '</select></td>
+</tr>
+<tr>
+<td>Commentaire</td>
+<td><textarea class="valueholder2"></textarea></td>
+</tr>
+</table>
+';
 
                         break;
                     default:
@@ -605,16 +655,21 @@ if (array_key_exists('action', $_GET)) {
             if (
                 array_key_exists('type', $_GET) &&
                 array_key_exists('rics', $_POST) &&
-                array_key_exists('value', $_GET)
+                array_key_exists('value', $_POST)
             ) {
                 $type = $_GET['type'];
-                $value = $_GET['value'];
+                $value = $_POST['value'];
+                $value2 = array_key_exists('value2', $_POST) ? $_POST['value2'] : null;
                 $rics = $_POST['rics'];
+
+
                 switch ($type) {
                     case 'statut':
+                        $statutId = $value;
+                        $commentaire = $value2;
                         foreach ($rics as $ric) {
-                            list($cid, $aid) = \Util\GeneralUtil::unric($ric);
-                            HistoriqueStatut::insert($cid, $aid, $value);
+                            $chaId = $ric;
+                            CommandeHasArticleUtil::updateStatut($chaId, $statutId, $commentaire);
                         }
                         $output = 'ok';
 

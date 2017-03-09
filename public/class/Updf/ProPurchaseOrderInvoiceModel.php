@@ -32,6 +32,8 @@ class ProPurchaseOrderInvoiceModel extends LingAbstractModel
 
 
                 $items = CommandeHasArticleUtil::getCommandeDetailsByFournisseurId($commandeId, $fournisseurId);
+
+
                 $orderDetails = [];
                 $total = 0;
 

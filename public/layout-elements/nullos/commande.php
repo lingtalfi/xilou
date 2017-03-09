@@ -290,7 +290,7 @@ where c.id=" . $idCommande;
                 $list->hiddenColumns = [
                     'commande_id',
                     'cid',
-                    'id',
+//                    'id',
                     'aid',
                     'container_id',
                     'fournisseur_id',
@@ -931,7 +931,8 @@ where c.id=" . $idCommande;
                         jHistoContainer.hide();
                         jShowTable.hide();
                         jHideTable.hide();
-                        jShowTable.show();
+                        jHideTable.show();
+                        jHistoContainer.show();
 
                         jShowTable
                             .off('click')
@@ -950,6 +951,8 @@ where c.id=" . $idCommande;
                                 jHideTable.hide();
                                 jHistoContainer.hide();
                             });
+
+
 
                         $.get('/services/zilu.php?action=commande-get-historiquestatut&id=' + lineId, function (data) {
                             jHistoContainer.html(data);
@@ -1042,6 +1045,7 @@ where c.id=" . $idCommande;
                     buttons: {
                         "Appliquer": function () {
                             var value = jUpdateZone.find('.valueholder').val();
+                            var value2 = jUpdateZone.find('.valueholder2').val();
 
                             // get all checked ids
                             var jDataTable = $("table.datatable");
@@ -1051,13 +1055,18 @@ where c.id=" . $idCommande;
                                     aRics.push($(this).val());
                                 }
                             });
-                            $.post('/services/zilu.php?action=multipleaction&type=' + updateType + '&value=' + value, {
-                                'rics': aRics
+
+                            $.post('/services/zilu.php?action=multipleaction&type=' + updateType, {
+                                'rics': aRics,
+                                'value': value,
+                                'value2': value2
                             }, function (data) {
                                 if ('ok' === data) {
                                     location.reload();
                                 }
                             }, 'json');
+
+
                         },
                         "Annuler": function () {
                             $(this).dialog("close");
@@ -1337,7 +1346,7 @@ where c.id=" . $idCommande;
                 <option value="0">Choisissez une action...</option>
                 <option value="statut">Changer le statut</option>
             </select>
-            <div id="multipleaction-choices-zone">
+            <div id="multipleaction-choices-zone" style="margin-top: 10px;">
 
             </div>
         </div>

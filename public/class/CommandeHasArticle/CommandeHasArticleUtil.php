@@ -43,6 +43,16 @@ class CommandeHasArticleUtil
 
     public static function getCommandeDetailsByFournisseurId($commandeId, $fournisseurId)
     {
+        return self::getCommandeDetailsByFournisseurIdOrLineIds($commandeId, $fournisseurId);
+    }
+
+    public static function getCommandeDetailsByLineIds(array $lineIds)
+    {
+        return self::getCommandeDetailsByFournisseurIdOrLineIds(null, null, $lineIds);
+    }
+
+    private static function getCommandeDetailsByFournisseurIdOrLineIds($commandeId, $fournisseurId, array $lineIds = null)
+    {
 
 
         $query = "select
@@ -78,10 +88,17 @@ inner join commande_has_article h on h.commande_id=c.id
 inner join fournisseur f on f.id=h.fournisseur_id
 inner join fournisseur_has_article fha on fha.fournisseur_id=h.fournisseur_id and fha.article_id=h.article_id
 inner join article a on a.id=h.article_id
-left join container co on co.id=h.container_id
+left join container co on co.id=h.container_id";
+
+        if (null === $lineIds) {
+
+            $query .= "
 where c.id=" . (int)$commandeId . " and f.id=" . (int)$fournisseurId;
-
-
+        } else {
+            $sIds = implode(', ', $lineIds);
+            $query .= "
+where h.id in($sIds)";
+        }
         return QuickPdo::fetchAll($query);
 
     }

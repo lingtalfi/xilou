@@ -10,7 +10,7 @@ use QuickPdo\QuickPdo;
 class HistoriqueStatut
 {
 
-    public static function insert($lineId, $statutId, $commentaire)
+    public static function insert($lineId, $statutId, $commentaire="")
     {
         $date = date("Y-m-d H:i:s");
         $statutNom = CommandeLigneStatutUtil::getNom($statutId);
