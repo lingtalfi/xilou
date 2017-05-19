@@ -79,7 +79,16 @@ Ajouter un produit existant à une commande existante
         sinon cela ne fonctionnera pas.
         
         
+
         
+        
+
+Mettre à jour (opération avancée)
+=====================
+        
+- Ouvrir terminal (cmd + space, puis taper terminal)
+- aller dans le dossier de développement (todo: de mémoire: cd /path/to/xilou)
+- mettre à jour avec la commande: gitpull
 
 
 D'autres opérations
