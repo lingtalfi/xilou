@@ -665,14 +665,12 @@ if (array_key_exists('action', $_GET)) {
         case 'multipleaction':
             if (
                 array_key_exists('type', $_GET) &&
-                array_key_exists('rics', $_POST) &&
-                array_key_exists('value', $_POST)
+                array_key_exists('rics', $_POST)
             ) {
                 $type = $_GET['type'];
-                $value = $_POST['value'];
+                $value = array_key_exists('value', $_POST) ? $_POST['value'] : null;
                 $value2 = array_key_exists('value2', $_POST) ? $_POST['value2'] : null;
                 $rics = $_POST['rics'];
-
 
                 switch ($type) {
                     case 'statut':
@@ -694,6 +692,13 @@ if (array_key_exists('action', $_GET)) {
                         OrderProviderConfMail::sendByLineIds($lineIds, $email, $signature, $texte);
                         $output = 'ok';
 
+                        break;
+                    case 'delete':
+
+                        foreach ($rics as $ric) {
+                            CommandeHasArticleUtil::deleteById($ric);
+                        }
+                        $output = 'ok';
                         break;
                     default:
                         break;

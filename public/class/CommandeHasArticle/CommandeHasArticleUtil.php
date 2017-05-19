@@ -21,6 +21,14 @@ class CommandeHasArticleUtil
         ]);
     }
 
+    public static function deleteById($id)
+    {
+        QuickPdo::delete("commande_has_article", [
+            ["id", "=", $id],
+        ]);
+    }
+
+
     public static function updateStatutByCommandeIdProviderId($commandeId, $providerId, $statut)
     {
         return QuickPdo::update("commande_has_article", [

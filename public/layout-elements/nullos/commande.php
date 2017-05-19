@@ -182,6 +182,7 @@ where c.id=" . $idCommande;
                     ->setRic(['id'])
 //                    ->setExtraColumn("sav", "",0)
                     ->setListable(QuickPdoListable::create()->setFields($fields)->setQuery($query))
+//                    ->setMultipleActionHandler("","","","")
                     ->setRenderer(AdminTableRenderer::create()
                         ->setExtraHiddenFields([
                             "commande" => $idCommande,
@@ -658,8 +659,9 @@ where c.id=" . $idCommande;
         });
 
 
-        $('body').on('click', function (e) {
+        $('body').on('mousedown', function (e) {
             var jTarget = $(e.target);
+
             if (jTarget.hasClass("postlink")) {
                 e.preventDefault();
             }
@@ -953,7 +955,6 @@ where c.id=" . $idCommande;
                             });
 
 
-
                         $.get('/services/zilu.php?action=commande-get-historiquestatut&id=' + lineId, function (data) {
                             jHistoContainer.html(data);
                         });
@@ -1086,21 +1087,43 @@ where c.id=" . $idCommande;
                             .off('change')
                             .on('change', function () {
                                 var value = $(this).val();
+
                                 if ('0' === value) {
                                     jButtonPane.hide();
                                     jUpdateZone.hide();
                                 }
                                 else {
-                                    updateType = value;
-                                    jButtonPane.show();
-                                    jUpdateZone.show();
-                                    $.get('/services/zilu.php?action=commande-multipleaction-control&control=' + value, function (data) {
-                                        jUpdateZone.empty().html(data);
-                                    });
+
+                                    if ('delete' === value) {
+                                        // get all checked ids
+                                        var jDataTable = $("table.datatable");
+                                        var aRics = [];
+                                        jDataTable.find("input.checkbox").each(function () {
+                                            if ($(this).prop('checked')) {
+                                                aRics.push($(this).val());
+                                            }
+                                        });
+
+
+
+                                        $.post('/services/zilu.php?action=multipleaction&type=delete', {
+                                            'rics': aRics,
+                                        }, function (data) {
+                                            if ('ok' === data) {
+                                                location.reload();
+                                            }
+                                        }, 'json');
+                                    }
+                                    else {
+                                        updateType = value;
+                                        jButtonPane.show();
+                                        jUpdateZone.show();
+                                        $.get('/services/zilu.php?action=commande-multipleaction-control&control=' + value, function (data) {
+                                            jUpdateZone.empty().html(data);
+                                        });
+                                    }
                                 }
                             });
-
-
                     }
                 });
             }
@@ -1346,6 +1369,7 @@ where c.id=" . $idCommande;
                 <option value="0">Choisissez une action...</option>
                 <option value="statut">Changer le statut</option>
                 <option value="devis">Envoyer un email de demande de devis</option>
+                <option value="delete">Supprimer les entrées</option>
             </select>
             <div id="multipleaction-choices-zone" style="margin-top: 10px;">
 
