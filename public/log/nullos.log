@@ -32,3 +32,88 @@ Stack trace:
 #10 /Volumes/Macintosh HD 2/it/php/projects/xilou/public/www/index.php(86): require_once('/Volumes/Macintosh HD 2/it/php/projects/xilou/public/pages/modules/crud/crud.php')
 #11 {main}
 
+crud.pdoException.form.insert -- 2017-05-29 09:42:31
+----------
+exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '6-20' for key 'PRIMARY'' in /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Crud/Form.php(137): QuickPdo\QuickPdo::insert('zilu.fournisseur_has_article', Array)
+#2 unknown file(unknown line): Crud\Form->Crud\{closure}(Array, 'Oops, something went wrong with the database, sorry...')
+#3 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-planets/QuickForm/QuickForm.php(216): call_user_func_array(Closure, Array)
+#4 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Crud/Form.php(153): QuickForm\QuickForm->play()
+#5 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/crud/auto-form/zilu.fournisseur_has_article.php(31): Crud\Form->display()
+#6 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/layout-elements/nullos/modules/crud/crud.php(51): require_once('/Volumes/Macintosh HD 2/ling/php/projects/xilou/public/crud/auto-form/zilu.fournisseur_has_article.php')
+#7 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Layout/Layout.php(191): require_once('/Volumes/Macintosh HD 2/ling/php/projects/xilou/public/layout-elements/nullos/modules/crud/crud.php')
+#8 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Layout/Layout.php(97): Layout\Layout->includeElement('body')
+#9 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/pages/modules/crud/crud.php(8): Layout\Layout->display()
+#10 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/www/index.php(86): require_once('/Volumes/Macintosh HD 2/ling/php/projects/xilou/public/pages/modules/crud/crud.php')
+#11 {main}
+
+crud.pdoException.form.insert -- 2017-05-29 09:42:41
+----------
+exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '6-20' for key 'PRIMARY'' in /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Crud/Form.php(137): QuickPdo\QuickPdo::insert('zilu.fournisseur_has_article', Array)
+#2 unknown file(unknown line): Crud\Form->Crud\{closure}(Array, 'Oops, something went wrong with the database, sorry...')
+#3 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-planets/QuickForm/QuickForm.php(216): call_user_func_array(Closure, Array)
+#4 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Crud/Form.php(153): QuickForm\QuickForm->play()
+#5 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/crud/auto-form/zilu.fournisseur_has_article.php(31): Crud\Form->display()
+#6 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/layout-elements/nullos/modules/crud/crud.php(51): require_once('/Volumes/Macintosh HD 2/ling/php/projects/xilou/public/crud/auto-form/zilu.fournisseur_has_article.php')
+#7 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Layout/Layout.php(191): require_once('/Volumes/Macintosh HD 2/ling/php/projects/xilou/public/layout-elements/nullos/modules/crud/crud.php')
+#8 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Layout/Layout.php(97): Layout\Layout->includeElement('body')
+#9 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/pages/modules/crud/crud.php(8): Layout\Layout->display()
+#10 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/www/index.php(86): require_once('/Volumes/Macintosh HD 2/ling/php/projects/xilou/public/pages/modules/crud/crud.php')
+#11 {main}
+
+crud.pdoException.form.insert -- 2017-05-29 09:42:43
+----------
+exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '6-20' for key 'PRIMARY'' in /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Crud/Form.php(137): QuickPdo\QuickPdo::insert('zilu.fournisseur_has_article', Array)
+#2 unknown file(unknown line): Crud\Form->Crud\{closure}(Array, 'Oops, something went wrong with the database, sorry...')
+#3 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-planets/QuickForm/QuickForm.php(216): call_user_func_array(Closure, Array)
+#4 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Crud/Form.php(153): QuickForm\QuickForm->play()
+#5 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/crud/auto-form/zilu.fournisseur_has_article.php(31): Crud\Form->display()
+#6 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/layout-elements/nullos/modules/crud/crud.php(51): require_once('/Volumes/Macintosh HD 2/ling/php/projects/xilou/public/crud/auto-form/zilu.fournisseur_has_article.php')
+#7 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Layout/Layout.php(191): require_once('/Volumes/Macintosh HD 2/ling/php/projects/xilou/public/layout-elements/nullos/modules/crud/crud.php')
+#8 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Layout/Layout.php(97): Layout\Layout->includeElement('body')
+#9 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/pages/modules/crud/crud.php(8): Layout\Layout->display()
+#10 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/www/index.php(86): require_once('/Volumes/Macintosh HD 2/ling/php/projects/xilou/public/pages/modules/crud/crud.php')
+#11 {main}
+
+crud.pdoException.form.insert -- 2017-05-29 09:42:45
+----------
+exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '6-20' for key 'PRIMARY'' in /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Crud/Form.php(137): QuickPdo\QuickPdo::insert('zilu.fournisseur_has_article', Array)
+#2 unknown file(unknown line): Crud\Form->Crud\{closure}(Array, 'Oops, something went wrong with the database, sorry...')
+#3 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-planets/QuickForm/QuickForm.php(216): call_user_func_array(Closure, Array)
+#4 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Crud/Form.php(153): QuickForm\QuickForm->play()
+#5 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/crud/auto-form/zilu.fournisseur_has_article.php(31): Crud\Form->display()
+#6 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/layout-elements/nullos/modules/crud/crud.php(51): require_once('/Volumes/Macintosh HD 2/ling/php/projects/xilou/public/crud/auto-form/zilu.fournisseur_has_article.php')
+#7 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Layout/Layout.php(191): require_once('/Volumes/Macintosh HD 2/ling/php/projects/xilou/public/layout-elements/nullos/modules/crud/crud.php')
+#8 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Layout/Layout.php(97): Layout\Layout->includeElement('body')
+#9 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/pages/modules/crud/crud.php(8): Layout\Layout->display()
+#10 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/www/index.php(86): require_once('/Volumes/Macintosh HD 2/ling/php/projects/xilou/public/pages/modules/crud/crud.php')
+#11 {main}
+
+crud.pdoException.form.insert -- 2017-05-29 09:43:00
+----------
+exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '6-20' for key 'PRIMARY'' in /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-planets/QuickPdo/QuickPdo.php:114
+Stack trace:
+#0 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-planets/QuickPdo/QuickPdo.php(114): PDOStatement->execute(Array)
+#1 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Crud/Form.php(137): QuickPdo\QuickPdo::insert('zilu.fournisseur_has_article', Array)
+#2 unknown file(unknown line): Crud\Form->Crud\{closure}(Array, 'Oops, something went wrong with the database, sorry...')
+#3 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-planets/QuickForm/QuickForm.php(216): call_user_func_array(Closure, Array)
+#4 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Crud/Form.php(153): QuickForm\QuickForm->play()
+#5 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/crud/auto-form/zilu.fournisseur_has_article.php(31): Crud\Form->display()
+#6 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/layout-elements/nullos/modules/crud/crud.php(51): require_once('/Volumes/Macintosh HD 2/ling/php/projects/xilou/public/crud/auto-form/zilu.fournisseur_has_article.php')
+#7 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Layout/Layout.php(191): require_once('/Volumes/Macintosh HD 2/ling/php/projects/xilou/public/layout-elements/nullos/modules/crud/crud.php')
+#8 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/class-modules/Layout/Layout.php(97): Layout\Layout->includeElement('body')
+#9 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/pages/modules/crud/crud.php(8): Layout\Layout->display()
+#10 /Volumes/Macintosh HD 2/ling/php/projects/xilou/public/www/index.php(86): require_once('/Volumes/Macintosh HD 2/ling/php/projects/xilou/public/pages/modules/crud/crud.php')
+#11 {main}
+
