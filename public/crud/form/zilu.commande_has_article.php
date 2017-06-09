@@ -32,7 +32,8 @@ $unitChoices = [
 
 
 $form->addControl("commande_id")->type("selectByRequest", "select id, reference from zilu.commande order by id asc");
-$form->addControl("article_id")->type("selectByRequest", "select id, reference_lf from zilu.article order by reference_lf asc");
+//$form->addControl("article_id")->type("selectByRequest", "select id, reference_lf from zilu.article order by reference_lf asc");
+$form->addControl("article_id")->type("text");
 $form->addControl("container_id")->type("selectByRequest", "select id, nom from zilu.container order by nom asc");
 $form->addControl("fournisseur_id")->type("selectByRequest", "select id, nom from zilu.fournisseur order by nom asc");
 $form->addControl("sav_id")->type("selectByRequest", "select id, fournisseur from zilu.sav  order by fournisseur asc");

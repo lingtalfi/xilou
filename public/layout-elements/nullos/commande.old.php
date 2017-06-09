@@ -113,13 +113,32 @@ $commandeId2Refs = CommandeUtil::getId2Labels();
 
             if (0 !== $idCommande) {
 
+                list($prixTotal, $poidsTotal, $volumeTotal) = CommandeUtil::getCommandeSumInfo($idCommande);
 
+                ?>
+                <table class="zilu-info">
+                    <tr>
+                        <td>Prix total estimé</td>
+                        <td><?php echo $prixTotal; ?>€</td>
+                    </tr>
+                    <tr>
+                        <td>Poids total estimé</td>
+                        <td><?php echo $poidsTotal; ?> kg</td>
+                    </tr>
+                    <tr>
+                        <td>Volume total estimé</td>
+                        <td><?php echo $volumeTotal; ?> m3</td>
+                    </tr>
+                </table>
+                <?php
+            }
 
-            	$prixSelection = 0;
-            	$poidsSelection = 0;
-				$volumeSelection = 0;
-            	
+            ?>
+        </div>
+        <div id="zilu-table" class="zilu-table">
+            <?php
 
+            if (0 !== $idCommande) {
 
 
                 $fields = '
@@ -168,22 +187,10 @@ where c.id=" . $idCommande;
                         ->setExtraHiddenFields([
                             "commande" => $idCommande,
                         ])
-                        ->setOnItemIteratedCallback(function (array $item, &$trClass) 
-                        	use( &$prixSelection, &$volumeSelection, &$poidsSelection ){
+                        ->setOnItemIteratedCallback(function (array $item, &$trClass) {
                             if ($item['sav'] !== null) {
                                 $trClass = 'red';
                             }
-                            $prix = $item['prix_override'];
-                            if(empty($prix)){
-                            	$prix = $item['prix'];
-                            }
-
-                            $q = $item['quantite'];
-                            $prixSelection += (float)$prix * $q;
-                            $volumeSelection += (float)$item['volume'] * $q;
-                            $poidsSelection += (float)$item['poids'] * $q;
-
-
                         })
                     );
 
@@ -293,55 +300,7 @@ where c.id=" . $idCommande;
 
 //                $list->setMultipleActionHandler("changestatut", "Changer le statut", $fn, $conf=false);
 
-
-
-				ob_start();
                 $list->displayTable();
-                $displayTable = ob_get_clean();
-
-
-
-                list($prixTotal, $poidsTotal, $volumeTotal) = CommandeUtil::getCommandeSumInfo($idCommande);
-
-                ?>
-                <table class="zilu-info">
-                    <tr>
-                        <td>Prix total estimé</td>
-                        <td><?php echo $prixTotal; ?>€</td>
-                    </tr>
-                    <tr>
-                        <td>Poids total estimé</td>
-                        <td><?php echo $poidsTotal; ?> kg</td>
-                    </tr>
-                    <tr>
-                        <td>Volume total estimé</td>
-                        <td><?php echo $volumeTotal; ?> m3</td>
-                    </tr>
-                </table>
-                <table class="zilu-info">
-                    <tr>
-                        <td>Prix sélection estimé</td>
-                        <td><?php echo $prixSelection; ?>€</td>
-                    </tr>
-                    <tr>
-                        <td>Poids sélection estimé</td>
-                        <td><?php echo $poidsSelection; ?> kg</td>
-                    </tr>
-                    <tr>
-                        <td>Volume sélection estimé</td>
-                        <td><?php echo $volumeSelection; ?> m3</td>
-                    </tr>
-                </table>
-                <?php
-            }
-
-            ?>
-        </div>
-        <div id="zilu-table" class="zilu-table">
-            <?php
-
-            if (0 !== $idCommande) {
-                echo $displayTable;
 
             }
             ?>

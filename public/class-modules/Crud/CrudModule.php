@@ -61,6 +61,11 @@ class CrudModule
                                 $table = substr($table, $pos + 1);
                             }
                         }
+
+                        if(0 === strpos($table, "csv")){
+                            continue;
+                        }
+
                         ?>
                         <li>
                             <a href="<?php echo CrudHelper::getListUrl($original); ?>"><?php echo ucfirst($table); ?></a>
